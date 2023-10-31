@@ -1,8 +1,11 @@
-const { withPlaiceholder } = require("@plaiceholder/next")
+import withPlaiceholder from "@plaiceholder/next"
 
-module.exports = withPlaiceholder({
+/**
+ * @type {import('next').NextConfig}
+ */
+const config = {
   images: {
-    domains: ["a.storyblok.com"],
+    domains: ["a-us.storyblok.com"],
   },
   webpack(config) {
     config.module.rules.push({
@@ -22,4 +25,6 @@ module.exports = withPlaiceholder({
     return config
   },
   generateBuildId: () => "build",
-})
+}
+
+export default withPlaiceholder(config)

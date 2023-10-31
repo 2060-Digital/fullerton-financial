@@ -28,7 +28,10 @@ export default async function generateSBPlaiceholders(page, { verbose = false } 
             value?.filename?.endsWith(".avif")
           ) {
             console.info(`Found Image. Generating placeholder for: ${value.filename}`)
-            const { base64 } = await getPlaiceholder(value.filename, { size: 16 })
+            const buffer = await fetch(value.filename).then(async (res) =>
+              Buffer.from(await res.arrayBuffer())
+            )
+            const { base64 } = await getPlaiceholder(buffer, { size: 16 })
             return [
               key,
               {
