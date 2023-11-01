@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@2060digital/prettier-config@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@2060digital/prettier-config/-/prettier-config-1.0.2.tgz#4fb17bf9717379b60d46a5f222710426c307567c"
-  integrity sha512-TUAGSKPvQR5YqnD+ZhacpR4uQIciM/GdMnSNclMPhMuDgeeHxbrmcgyJevIH8Rn7jZr6frQ/8JsEMAby2qObNA==
+"@2060-digital/prettier-config@1.0.1":
+  version "1.0.1"
+  resolved "https://npm.pkg.github.com/download/@2060-digital/prettier-config/1.0.1/3086aee185bb601b8a03dea580ef192f24afa30b#3086aee185bb601b8a03dea580ef192f24afa30b"
+  integrity sha512-pER+q670Ocq1zYzfQ7Z/Cn+QcRW6jK1bhgaY1xxsYwW4sp92L9guGuq0+C+fDnYgN9ImK/fwAWHUnl0/0cI8Ww==
 
 "@aashutoshrathi/word-wrap@^1.2.3":
   version "1.2.6"

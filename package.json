@@ -1,7 +1,7 @@
 {
   "name": "@2060-digital/next-storyblok-boilerplate",
   "private": true,
-  "prettier": "@2060digital/prettier-config",
+  "prettier": "@2060-digital/prettier-config",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -29,7 +29,7 @@
     "storyblok-rich-text-react-renderer": "^2.9.0"
   },
   "devDependencies": {
-    "@2060digital/prettier-config": "^1.0.2",
+    "@2060-digital/prettier-config": "1.0.1",
     "@babel/core": "^7.23.2",
     "@plaiceholder/next": "^3.0.0",
     "autoprefixer": "^10.4.16",
