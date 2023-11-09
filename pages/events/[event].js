@@ -2,10 +2,16 @@ import Link from "next/link"
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventByID, getIndividualEventPaths } from "eventbrite/api"
-import openEventbriteRegistration from "eventbrite/openEventbriteRegistration"
 import slugify from "utilities/slugify"
+import useModal from "utilities/useModal"
+import Modal from "components/Modal"
+import useEventbriteEmbed from "eventbrite/useEventbriteEmbed"
 
-export default function IndividualEventPage({ event, eventId }) {
+export default function IndividualEventPage({ event, eventID }) {
+  const { isOpen, closeModal, openModal, focusRef } = useModal(`event-${slugify(event.name.text)}-${eventID}`)
+
+  const { modalOpened, setModalOpened } = useEventbriteEmbed(event)
+
   return (
     <>
       <main>
@@ -15,10 +21,18 @@ export default function IndividualEventPage({ event, eventId }) {
           <Link href={`/events/venues/${slugify(event.venue.name)}-${event.venue.id}`}>
             <address>{event.venue.name}</address>
           </Link>
-          <button id={`event-${eventId}`} onClick={() => openEventbriteRegistration(eventId)}>
+          <Link
+            href={`#event-${slugify(event.name.text)}-${eventID}`}
+            onClick={() => {
+              if (!modalOpened) setModalOpened(true)
+            }}
+          >
             Register Now
-          </button>
+          </Link>
         </section>
+        <Modal {...{ isOpen, closeModal, openModal, focusRef }}>
+          <div id={`event-${slugify(event.name.text)}-${eventID}`}></div>
+        </Modal>
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
@@ -34,7 +48,7 @@ export async function getStaticProps({ params: { event } }) {
   return {
     props: {
       globals,
-      eventId: id,
+      eventID: id,
       event: individualEvent ?? null,
     },
   }

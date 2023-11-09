@@ -1,9 +1,7 @@
-import Link from "next/link"
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventsByVenue, getVenueByID, getVenuePaths } from "eventbrite/api"
-import slugify from "utilities/slugify"
-import openEventbriteRegistration from "eventbrite/openEventbriteRegistration"
+import Event from "components/Eventbrite/EventbriteEvent"
 
 export default function Venue({ venue, events }) {
   return (
@@ -14,21 +12,7 @@ export default function Venue({ venue, events }) {
         </section>
         <section>
           {events.map((event) => (
-            <div className="flex gap-4" key={event.id}>
-              <div>{event.start.utc}</div>
-              <div>
-                <Link href={`/events/${slugify(event.name.text)}-${event.id}`}>
-                  <h2>{event.name.html}</h2>
-                </Link>
-                <time>{event.start.utc}</time>
-                <Link href={`/events/venues/${slugify(venue.name)}-${venue.id}`}>
-                  <address>{venue.name}</address>
-                </Link>
-              </div>
-              <button id={`event-${event.id}`} onClick={() => openEventbriteRegistration(event.id)}>
-                Register Now
-              </button>
-            </div>
+            <Event event={event} venue={venue} key={event.id} />
           ))}
         </section>
       </main>

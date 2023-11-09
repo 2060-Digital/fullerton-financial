@@ -17,7 +17,7 @@ function useModal(hash) {
 
   // remove the hash/fragment from the url e.g. /blog#free-assessment -> /blog
   const closeModal = useCallback(() => {
-    if (router.asPath.toLowerCase().endsWith(hash.toLowerCase())) {
+    if (router.asPath.toLowerCase().includes(hash.toLowerCase())) {
       router.push(router.asPath.split("#")[0], undefined, { shallow: true, scroll: false })
       setModal(false)
       document.body.classList.remove("overflow-hidden")
@@ -42,11 +42,11 @@ function useModal(hash) {
 
   useEffect(() => {
     // open the modal regardless of whether user directly navigates to hash via address bar or viewport interaction e.g. button click
-    if (router.asPath.toLowerCase().endsWith(hash.toLowerCase())) openModal()
+    if (router.asPath.toLowerCase().includes(hash.toLowerCase())) openModal()
 
     // determine whether or not to update state upon route navigation
     function handleHashChange(url) {
-      url.toLowerCase().endsWith(hash.toLowerCase()) ? openModal() : closeModal()
+      url.toLowerCase().includes(hash.toLowerCase()) ? openModal() : closeModal()
     }
     router.events.on("routeChangeComplete", handleHashChange)
 
@@ -65,7 +65,7 @@ function useModal(hash) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
 
-  return [isOpen, closeModal, openModal, focusRef]
+  return { isOpen, closeModal, openModal, focusRef }
 }
 
 export default useModal
