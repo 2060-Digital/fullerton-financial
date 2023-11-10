@@ -1,6 +1,6 @@
 import cn from "classnames"
 
-export default function Modal({ children, isOpen, closeModal, focusRef }) {
+export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
   return (
     <>
       <div
@@ -27,7 +27,9 @@ export default function Modal({ children, isOpen, closeModal, focusRef }) {
         >
           X
         </button>
-        <div className="h-[100dvh] lg:h-auto w-full flex items-center lg:block">{children}</div>
+        <div className="h-[100dvh] lg:h-auto w-full flex items-center lg:block">
+          <div id={eventHash} />
+        </div>
       </div>
     </>
   )

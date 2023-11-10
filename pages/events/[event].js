@@ -2,15 +2,12 @@ import Link from "next/link"
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventByID, getIndividualEventPaths } from "eventbrite/api"
-import slugify from "utilities/slugify"
-import useModal from "utilities/useModal"
-import Modal from "components/Modal"
-import useEventbriteEmbed from "eventbrite/useEventbriteEmbed"
+import useEventbriteModal from "eventbrite/useEventbriteModal"
+import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
+import EventbriteModal from "components/Eventbrite/EventbriteModal"
 
 export default function IndividualEventPage({ event, eventID }) {
-  const { isOpen, closeModal, openModal, focusRef } = useModal(`event-${slugify(event.name.text)}-${eventID}`)
-
-  const { modalOpened, setModalOpened } = useEventbriteEmbed(event)
+  const { embedCreated, setEmbedCreated, modalProps, eventHash } = useEventbriteModal(event)
 
   return (
     <>
@@ -20,28 +17,15 @@ export default function IndividualEventPage({ event, eventID }) {
           <time>{event.start.utc}</time>
 
           {event.series_id ? (
-            <Link
-              href={`/events/venues/${slugify(event.venue.name)}-${event.venue.id}`}
-              className="underline hover:no-underline"
-            >
+            <Link href={event.venue.slug} className="underline hover:no-underline">
               <address>{event.venue.name}</address>
             </Link>
           ) : (
             <address>{event.venue.name}</address>
           )}
-          <Link
-            href={`#event-${slugify(event.name.text)}-${eventID}`}
-            onClick={() => {
-              if (!modalOpened) setModalOpened(true)
-            }}
-            className="underline hover:no-underline"
-          >
-            Register Now
-          </Link>
+          <RegisterNowLink {...{ embedCreated, setEmbedCreated, eventHash }} />
         </section>
-        <Modal {...{ isOpen, closeModal, openModal, focusRef }}>
-          <div id={`event-${slugify(event.name.text)}-${eventID}`}></div>
-        </Modal>
+        <EventbriteModal {...modalProps} eventHash={eventHash} />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>

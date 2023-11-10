@@ -1,9 +1,6 @@
-import Link from "next/link"
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getAllPublicEvents } from "eventbrite/api"
-import useEventbriteEmbed from "eventbrite/useEventbriteEmbed"
-import slugify from "utilities/slugify"
 import Event from "components/Eventbrite/EventbriteEvent"
 
 export default function EventsArchive({ events }) {
