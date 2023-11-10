@@ -1,5 +1,5 @@
 import query from "eventbrite/query"
-import slugify from "utilities/slugify"
+import slugify from "slugify"
 
 export async function getOrganizationID() {
   const orgID = await query("/users/me/organizations").then((response) => response.organizations[0].id)
@@ -7,6 +7,7 @@ export async function getOrganizationID() {
   return orgID
 }
 
+// Events
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
@@ -16,7 +17,13 @@ export async function getAllActiveEvents() {
     events.map(async (event) => {
       const venue = await getVenueByID(event.venue_id)
 
-      return { ...event, venue }
+      return {
+        ...event,
+        venue,
+        slug: `/events/${slugify(event.name.text, {
+          lower: true,
+        })}-${event.id}`,
+      }
     }),
   )
 
@@ -33,7 +40,13 @@ export async function getIndividualEventPaths() {
   const events = await getAllActiveEvents()
 
   return events?.map(({ name, id }) => {
-    return { params: { event: `${slugify(name.text)}-${id}` } }
+    return {
+      params: {
+        event: `${slugify(name.text, {
+          lower: true,
+        })}-${id}`,
+      },
+    }
   })
 }
 
@@ -53,32 +66,50 @@ export async function getEventSeriesByID(id) {
   return { ...eventSeries, venue }
 }
 
+// Venues
 export async function getVenuePaths() {
   const events = await getAllActiveEvents()
 
-  const eventSeries = await Promise.all(
-    Array.from(new Set(events.filter(({ series_id }) => series_id).map(({ series_id }) => series_id))).map(
-      async (id) => {
-        const series = await getEventSeriesByID(id)
+  const eventsInSeries = events.filter(({ series_id }) => series_id)
+  const uniqueSeriesIDs = [...new Set(eventsInSeries)].map(({ series_id }) => series_id)
 
-        return series
-      },
-    ),
+  const eventSeries = await Promise.all(
+    uniqueSeriesIDs.map(async (id) => {
+      const series = await getEventSeriesByID(id)
+
+      return series
+    }),
   )
 
   return eventSeries?.map(({ venue }) => {
-    return { params: { venue: `${slugify(venue.name)}-${venue.id}` } }
+    return {
+      params: {
+        venue: `${slugify(venue.name, {
+          lower: true,
+        })}-${venue.id}`,
+      },
+    }
   })
 }
 
 export async function getVenueByID(id) {
   const venue = await query(`/venues/${id}`)
 
-  return venue
+  return {
+    ...venue,
+    slug: `/events/venues/${slugify(venue.name, {
+      lower: true,
+    })}-${venue.id}`,
+  }
 }
 
 export async function getEventsByVenue(venueID) {
   const events = await query(`/venues/${venueID}/events?status=live`).then(({ events }) => events)
 
-  return events
+  return events.map((event) => ({
+    ...event,
+    slug: `/events/${slugify(event.name.text, {
+      lower: true,
+    })}-${event.id}`,
+  }))
 }
