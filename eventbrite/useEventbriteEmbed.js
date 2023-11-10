@@ -10,7 +10,7 @@ export default function useEventbriteEmbed(event) {
         widgetType: "checkout",
         eventId: event.id,
         iframeContainerId: `event-${slugify(event.name.text)}-${event.id}`,
-        iframeContainerHeight: 425,
+        iframeContainerHeight: 720,
         onOrderComplete: () => {},
       })
     }
