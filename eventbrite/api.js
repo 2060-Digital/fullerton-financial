@@ -1,13 +1,8 @@
+import query from "eventbrite/query"
 import slugify from "utilities/slugify"
 
 export async function getOrganizationID() {
-  const orgID = await fetch(`https://www.eventbriteapi.com/v3/users/me/organizations/`, {
-    headers: {
-      Authorization: `Bearer ${process.env.EVENTBRITE_PRIVATE_TOKEN}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => json.organizations[0].id)
+  const orgID = await query("/users/me/organizations").then((response) => response.organizations[0].id)
 
   return orgID
 }
@@ -15,13 +10,7 @@ export async function getOrganizationID() {
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
-  const events = await fetch(`https://www.eventbriteapi.com/v3/organizations/${orgID}/events/?status=live`, {
-    headers: {
-      Authorization: `Bearer ${process.env.EVENTBRITE_PRIVATE_TOKEN}`,
-    },
-  })
-    .then((response) => response.json())
-    .then(({ events }) => events)
+  const events = await query(`/organizations/${orgID}/events?status=live`).then(({ events }) => events)
 
   const eventsWithVenues = await Promise.all(
     events.map(async (event) => {
@@ -49,11 +38,7 @@ export async function getIndividualEventPaths() {
 }
 
 export async function getEventByID(id) {
-  const event = await fetch(`https://www.eventbriteapi.com/v3/events/${id}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.EVENTBRITE_PRIVATE_TOKEN}`,
-    },
-  }).then((response) => response.json())
+  const event = await query(`/events/${id}`)
 
   const venue = await getVenueByID(event.venue_id)
 
@@ -61,11 +46,7 @@ export async function getEventByID(id) {
 }
 
 export async function getEventSeriesByID(id) {
-  const eventSeries = await fetch(`https://www.eventbriteapi.com/v3/series/${id}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.EVENTBRITE_PRIVATE_TOKEN}`,
-    },
-  }).then((response) => response.json())
+  const eventSeries = await query(`/series/${id}`)
 
   const venue = await getVenueByID(eventSeries.venue_id)
 
@@ -76,11 +57,13 @@ export async function getVenuePaths() {
   const events = await getAllActiveEvents()
 
   const eventSeries = await Promise.all(
-    Array.from(new Set(events.map(({ series_id }) => series_id))).map(async (id) => {
-      const series = await getEventSeriesByID(id)
+    Array.from(new Set(events.filter(({ series_id }) => series_id).map(({ series_id }) => series_id))).map(
+      async (id) => {
+        const series = await getEventSeriesByID(id)
 
-      return series
-    }),
+        return series
+      },
+    ),
   )
 
   return eventSeries?.map(({ venue }) => {
@@ -89,23 +72,13 @@ export async function getVenuePaths() {
 }
 
 export async function getVenueByID(id) {
-  const venue = await fetch(`https://www.eventbriteapi.com/v3/venues/${id}/`, {
-    headers: {
-      Authorization: `Bearer ${process.env.EVENTBRITE_PRIVATE_TOKEN}`,
-    },
-  }).then((response) => response.json())
+  const venue = await query(`/venues/${id}`)
 
   return venue
 }
 
 export async function getEventsByVenue(venueID) {
-  const events = await fetch(`https://www.eventbriteapi.com/v3/venues/${venueID}/events/?status=live`, {
-    headers: {
-      Authorization: `Bearer ${process.env.EVENTBRITE_PRIVATE_TOKEN}`,
-    },
-  })
-    .then((response) => response.json())
-    .then(({ events }) => events)
+  const events = await query(`/venues/${venueID}/events?status=live`).then(({ events }) => events)
 
   return events
 }
