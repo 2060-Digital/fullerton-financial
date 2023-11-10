@@ -18,14 +18,23 @@ export default function IndividualEventPage({ event, eventID }) {
         <section>
           <h1>{event.name.text}</h1>
           <time>{event.start.utc}</time>
-          <Link href={`/events/venues/${slugify(event.venue.name)}-${event.venue.id}`}>
+
+          {event.series_id ? (
+            <Link
+              href={`/events/venues/${slugify(event.venue.name)}-${event.venue.id}`}
+              className="underline hover:no-underline"
+            >
+              <address>{event.venue.name}</address>
+            </Link>
+          ) : (
             <address>{event.venue.name}</address>
-          </Link>
+          )}
           <Link
             href={`#event-${slugify(event.name.text)}-${eventID}`}
             onClick={() => {
               if (!modalOpened) setModalOpened(true)
             }}
+            className="underline hover:no-underline"
           >
             Register Now
           </Link>
