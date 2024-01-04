@@ -4,6 +4,7 @@ import withPlaiceholder from "@plaiceholder/next"
  * @type {import('next').NextConfig}
  */
 const config = {
+  productionBrowserSourceMaps: true,
   images: {
     domains: ["a-us.storyblok.com"],
   },
@@ -16,12 +17,19 @@ const config = {
           loader: "@svgr/webpack",
           options: {
             svgoConfig: {
-              plugins: [{ name: "prefixIds", active: false }],
+              plugins: [],
             },
           },
         },
       ],
     })
+
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: "graphql-tag/loader",
+    })
+
     return config
   },
   generateBuildId: () => "build",
