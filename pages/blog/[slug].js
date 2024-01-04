@@ -1,5 +1,6 @@
 import Image from "components/Image"
-import { getAllBlogArticlePaths, getBlogArticle, getGlobals, getAllBlogCategories } from "storyblok/api"
+import { getGlobals } from "storyblok/api"
+import { getAllBlogArticlePaths, getBlogArticle, getAllBlogCategories } from "storyblok/blog"
 import richText from "utilities/richText"
 import DynamicVideo from "components/DynamicVideo"
 import { CategoriesBox } from "components/Blog/CategoriesBox"
