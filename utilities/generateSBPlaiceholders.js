@@ -28,15 +28,19 @@ export default async function generateSBPlaiceholders(page, { verbose = false } 
             value?.filename?.endsWith(".avif")
           ) {
             console.info(`Found Image. Generating placeholder for: ${value.filename}`)
-            const buffer = await fetch(value.filename).then(async (res) =>
-              Buffer.from(await res.arrayBuffer())
-            )
-            const { base64 } = await getPlaiceholder(buffer, { size: 16 })
+            const buffer = await fetch(value.filename).then(async (res) => Buffer.from(await res.arrayBuffer()))
+            let blurDataURL = ""
+            try {
+              const { base64 } = await getPlaiceholder(buffer, { size: 16 })
+              blurDataURL = base64
+            } catch (error) {
+              console.error(error)
+            }
             return [
               key,
               {
                 ...value,
-                blurDataURL: base64,
+                blurDataURL,
               },
             ]
           } else {
@@ -50,14 +54,14 @@ export default async function generateSBPlaiceholders(page, { verbose = false } 
             await Promise.all(
               value.map(async (arrEntry) => {
                 return await generateSBPlaiceholders(arrEntry, { verbose: false })
-              })
+              }),
             ),
           ]
         } else {
           if (verbose) console.info(`No Match Found. Key: ${key}, Value: ${value ? value : `(empty)`}`)
           return [key, value]
         }
-      })
-    )
+      }),
+    ),
   )
 }

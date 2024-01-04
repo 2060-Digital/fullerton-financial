@@ -65,7 +65,7 @@ function useModal(hash) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router])
 
-  return [isOpen, closeModal, openModal, focusRef]
+  return { isOpen, closeModal, openModal, focusRef }
 }
 
 export default useModal

@@ -1,4 +1,4 @@
-import { render, MARK_LINK, NODE_HEADING } from "storyblok-rich-text-react-renderer"
+import { render, MARK_LINK, MARK_TEXT_STYLE, NODE_HEADING } from "storyblok-rich-text-react-renderer"
 import CallToAction from "components/CallToAction"
 import cn from "classnames"
 import { Components } from "components/DynamicComponent"
@@ -23,14 +23,12 @@ export default function richText(content) {
   return content
     ? render(content, {
         blokResolvers,
-        defaultBlokResolver: (name, props) => (
-          <div>
-            <strong className="text-red-500">Missing blok resolver for blok type {`"${name}"`}.</strong>
-            <pre>
-              <code>{JSON.stringify(props, undefined, 2)}</code>
-            </pre>
-          </div>
-        ),
+        defaultBlokResolver: (name, props) => {
+          console.error(`Missing blok resolvers for ${name}:\n
+          ${JSON.stringify(props)}
+          `)
+          return null
+        },
         nodeResolvers: {
           // properly resolve styles
           [NODE_HEADING]: (children, { level }) => {
@@ -52,6 +50,10 @@ export default function richText(content) {
                 {children}
               </CallToAction>
             )
+          },
+          // Prevents content editors from setting a custom text color
+          [MARK_TEXT_STYLE]: (children) => {
+            return children
           },
         },
       })

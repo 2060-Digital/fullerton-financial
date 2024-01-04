@@ -1,4 +1,6 @@
 import outdent from "outdent"
+import { print } from "graphql/language/printer"
+import { resolve_relations } from "storyblok/resolveRelations"
 
 /**
  * A utility function to fetch data from the Storyblok GraphQL API
@@ -9,6 +11,8 @@ import outdent from "outdent"
  * @returns {Promise<object>} The requested data. An error is logged to the console if the query has an error or the fetch fails
  */
 export default async function fetchQuery(query, { variables, preview } = {}, debug = false) {
+  query = typeof query === "object" ? print(query) : query
+
   try {
     const queryRequest = async () =>
       await fetch(`https://gapi-us.storyblok.com/v1/api`, {
@@ -19,8 +23,11 @@ export default async function fetchQuery(query, { variables, preview } = {}, deb
           Version: preview ? "draft" : "published",
         },
         body: JSON.stringify({
-          query,
-          variables,
+          query: query,
+          variables: {
+            ...variables,
+            resolve_relations,
+          },
         }),
       })
 
@@ -90,7 +97,7 @@ export default async function fetchQuery(query, { variables, preview } = {}, deb
       --------------------------------------
       ++++++++++++++++++++++++++++++++++++++
 
-      `
+      `,
       )
     }
 
