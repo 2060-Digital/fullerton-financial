@@ -21,5 +21,5 @@ The second is the main url of the site.
 Clone down the repo and run:
 
 ```zsh
-yarn dev
+ntl dev
 ```
