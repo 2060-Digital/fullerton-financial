@@ -2,6 +2,8 @@ import retrieveAll from "storyblok/retrieveAll"
 import query from "storyblok/fetch"
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
+import Menus from "storyblok/gql/Menus.gql"
+
 export async function getAllPageSlugs() {
   const data = await retrieveAll({
     query: `#graphql
@@ -73,42 +75,14 @@ export async function getGlobals() {
   //   }
   // `)
 
-  const headerData = await query(`#graphql
-  query HeaderMenus {
-    MenuItem(id: "menus/") {
-      id
-      content {
-        _editable
-        _uid
-        component
-        menu_items
-      }
-    }
-  }
-  `)
-
-  // const footerData = await query(`#graphql
-  //   query FooterMenus {
-  //     MenuItems(starts_with: "menus/footer") {
-  //       items {
-  //         id
-  //         name
-  //         content {
-  //           _uid
-  //           component
-  //           menu_items
-  //           _editable
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
+  const menus = await retrieveAll({ query: Menus, preview: false, type: "MenuItems" }).then((items) =>
+    items.reduce((prev, curr) => ({ [curr.slug]: curr.content.menu_items, ...prev }), {}),
+  )
 
   const globalData = {
     // ...data.global.items.reduce((acc, { name, value }) => ({ [name]: value, ...acc }), {}),
     // phoneNumbers: data.phoneNumbers,
-    // footerMenus: footerData.MenuItems.items.reverse(),
-    header: headerData.MenuItem.content.menu_items,
+    ...menus,
   }
 
   globalCache.set("data", globalData)
