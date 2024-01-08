@@ -11,6 +11,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fontsource/lato": "^5.0.18",
+    "@fontsource/playfair-display": "^5.0.18",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.10",
     "axios": "^1.6.4",
@@ -24,9 +26,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.2",
+    "sharp": "^0.33.1",
     "storyblok-js-client": "^6.4.1",
     "storyblok-react": "^0.1.2",
-    "sharp": "^0.33.1",
     "storyblok-rich-text-react-renderer": "^2.9.1"
   },
   "devDependencies": {
