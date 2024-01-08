@@ -34,6 +34,7 @@ export async function getPage(slug, preview) {
             _uid
             body
             component
+            seo
           }
           created_at
           published_at
