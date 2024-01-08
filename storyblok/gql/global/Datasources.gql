@@ -1,0 +1,14 @@
+query Datasources {
+  socialMedia: DatasourceEntries(datasource: "social-media") {
+    items {
+      name
+      value
+    }
+  }
+  phoneNumbers: DatasourceEntries(datasource: "phone-numbers") {
+    items {
+      name
+      value
+    }
+  }
+}
