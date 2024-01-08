@@ -4,9 +4,9 @@ import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
 import AllPageSlugs from "storyblok/gql/page/AllPageSlugs.gql"
 import PageBySlug from "storyblok/gql/page/PageBySlug.gql"
-
 import Menus from "storyblok/gql/global/Menus.gql"
 import Datasources from "storyblok/gql/global/Datasources.gql"
+import AllLocations from "storyblok/gql/location/AllLocations.gql"
 
 export async function getAllPageSlugs() {
   const data = await retrieveAll({
@@ -40,13 +40,24 @@ export async function getGlobals() {
     items.reduce((prev, curr) => ({ [curr.slug]: curr.content.menu_items, ...prev }), {}),
   )
 
+  const locations = await getAllLocations()
+
   const globalData = {
     socialMedia: datasources.socialMedia.items.reduce((acc, { name, value }) => ({ [name]: value, ...acc }), {}),
     phoneNumbers: datasources.phoneNumbers.items.reduce((acc, { name, value }) => ({ [name]: value, ...acc }), {}),
+    locations,
     ...menus,
   }
 
   globalCache.set("data", globalData)
 
   return globalData
+}
+
+export async function getAllLocations() {
+  const locations = await retrieveAll({ query: AllLocations, preview: false, type: "LocationItems" }).then((items) =>
+    items.map((item) => ({ ...item.content, slug: `/${item.full_slug}` })),
+  )
+
+  return locations
 }
