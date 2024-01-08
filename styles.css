@@ -15,6 +15,41 @@ html,
   position: sticky;
 }
 
+/* Text Styles */
+.rich-text-ul,
+.rich-text-ol {
+  font-family: theme("fontFamily.primary");
+  padding-bottom: theme("spacing.4");
+}
+
+.rich-text-ul {
+  list-style-type: disc;
+}
+
+.rich-text-ol {
+  list-style-type: decimal;
+}
+
+.rich-text-ul li,
+.rich-text-ol li {
+  margin-left: theme("spacing.4");
+}
+
+.rich-text-ul li::marker,
+.rich-text-ol li::marker {
+  font-family: theme("fontFamily.primary");
+}
+
+.rich-text-ul li p,
+.rich-text-ol li p {
+  @apply py-0 leading-7;
+}
+
+.rich-text-ul li p {
+  @apply font-bold text-m1;
+}
+/* End Text Styles */
+
 /* Call to Action */
 .primary-link,
 .secondary-link,
