@@ -11,16 +11,9 @@ export default function CallToAction({
   className,
   ...delegated
 }) {
-  const ctaStyles = {
-    primary:
-      "primary-link px-[38px] py-[20px] text-base sm:text-lg font-semibold bg-black text-white rounded-full no-underline",
-    secondary:
-      "secondary-link transition-all text-lg font-semibold underline underline-offset-8 decoration-black hover:no-underline decoration-4",
-    tertiary: "tertiary-link hover:underline underline-offset-4 decoration-black decoration-solid",
-  }
   const styles = cn(
-    "text-center inline-block cursor-pointer max-w-full", // default styles
-    ctaStyles[style],
+    "inline-block cursor-pointer max-w-full", // default styles
+    `${style}-link`,
     className,
   )
 

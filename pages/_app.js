@@ -1,7 +1,9 @@
 import Head from "next/head"
 
 import "styles.css"
-import "fonts.js"
+import "@fontsource/lato/latin-400.css"
+import "@fontsource/lato/latin-700.css"
+import "@fontsource/playfair-display/latin-700.css"
 
 import PreviewAlert from "components/PreviewAlert"
 import Header from "components/Header"
@@ -25,9 +27,9 @@ function MyApp({ Component, pageProps: { preview, story, globals, ...remainingPr
         <meta name="theme-color" content="#ffffff" />
       </Head>
       {preview && <PreviewAlert />}
-      <Header globals={globals} />
+      <Header header={globals?.header} utilityBar={globals["utility-bar"]} />
       <Component story={story} {...remainingProps} />
-      {/* <Footer globals={globals} /> */}
+      {/* <Footer footer={globals?.footer} colophon={globals?.colophon} /> */}
     </>
   )
 }

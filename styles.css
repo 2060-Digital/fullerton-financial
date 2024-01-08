@@ -15,6 +15,101 @@ html,
   position: sticky;
 }
 
+/* Text Styles */
+h1,
+h2,
+h3 {
+  @apply font-secondary font-bold text-gray-charcoal;
+}
+
+h4,
+.eyebrow {
+  @apply font-primary font-bold text-m1 lg:text-m2 text-gray-charcoal;
+}
+
+h1 {
+  @apply text-xl1 lg:text-xl2;
+}
+
+h2 {
+  @apply text-l2 lg:text-xl1;
+}
+
+h3 {
+  @apply text-m2 lg:text-l1;
+}
+
+.eyebrow {
+  @apply uppercase;
+}
+
+p {
+  @apply font-primary text-gray-charcoal;
+}
+
+.rich-text-ul,
+.rich-text-ol {
+  font-family: theme("fontFamily.primary");
+  padding-bottom: theme("spacing.4");
+}
+
+.rich-text-ul {
+  list-style-type: disc;
+}
+
+.rich-text-ol {
+  list-style-type: decimal;
+}
+
+.rich-text-ul li,
+.rich-text-ol li {
+  margin-left: theme("spacing.4");
+}
+
+.rich-text-ul li::marker,
+.rich-text-ol li::marker {
+  font-family: theme("fontFamily.primary");
+}
+
+.rich-text-ul li p,
+.rich-text-ol li p {
+  @apply py-0 leading-7;
+}
+
+.rich-text-ul li p {
+  @apply font-bold text-m1;
+}
+/* End Text Styles */
+
+/* Call to Action */
+.primary-link,
+.secondary-link,
+.ghost-link {
+  @apply uppercase transition-all duration-200 text-primary-1 font-primary;
+}
+.primary-link,
+.ghost-link {
+  @apply px-5 py-4 border-2 border-tertiary-1;
+}
+
+.primary-link {
+  @apply bg-tertiary-1 hover:bg-secondary-1 hover:border-secondary-1 hover:text-white;
+}
+
+.secondary-link {
+  @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1;
+}
+
+.ghost-link {
+  @apply hover:bg-tertiary-1;
+}
+
+.inline-link {
+  @apply text-tertiary-1 font-primary underline hover:font-bold;
+}
+
+/* End Call to Action */
+
 /* Main Menu */
 
 /* mobile menu button */
@@ -67,9 +162,6 @@ header nav ~ a {
   .menu ul li.top-level .submenu li {
     @apply p-0;
   }
-  .menu ul.submenu li a {
-    @apply text-black;
-  }
 
   .menu > ul li:hover,
   .menu > ul li a:hover,
@@ -93,11 +185,6 @@ header nav ~ a {
   .menu ul li.top-level > a,
   .menu ul li.top-level > div {
     @apply pt-[10px] p-3 uppercase relative cursor-pointer;
-  }
-
-  .menu ul li.top-level:hover,
-  .menu ul li.top-level:focus-within {
-    @apply text-black;
   }
 
   .menu ul li.top-level {

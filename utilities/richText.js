@@ -1,4 +1,4 @@
-import { render, MARK_LINK, MARK_TEXT_STYLE, NODE_HEADING } from "storyblok-rich-text-react-renderer"
+import { render, MARK_LINK, MARK_TEXT_STYLE, NODE_HEADING, NODE_UL, NODE_OL } from "storyblok-rich-text-react-renderer"
 import CallToAction from "components/CallToAction"
 import cn from "classnames"
 import { Components } from "components/DynamicComponent"
@@ -41,6 +41,12 @@ export default function richText(content) {
             return children ? (
               <Component className={cn(children[0].props.className)}>{children[0].props.children}</Component>
             ) : null
+          },
+          [NODE_UL]: (children) => {
+            return <ul className="rich-text-ul">{children}</ul>
+          },
+          [NODE_OL]: (children) => {
+            return <ol className="rich-text-ol">{children}</ol>
           },
         },
         markResolvers: {

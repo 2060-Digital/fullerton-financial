@@ -1,0 +1,12 @@
+query AllMenus($page: Int!, $per_page: Int!) {
+  MenuItems(page: $page, per_page: $per_page) {
+    items {
+      content {
+        _uid
+        menu_items
+      }
+      slug
+    }
+    total
+  }
+}
