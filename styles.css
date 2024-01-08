@@ -251,13 +251,33 @@ header nav ~ a {
 }
 /* End Main Menu */
 
-/* Modal Component */
-.modal-x:hover .modal-x-bg {
-  /* @apply fill-gray-dark; */
+/* Search Bar */
+.searchbar::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background-image: url("public/assets/magnifying-glass.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.modal-x:hover .modal-x-line {
-  /* @apply fill-yellow; */
+.searchbar input {
+  width: 100%;
+  font-family: theme(fontFamily.primary);
+  font-size: theme("fontSize.base");
+  color: theme("colors.primary.1");
+  background-color: transparent;
+  padding-left: 1rem;
+  border-bottom: 0.5px solid theme("colors.secondary.1");
 }
 
-/* End Modal Component */
+input::placeholder {
+  font-family: theme(fontFamily.primary);
+  font-size: theme("fontSize.base");
+  color: theme("colors.primary.1");
+}
+/* End Search Bar */
