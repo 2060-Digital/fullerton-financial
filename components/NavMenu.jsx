@@ -6,7 +6,7 @@ import { getStoryblokLink } from "utilities/getStoryblokLink"
 import CallToAction from "components/CallToAction"
 import MenuButton from "public/assets/hamburger-menu.svg"
 import { useRouter } from "next/router"
-import isInternalLink from "utilities/isInternalLink"
+import getTarget from "utilities/getTarget"
 
 const SingleMenuItem = ({ item, depth = 1, currentPath }) => {
   const [open, setSubMenuAccordionVisibility] = useState(false)
@@ -39,7 +39,7 @@ const SingleMenuItem = ({ item, depth = 1, currentPath }) => {
           className={cn("link block lg:inline-block cursor-pointer", {
             "current-page": currentPath === href,
           })}
-          target={isInternalLink(href) ? "_self" : "_blank"}
+          target={getTarget(href)}
         >
           <span className="whitespace-normal sm:whitespace-nowrap">{item.label}</span>
           <MobileAccordionToggle />
@@ -105,7 +105,7 @@ export default function NavMenu({ menu, ...delegated }) {
         "py-8 px-10 lg:p-0 absolute overflow-scroll lg:overflow-visible lg:static w-full h-[calc(_100vh-105px)] lg:h-full lg:w-auto top-28 left-0 bg-blue-dark lg:bg-white font-bold z-50 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-0",
         {
           "hidden lg:flex": !open,
-        }
+        },
       )}
     >
       <nav aria-label="Main" className="menu" {...delegated}>

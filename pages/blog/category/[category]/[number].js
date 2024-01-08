@@ -1,4 +1,5 @@
-import { getGlobals, getAllBlogCategoryPaths, getBlogArchive, getAllBlogCategories } from "storyblok/api"
+import { getGlobals } from "storyblok/api"
+import { getAllBlogCategoryPaths, getBlogArchive, getAllBlogCategories } from "storyblok/blog"
 import cache from "storyblok/cache"
 import BlogArticlesSection from "components/Blog/BlogArticlesSection"
 import Head from "next/head"

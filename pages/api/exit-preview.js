@@ -12,7 +12,7 @@ export default async function exit(req, res) {
   const cookies = res.getHeader("Set-Cookie")
   res.setHeader(
     "Set-Cookie",
-    cookies.map((cookie) => cookie.replace("SameSite=Lax", "SameSite=None;Secure"))
+    cookies.map((cookie) => cookie.replace("SameSite=Lax", "SameSite=None;Secure")),
   )
 
   res.writeHead(307, { Location: `/${slug}` })

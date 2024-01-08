@@ -1,6 +1,6 @@
 import NextLink from "next/link"
 import cn from "classnames"
-import isInternalLink from "utilities/isInternalLink"
+import getTarget from "utilities/getTarget"
 
 export default function CallToAction({
   href,
@@ -11,17 +11,10 @@ export default function CallToAction({
   className,
   ...delegated
 }) {
-  const ctaStyles = {
-    primary:
-      "primary-link px-[38px] py-[20px] text-base sm:text-lg font-semibold bg-black text-white rounded-full no-underline",
-    secondary:
-      "secondary-link transition-all text-lg font-semibold underline underline-offset-8 decoration-black hover:no-underline decoration-4",
-    tertiary: "tertiary-link hover:underline underline-offset-4 decoration-black decoration-solid",
-  }
   const styles = cn(
-    "text-center inline-block cursor-pointer max-w-full", // default styles
-    ctaStyles[style],
-    className
+    "inline-block cursor-pointer max-w-full", // default styles
+    `${style}-link`,
+    className,
   )
 
   if (button) {
@@ -39,16 +32,14 @@ export default function CallToAction({
       </span>
     )
 
-  const internal = isInternalLink(href)
-
-  target = target ?? internal ? "_self" : "_blank"
+  const internal = getTarget(href)
 
   if (href.startsWith("tel:") || href.startsWith("mailto:")) {
     target = "_self"
   }
 
   return internal ? (
-    <NextLink href={href} data-type="route" className={styles} {...delegated}>
+    <NextLink href={href} data-type="route" target="_self" className={styles} {...delegated}>
       {children}
     </NextLink>
   ) : (

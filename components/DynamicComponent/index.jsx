@@ -19,26 +19,24 @@ const DynamicComponent = ({ blok }) => {
   // check if component is defined above
   if (typeof Components[blok?.component] !== "undefined") {
     const Component = Components[blok.component]
-    // wrap with SbEditable for visual editing
 
     // Set an _editable value to avoid error in SbEditable
     if (blok._editable === null) {
       blok._editable = undefined
     }
+    if (typeof window !== "undefined" && window.location.search.includes("_storyblok")) {
+      return (
+        <SbEditable content={blok}>
+          <Component blok={blok} />
+        </SbEditable>
+      )
+    }
 
-    return (
-      <SbEditable content={blok}>
-        <Component blok={blok} />
-      </SbEditable>
-    )
+    return <Component blok={blok} />
   }
 
   // fallback if the component doesn't exist
-  return (
-    <p className="mx-auto max-w-md text-center font-heading text-xl font-bold text-red-500 bg-white p-12 m-6 rounded-md">
-      The component <strong>{blok?.component}</strong> has not been created yet.
-    </p>
-  )
+  return null
 }
 
 export default DynamicComponent

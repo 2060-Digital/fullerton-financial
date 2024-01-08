@@ -35,6 +35,8 @@ export default function useStoryblok({ story: originalStory, resolve_relations =
 function initEventListeners(resolveRelations, story, setStory) {
   const { StoryblokBridge } = window
 
+  resolveRelations = resolveRelations.split(",")
+
   const bridge = new StoryblokBridge({
     resolveRelations,
   })
@@ -46,6 +48,7 @@ function initEventListeners(resolveRelations, story, setStory) {
       const StoryblokClient = (await import("storyblok-js-client")).default
 
       const Storyblok = new StoryblokClient({
+        region: "US",
         accessToken: process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN,
       })
 
@@ -54,12 +57,12 @@ function initEventListeners(resolveRelations, story, setStory) {
         resolve_relations: resolveRelations,
       })
 
-      const story = draftResponse.data.story
+      const story = draftResponse?.data?.story
 
       if (story) setStory(story)
     } catch (error) {
       console.error(
-        `Encountered an error attempting to fetch draft data on editor initialization: ${JSON.stringify(error)}`
+        `Encountered an error attempting to fetch draft data on editor initialization: ${JSON.stringify(error)}`,
       )
     }
   })
@@ -71,7 +74,7 @@ function initEventListeners(resolveRelations, story, setStory) {
    * - change the story content through the setStory function
    **/
   bridge.on("input", (event) => {
-    event.story.content._uid === story.content._uid && setStory(event.story)
+    event.story.content._uid === story?.content?._uid && setStory(event.story)
   })
 
   // reload Next.js page on save or publish event in the Visual Editor

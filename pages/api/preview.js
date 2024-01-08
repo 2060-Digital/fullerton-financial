@@ -14,14 +14,14 @@ export default async function preview(req, res) {
     {
       maxAge: 60, // set the cookies to expire in one minute to limit error time if problem occurs or create long-lasting user confusion
       path: slug, // limit cookie to preview path to prevent site-wide client errors or site-wide preview mode
-    }
+    },
   )
 
   // Set cookie to None, so it can be read in the Storyblok iframe
   const cookies = res.getHeader("Set-Cookie")
   res.setHeader(
     "Set-Cookie",
-    cookies.map((cookie) => cookie.replace("SameSite=Lax", "SameSite=None;Secure"))
+    cookies.map((cookie) => cookie.replace("SameSite=Lax", "SameSite=None;Secure")),
   )
 
   // log instance to function logs

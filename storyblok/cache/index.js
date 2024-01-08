@@ -9,9 +9,13 @@ const api = {
    * @returns The page data
    */
   get: (file) => {
-    const fsFriendlyPath = file?.replaceAll("/", "_")
+    const fsFriendlyPath = path.join(process.cwd(), `storyblok/cache/_db/${file?.replaceAll("/", "_")}.db`)
 
-    const data = fs.readFileSync(path.join(process.cwd(), `storyblok/cache/_db/${fsFriendlyPath}.db`))
+    if (!fs.existsSync(fsFriendlyPath)) {
+      return null
+    }
+
+    const data = fs.readFileSync(fsFriendlyPath)
     return deserialize(data) ?? null
   },
   /**
@@ -26,7 +30,7 @@ const api = {
       serialize(entry),
       (err) => {
         if (err) console.error(err)
-      }
+      },
     )
     return result
   },
