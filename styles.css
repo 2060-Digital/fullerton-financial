@@ -108,6 +108,37 @@ p {
   @apply text-tertiary-1 font-primary underline hover:font-bold;
 }
 
+.phone-link,
+.chat-link {
+  @apply text-base font-primary font-medium text-white underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1;
+}
+
+.phone-link,
+.chat-link {
+  display: flex;
+  gap: theme("spacing.2");
+  align-items: center;
+  width: max-content;
+}
+.phone-link::before,
+.chat-link::before {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.phone-link::before {
+  background-image: url("public/assets/cta-icons/phone.svg");
+  width: 15px;
+  height: 22px;
+}
+.chat-link::before {
+  background-image: url("public/assets/cta-icons/chat-bubble.svg");
+  width: 15px;
+  height: 15px;
+}
+
 /* End Call to Action */
 
 /* Main Menu */
