@@ -15,6 +15,35 @@ html,
   position: sticky;
 }
 
+/* Call to Action */
+.primary-link,
+.secondary-link,
+.ghost-link {
+  @apply uppercase transition-all duration-200 text-primary-1 font-primary;
+}
+.primary-link,
+.ghost-link {
+  @apply px-5 py-4 border-2 border-tertiary-1;
+}
+
+.primary-link {
+  @apply bg-tertiary-1 hover:bg-secondary-1 hover:border-secondary-1 hover:text-white;
+}
+
+.secondary-link {
+  @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1;
+}
+
+.ghost-link {
+  @apply hover:bg-tertiary-1;
+}
+
+.inline-link {
+  @apply text-tertiary-1 font-primary underline hover:font-bold;
+}
+
+/* End Call to Action */
+
 /* Main Menu */
 
 /* mobile menu button */
