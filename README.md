@@ -10,12 +10,12 @@ The website for [Fullerton Financial Planning](https://fullerton-financial.netli
 
 Clone down the repo and run:
 
-```zsh
+```
 ntl link
 ```
 
 To run the dev server:
 
-```zsh
+```
 ntl dev
 ```
