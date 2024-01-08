@@ -16,6 +16,37 @@ html,
 }
 
 /* Text Styles */
+h1,
+h2,
+h3 {
+  @apply font-secondary font-bold text-gray-charcoal;
+}
+
+h4,
+.eyebrow {
+  @apply font-primary font-bold text-m1 lg:text-m2 text-gray-charcoal;
+}
+
+h1 {
+  @apply text-xl1 lg:text-xl2;
+}
+
+h2 {
+  @apply text-l2 lg:text-xl1;
+}
+
+h3 {
+  @apply text-m2 lg:text-l1;
+}
+
+.eyebrow {
+  @apply uppercase;
+}
+
+p {
+  @apply font-primary text-gray-charcoal;
+}
+
 .rich-text-ul,
 .rich-text-ol {
   font-family: theme("fontFamily.primary");
