@@ -67,9 +67,6 @@ header nav ~ a {
   .menu ul li.top-level .submenu li {
     @apply p-0;
   }
-  .menu ul.submenu li a {
-    @apply text-black;
-  }
 
   .menu > ul li:hover,
   .menu > ul li a:hover,
@@ -93,11 +90,6 @@ header nav ~ a {
   .menu ul li.top-level > a,
   .menu ul li.top-level > div {
     @apply pt-[10px] p-3 uppercase relative cursor-pointer;
-  }
-
-  .menu ul li.top-level:hover,
-  .menu ul li.top-level:focus-within {
-    @apply text-black;
   }
 
   .menu ul li.top-level {

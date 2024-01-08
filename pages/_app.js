@@ -1,7 +1,9 @@
 import Head from "next/head"
 
 import "styles.css"
-import "fonts.js"
+import "@fontsource/lato/latin-400.css"
+import "@fontsource/lato/latin-700.css"
+import "@fontsource/playfair-display/latin-700.css"
 
 import PreviewAlert from "components/PreviewAlert"
 import Header from "components/Header"
