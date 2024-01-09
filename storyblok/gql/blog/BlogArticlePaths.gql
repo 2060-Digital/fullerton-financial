@@ -1,0 +1,8 @@
+query BlogArticlePaths($page: Int!, $per_page: Int!) {
+  BlogarticleItems(page: $page, per_page: $per_page) {
+    items {
+      slug
+    }
+    total
+  }
+}

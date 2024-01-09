@@ -1,0 +1,14 @@
+query AllLocations($page: Int!, $per_page: Int!) {
+  LocationItems(page: $page, per_page: $per_page) {
+    items {
+      content {
+        phone_number
+        name
+        geocoded_address
+        address
+      }
+      full_slug
+    }
+    total
+  }
+}

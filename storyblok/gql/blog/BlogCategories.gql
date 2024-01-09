@@ -1,0 +1,8 @@
+query BlogCategories {
+  DatasourceEntries(datasource: "blog-categories") {
+    items {
+      name
+      value
+    }
+  }
+}

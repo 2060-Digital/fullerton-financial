@@ -4,42 +4,21 @@ import cache from "storyblok/cache"
 import query from "storyblok/fetch"
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
+import BlogArchive from "storyblok/gql/blog/BlogArchive.gql"
+import AllBlogArticles from "storyblok/gql/blog/AllBlogArticles.gql"
+import BlogArticlePaths from "storyblok/gql/blog/BlogArticlePaths.gql"
+import BlogArticleBySlug from "storyblok/gql/blog/BlogArticleBySlug.gql"
+import BlogCategories from "storyblok/gql/blog/BlogCategories.gql"
+
 export async function getBlogArchive() {
-  const data = await query(`#graphql
-    query BlogArchive {
-      BlogarchiveItem(id: "blog") {
-        created_at
-        published_at
-      }
-    }`)
+  const data = await query(BlogArchive)
+
   return await generateSBPlaiceholders(data?.BlogarchiveItem)
 }
 
 export async function getAllBlogArticles() {
   const data = await retrieveAll({
-    query: `#graphql
-        query AllBlogArticles($page: Int!, $per_page: Int!) {
-          BlogarticleItems(page: $page, per_page: $per_page) {
-            items {
-              content {
-                category
-                component
-                content
-                date
-                featured_image {
-                  alt
-                  filename
-                }
-                featured_video
-                title
-              }
-              slug
-              created_at
-              published_at
-            }
-            total
-          }
-        }`,
+    query: AllBlogArticles,
     type: "BlogarticleItems",
     preview: false,
   })
@@ -68,16 +47,7 @@ export async function getBlogArchivePaths() {
 
 export async function getAllBlogArticlePaths() {
   const data = await retrieveAll({
-    query: `#graphql
-      query GetAllBlogArticlePaths($page: Int!, $per_page: Int!) {
-        BlogarticleItems(page: $page, per_page: $per_page) {
-            items {
-              slug
-            }
-            total
-          }
-        }
-      `,
+    query: BlogArticlePaths,
     type: "BlogarticleItems",
     preview: false,
   })
@@ -87,44 +57,12 @@ export async function getAllBlogArticlePaths() {
 }
 
 export async function getBlogArticle(slug) {
-  const data = await query(
-    `#graphql
-      query BlogItemBySlug($slug: ID!) {
-        BlogarticleItem(id: $slug) {
-          slug
-          full_slug
-          created_at
-          published_at
-          content {
-            title
-            category
-            content
-            date
-            featured_video
-            featured_image {
-              alt
-              filename
-            }
-          }
-        }
-      }
-    `,
-    { variables: { slug: `blog/${slug}` } },
-  )
+  const data = await query(BlogArticleBySlug, { variables: { slug: `blog/${slug}` } })
   return await generateSBPlaiceholders(data?.BlogarticleItem)
 }
 
 export async function getAllBlogCategories() {
-  const data = await query(`#graphql
-    query AllBlogCategories {
-      DatasourceEntries(datasource: "blog-categories") {
-        items {
-          name
-          value
-        }
-      }
-    }
-    `)
+  const data = await query(BlogCategories)
 
   return data?.DatasourceEntries.items
 }

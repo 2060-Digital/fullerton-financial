@@ -7,7 +7,7 @@ import "@fontsource/playfair-display/latin-700.css"
 
 import PreviewAlert from "components/PreviewAlert"
 import Header from "components/Header"
-// import Footer from "components/Footer"
+import Footer from "components/Footer"
 
 import useStoryblok from "storyblok/useStoryblok"
 import { resolve_relations } from "storyblok/resolveRelations"
@@ -29,7 +29,13 @@ function MyApp({ Component, pageProps: { preview, story, globals, ...remainingPr
       {preview && <PreviewAlert />}
       <Header header={globals?.header} utilityBar={globals["utility-bar"]} />
       <Component story={story} {...remainingProps} />
-      {/* <Footer footer={globals?.footer} colophon={globals?.colophon} /> */}
+      <Footer
+        footerMenu={globals?.footer}
+        colophon={globals?.colophon}
+        locations={globals?.locations}
+        socialMedia={globals?.socialMedia}
+        phoneNumbers={globals?.phoneNumbers}
+      />
     </>
   )
 }
