@@ -1,0 +1,8 @@
+query AllPageSlugs($page: Int!, $per_page: Int!) {
+  PageItems(excluding_slugs: "home", page: $page, per_page: $per_page) {
+    items {
+      full_slug
+    }
+    total
+  }
+}
