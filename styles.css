@@ -134,6 +134,18 @@ p {
 
 /* End Call to Action */
 
+/* Footer */
+.social-icon path {
+  fill: white;
+  transition-property: all;
+  transition-duration: 200ms;
+}
+
+.social-icon:hover path {
+  fill: theme("colors.secondary.1");
+}
+/* End Footer */
+
 /* Main Menu */
 
 /* mobile menu button */
