@@ -1,0 +1,22 @@
+query AllBlogArticles($page: Int!, $per_page: Int!) {
+  BlogarticleItems(page: $page, per_page: $per_page) {
+    items {
+      content {
+        category
+        component
+        content
+        date
+        featured_image {
+          alt
+          filename
+        }
+        featured_video
+        title
+      }
+      slug
+      created_at
+      published_at
+    }
+    total
+  }
+}

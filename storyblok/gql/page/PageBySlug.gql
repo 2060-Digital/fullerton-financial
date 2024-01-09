@@ -1,0 +1,15 @@
+query PageBySlug($slug: ID!) {
+  PageItem(id: $slug) {
+    content {
+      _editable
+      _uid
+      body
+      component
+      seo
+    }
+    created_at
+    published_at
+    full_slug
+    slug
+  }
+}

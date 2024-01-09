@@ -1,0 +1,6 @@
+query BlogArchive {
+  BlogarchiveItem(id: "blog") {
+    created_at
+    published_at
+  }
+}

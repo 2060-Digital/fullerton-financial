@@ -1,0 +1,19 @@
+query BlogArticleBySlug($slug: ID!) {
+  BlogarticleItem(id: $slug) {
+    slug
+    full_slug
+    created_at
+    published_at
+    content {
+      title
+      category
+      content
+      date
+      featured_video
+      featured_image {
+        alt
+        filename
+      }
+    }
+  }
+}

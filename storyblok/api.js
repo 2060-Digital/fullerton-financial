@@ -2,20 +2,15 @@ import retrieveAll from "storyblok/retrieveAll"
 import query from "storyblok/fetch"
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
-import Menus from "storyblok/gql/Menus.gql"
+import AllPageSlugs from "storyblok/gql/page/AllPageSlugs.gql"
+import PageBySlug from "storyblok/gql/page/PageBySlug.gql"
+import Menus from "storyblok/gql/global/Menus.gql"
+import Datasources from "storyblok/gql/global/Datasources.gql"
+import AllLocations from "storyblok/gql/location/AllLocations.gql"
 
 export async function getAllPageSlugs() {
   const data = await retrieveAll({
-    query: `#graphql
-      query AllPageSlugs($page: Int!, $per_page: Int!) {
-        PageItems(excluding_slugs: "home", page: $page, per_page: $per_page) {
-          items {
-            full_slug
-          }
-          total
-        }
-      }
-  `,
+    query: AllPageSlugs,
     type: "PageItems",
     preview: false,
   })
@@ -27,26 +22,7 @@ export async function getAllPageSlugs() {
 export async function getPage(slug, preview) {
   const globalData = await getGlobals()
 
-  const data = await query(
-    `#graphql
-      query PostBySlug($slug: ID!) {
-          PageItem(id: $slug) {
-          content {
-            _editable
-            _uid
-            body
-            component
-            seo
-          }
-          created_at
-          published_at
-          full_slug
-          slug
-        }
-      }
-  `,
-    { preview, variables: { slug } },
-  )
+  const data = await query(PageBySlug, { preview, variables: { slug } })
 
   return {
     page: await generateSBPlaiceholders(data?.PageItem),
@@ -58,34 +34,30 @@ const globalCache = new Map()
 
 export async function getGlobals() {
   // if (globalCache.has("data")) return globalCache.get("data")
-  // const data = await query(`#graphql
-  //   query GlobalData {
-  //     global: DatasourceEntries(datasource: "global") {
-  //       items {
-  //         name
-  //         value
-  //       }
-  //     }
-  //     phoneNumbers: DatasourceEntries(datasource: "phone-numbers") {
-  //       items {
-  //         name
-  //         value
-  //       }
-  //     }
-  //   }
-  // `)
+  const datasources = await query(Datasources)
 
   const menus = await retrieveAll({ query: Menus, preview: false, type: "MenuItems" }).then((items) =>
     items.reduce((prev, curr) => ({ [curr.slug]: curr.content.menu_items, ...prev }), {}),
   )
 
+  const locations = await getAllLocations()
+
   const globalData = {
-    // ...data.global.items.reduce((acc, { name, value }) => ({ [name]: value, ...acc }), {}),
-    // phoneNumbers: data.phoneNumbers,
+    socialMedia: datasources.socialMedia.items.reduce((acc, { name, value }) => ({ [name]: value, ...acc }), {}),
+    phoneNumbers: datasources.phoneNumbers.items.reduce((acc, { name, value }) => ({ [name]: value, ...acc }), {}),
+    locations,
     ...menus,
   }
 
   globalCache.set("data", globalData)
 
   return globalData
+}
+
+export async function getAllLocations() {
+  const locations = await retrieveAll({ query: AllLocations, preview: false, type: "LocationItems" }).then((items) =>
+    items.map((item) => ({ ...item.content, slug: `/${item.full_slug}` })),
+  )
+
+  return locations
 }
