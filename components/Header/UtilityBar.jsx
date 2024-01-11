@@ -4,7 +4,7 @@ import { getStoryblokLink } from "utilities/getStoryblokLink"
 
 export default function UtilityBar({ menu }) {
   return (
-    <section className="bg-gray-light px-6 py-6">
+    <section className="bg-gray-light px-6 py-6 hidden xl:block">
       <div className="mx-auto max-w-screen-xl flex justify-between">
         <SearchBar />
         <ul className="flex flex-row items-center gap-8">
