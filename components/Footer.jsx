@@ -32,7 +32,7 @@ export default function Footer({ footerMenu, colophon, locations, socialMedia, p
       <div className="bg-primary-1 px-6 py-8 lg:py-14">
         <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-28">
           <div>
-            <Logo className="text-white mb-8 mx-auto sm:mx-0" />
+            <Logo className="text-white mb-8 mx-auto sm:mx-0 w-[233px]" />
             <div className="mb-8 flex sm:flex-col justify-between gap-4 sm:gap-8 max-w-80 mx-auto">
               <CallToAction href={getTelLink(phoneNumbers?.primary)} style="phone">
                 {phoneNumbers?.primary}
