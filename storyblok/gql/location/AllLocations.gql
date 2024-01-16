@@ -1,5 +1,5 @@
 query AllLocations($page: Int!, $per_page: Int!) {
-  LocationItems(page: $page, per_page: $per_page) {
+  LocationItems(page: $page, per_page: $per_page, resolve_links: "url") {
     items {
       content {
         phone_number
