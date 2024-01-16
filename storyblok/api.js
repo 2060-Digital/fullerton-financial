@@ -33,7 +33,7 @@ export async function getPage(slug, preview) {
 const globalCache = new Map()
 
 export async function getGlobals() {
-  // if (globalCache.has("data")) return globalCache.get("data")
+  if (globalCache.has("data")) return globalCache.get("data")
   const datasources = await query(Datasources)
 
   const menus = await retrieveAll({ query: Menus, preview: false, type: "MenuItems" }).then((items) =>

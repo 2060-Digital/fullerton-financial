@@ -19,13 +19,27 @@ export default async function retrieveAll({ query, type, preview, variables }) {
       throw new Error(
         `The query must include $per_page and $page variables args and supply them to the requested type as arguments.
 
-Requested Type: ${type}
+        Requested Type: ${type}
 
-Provided Query:
+        Provided Query:
 
-${query}
+        ${query}
 
-`,
+        `,
+      )
+    }
+
+    if (!query.includes("resolve_links:") && !query.includes("DatasourceEntries")) {
+      throw new Error(
+        `The query must include a resolve_links arg. This is to ensure the most up to date urls are always retrieved from Storyblok.
+
+        Requested Type: ${type}
+
+        Provided Query:
+
+        ${query}
+
+        `,
       )
     }
 

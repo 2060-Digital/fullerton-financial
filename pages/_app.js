@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps: { preview, story, globals, ...remainingPr
         <meta name="theme-color" content="#ffffff" />
       </Head>
       {preview && <PreviewAlert />}
-      <Header header={globals?.header} utilityBar={globals["utility-bar"]} />
+      <Header header={globals?.header} utilityBar={globals["utility-bar"]} phoneNumbers={globals?.phoneNumbers} />
       <Component story={story} {...remainingProps} />
       <Footer
         footerMenu={globals?.footer}

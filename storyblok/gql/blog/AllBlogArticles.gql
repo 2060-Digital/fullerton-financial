@@ -1,5 +1,5 @@
 query AllBlogArticles($page: Int!, $per_page: Int!) {
-  BlogarticleItems(page: $page, per_page: $per_page) {
+  BlogarticleItems(page: $page, per_page: $per_page, resolve_links: "url") {
     items {
       content {
         category

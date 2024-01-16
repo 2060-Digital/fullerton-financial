@@ -14,6 +14,18 @@ export default async function fetchQuery(query, { variables, preview } = {}, deb
   query = typeof query === "object" ? print(query) : query
 
   try {
+    if (!query.includes("resolve_links:") && !query.includes("DatasourceEntries")) {
+      throw new Error(
+        `The query must include a resolve_links arg. This is to ensure the most up to date urls are always retrieved from Storyblok.
+
+        Provided Query:
+
+        ${query}
+
+        `,
+      )
+    }
+
     const queryRequest = async () =>
       await fetch(`https://gapi-us.storyblok.com/v1/api`, {
         method: "POST",

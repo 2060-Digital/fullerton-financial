@@ -1,5 +1,5 @@
 query BlogArticleBySlug($slug: ID!) {
-  BlogarticleItem(id: $slug) {
+  BlogarticleItem(id: $slug, resolve_links: "url") {
     slug
     full_slug
     created_at

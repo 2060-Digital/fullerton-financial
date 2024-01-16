@@ -1,5 +1,5 @@
 query AllMenus($page: Int!, $per_page: Int!) {
-  MenuItems(page: $page, per_page: $per_page) {
+  MenuItems(page: $page, per_page: $per_page, resolve_links: "url") {
     items {
       content {
         _uid
