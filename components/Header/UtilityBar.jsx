@@ -12,7 +12,7 @@ export default function UtilityBar({ menu }) {
             <li key={item?._uid}>
               <Link
                 href={getStoryblokLink(item?.link)}
-                className="underline underline-offset-4 decoration-secondary-1 hover:decoration-primary-1 w-max"
+                className="underline underline-offset-4 decoration-secondary-1 hover:decoration-primary-1 w-max font-primary text-primary-1"
               >
                 {item?.label}
               </Link>
