@@ -24,7 +24,7 @@ h3 {
 
 h4,
 .eyebrow {
-  @apply font-primary font-bold text-m1 lg:text-m2 text-gray-charcoal;
+  @apply font-primary font-bold text-m1 lg:text-m2;
 }
 
 h1 {
@@ -44,7 +44,7 @@ h3 {
 }
 
 p {
-  @apply font-primary text-gray-charcoal;
+  @apply font-primary text-gray-charcoal pb-4 last:pb-0;
 }
 
 .rich-text-ul,
