@@ -65,7 +65,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
                 className={`w-[193px] sm:w-[233px] transition-all duration-200 xl:text-primary-1 ${mobileMenuColor}`}
               />
             </Link>
-            <Link href={getTelLink(phoneNumbers?.primary)} className="xl:hidden">
+            <Link href={getTelLink(phoneNumbers?.primary)} className="xl:hidden sm:w-11 justify-self-end">
               <div
                 className={`flex flex-col justify-center items-center font-primary text-primary-1 ${mobileMenuColor}`}
               >
