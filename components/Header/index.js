@@ -77,7 +77,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
           <nav aria-label="Main" className="flex flex-col-reverse xl:flex-row items-center gap-9 w-full">
             <div
               className={cn(
-                "menu pb-8 px-6 xl:p-0 m-0 xl:flex items-center absolute xl:static overflow-y-auto xl:overflow-visible w-full h-[calc(100vh-105px)] xl:h-full xl:w-auto top-64 left-0 z-50 bg-primary-1 xl:bg-white",
+                "menu pb-8 px-6 xl:p-0 m-0 xl:flex items-center absolute xl:static overflow-y-auto xl:overflow-visible w-full h-[calc(100vh-105px)] xl:h-full xl:w-auto top-60 left-0 z-50 bg-primary-1 xl:bg-white",
                 {
                   "hidden xl:block": !mobileMenuVisibility,
                 },
