@@ -6,7 +6,7 @@ import DynamicComponent from "components/DynamicComponent"
 export default function ImageAndContent({ blok }) {
   return (
     <section
-      className={cn("lg:px-6 lg:my-20", {
+      className={cn("image-and-content-section lg:px-6 lg:my-20", {
         "prose-headings:text-white prose-p:text-white": blok?.background_color === "primary-1",
         "prose-headings:text-primary-1":
           blok?.background_color === "secondary-1" || blok?.background_color === "gray-light",
@@ -15,7 +15,7 @@ export default function ImageAndContent({ blok }) {
       <div
         className={cn(
           blok?.background_color && `bg-${blok?.background_color}`,
-          "px-6 lg:px-24 py-12 lg:py-20 mx-auto max-w-screen-xl",
+          "image-and-content px-6 lg:px-24 py-12 lg:py-20 mx-auto max-w-screen-xl border-b-[140px] border-b-white lg:border-b-0",
           {
             "bg-opacity-20": blok?.background_color === "secondary-1",
             "lg:border-l-[80px] lg:border-l-white": blok?.orientation === "image_first",
@@ -42,7 +42,7 @@ export default function ImageAndContent({ blok }) {
               "lg:-right-32": blok?.orientation === "content_first",
             })}
           >
-            <div className="relative z-10 w-full h-full border-2 border-secondary-1">
+            <div className="image-and-content-image relative z-10 w-full h-full border-2 border-secondary-1 -mb-[120px] lg:-mb-0">
               <Image
                 src={blok?.image?.filename}
                 alt={blok?.image?.alt}
@@ -56,11 +56,11 @@ export default function ImageAndContent({ blok }) {
           </div>
         </div>
         {blok?.nested_bloks?.length ? (
-          <>
+          <div className="nested-image-and-content-components">
             {blok?.nested_bloks?.map((blok) => (
               <DynamicComponent blok={blok} key={blok._uid} />
             ))}
-          </>
+          </div>
         ) : null}
       </div>
     </section>

@@ -365,3 +365,13 @@ input::placeholder {
   color: white;
 }
 /* End Search Bar */
+
+/* Image and Content */
+.image-and-content-section:has(.nested-image-and-content-components) .image-and-content-image {
+  margin-bottom: 0px;
+}
+
+.image-and-content-section:has(.nested-image-and-content-components) .image-and-content {
+  border-bottom: 0px;
+}
+/* End Image and Content */
