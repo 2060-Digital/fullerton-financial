@@ -8,7 +8,8 @@ export default function ImageAndContent({ blok }) {
     <section
       className={cn("lg:px-6 lg:my-20", {
         "prose-headings:text-white prose-p:text-white": blok?.background_color === "primary-1",
-        "prose-headings:text-primary-1": blok?.background_color === "secondary-1" || blok?.background_color === "gray",
+        "prose-headings:text-primary-1":
+          blok?.background_color === "secondary-1" || blok?.background_color === "gray-light",
       })}
     >
       <div
