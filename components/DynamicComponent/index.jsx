@@ -5,6 +5,7 @@ import dynamic from "next/dynamic"
 export const Components = {
   // Atoms
   button: dynamic(() => import("./atoms/StoryblokButton")),
+  cta_banner: dynamic(() => import("./atoms/CTABanner")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
