@@ -18,6 +18,7 @@
     "axios": "^1.6.4",
     "classnames": "^2.5.1",
     "fuse.js": "^7.0.0",
+    "jsdom": "^24.0.0",
     "lodash": "^4.17.21",
     "lodash.isobject": "^3.0.2",
     "next": "^14.0.4",
