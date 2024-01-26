@@ -1,5 +1,12 @@
 query BlogArchive {
   BlogarchiveItem(id: "blog", resolve_links: "url") {
+    content {
+      image {
+        filename
+        alt
+      }
+      heading
+    }
     created_at
     published_at
   }

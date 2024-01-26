@@ -10,6 +10,7 @@ export const Components = {
   faq: dynamic(() => import("./molecules/FAQSection")),
   featured_image: dynamic(() => import("./molecules/FeaturedImage")),
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
+  page_header_section: dynamic(() => import("./molecules/PageHeader")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),

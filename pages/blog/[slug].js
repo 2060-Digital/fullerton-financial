@@ -3,10 +3,9 @@ import { getGlobals } from "storyblok/api"
 import { getAllBlogArticlePaths, getBlogArticle, getAllBlogCategories } from "storyblok/blog"
 import richText from "utilities/richText"
 import DynamicVideo from "components/DynamicVideo"
-import { CategoriesBox } from "components/Blog/CategoriesBox"
 import Meta from "components/Meta"
 
-export default function Article({ article: { content: article }, categories, meta }) {
+export default function Article({ article: { content: article }, meta }) {
   return (
     <>
       <Meta info={meta} />
@@ -40,7 +39,6 @@ export default function Article({ article: { content: article }, categories, met
               {richText(article?.content)}
             </div>
           </div>
-          <CategoriesBox categories={categories} />
         </div>
       </div>
     </>
