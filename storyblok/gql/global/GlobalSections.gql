@@ -1,0 +1,7 @@
+query GlobalSections {
+  GlobalsectionsItem(id: "globals/sections", resolve_links: "url") {
+    content {
+      cta_banner
+    }
+  }
+}

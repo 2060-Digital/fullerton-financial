@@ -11,5 +11,6 @@ query PageBySlug($slug: ID!) {
     published_at
     full_slug
     slug
+    uuid
   }
 }

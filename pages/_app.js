@@ -11,6 +11,7 @@ import Footer from "components/Footer"
 
 import useStoryblok from "storyblok/useStoryblok"
 import { resolve_relations } from "storyblok/resolveRelations"
+import CTABanner from "components/DynamicComponent/atoms/CTABanner"
 
 function MyApp({ Component, pageProps: { preview, story, globals, ...remainingProps } }) {
   story = useStoryblok({ story, resolve_relations })
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps: { preview, story, globals, ...remainingPr
       {preview && <PreviewAlert />}
       <Header header={globals?.header} utilityBar={globals["utility-bar"]} phoneNumbers={globals?.phoneNumbers} />
       <Component story={story} {...remainingProps} />
+      {globals?.ctaBanner ? <CTABanner blok={globals?.ctaBanner} /> : null}
       <Footer
         footerMenu={globals?.footer}
         colophon={globals?.colophon}

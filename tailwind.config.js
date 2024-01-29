@@ -40,7 +40,11 @@ module.exports = {
       },
       white: "#ffffff",
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "cta-banner": "url(public/assets/cta-banner-background.webp)",
+      },
+    },
   },
   variants: {
     extend: {},
