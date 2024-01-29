@@ -34,12 +34,8 @@ const ArticleItem = ({ article }) => {
         <Link href={`/blog/${article?.slug}`} className="block mb-4">
           <h3 className="text-primary-1 hover:underline">{article?.content?.title}</h3>
         </Link>
-        {article?.content?.date !== "" ? (
-          <time className="block mb-4">{`${new Intl.DateTimeFormat("en-UK", {
-            month: "short",
-            year: "numeric",
-            day: "numeric",
-          }).format(new Date(article?.content?.date))}`}</time>
+        {article?.content?.date?.length > 0 ? (
+          <time className="block mb-4">{formatBlogDate(article?.content?.date)}</time>
         ) : null}
         <p>{getExcerpt(article?.content?.content, 160)}</p>
       </div>
@@ -118,7 +114,7 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
           {blogArticles?.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 last:pb-12">
               {blogArticles?.map((article) => (
-                <ArticleItem article={article} key={article?._uid} />
+                <ArticleItem article={article} key={article?.content?._uid} />
               ))}
             </div>
           ) : (
