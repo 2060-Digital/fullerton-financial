@@ -58,7 +58,10 @@ export async function getAllBlogArticlePaths() {
 
 export async function getBlogArticle(slug) {
   const data = await query(BlogArticleBySlug, { variables: { slug: `blog/${slug}` } })
-  return await generateSBPlaiceholders(data?.BlogarticleItem)
+
+  return await generateSBPlaiceholders({
+    content: { ...data?.BlogarticleItem?.content, slug: `${data?.BlogarticleItem?.full_slug}` },
+  })
 }
 
 export async function getAllBlogCategories() {
