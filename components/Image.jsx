@@ -6,16 +6,16 @@ import cn from "classnames"
 export default function Image(props) {
   const [isLoading, setLoading] = useState(true)
 
-  return (
+  return props?.src?.length ? (
     <NextImage
       loader={storyblokImageLoader}
       className={cn(
         props.className,
         "duration-700 ease-in-out",
-        isLoading ? "grayscale blur-md scale-100" : "grayscale-0 blur-0 scale-100"
+        isLoading ? "grayscale blur-md scale-100" : "grayscale-0 blur-0 scale-100",
       )}
       onLoadingComplete={() => setLoading(false)}
       {...props}
     />
-  )
+  ) : null
 }
