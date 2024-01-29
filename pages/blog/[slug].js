@@ -67,6 +67,13 @@ export default function Article({ story, meta }) {
         <section className="max-w-screen-xl mx-auto">
           <div className="max-w-4xl">
             <div className="prose-headings:text-primary-1 prose-headings:pb-4 prose-h2:pt-6">
+              {story?.content?.date !== "" ? (
+                <time className="block mb-4 font-primary text-primary-1">{`${new Intl.DateTimeFormat("en-US", {
+                  month: "long",
+                  year: "numeric",
+                  day: "numeric",
+                }).format(new Date(story?.content?.date))}`}</time>
+              ) : null}
               {richText(story?.content?.content)}
               <div className="lg:hidden bg-secondary-2 h-max py-12 text-center">
                 <ShareLinks />
