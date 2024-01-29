@@ -6,8 +6,29 @@ import Image from "components/Image"
 import Meta from "components/Meta"
 import Breadcrumbs from "components/Breadcrumbs"
 import Mail from "public/assets/social-media/mail.svg"
+import LinkedIn from "public/assets/social-media/linkedin.svg"
+import Facebook from "public/assets/social-media/facebook.svg"
 
 export default function Article({ story, meta }) {
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}${story?.content?.slug}`
+
+  const ShareLinks = () => (
+    <>
+      <h3 className="text-primary-1 pb-8">Share This Article</h3>
+      <div className="flex justify-center items-center gap-10">
+        <Link href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}>
+          <Facebook className="text-primary-1" />
+        </Link>
+        <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`}>
+          <LinkedIn className="text-primary-1" />
+        </Link>
+        <Link href={`mailto:?body=Check out this site ${url}`}>
+          <Mail />
+        </Link>
+      </div>
+    </>
+  )
+
   return (
     <main>
       <Meta info={meta} />
@@ -25,7 +46,11 @@ export default function Article({ story, meta }) {
           <div className="flex lg:-mb-12 gap-12">
             <div className="w-full border-2 border-secondary-1 relative lg:basis-2/3 -top-20 lg:-top-0">
               <Image
-                src={story?.content?.featured_image?.filename}
+                src={
+                  story?.content?.featured_image?.filename && story?.content?.featured_image?.filename !== ""
+                    ? story?.content?.featured_image?.filename
+                    : "/assets/blog-placeholder.svg"
+                }
                 alt={story?.content?.featured_image?.alt}
                 width={896}
                 height={585}
@@ -33,12 +58,7 @@ export default function Article({ story, meta }) {
               />
             </div>
             <div className="basis-1/3 hidden lg:block bg-secondary-2 h-max py-12 text-center relative lg:-top-[18px]">
-              <h3 className="text-primary-1">Share This Article</h3>
-              <Link
-                href={`mailto:?body=Check out this site ${process.env.NEXT_PUBLIC_SITE_URL}${story?.content?.slug}`}
-              >
-                <Mail />
-              </Link>
+              <ShareLinks />
             </div>
           </div>
         </div>
@@ -48,6 +68,9 @@ export default function Article({ story, meta }) {
           <div className="max-w-4xl">
             <div className="prose-headings:text-primary-1 prose-headings:pb-4 prose-h2:pt-6">
               {richText(story?.content?.content)}
+              <div className="lg:hidden bg-secondary-2 h-max py-12 text-center">
+                <ShareLinks />
+              </div>
             </div>
           </div>
         </section>

@@ -13,7 +13,9 @@ export default function BlogArchive({ story, blogArticles, categories, number, t
         <PageHeader
           blok={{ heading: story?.content?.heading, image: story?.content?.image, breadcrumbs: [{ text: "Blog" }] }}
         />
-        <BlogArticlesSection {...{ blogArticles, categories, total, number }} />
+        <BlogArticlesSection
+          {...{ blogArticles, categories, total, number, currentTab: { name: "All", value: "all" } }}
+        />
       </main>
     </>
   )

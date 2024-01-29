@@ -68,7 +68,7 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
     })
 
   return (
-    <div className="mx-auto flex justify-center items-center mt-8 mb-12 px-10">
+    <div className="mx-auto flex justify-center items-center my-8 px-10">
       <button
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}

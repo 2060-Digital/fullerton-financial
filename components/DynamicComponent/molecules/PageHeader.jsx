@@ -11,13 +11,13 @@ export default function PageHeader({ blok }) {
           <h1 className="text-white">{blok?.heading}</h1>
           {blok?.content ? <div className="pt-4 prose-p:text-white">{richText(blok?.content)}</div> : null}
         </div>
-        <div className="border-2 border-secondary-1 relative -top-20 lg:-top-14 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0">
+        <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-[12px]">
           <Image
             src={blok?.image?.filename}
             alt={blok?.image?.alt}
             width={896}
             height={585}
-            className="relative -right-5 -top-5 w-full"
+            className="relative -right-3.5 -top-3.5 w-full"
           />
         </div>
       </div>
