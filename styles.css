@@ -365,3 +365,11 @@ input::placeholder {
   color: white;
 }
 /* End Search Bar */
+
+/* Breadcrumbs */
+.crumb::after {
+  content: url("public/assets/bc-arrow.svg");
+  position: absolute;
+  right: 0.5rem;
+}
+/* End Breadcrumbs */
