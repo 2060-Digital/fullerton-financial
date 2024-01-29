@@ -10,7 +10,9 @@ export default function BlogArchive({ story, blogArticles, categories, number, t
     <>
       <Meta info={meta} />
       <main>
-        <PageHeader blok={{ heading: story?.content?.heading, image: story?.content?.image }} />
+        <PageHeader
+          blok={{ heading: story?.content?.heading, image: story?.content?.image, breadcrumbs: [{ text: "Blog" }] }}
+        />
         <BlogArticlesSection {...{ blogArticles, categories, total, number }} />
       </main>
     </>

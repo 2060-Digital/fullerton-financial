@@ -23,7 +23,7 @@ export function Crumb({ text, href, last }) {
 export default function Breadcrumbs({ breadcrumbs }) {
   return breadcrumbs ? (
     <>
-      <nav aria-label="Breadcrumb" className="py-2">
+      <nav aria-label="Breadcrumb" className="pb-2">
         <ol className="max-w-screen-xl w-full leading-7">
           <Crumb {...{ href: "/", text: "Home" }} />
           {breadcrumbs.map((crumb, idx) => (
