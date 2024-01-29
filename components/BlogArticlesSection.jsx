@@ -122,7 +122,7 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
               ))}
             </div>
           ) : (
-            <div className="last:pb-12">
+            <div className="pb-12">
               <p>Sorry, we did not find any articles in this category. Please try another category or visit the:</p>
               <CallToAction href="/blog/page/1">Main Blog Page</CallToAction>
             </div>
