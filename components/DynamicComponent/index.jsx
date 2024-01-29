@@ -5,12 +5,15 @@ import dynamic from "next/dynamic"
 export const Components = {
   // Atoms
   button: dynamic(() => import("./atoms/StoryblokButton")),
+  cta_banner: dynamic(() => import("./atoms/CTABanner")),
+  dual_button: dynamic(() => import("./atoms/DualButton")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
   featured_image: dynamic(() => import("./molecules/FeaturedImage")),
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
   page_header_section: dynamic(() => import("./molecules/PageHeader")),
+  question_card_list: dynamic(() => import("./molecules/QuestionList")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),

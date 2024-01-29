@@ -12,7 +12,7 @@ export default function CallToAction({
   ...delegated
 }) {
   const styles = cn(
-    "inline-block cursor-pointer max-w-full", // default styles
+    "inline-block cursor-pointer max-w-full text-center", // default styles
     `${style}-link`,
     className,
   )
