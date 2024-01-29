@@ -383,3 +383,20 @@ input::placeholder {
   border-bottom: 0px;
 }
 /* End Image and Content */
+
+/* CTA Banner */
+#__next:has(.cta-banner-section),
+.page-content:has(.cta-banner-section) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cta-banner-section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+/* End CTA Banner */
