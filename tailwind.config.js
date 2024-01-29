@@ -1,5 +1,6 @@
 module.exports = {
   mode: "jit",
+  safelist: ["bg-white", "bg-primary-1", "bg-highlight-tint", "bg-gray-light", "bg-secondary-1"],
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {

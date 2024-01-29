@@ -9,7 +9,6 @@ query BlogArticleBySlug($slug: ID!) {
       category
       content
       date
-      featured_video
       featured_image {
         alt
         filename
