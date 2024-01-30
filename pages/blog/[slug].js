@@ -61,7 +61,7 @@ export default function Article({ story, meta }) {
                 />
               </div>
               <div className="basis-1/3 hidden lg:block h-full text-center relative border-2 border-secondary-1">
-                <div className="relative -right-3.5 -top-3.5 py-12 w-full  h-full">
+                <div className="relative -right-3.5 -top-3.5 py-12 w-full bg-secondary-2 h-full">
                   <ShareLinks />
                 </div>
               </div>
