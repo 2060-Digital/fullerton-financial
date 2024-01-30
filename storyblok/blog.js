@@ -56,8 +56,8 @@ export async function getAllBlogArticlePaths() {
   return data?.map(({ slug }) => ({ params: { slug } }))
 }
 
-export async function getBlogArticle(slug) {
-  const data = await query(BlogArticleBySlug, { variables: { slug: `blog/${slug}` } })
+export async function getBlogArticle(slug, preview) {
+  const data = await query(BlogArticleBySlug, { variables: { slug: `blog/${slug}`, preview } })
 
   return await generateSBPlaiceholders({
     content: { ...data?.BlogarticleItem?.content, slug: `/${data?.BlogarticleItem?.full_slug}` },
