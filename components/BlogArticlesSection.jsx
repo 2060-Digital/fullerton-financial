@@ -109,36 +109,42 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
           </button>
         </div>
       </nav>
-      <section id="blog-section" className="px-6">
-        <div className="max-w-screen-xl mx-auto pt-12">
-          {blogArticles?.length > 0 ? (
+      {blogArticles?.length > 0 ? (
+        <section id="blog-section" className="px-6">
+          <div className="max-w-screen-xl mx-auto pt-12">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 last:pb-12">
               {blogArticles?.map((article) => (
                 <ArticleItem article={article} key={article?.content?._uid} />
               ))}
             </div>
-          ) : (
-            <div className="pb-12">
-              <p>Sorry, we did not find any articles in this category. Please try another category or visit the:</p>
-              <CallToAction href="/blog/page/1">Main Blog Page</CallToAction>
-            </div>
-          )}
-          <Pagination
-            scrollAnchor="blog-section"
-            pageCount={Math.ceil(total / BLOG_ARTICLES_PER_PAGE)}
-            currentPage={number}
-            setCurrentPage={(number) =>
-              router.push(
-                `${router.pathname.replace("[number]", number).replace("[category]", router?.query?.category)}`,
-                null,
-                {
-                  scroll: false,
-                },
-              )
-            }
-          />
+
+            <Pagination
+              scrollAnchor="blog-section"
+              pageCount={Math.ceil(total / BLOG_ARTICLES_PER_PAGE)}
+              currentPage={number}
+              setCurrentPage={(number) =>
+                router.push(
+                  `${router.pathname.replace("[number]", number).replace("[category]", router?.query?.category)}`,
+                  null,
+                  {
+                    scroll: false,
+                  },
+                )
+              }
+            />
+          </div>
+        </section>
+      ) : (
+        <div className="py-12 lg:py-28 px-6 bg-secondary-2">
+          <div className="max-w-screen-md text-center mx-auto flex flex-col justify-center items-center">
+            <h1 className="text-primary-1 mb-8">Sorry, we did not find any articles in this category</h1>
+            <p className="text-primary-1 mb-4 font-secondary font-bold text-m2 lg:text-l1">
+              Please try another category or visit the:
+            </p>
+            <CallToAction href="/blog/page/1">Main Blog Page</CallToAction>
+          </div>
         </div>
-      </section>
+      )}
     </>
   )
 }
