@@ -15,7 +15,7 @@ export default function Article({ story, meta }) {
   const url = `${process.env.URL}${story?.content?.slug}`
 
   const ShareLinks = () => (
-    <>
+    <div className="relative -right-3.5 -top-3.5 py-12 w-full bg-secondary-2 h-full">
       <h3 className="text-primary-1 pb-8">Share This Article</h3>
       <div className="flex justify-center items-center gap-10">
         <Link href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank">
@@ -28,7 +28,7 @@ export default function Article({ story, meta }) {
           <Mail className="text-primary-1 hover:text-secondary-1 transition-all" />
         </Link>
       </div>
-    </>
+    </div>
   )
 
   return (
@@ -61,9 +61,7 @@ export default function Article({ story, meta }) {
                 />
               </div>
               <div className="basis-1/3 hidden lg:block h-full text-center relative border-2 border-secondary-1">
-                <div className="relative -right-3.5 -top-3.5 py-12 w-full bg-secondary-2 h-full">
-                  <ShareLinks />
-                </div>
+                <ShareLinks />
               </div>
             </div>
           </div>
@@ -78,9 +76,7 @@ export default function Article({ story, meta }) {
               ) : null}
               {richText(story?.content?.content)}
               <div className="lg:hidden h-max text-center relative border-2 border-secondary-1 mt-8">
-                <div className="relative -right-3.5 -top-3.5 bg-secondary-2 h-full py-12">
-                  <ShareLinks />
-                </div>
+                <ShareLinks />
               </div>
             </div>
           </div>
