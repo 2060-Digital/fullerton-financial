@@ -1,14 +1,17 @@
 import { getPlaiceholder } from "plaiceholder"
 import { isPlainObject } from "lodash"
+import fs from "fs"
+import path from "path"
+import filenamify from "filenamify"
+import { serialize, deserialize } from "v8"
 
 /**
- * Generate base64 Images for Storyblok image Assets
+ * Generate base64 Images for Storyblok image Assets (and cache them to the filesystem)
  *
  * @param {{}} page An Storyblok page object (or part of page object, in theory) to recursively process
- * @param {{verbose?: boolean}?} options Optional configuration
  * @returns {Promise<{}>} The processed object
  */
-export default async function generateSBPlaiceholders(page, { verbose = false } = {}) {
+export default async function generateSBPlaiceholders(page) {
   // Prevents Object.entries from processing strings as arrays
   if (!isPlainObject(page)) return page
 
@@ -16,26 +19,58 @@ export default async function generateSBPlaiceholders(page, { verbose = false } 
     await Promise.all(
       Object.entries(page).map(async ([key, value]) => {
         if (isPlainObject(value)) {
-          if (verbose) console.info(`Found Object. Processing fields..., Key: ${key}, Value: ${value.filename}`)
+          // Bingo. Found an image. Generate a placeholder and return it inline.
           if (
-            (Object.hasOwn(value, "fieldtype") &&
-              value.fieldtype === "asset" &&
-              value?.filename &&
-              value?.filename?.endsWith(".jpg")) ||
+            (value?.filename && value?.filename?.endsWith(".jpg")) ||
             value?.filename?.endsWith(".jpeg") ||
             value?.filename?.endsWith(".png") ||
             value?.filename?.endsWith(".webp") ||
             value?.filename?.endsWith(".avif")
           ) {
-            console.info(`Found Image. Generating placeholder for: ${value.filename}`)
+            // Create the base cache dir if it doesn't exist.
+            const placeholderCachePath = (filename) =>
+              filename
+                ? path.join(process.cwd(), `.blurDataURLsCache/${filename}.db`)
+                : path.join(process.cwd(), `.blurDataURLsCache`)
+            if (!fs.existsSync(placeholderCachePath())) {
+              fs.mkdirSync(placeholderCachePath())
+            }
+
+            // Check the build cache.
+            const cachefileName = filenamify(value.filename, { replacement: "_" })
+            const cacheLocation = placeholderCachePath(cachefileName)
+            let cachedPlaceholder = false
+            if (fs.existsSync(cacheLocation)) {
+              cachedPlaceholder = deserialize(fs.readFileSync(cacheLocation))
+            }
+
+            if (cachedPlaceholder) {
+              // Return the cached value.
+              return [
+                key,
+                {
+                  ...value,
+                  blurDataURL: cachedPlaceholder,
+                },
+              ]
+            }
+
+            // Okay, fine. It's new. Retrieve the image.
             const buffer = await fetch(value.filename).then(async (res) => Buffer.from(await res.arrayBuffer()))
+
+            // Generate a placeholder
             let blurDataURL = ""
             try {
               const { base64 } = await getPlaiceholder(buffer, { size: 16 })
               blurDataURL = base64
+
+              // Write it to the cache
+              fs.writeFileSync(cacheLocation, serialize(blurDataURL))
             } catch (error) {
               console.error(error)
             }
+
+            // Return the image object inline with the new (or cached) placeholder value.
             return [
               key,
               {
@@ -44,21 +79,21 @@ export default async function generateSBPlaiceholders(page, { verbose = false } 
               },
             ]
           } else {
-            const processedValue = await generateSBPlaiceholders(value, { verbose })
+            const processedValue = await generateSBPlaiceholders(value)
             return [key, processedValue]
           }
         } else if (Array.isArray(value)) {
-          if (verbose) console.info(`Found Array. Recursing." Key: ${key}, Value: ${JSON.stringify(value)}`)
+          // Recurse found array for possible candidates.
           return [
             key,
             await Promise.all(
               value.map(async (arrEntry) => {
-                return await generateSBPlaiceholders(arrEntry, { verbose: false })
+                return await generateSBPlaiceholders(arrEntry)
               }),
             ),
           ]
         } else {
-          if (verbose) console.info(`No Match Found. Key: ${key}, Value: ${value ? value : `(empty)`}`)
+          // No match found. Return and move on.
           return [key, value]
         }
       }),
