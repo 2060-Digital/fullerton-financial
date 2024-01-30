@@ -48,3 +48,6 @@ public/robots.txt
 public/sitemap*
 
 /public/blog/*
+
+# plaiceholder Image Cache
+.blurDataURLsCache

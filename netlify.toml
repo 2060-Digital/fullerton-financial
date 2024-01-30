@@ -1,2 +1,5 @@
 [functions]
     included_files = ["node_modules/sharp/**/*"]
+
+[[plugins]]
+  package = "/plugins/img-placeholder-cache"
