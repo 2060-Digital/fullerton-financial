@@ -7,12 +7,14 @@ export const Components = {
   button: dynamic(() => import("./atoms/StoryblokButton")),
   cta_banner: dynamic(() => import("./atoms/CTABanner")),
   dual_button: dynamic(() => import("./atoms/DualButton")),
+  divider: dynamic(() => import("./atoms/Divider")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
   featured_image: dynamic(() => import("./molecules/FeaturedImage")),
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
   question_card_list: dynamic(() => import("./molecules/QuestionList")),
+  free_retirement_toolbox_section: dynamic(() => import("./molecules/FreeRetirementToolboxSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
