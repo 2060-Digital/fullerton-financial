@@ -1,15 +1,15 @@
 import Link from "next/link"
 import { getGlobals } from "storyblok/api"
 import { getAllBlogArticlePaths, getBlogArticle } from "storyblok/blog"
-import richText from "utilities/richText"
 import Image from "components/Image"
 import Meta from "components/Meta"
 import Breadcrumbs from "components/Breadcrumbs"
+import StoryblokVisualEditor from "components/StoryblokVisualEditor"
 import Mail from "public/assets/social-media/mail.svg"
 import LinkedIn from "public/assets/social-media/linkedin.svg"
 import Facebook from "public/assets/social-media/facebook.svg"
+import richText from "utilities/richText"
 import { formatBlogDate } from "utilities/blogHelpers"
-import StoryblokVisualEditor from "components/StoryblokVisualEditor"
 
 export default function Article({ story, meta }) {
   const url = `${process.env.URL}${story?.content?.slug}`
@@ -61,26 +61,24 @@ export default function Article({ story, meta }) {
                 />
               </div>
               <div className="basis-1/3 hidden lg:block h-full text-center relative border-2 border-secondary-1">
-                <div className="relative -right-3.5 -top-3.5 py-12 w-full bg-secondary-2 h-full">
+                <div className="relative -right-3.5 -top-3.5 py-12 w-full  h-full">
                   <ShareLinks />
                 </div>
               </div>
             </div>
           </div>
         </section>
-      </StoryblokVisualEditor>
-      <StoryblokVisualEditor story={story?.content}>
         <section className="px-6 py-12">
           <div className="max-w-screen-xl mx-auto">
-            <div className="max-w-4xl">
-              <div className="prose-headings:text-primary-1 prose-headings:pb-4 prose-h2:pt-6">
-                {story?.content?.date?.length > 0 ? (
-                  <time className="block mb-4 font-primary text-primary-1">
-                    {formatBlogDate(story?.content?.date, "en-US", "long")}
-                  </time>
-                ) : null}
-                {richText(story?.content?.content)}
-                <div className="lg:hidden bg-secondary-2 h-max py-12 text-center">
+            <div className="max-w-4xl prose-headings:text-primary-1 prose-headings:pb-4 prose-h2:pt-6">
+              {story?.content?.date?.length > 0 ? (
+                <time className="block mb-4 font-primary text-primary-1">
+                  {formatBlogDate(story?.content?.date, "en-US", "long")}
+                </time>
+              ) : null}
+              {richText(story?.content?.content)}
+              <div className="lg:hidden h-max text-center relative border-2 border-secondary-1 mt-8">
+                <div className="relative -right-3.5 -top-3.5 bg-secondary-2 h-full py-12">
                   <ShareLinks />
                 </div>
               </div>
