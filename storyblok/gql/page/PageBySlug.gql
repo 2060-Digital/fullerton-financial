@@ -1,5 +1,5 @@
 query PageBySlug($slug: ID!) {
-  PageItem(id: $slug) {
+  PageItem(id: $slug, resolve_links: "url") {
     content {
       _editable
       _uid
@@ -11,5 +11,6 @@ query PageBySlug($slug: ID!) {
     published_at
     full_slug
     slug
+    uuid
   }
 }

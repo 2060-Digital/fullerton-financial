@@ -1,5 +1,5 @@
 query BlogArchive {
-  BlogarchiveItem(id: "blog") {
+  BlogarchiveItem(id: "blog", resolve_links: "url") {
     created_at
     published_at
   }

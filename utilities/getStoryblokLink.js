@@ -1,16 +1,15 @@
-export const getStoryblokLink = ({
-  href,
-  anchor,
-  linktype,
-  cached_url,
-  cachedUrl,
-  url,
-  email,
-  filename,
-  fieldtype,
-} = {}) => {
-  if (fieldtype === "asset") return filename
+export const getStoryblokLink = ({ href, anchor, linktype, cached_url, cachedUrl, url, story, email } = {}) => {
+  // Asset Link
+  if (linktype === "asset" && (url || href)) return url || href
+
+  // Email Link
   if (linktype === "email") return `mailto:${email || url || href}`
+
+  // Internal Link
+  if (linktype === "story" && story?.full_slug) return `${story.full_slug.startsWith("/") ? "" : "/"}${story.full_slug}`
+
+  // Defined URL. Can be external or internal
+  if (linktype === "url" && (url || href)) return url || href
 
   // inline links
   // if a link is inline within a rich text field then an href will be provided
