@@ -13,6 +13,7 @@ export const Components = {
   featured_image: dynamic(() => import("./molecules/FeaturedImage")),
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
   question_card_list: dynamic(() => import("./molecules/QuestionList")),
+  logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
