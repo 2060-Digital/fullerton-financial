@@ -3,11 +3,11 @@
   "private": true,
   "prettier": "@2060-digital/prettier-config",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "next-sitemap",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "NEXT_PUBLIC_SITE_URL=$URL next dev",
+    "build": "NEXT_PUBLIC_SITE_URL=$URL next build",
+    "postbuild": "NEXT_PUBLIC_SITE_URL=$URL next-sitemap",
+    "start": "NEXT_PUBLIC_SITE_URL=$URL next start",
+    "lint": "NEXT_PUBLIC_SITE_URL=$URL next lint",
     "prepare": "husky install"
   },
   "dependencies": {

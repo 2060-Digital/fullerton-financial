@@ -11,7 +11,7 @@ import Facebook from "public/assets/social-media/facebook.svg"
 import { formatBlogDate } from "utilities/blogHelpers"
 
 export default function Article({ story, meta }) {
-  const url = `${process.env.NEXT_PUBLIC_SITE_URL}${story?.content?.slug}`
+  const url = `${process.env.URL}${story?.content?.slug}`
 
   const ShareLinks = () => (
     <>
