@@ -70,10 +70,10 @@ export default function LogoCarouselSection({ blok }) {
         </h2>
       </div>
       {blok?.logos?.length ? (
-        <div className="mb-12 overflow-hidden mx-auto">
+        <div className="mb-12 mx-auto">
           <div
             ref={ref}
-            className="flex gap-11 mx-auto overflow-x-visible transition-all duration-500"
+            className="flex gap-11 mx-auto transition-all duration-500"
             style={{
               width: `${visibleSlides * slideWidth - 44}px`,
               transform: `translateX(-${visibleSlides < blok?.logos?.length ? offset : 0}px)`,
