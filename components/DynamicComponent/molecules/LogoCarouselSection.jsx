@@ -1,45 +1,64 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import cn from "classnames"
 import CallToAction from "components/CallToAction"
 import Image from "components/Image"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
 import getTarget from "utilities/getTarget"
+import Arrow from "public/assets/arrow.svg"
 
-function Logo({ url, image }) {
+function Logo({ url, image, visible }) {
   const href = getStoryblokLink(url)
 
   if (href) {
     return (
-      <Link href={href} target={getTarget(href)}>
-        <Image src={image?.filename} alt={image?.alt} width={110} height={95} />
+      <Link
+        href={href}
+        target={getTarget(href)}
+        className={cn("min-w-28 transition-opacity duration-300", {
+          "opacity-0 lg": !visible,
+        })}
+      >
+        <Image src={image?.filename} alt={image?.alt} width={110} height={95} className="w-full object-contain" />
       </Link>
     )
   }
 
-  return <Image src={image?.filename} alt={image?.alt} width={110} height={95} className="w-28 object-contain" />
+  return (
+    <Image
+      src={image?.filename}
+      alt={image?.alt}
+      width={110}
+      height={95}
+      className={cn("w-28 transition-opacity duration-300 object-contain", {
+        "opacity-0 lg": !visible,
+      })}
+    />
+  )
 }
 
 export default function LogoCarouselSection({ blok }) {
   const ref = useRef(null)
-  const [visibleSlides, setVisibleSlides] = useState(2)
+  const [visibleSlides, setVisibleSlides] = useState(blok?.logos?.length)
+  const [offset, setOffset] = useState(0)
 
   const slideWidth = 156
+  const maxSliderWidth = slideWidth * blok?.logos?.length - 44
 
   useEffect(() => {
     function handleResize() {
       const parentElement = ref.current.parentElement
       if (parentElement) {
-        if (ref.current.offsetWidth <= parentElement.offsetWidth) {
-          setVisibleSlides(blok?.logos?.length)
-        } else {
-          setVisibleSlides(Math.floor((parentElement.offsetWidth + 44) / 156))
-        }
+        setVisibleSlides(Math.min(Math.floor((parentElement.offsetWidth + 44) / 156), blok?.logos?.length))
       }
     }
 
     window.addEventListener("resize", handleResize)
+    handleResize()
 
-    return () => window.removeEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
   }, [blok])
 
   return (
@@ -51,16 +70,54 @@ export default function LogoCarouselSection({ blok }) {
         </h2>
       </div>
       {blok?.logos?.length ? (
-        <div className="mb-12">
+        <div className="mb-12 overflow-hidden mx-auto">
           <div
             ref={ref}
-            className="flex gap-11 mx-auto overflow-hidden"
-            style={{ width: `${visibleSlides * slideWidth - 44}px` }}
+            className="flex gap-11 mx-auto overflow-x-visible transition-all duration-500"
+            style={{
+              width: `${visibleSlides * slideWidth - 44}px`,
+              transform: `translateX(-${visibleSlides < blok?.logos?.length ? offset : 0}px)`,
+            }}
           >
-            {blok?.logos?.map((logo) => (
-              <Logo {...logo} key={logo?._uid} />
-            ))}
+            {blok?.logos?.map((logo, idx) => {
+              const leftSlideIdx = offset / slideWidth
+              const rightSlideIdx = leftSlideIdx + visibleSlides
+
+              return (
+                <Logo
+                  {...logo}
+                  visible={(idx >= leftSlideIdx && idx < rightSlideIdx) || visibleSlides >= blok?.logos?.length}
+                  key={logo?._uid}
+                />
+              )
+            })}
           </div>
+          {visibleSlides < blok?.logos?.length ? (
+            <div className="flex gap-8 mx-auto w-max mt-12">
+              <button
+                onClick={() => {
+                  if (offset === 0) {
+                    setOffset(maxSliderWidth - ref.current.offsetWidth)
+                  } else {
+                    setOffset(offset - slideWidth)
+                  }
+                }}
+              >
+                <Arrow />
+              </button>
+              <button
+                onClick={() => {
+                  if (offset === maxSliderWidth - ref.current.offsetWidth) {
+                    setOffset(0)
+                  } else {
+                    setOffset(offset + slideWidth)
+                  }
+                }}
+              >
+                <Arrow className="rotate-180" />
+              </button>
+            </div>
+          ) : null}
         </div>
       ) : null}
       <CallToAction href={getStoryblokLink(blok?.link_url)} className="table mx-auto" style="secondary">
