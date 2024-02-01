@@ -44,7 +44,7 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
     pagination()?.map((pageNumber, idx) => {
       if (pageNumber === DOTS)
         return (
-          <span key={"dots-" + idx} className="cursor-default">
+          <span key={"dots-" + idx} className="cursor-default font-primary text-primary-1">
             {DOTS}
           </span>
         )
@@ -55,7 +55,7 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
           disabled={pageNumber === +currentPage}
           onClick={() => setCurrentPage(pageNumber)}
           className={cn(
-            "px-2 flex justify-center disabled:cursor-not-allowed hover:underline decoration-tertiary-1 underline-offset-4 decoration-2",
+            "px-2 flex justify-center disabled:cursor-not-allowed hover:underline decoration-tertiary-1 underline-offset-4 decoration-2 font-primary text-primary-1",
             {
               underline: pageNumber === +currentPage,
             },
