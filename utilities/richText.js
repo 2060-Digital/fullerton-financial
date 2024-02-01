@@ -52,7 +52,7 @@ export default function richText(content) {
         markResolvers: {
           [MARK_LINK]: (children, link) => {
             return (
-              <CallToAction href={getStoryblokLink(link)} style="secondary">
+              <CallToAction href={getStoryblokLink(link)} style="inline">
                 {children}
               </CallToAction>
             )
