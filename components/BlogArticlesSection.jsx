@@ -35,7 +35,7 @@ const ArticleItem = ({ article }) => {
           <h3 className="text-primary-1 hover:underline">{article?.content?.title}</h3>
         </Link>
         {article?.content?.date?.length > 0 ? (
-          <time className="block mb-4">{formatBlogDate(article?.content?.date)}</time>
+          <time className="block mb-4 font-primary text-primary-1">{formatBlogDate(article?.content?.date)}</time>
         ) : null}
         <p>{getExcerpt(article?.content?.content, 160)}</p>
       </div>
