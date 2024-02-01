@@ -103,7 +103,7 @@ export default function LogoCarouselSection({ blok }) {
                   }
                 }}
               >
-                <Arrow />
+                <Arrow className="rotate-180 text-tertiary-1" />
               </button>
               <button
                 onClick={() => {
@@ -114,7 +114,7 @@ export default function LogoCarouselSection({ blok }) {
                   }
                 }}
               >
-                <Arrow className="rotate-180" />
+                <Arrow className="text-tertiary-1" />
               </button>
             </div>
           ) : null}
