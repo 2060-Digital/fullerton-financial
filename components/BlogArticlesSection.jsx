@@ -14,7 +14,7 @@ const ArticleItem = ({ article }) => {
     <article className="bg-gray-light border-l-[20px] border-l-white">
       <Link
         href={`/blog/${article?.slug}`}
-        className="w-full block relative h-[238px] border-2 border-secondary-1 -left-4"
+        className="w-full block relative h-[238px] border-2 border-secondary-1 -left-4 hover:border-tertiary-1 transition-all duration-300"
       >
         <Image
           src={
