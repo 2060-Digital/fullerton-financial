@@ -3,11 +3,11 @@
   "private": true,
   "prettier": "@2060-digital/prettier-config",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "next-sitemap",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "NEXT_PUBLIC_SITE_URL=$URL next dev",
+    "build": "NEXT_PUBLIC_SITE_URL=$URL next build",
+    "postbuild": "NEXT_PUBLIC_SITE_URL=$URL next-sitemap",
+    "start": "NEXT_PUBLIC_SITE_URL=$URL next start",
+    "lint": "NEXT_PUBLIC_SITE_URL=$URL next lint",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -44,6 +44,8 @@
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "husky": "8.0.3",
+    "jsdom": "^24.0.0",
+    "filenamify": "^6.0.0",
     "lint-staged": "15.2.0",
     "plaiceholder": "^3.0.0",
     "postcss": "^8.4.32",

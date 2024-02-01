@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import cn from "classnames"
-import Arrow from "public/assets/arrow.svg"
+import Arrow from "public/assets/pagination-arrow.svg"
 
 export default function Pagination({ pageCount, currentPage, setCurrentPage, scrollAnchor = "__next" }) {
   const isFirstMount = useRef(true)
@@ -44,7 +44,7 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
     pagination()?.map((pageNumber, idx) => {
       if (pageNumber === DOTS)
         return (
-          <span key={"dots-" + idx} className="mx-2 -mb-3 text-l2 cursor-default flex justify-center items-center">
+          <span key={"dots-" + idx} className="cursor-default font-primary text-primary-1">
             {DOTS}
           </span>
         )
@@ -55,12 +55,10 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
           disabled={pageNumber === +currentPage}
           onClick={() => setCurrentPage(pageNumber)}
           className={cn(
-            `page-${pageNumber}`,
-            "mx-2 flex justify-center disabled:cursor-not-allowed text-xl1 sm:text-xl2 after:box-content relative hover:after:h-1 after:absolute after:w-6 after:-bottom-1 after:bg-orange",
+            "px-2 flex justify-center disabled:cursor-not-allowed hover:underline decoration-tertiary-1 underline-offset-4 decoration-2 font-primary text-primary-1",
             {
-              "after:box-content after:h-1 after:absolute after:w-6 after:-bottom-1 after:bg-orange underline":
-                pageNumber === +currentPage,
-            }
+              underline: pageNumber === +currentPage,
+            },
           )}
           aria-label={`Page ${pageNumber}${pageNumber === +currentPage ? ` (Current Page)` : ``}`}
         >
@@ -70,15 +68,19 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
     })
 
   return (
-    <div className="mx-auto flex justify-center items-center mt-8 mb-12 px-10">
+    <div className="mx-auto flex justify-center items-center my-8 px-10">
       <button
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}
         className="prev-page flex mr-6 disabled:cursor-not-allowed"
         aria-label="Previous Page"
       >
-        {/* adding custom class(es) overrides pagination-arrow class, so we have to add it back */}
-        <Arrow className="rotate-180 pagination-arrow disabled:fill-gray-50" />
+        <Arrow
+          className={cn("rotate-180", {
+            "text-tertiary-1": currentPage !== 1,
+            "text-gray": currentPage === 1,
+          })}
+        />
       </button>
 
       <PageNumbers />
@@ -89,7 +91,12 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
         className="next-page flex hover:text-green ml-6 disabled:cursor-not-allowed "
         aria-label="Next Page"
       >
-        <Arrow />
+        <Arrow
+          className={cn({
+            "text-tertiary-1": currentPage !== pageCount,
+            "text-gray": currentPage === pageCount,
+          })}
+        />
       </button>
     </div>
   )
