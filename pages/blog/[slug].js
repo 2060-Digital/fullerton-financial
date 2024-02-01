@@ -47,7 +47,7 @@ export default function Article({ story, meta }) {
               <h1 className="text-white">{story?.content?.title}</h1>
             </div>
             <div className="flex lg:-mb-12 gap-12">
-              <div className="w-full border-2 border-secondary-1 relative lg:basis-2/3 -top-20 lg:-top-0 mr-[12px] lg:mr-0">
+              <div className="w-full border-2 border-secondary-1 relative lg:basis-2/3 -top-20 lg:-top-0 mr-[12px] lg:mr-0 -mb-12 lg:-mb-0">
                 <Image
                   src={
                     story?.content?.featured_image?.filename && story?.content?.featured_image?.filename !== ""
