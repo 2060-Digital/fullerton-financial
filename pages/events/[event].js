@@ -15,7 +15,9 @@ export default function IndividualEventPage({ event, eventID }) {
         <section>
           <h1>{event.name.text}</h1>
           <time>{event.start.utc}</time>
-
+          {event.content.modules.map(({ data }) => (
+            <div dangerouslySetInnerHTML={{ __html: data?.body?.text ?? null }} key={data.id}></div>
+          ))}
           {event.series_id ? (
             <Link href={event.venue.slug} className="underline hover:no-underline">
               <address>{event.venue.name}</address>

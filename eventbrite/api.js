@@ -53,9 +53,11 @@ export async function getIndividualEventPaths() {
 export async function getEventByID(id) {
   const event = await query(`/events/${id}`)
 
+  const content = await query(`/events/${id}/structured_content`)
+
   const venue = await getVenueByID(event.venue_id)
 
-  return { ...event, venue }
+  return { ...event, venue, content }
 }
 
 export async function getEventSeriesByID(id) {
