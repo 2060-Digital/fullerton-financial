@@ -29,7 +29,7 @@ export default function PageHeader({ blok }) {
           {blok?.content?.length ? <div className="pt-4 prose-p:text-white">{richText(blok?.content)}</div> : null}
         </div>
         {hasImage ? (
-          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-[12px]">
+          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
             <Image
               src={blok?.image?.filename}
               alt={blok?.image?.alt}
