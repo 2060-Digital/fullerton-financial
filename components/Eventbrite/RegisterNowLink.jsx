@@ -1,15 +1,15 @@
-import Link from "next/link"
+import CallToAction from "components/CallToAction"
 
 export default function RegisterNowLink({ embedCreated, setEmbedCreated, eventHash }) {
   return (
-    <Link
+    <CallToAction
       href={`#${eventHash}`}
       onClick={() => {
         if (!embedCreated) setEmbedCreated(true)
       }}
-      className="underline hover:no-underline"
+      className="whitespace-nowrap w-full sm:w-max"
     >
       Register Now
-    </Link>
+    </CallToAction>
   )
 }

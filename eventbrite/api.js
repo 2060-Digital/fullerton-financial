@@ -31,9 +31,9 @@ export async function getAllActiveEvents() {
 }
 
 export async function getAllPublicEvents() {
-  const allEvents = await getAllActiveEvents()
+  const allEvents = await getAllActiveEvents().then((response) => response.filter(({ listed }) => listed === true))
 
-  return allEvents.filter(({ listed }) => listed === true)
+  return allEvents.map((event) => ({ ...event, start: event?.start?.utc, end: event?.end?.utc }))
 }
 
 export async function getIndividualEventPaths() {
@@ -57,7 +57,7 @@ export async function getEventByID(id) {
 
   const venue = await getVenueByID(event.venue_id)
 
-  return { ...event, venue, content }
+  return { ...event, start: event?.start?.local, end: event?.end?.local, venue, content }
 }
 
 export async function getEventSeriesByID(id) {
@@ -105,11 +105,14 @@ export async function getVenueByID(id) {
   }
 }
 
-export async function getEventsByVenue(venueID) {
+export async function getEventsByVenue(venueID, venue) {
   const events = await query(`/venues/${venueID}/events?status=live`).then(({ events }) => events)
 
   return events.map((event) => ({
     ...event,
+    venue,
+    start: event?.start?.local,
+    end: event?.end?.local,
     slug: `/events/${slugify(event.name.text, {
       lower: true,
     })}-${event.id}`,

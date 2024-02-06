@@ -1,20 +1,15 @@
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventsByVenue, getVenueByID, getVenuePaths } from "eventbrite/api"
-import Event from "components/Eventbrite/EventbriteEvent"
+import PageHeader from "components/DynamicComponent/molecules/PageHeader"
+import EventSection from "components/Eventbrite/EventSection"
 
 export default function Venue({ venue, events }) {
   return (
     <>
       <main>
-        <section>
-          <h1>{venue.name}</h1>
-        </section>
-        <section>
-          {events.map((event) => (
-            <Event event={event} venue={venue} key={event.id} />
-          ))}
-        </section>
+        <PageHeader blok={{ heading: venue?.name }} />
+        <EventSection events={events} />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
@@ -27,7 +22,7 @@ export async function getStaticProps({ params: { venue } }) {
 
   const individualVenue = await getVenueByID(id)
 
-  const events = await getEventsByVenue(id)
+  const events = await getEventsByVenue(id, individualVenue)
 
   return {
     props: {
