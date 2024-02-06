@@ -1,6 +1,7 @@
 import cn from "classnames"
 import Breadcrumbs from "components/Breadcrumbs"
 import Image from "components/Image"
+import isRichTextValid from "utilities/isRichTextValid"
 import richText from "utilities/richText"
 
 export default function PageHeader({ blok }) {
@@ -26,7 +27,9 @@ export default function PageHeader({ blok }) {
         >
           <Breadcrumbs breadcrumbs={blok?.breadcrumbs} />
           <h1 className="text-white">{blok?.heading}</h1>
-          {blok?.content?.length ? <div className="pt-4 prose-p:text-white">{richText(blok?.content)}</div> : null}
+          {isRichTextValid(blok?.content) ? (
+            <div className="pt-4 prose-p:text-white">{richText(blok?.content)}</div>
+          ) : null}
         </div>
         {hasImage ? (
           <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
