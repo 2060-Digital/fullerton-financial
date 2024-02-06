@@ -39,7 +39,7 @@ export default function ImageAndContent({ blok }) {
               {blok?.eyebrow ? <span className="block eyebrow pb-2.5">{blok?.eyebrow}</span> : null}
               <span className="pb-5 block">{blok?.heading}</span>
             </h2>
-            <div className="prose-h2:pb-4">{richText(blok?.content)}</div>
+            <div className="prose-h2:pb-5">{richText(blok?.content)}</div>
           </div>
           <div
             className={cn("w-full h-full lg:basis-7/12 relative pr-4 pt-4 lg:scale-110", {
