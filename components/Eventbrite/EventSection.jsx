@@ -2,24 +2,11 @@ import Link from "next/link"
 import useEventbriteModal from "eventbrite/useEventbriteModal"
 import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
 import EventbriteModal from "components/Eventbrite/EventbriteModal"
-import { formartEventTime, formatEventDate, formatEventStartEndTime } from "eventbrite/formatEventDate"
+import { formatEventDate, formatEventStartEndTime } from "eventbrite/formatEventDate"
+import VenueLink from "components/Eventbrite/VenueLink"
 
 export function Event({ event, venue }) {
   const { embedCreated, setEmbedCreated, modalProps, eventHash } = useEventbriteModal(event)
-
-  const Venue = () => {
-    const addressStyles = "not-italic text-primary-1"
-
-    if (event?.series_id) {
-      return (
-        <Link href={venue?.slug}>
-          <address className={`${addressStyles} hover:underline`}>{venue?.name}</address>
-        </Link>
-      )
-    }
-
-    return <address className={addressStyles}>{venue?.name}</address>
-  }
 
   return (
     <>
@@ -41,8 +28,8 @@ export function Event({ event, venue }) {
               {formatEventDate(event?.start)}, {formatEventStartEndTime(event?.start, event?.end)}
             </h4>
             <time>{event.start.utc}</time>
-            <h4>
-              <Venue />
+            <h4 className="text-primary-1">
+              <VenueLink event={event} venue={venue} />
             </h4>
           </div>
         </div>

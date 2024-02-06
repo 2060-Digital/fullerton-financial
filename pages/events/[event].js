@@ -14,10 +14,7 @@ export default function IndividualEventPage({ event, eventID }) {
       <main>
         <EventbritePageHeader
           {...{
-            heading: event.name.text,
-            time: { start: new Date(event.start), end: new Date(event.end) },
-            image: { filename: event.logo.original.url },
-            venue: event.venue,
+            event,
             modalProps,
             eventHash,
             embedCreated,
@@ -25,20 +22,12 @@ export default function IndividualEventPage({ event, eventID }) {
           }}
         />
         <section>
-          <time>{event.start.utc}</time>
           {event.content.modules.map(({ data }) => {
             if (data?.image) {
               return <Image src={data?.image?.url} alt="" width={585} height={350} key={data.id} />
             }
             return <div dangerouslySetInnerHTML={{ __html: data?.body?.text ?? null }} key={data.id}></div>
           })}
-          {event.series_id ? (
-            <Link href={event.venue.slug} className="underline hover:no-underline">
-              <address>{event.venue.name}</address>
-            </Link>
-          ) : (
-            <address>{event.venue.name}</address>
-          )}
         </section>
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
