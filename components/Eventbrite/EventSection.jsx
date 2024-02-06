@@ -27,7 +27,6 @@ export function Event({ event, venue }) {
             <h4 className="pb-2 text-primary-1">
               {formatEventDate(event?.start)}, {formatEventStartEndTime(event?.start, event?.end)}
             </h4>
-            <time>{event.start.utc}</time>
             <h4 className="text-primary-1">
               <VenueLink event={event} venue={venue} />
             </h4>

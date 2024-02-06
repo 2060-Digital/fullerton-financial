@@ -33,7 +33,7 @@ export async function getAllActiveEvents() {
 export async function getAllPublicEvents() {
   const allEvents = await getAllActiveEvents().then((response) => response.filter(({ listed }) => listed === true))
 
-  return allEvents.map((event) => ({ ...event, start: event?.start?.utc, end: event?.end?.utc }))
+  return allEvents.map((event) => ({ ...event, start: event?.start?.local, end: event?.end?.local }))
 }
 
 export async function getIndividualEventPaths() {
