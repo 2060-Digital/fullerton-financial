@@ -6,17 +6,22 @@ import DynamicComponent from "components/DynamicComponent"
 export default function ImageAndContent({ blok }) {
   return (
     <section
-      className={cn("image-and-content-section lg:px-6 lg:my-20", {
+      className={cn("image-and-content-section lg:px-6", {
+        "lg:my-20": blok?.background_color,
         "prose-headings:text-white prose-p:text-white": blok?.background_color === "primary-1",
         "prose-headings:text-primary-1":
-          blok?.background_color === "secondary-1" || blok?.background_color === "gray-light",
+          blok?.background_color === "secondary-1" ||
+          blok?.background_color === "gray-light" ||
+          !blok?.background_color,
       })}
     >
       <div
         className={cn(
           blok?.background_color && `bg-${blok?.background_color}`,
-          "image-and-content px-6 lg:px-24 py-12 lg:py-20 mx-auto max-w-screen-xl border-b-[140px] border-b-white lg:border-b-0",
+          "image-and-content px-6 py-12 lg:py-20 mx-auto max-w-screen-xl border-b-[140px] border-b-white lg:border-b-0",
           {
+            "lg:px-24": blok?.background_color,
+            "lg:pl-24 lg:pr-0": !blok?.background_color,
             "bg-opacity-20": blok?.background_color === "secondary-1",
             "lg:border-l-[80px] lg:border-l-white": blok?.orientation === "image_first",
             "lg:border-r-[80px] lg:border-r-white": blok?.orientation === "content_first",
@@ -34,7 +39,7 @@ export default function ImageAndContent({ blok }) {
               {blok?.eyebrow ? <span className="block eyebrow pb-2.5">{blok?.eyebrow}</span> : null}
               <span className="pb-5 block">{blok?.heading}</span>
             </h2>
-            <div className="">{richText(blok?.content)}</div>
+            <div className="prose-h2:pb-4">{richText(blok?.content)}</div>
           </div>
           <div
             className={cn("w-full h-full lg:basis-7/12 relative pr-4 pt-4 lg:scale-110", {
