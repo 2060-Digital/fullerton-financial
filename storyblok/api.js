@@ -1,6 +1,5 @@
 import retrieveAll from "storyblok/retrieveAll"
 import query from "storyblok/fetch"
-import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
 import AllPageSlugs from "storyblok/gql/page/AllPageSlugs.gql"
 import PageBySlug from "storyblok/gql/page/PageBySlug.gql"
@@ -8,6 +7,7 @@ import Menus from "storyblok/gql/global/Menus.gql"
 import Datasources from "storyblok/gql/global/Datasources.gql"
 import GlobalSections from "storyblok/gql/global/GlobalSections.gql"
 import AllLocations from "storyblok/gql/location/AllLocations.gql"
+import processPageData from "storyblok/processPageData"
 
 export async function getAllPageSlugs() {
   const data = await retrieveAll({
@@ -26,7 +26,7 @@ export async function getPage(slug, preview) {
   const globalData = await getGlobals(data?.PageItem?.uuid)
 
   return {
-    page: await generateSBPlaiceholders(data?.PageItem),
+    page: await processPageData(data?.PageItem),
     globals: globalData,
   }
 }
