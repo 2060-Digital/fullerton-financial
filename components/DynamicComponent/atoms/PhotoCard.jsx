@@ -4,8 +4,8 @@ import storyblokImageLoader from "utilities/storyblokImageLoader"
 
 export default function PhotoCard({ blok }) {
   return (
-    <div className="pl-5">
-      <div className={`bg-${blok.background_color}`}>
+    <div className="pl-5 lg:pl-0">
+      <div className={`bg-${blok.background_color} h-full`}>
         <div className="w-full relative">
           <div className="w-full h-full absolute border-2 border-primary-1 top-5 right-5 z-10"></div>
           <Image
@@ -20,9 +20,10 @@ export default function PhotoCard({ blok }) {
             sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
           />
         </div>
-
         <div className="p-7 xl:px-7">
-          <div className="prose-headings:pb-4 prose-headings:text-primary-1">{richText(blok.content)}</div>
+          <div className="prose-headings:pb-4 prose-p:leading-[26px] prose-headings:text-primary-1">
+            {richText(blok.content)}
+          </div>
         </div>
       </div>
     </div>
