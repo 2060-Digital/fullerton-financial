@@ -34,11 +34,7 @@ export default function CallToAction({
 
   const internal = getTarget(href)
 
-  if (href.startsWith("tel:") || href.startsWith("mailto:")) {
-    target = "_self"
-  }
-
-  return internal ? (
+  return internal === "_self" ? (
     <NextLink href={href} data-type="route" target="_self" className={styles} {...delegated}>
       {children}
     </NextLink>
