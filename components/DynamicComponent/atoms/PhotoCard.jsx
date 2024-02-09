@@ -7,7 +7,7 @@ export default function PhotoCard({ blok }) {
     <div className="pl-5 lg:pl-0">
       <div className={`bg-${blok.background_color} h-full`}>
         <div className="w-full relative">
-          <div className="w-full h-full absolute border-2 border-primary-1 top-5 right-5 z-10"></div>
+          <div className="w-full h-full absolute border-2 border-secondary-1 top-5 right-5 z-10"></div>
           <Image
             loader={blok.image.filename && blok.image.filename !== "" ? storyblokImageLoader : undefined}
             src={blok.image.filename && blok.image.filename !== "" ? blok.image.filename : "/assets/placeholder.png"}
