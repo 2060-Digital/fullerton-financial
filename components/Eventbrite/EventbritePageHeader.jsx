@@ -4,8 +4,11 @@ import EventbriteModal from "components/Eventbrite/EventbriteModal"
 import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
 import VenueLink from "components/Eventbrite/VenueLink"
 import { formatEventStartEndTime, formatEventDate } from "eventbrite/formatEventDate"
+import useEventbriteModal from "eventbrite/useEventbriteModal"
 
-export default function PageHeader({ modalProps, eventHash, embedCreated, setEmbedCreated, event }) {
+export default function PageHeader({ event }) {
+  const { embedCreated, setEmbedCreated, modalProps, eventHash } = useEventbriteModal(event)
+
   const timeVenueStyles = "text-white block font-primary font-bold text-m1 lg:text-m2"
   const hasImage = Boolean(event?.logo?.original?.url?.length)
 
@@ -39,7 +42,7 @@ export default function PageHeader({ modalProps, eventHash, embedCreated, setEmb
         {hasImage ? (
           <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-[12px]">
             <Image
-              src={event.logo.original.url}
+              src={event?.logo?.original?.url}
               alt=""
               width={896}
               height={585}

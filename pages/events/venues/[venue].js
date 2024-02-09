@@ -4,10 +4,18 @@ import { getEventsByVenue, getVenueByID, getVenuePaths } from "eventbrite/api"
 import PageHeader from "components/DynamicComponent/molecules/PageHeader"
 import EventSection from "components/Eventbrite/EventSection"
 import VenueMap from "components/Eventbrite/VenueMap"
+import Meta from "components/Meta"
 
 export default function Venue({ venue, events }) {
   return (
     <>
+      <Meta
+        info={{
+          title: venue?.name,
+          og_title: venue?.name,
+          twitter_title: venue?.name,
+        }}
+      />
       <main>
         <PageHeader blok={{ heading: venue?.name }} />
         <EventSection events={events} />
