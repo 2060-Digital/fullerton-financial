@@ -47,7 +47,7 @@ export default function IndividualEventPage({ event }) {
                 <div
                   dangerouslySetInnerHTML={{ __html: data?.body?.text ?? null }}
                   key={data?.body?.id}
-                  className="event-page-content prose-headings:text-primary-1 prose-headings:pb-4"
+                  className="event-page-content prose-headings:text-primary-1 prose-headings:pb-4 prose-h3:text-l2 prose-h3:lg:text-xl1 prose-h3:pt-2 first:prose-h3:pt-0 prose-h4:text-m2 prose-h4:lg:text-l1 prose-h4:font-secondary"
                 ></div>
               )
             })}

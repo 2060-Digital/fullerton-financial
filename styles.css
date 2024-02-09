@@ -53,6 +53,8 @@ p {
 .event-page-content ol {
   font-family: theme("fontFamily.primary");
   padding-bottom: theme("spacing.4");
+
+  @apply last:pb-0;
 }
 
 .rich-text-ul,
