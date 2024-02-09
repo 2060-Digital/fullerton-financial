@@ -3,8 +3,9 @@ import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventByID, getIndividualEventPaths } from "eventbrite/api"
 import useEventbriteModal from "eventbrite/useEventbriteModal"
-import EventbritePageHeader from "components/Eventbrite/EventbritePageHeader"
 import Image from "components/Image"
+import EventbritePageHeader from "components/Eventbrite/EventbritePageHeader"
+import VenueMap from "components/Eventbrite/VenueMap"
 
 export default function IndividualEventPage({ event, eventID }) {
   const { embedCreated, setEmbedCreated, modalProps, eventHash } = useEventbriteModal(event)
@@ -29,6 +30,7 @@ export default function IndividualEventPage({ event, eventID }) {
             return <div dangerouslySetInnerHTML={{ __html: data?.body?.text ?? null }} key={data.id}></div>
           })}
         </section>
+        <VenueMap venue={event?.venue} />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>

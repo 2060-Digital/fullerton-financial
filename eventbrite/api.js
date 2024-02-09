@@ -57,7 +57,13 @@ export async function getEventByID(id) {
 
   const venue = await getVenueByID(event.venue_id)
 
-  return { ...event, start: event?.start?.local, end: event?.end?.local, venue, content }
+  return {
+    ...event,
+    start: event?.start?.local,
+    end: event?.end?.local,
+    venue: { ...venue, latitude: parseFloat(venue?.latitude), longitude: parseFloat(venue?.longitude) },
+    content,
+  }
 }
 
 export async function getEventSeriesByID(id) {
@@ -99,6 +105,8 @@ export async function getVenueByID(id) {
 
   return {
     ...venue,
+    latitude: parseFloat(venue?.latitude),
+    longitude: parseFloat(venue?.longitude),
     slug: `/events/venues/${slugify(venue.name, {
       lower: true,
     })}-${venue.id}`,

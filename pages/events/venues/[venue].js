@@ -3,6 +3,7 @@ import { getGlobals } from "storyblok/api"
 import { getEventsByVenue, getVenueByID, getVenuePaths } from "eventbrite/api"
 import PageHeader from "components/DynamicComponent/molecules/PageHeader"
 import EventSection from "components/Eventbrite/EventSection"
+import VenueMap from "components/Eventbrite/VenueMap"
 
 export default function Venue({ venue, events }) {
   return (
@@ -10,6 +11,7 @@ export default function Venue({ venue, events }) {
       <main>
         <PageHeader blok={{ heading: venue?.name }} />
         <EventSection events={events} />
+        <VenueMap venue={venue} />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
