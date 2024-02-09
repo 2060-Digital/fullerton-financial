@@ -1,4 +1,5 @@
 import Map from "components/Map"
+import CallToAction from "components/CallToAction"
 
 export default function VenueMap({ venue }) {
   return (
@@ -12,15 +13,22 @@ export default function VenueMap({ venue }) {
               </div>
             </div>
           </div>
-          <div className="lg:basis-5/12">
-            <h2 className="text-white">{venue?.name}</h2>
-            <address>
-              {venue.address.localized_multi_line_address_display.map((segment, idx) => (
+          <div className="lg:basis-5/12 text-white">
+            <h2 className="text-white pb-4">{venue?.name}</h2>
+            <address className="pb-4">
+              {venue?.address?.localized_multi_line_address_display?.map((segment, idx) => (
                 <span className="text-white block not-italic" key={`venue-map-address-segment-${idx}`}>
                   {segment}
                 </span>
               ))}
             </address>
+            <CallToAction
+              href={`https://maps.google.com/?q=${venue?.latitude},${venue?.longitude}`}
+              target="_blank"
+              style="secondary-white"
+            >
+              Get Directions
+            </CallToAction>
           </div>
         </div>
       </div>
