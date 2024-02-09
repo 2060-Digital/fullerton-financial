@@ -48,26 +48,34 @@ p {
 }
 
 .rich-text-ul,
-.rich-text-ol {
+.rich-text-ol,
+.event-page-content ul,
+.event-page-content ol {
   font-family: theme("fontFamily.primary");
   padding-bottom: theme("spacing.4");
 }
 
-.rich-text-ul {
+.rich-text-ul,
+.event-page-content ul {
   list-style-type: disc;
 }
 
-.rich-text-ol {
+.rich-text-ol,
+.event-page-content ol {
   list-style-type: decimal;
 }
 
 .rich-text-ul li,
-.rich-text-ol li {
+.rich-text-ol li,
+.event-page-content ul li,
+.event-page-content ol li {
   margin-left: theme("spacing.4");
 }
 
 .rich-text-ul li::marker,
-.rich-text-ol li::marker {
+.rich-text-ol li::marker,
+.event-page-content ul li::marker,
+.event-page-content ol li::marker {
   font-family: theme("fontFamily.primary");
 }
 
