@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import useModal from "utilities/useModal"
 
 export default function useEventbriteModal(event) {
-  const eventHash = `event-${event.slug}`
+  const eventHash = `event-${event.id}`
 
   const modalProps = useModal(eventHash)
 
