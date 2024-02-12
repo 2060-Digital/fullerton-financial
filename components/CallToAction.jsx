@@ -8,8 +8,10 @@ export default function CallToAction({
   children,
   style = "primary",
   button = false,
+  download = false,
   className,
-  ...delegated
+  title = null,
+  onClick,
 }) {
   const styles = cn(
     "inline-block cursor-pointer max-w-full text-center", // default styles
@@ -19,7 +21,7 @@ export default function CallToAction({
 
   if (button) {
     return (
-      <button className={styles} {...delegated}>
+      <button className={styles} title={title} onClick={onClick}>
         {children}
       </button>
     )
@@ -32,14 +34,30 @@ export default function CallToAction({
       </span>
     )
 
-  const internal = getTarget(href)
+  const targetValue = target ?? getTarget(href)
 
-  return internal === "_self" ? (
-    <NextLink href={href} data-type="route" target="_self" className={styles} {...delegated}>
+  return targetValue === "_self" ? (
+    <NextLink
+      href={href}
+      data-type="route"
+      target="_self"
+      title={title}
+      download={download}
+      className={styles}
+      onClick={onClick}
+    >
       {children}
     </NextLink>
   ) : (
-    <a data-type="external" className={styles} target={target} href={href} {...delegated}>
+    <a
+      data-type="external"
+      className={styles}
+      target={targetValue}
+      title={title}
+      download={download}
+      href={href}
+      onClick={onClick}
+    >
       {children}
     </a>
   )
