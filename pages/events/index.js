@@ -1,4 +1,3 @@
-import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventArchive } from "storyblok/events"
 import { getAllPublicEvents } from "eventbrite/api"
@@ -17,7 +16,6 @@ export default function EventsArchive({ events, story, meta }) {
         ))}
         <EventSection events={events} />
       </main>
-      <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
   )
 }

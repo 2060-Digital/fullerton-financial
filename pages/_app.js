@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Script from "next/script"
 
 import "styles.css"
 import "@fontsource/lato/latin-400.css"
@@ -38,6 +39,7 @@ function MyApp({ Component, pageProps: { preview, story, globals, ...remainingPr
         socialMedia={globals?.socialMedia}
         phoneNumbers={globals?.phoneNumbers}
       />
+      <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
   )
 }
