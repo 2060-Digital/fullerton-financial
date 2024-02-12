@@ -77,7 +77,7 @@ p {
 }
 
 .rich-text-ul li p {
-  @apply font-bold text-m1;
+  @apply text-m1;
 }
 /* End Text Styles */
 
@@ -105,7 +105,7 @@ p {
 }
 
 .inline-link {
-  @apply text-tertiary-1 font-primary underline hover:font-bold;
+  @apply font-primary underline hover:no-underline;
 }
 
 .phone-link,
@@ -366,6 +366,14 @@ input::placeholder {
 }
 /* End Search Bar */
 
+/* Breadcrumbs */
+.crumb::after {
+  content: url("public/assets/bc-arrow.svg");
+  position: absolute;
+  right: 0.5rem;
+}
+/* End Breadcrumbs */
+
 /* Image and Content */
 .image-and-content-section:has(.nested-image-and-content-components) .image-and-content-image {
   margin-bottom: 0px;
@@ -381,3 +389,19 @@ input::placeholder {
   @apply px-5;
 }
 /* End Divider */
+
+/* CTA Banner */
+#__next:has(.cta-banner-section),
+.page-content:has(.cta-banner-section) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cta-banner-section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+/* End CTA Banner */

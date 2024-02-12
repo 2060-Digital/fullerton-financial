@@ -13,8 +13,12 @@ export const Components = {
   faq: dynamic(() => import("./molecules/FAQSection")),
   featured_image: dynamic(() => import("./molecules/FeaturedImage")),
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
+  page_header_section: dynamic(() => import("./molecules/PageHeader")),
   question_card_list: dynamic(() => import("./molecules/QuestionList")),
   free_retirement_toolbox_section: dynamic(() => import("./molecules/FreeRetirementToolboxSection")),
+  logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
+  two_column_section: dynamic(() => import("./molecules/TwoColumnSection")),
+  sidebar_cta_section: dynamic(() => import("./molecules/SidebarCTA")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
