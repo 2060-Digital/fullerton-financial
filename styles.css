@@ -99,7 +99,7 @@ p {
 }
 .primary-link,
 .ghost-link {
-  @apply px-5 py-2.5 border-2 border-tertiary-1 rounded-sm;
+  @apply px-5 py-2.5 border-2 border-tertiary-1 rounded-sm w-full sm:w-max;
 }
 
 .primary-link {
