@@ -1,15 +1,22 @@
 import CallToAction from "components/CallToAction"
 
-export default function RegisterNowLink({ embedCreated, setEmbedCreated, eventHash }) {
+export default function RegisterNowLink({
+  embedCreated,
+  setEmbedCreated,
+  eventHash,
+  style = "primary",
+  label = "Register Now",
+}) {
   return (
     <CallToAction
       href={`#${eventHash}`}
       onClick={() => {
         if (!embedCreated) setEmbedCreated(true)
       }}
-      className="whitespace-nowrap w-full sm:w-max"
+      style={style}
+      className="whitespace-nowrap"
     >
-      Register Now
+      {label}
     </CallToAction>
   )
 }
