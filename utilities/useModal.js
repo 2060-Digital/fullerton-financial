@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
  *
  * @description For rendering a hash/fragment based modal in a view
  * @param String hash The hash/fragment, including the '#', that will render the modal when present in the address bar
- * @returns [isOpen, closeModal, focusRef]
+ * @returns { isOpen, closeModal, openModal, focusRef }
  * isOpen - Boolean value useful for determining whether or not to render a modal,
  * closeModal - a function that removes the provided hash from the current route and sets isOpen to false,
  * focusRef - a ref to attach to the element that should be focused when the modal is opened for usability/accessibility purposes
@@ -17,7 +17,7 @@ function useModal(hash) {
 
   // remove the hash/fragment from the url e.g. /blog#free-assessment -> /blog
   const closeModal = useCallback(() => {
-    if (router.asPath.toLowerCase().includes(hash.toLowerCase())) {
+    if (router.asPath.toLowerCase().endsWith(hash.toLowerCase())) {
       router.push(router.asPath.split("#")[0], undefined, { shallow: true, scroll: false })
       setModal(false)
       document.body.classList.remove("overflow-hidden")
@@ -42,11 +42,11 @@ function useModal(hash) {
 
   useEffect(() => {
     // open the modal regardless of whether user directly navigates to hash via address bar or viewport interaction e.g. button click
-    if (router.asPath.toLowerCase().includes(hash.toLowerCase())) openModal()
+    if (router.asPath.toLowerCase().endsWith(hash.toLowerCase())) openModal()
 
     // determine whether or not to update state upon route navigation
     function handleHashChange(url) {
-      url.toLowerCase().includes(hash.toLowerCase()) ? openModal() : closeModal()
+      url.toLowerCase().endsWith(hash.toLowerCase()) ? openModal() : closeModal()
     }
     router.events.on("routeChangeComplete", handleHashChange)
 
