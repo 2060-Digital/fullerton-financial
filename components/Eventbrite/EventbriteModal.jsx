@@ -1,4 +1,5 @@
 import cn from "classnames"
+import Close from "public/assets/close-modal.svg"
 
 export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
   return (
@@ -23,11 +24,11 @@ export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
           onClick={() => closeModal()}
           aria-label="Close Modal"
           title="Close Modal"
-          className="close-modal-btn absolute -top-[11px] -right-[11px] overflow-hidden sm:top-0 sm:right-0 z-10 scale-[66%] sm:scale-100"
+          className="close-modal-btn absolute overflow-hidden top-4 right-4 z-10 scale-[66%] sm:scale-100 hover:rotate-90 transition-all duration-300"
         >
-          X
+          <Close className="w-4 aspect-square" />
         </button>
-        <div className="h-[100dvh] lg:h-auto w-full flex items-center lg:block">
+        <div className="h-[100dvh] lg:h-auto w-full flex items-center lg:block my-12 lg:my-0">
           <div id={eventHash} />
         </div>
       </div>
