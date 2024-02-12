@@ -15,6 +15,8 @@ export const Components = {
   page_header_section: dynamic(() => import("./molecules/PageHeader")),
   question_card_list: dynamic(() => import("./molecules/QuestionList")),
   logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
+  two_column_section: dynamic(() => import("./molecules/TwoColumnSection")),
+  sidebar_cta_section: dynamic(() => import("./molecules/SidebarCTA")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
