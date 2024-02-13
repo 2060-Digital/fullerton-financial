@@ -163,6 +163,7 @@ export async function getEventsForUpcomingEvents() {
     const combinedEvent = events.reduce((prev, curr) => ({ ...prev, ...curr }), {})
     return {
       dates: `${month} ${eventDates}`,
+      id: combinedEvent?.id,
       name: combinedEvent.name.html,
       venue: combinedEvent.venue.name,
       signUpHREF: notInSeries ? combinedEvent.slug : combinedEvent.venue.slug,
