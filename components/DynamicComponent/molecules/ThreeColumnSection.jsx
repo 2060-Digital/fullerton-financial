@@ -1,0 +1,21 @@
+import richText from "utilities/richText"
+import DynamicComponent from ".."
+
+export default function ThreeColumnSection({ blok }) {
+  return (
+    <section className="px-5 py-12 lg:py-20">
+      <div className="max-w-screen-lg mx-auto">
+        <div className="max-w-screen-md mx-auto mb-12 lg:mb-14">
+          <div className="text-center text-primary-1 eyebrow pb-3">{blok.eyebrow}</div>
+          <h2 className="text-center text-primary-1 pb-3">{blok.heading}</h2>
+          <div className="text-center">{richText(blok.content)}</div>
+        </div>
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-16">
+          {blok.cards.map((card) => (
+            <DynamicComponent key={blok._uid} blok={card} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
