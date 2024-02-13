@@ -1,25 +1,27 @@
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
-import { getEventsByVenue, getVenueByID, getVenuePaths } from "eventbrite/api"
+import { getEventSeriesByID, getVenuePaths } from "eventbrite/api"
 import PageHeader from "components/DynamicComponent/molecules/PageHeader"
 import EventSection from "components/Eventbrite/EventSection"
 import VenueMap from "components/Eventbrite/VenueMap"
 import Meta from "components/Meta"
 
-export default function Venue({ venue, events }) {
+export default function Venue({ eventSeries }) {
   return (
     <>
       <Meta
         info={{
-          title: venue?.name,
-          og_title: venue?.name,
-          twitter_title: venue?.name,
+          title: eventSeries?.venue?.name,
+          og_title: eventSeries?.venue?.name,
+          twitter_title: eventSeries?.venue?.name,
         }}
       />
       <main>
-        <PageHeader blok={{ heading: venue?.name }} />
-        <EventSection events={events} />
-        <VenueMap venue={venue} />
+        <PageHeader
+          blok={{ heading: eventSeries?.venue?.name, image: eventSeries.image, content: eventSeries.content }}
+        />
+        <EventSection events={eventSeries.events} />
+        <VenueMap venue={eventSeries.venue} />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
@@ -30,15 +32,12 @@ export async function getStaticProps({ params: { venue } }) {
   const globals = await getGlobals()
   const id = venue.split("-")[venue.split("-").length - 1]
 
-  const individualVenue = await getVenueByID(id)
-
-  const events = await getEventsByVenue(id, individualVenue)
+  const eventSeries = await getEventSeriesByID(id)
 
   return {
     props: {
       globals,
-      events,
-      venue: individualVenue ?? null,
+      eventSeries: eventSeries ?? null,
     },
   }
 }
