@@ -1,6 +1,7 @@
 import query from "eventbrite/query"
 import { groupBy } from "lodash"
 import slugify from "slugify"
+import { formatPluralDay } from "eventbrite/formatEventDate"
 
 export async function getOrganizationID() {
   const orgID = await query("/users/me/organizations").then((response) => response.organizations[0].id)
@@ -152,7 +153,20 @@ export async function getEventsForUpcomingEvents() {
     .flat()
 
   const eventsPreparedForEventCarousel = eventsByMonth.map(([month, events, notInSeries]) => {
-    return { month }
+    const eventDates = events
+      .map((event, idx) => {
+        const date = new Date(event.start)
+        return `${new Intl.DateTimeFormat("en-US", { day: "numeric" }).format(date)}${formatPluralDay(date.getDate())}${idx === events.length - 1 ? "" : idx === events.length - 2 ? " & " : ", "}`
+      })
+      .join("")
+
+    const combinedEvent = events.reduce((prev, curr) => ({ ...prev, ...curr }), {})
+    return {
+      dates: `${month} ${eventDates}`,
+      name: combinedEvent.name.html,
+      venue: combinedEvent.venue.name,
+      signUpHREF: notInSeries ? combinedEvent.slug : combinedEvent.venue.slug,
+    }
   })
 
   return eventsPreparedForEventCarousel

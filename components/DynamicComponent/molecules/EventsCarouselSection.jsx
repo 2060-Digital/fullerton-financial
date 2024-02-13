@@ -1,31 +1,26 @@
 import cn from "classnames"
 import useCarousel from "utilities/useCarousel"
 import Arrow from "public/assets/arrow.svg"
-import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
-import Link from "next/link"
-import useEventbriteModal from "eventbrite/useEventbriteModal"
-import EventbriteModal from "components/Eventbrite/EventbriteModal"
+import CallToAction from "components/CallToAction"
 
-function Event({ event, venue, visible }) {
-  const { embedCreated, setEmbedCreated, modalProps, eventHash } = useEventbriteModal(event)
-
+function Event({ name, venue, dates, signUpHREF, visible }) {
   return (
-    <>
-      <div
-        className={cn("min-w-72 px-5 py-14 border border-secondary-1 transition-opacity duration-300", {
-          "opacity-0": !visible,
-        })}
-      >
-        <div className="text-center flex flex-col items-center justify-center gap-4">
-          <Link href={event?.slug}>
-            <h4 className="text-primary-1 pb-3">{event?.name?.html}</h4>
-          </Link>
-          <address className="text-primary-1 pb-3 not-italic">{venue.name}</address>
-          <RegisterNowLink {...{ embedCreated, setEmbedCreated, eventHash, style: "secondary", label: "Sign Up" }} />
-        </div>
+    <article
+      className={cn("min-w-72 px-5 py-14 border border-secondary-1 transition-opacity duration-300", {
+        "opacity-0": !visible,
+      })}
+    >
+      <div className="text-center flex flex-col items-center justify-center gap-4">
+        <h3>
+          <span className="text-base font-normal font-primary pb-4 block text-primary-1">{dates}</span>
+          <span className="text-primary-1 font-primary font-bold text-m1 lg:text-m2">{name}</span>
+        </h3>
+        <address className="text-primary-1 not-italic">{venue}</address>
+        <CallToAction href={signUpHREF} style="secondary">
+          Sign Up
+        </CallToAction>
       </div>
-      <EventbriteModal {...modalProps} eventHash={eventHash} />
-    </>
+    </article>
   )
 }
 
@@ -34,7 +29,7 @@ export default function EventsCarouselSection({ blok }) {
   const { ref, visibleSlides, slideWidth, slideGap, offset, moveLeft, moveRight } = useCarousel(numEvents, 368, 80, 3)
 
   return (
-    <section className="px-6 my-12 overflow-x-clip">
+    <section className="px-6 my-12 lg:my-24 overflow-x-clip">
       <h2 className="text-center text-primary-1 pb-8 lg:pb-12">{blok?.heading}</h2>
       {numEvents ? (
         <div className="mx-auto relative max-w-screen-xl">
@@ -43,7 +38,7 @@ export default function EventsCarouselSection({ blok }) {
             className="flex gap-20 mx-auto transition-all duration-500"
             style={{
               width: `${visibleSlides * slideWidth - slideGap}px`,
-              transform: `translateX(-${offset}px)`,
+              transform: `translateX(-${visibleSlides < numEvents ? offset : 0}px)`,
             }}
           >
             {blok?.events?.map((event, idx) => {
@@ -52,8 +47,7 @@ export default function EventsCarouselSection({ blok }) {
 
               return (
                 <Event
-                  event={event}
-                  venue={event?.venue}
+                  {...event}
                   visible={(idx >= leftSlideIdx && idx < rightSlideIdx) || visibleSlides >= numEvents}
                   key={event?.id}
                 />
