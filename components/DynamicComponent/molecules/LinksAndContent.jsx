@@ -1,7 +1,7 @@
 import cn from "classnames"
 import richText from "utilities/richText"
-import DynamicComponent from ".."
 import CallToAction from "components/CallToAction"
+import { getStoryblokLink } from "utilities/getStoryblokLink"
 
 export default function LinksAndContent({ blok }) {
   return (
@@ -18,15 +18,21 @@ export default function LinksAndContent({ blok }) {
             <h2 className="text-primary-1 pb-7">{blok.heading}</h2>
             <div>{richText(blok.content)}</div>
           </div>
-          <div className="lg:basis-2/3 relative">
+          <div className="lg:basis-2/3 relative ml-5">
             <div className="w-full h-full absolute border-2 border-secondary-1 top-5 right-5 z-10"></div>
-            <div className={`bg-${blok.background_color} h-full z-20 relative flex flex-col p-7`}>
-              {blok.links.map((link) => (
-                <CallToAction key={link._uid} blok={link} style="secondary" className="max-w-max">
-                  {link.label}
-                </CallToAction>
-                // <DynamicComponent key={link._uid} blok={link} className="max-w-max" />
-              ))}
+            <div className={`bg-${blok.background_color} h-full z-20 relative p-7 lg:px-14`}>
+              <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 h-full content-center">
+                {blok.links.map((link) => (
+                  <CallToAction
+                    key={link._uid}
+                    style={blok.background_color === "primary-1" ? "secondary-white" : "secondary"}
+                    href={getStoryblokLink(link.link)}
+                    className="max-w-max whitespace-nowrap"
+                  >
+                    {link.label}
+                  </CallToAction>
+                ))}
+              </div>
             </div>
           </div>
         </div>

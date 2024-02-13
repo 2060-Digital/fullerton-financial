@@ -84,6 +84,7 @@ p {
 /* Call to Action */
 .primary-link,
 .secondary-link,
+.secondary-white-link,
 .ghost-link {
   @apply uppercase transition-all duration-200 text-primary-1 font-primary;
 }
@@ -98,6 +99,10 @@ p {
 
 .secondary-link {
   @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1;
+}
+
+.secondary-white-link {
+  @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1 text-white;
 }
 
 .ghost-link {
