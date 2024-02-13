@@ -44,7 +44,7 @@ h3 {
 }
 
 p {
-  @apply font-primary text-gray-charcoal pb-4 last:pb-0;
+  @apply font-primary text-gray-charcoal pb-4 last:pb-0 leading-[26px];
 }
 
 .rich-text-ul,
