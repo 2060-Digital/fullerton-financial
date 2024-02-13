@@ -43,7 +43,7 @@ export function Event({ event, venue }) {
 
 export default function EventSection({ events }) {
   return (
-    <section className="sm:px-6 py-12">
+    <section className="sm:px-6 py-12 lg:py-24">
       <h2 className="text-center text-primary-1 pb-8 lg:pb-16">Upcoming Events</h2>
 
       <div className="flex flex-col gap-8 max-w-screen-xl mx-auto">
