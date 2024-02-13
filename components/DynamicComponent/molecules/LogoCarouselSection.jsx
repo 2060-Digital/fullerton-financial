@@ -62,7 +62,7 @@ export default function LogoCarouselSection({ blok }) {
   }, [blok])
 
   return (
-    <section className="py-12 px-6">
+    <section className="py-12 px-6 overflow-hidden">
       <div className="text-center mb-8">
         <h2>
           {blok?.eyebrow ? <span className="block eyebrow pb-2.5 text-primary-1">{blok?.eyebrow}</span> : null}
