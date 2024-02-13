@@ -6,8 +6,7 @@ import DynamicComponent from "components/DynamicComponent"
 export default function ImageAndContent({ blok }) {
   return (
     <section
-      className={cn("image-and-content-section lg:px-6", {
-        "lg:my-20": blok?.background_color,
+      className={cn("image-and-content-section lg:px-6 mt-12 lg:my-20", {
         "prose-headings:text-white prose-p:text-white": blok?.background_color === "primary-1",
         "prose-headings:text-primary-1":
           blok?.background_color === "secondary-1" ||

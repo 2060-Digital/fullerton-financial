@@ -399,6 +399,12 @@ input::placeholder {
 }
 /* End Image and Content */
 
+/* Divider */
+.page-content > .content-divider {
+  @apply px-5;
+}
+/* End Divider */
+
 /* CTA Banner */
 #__next:has(.cta-banner-section),
 .page-content:has(.cta-banner-section) {
