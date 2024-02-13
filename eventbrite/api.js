@@ -68,7 +68,7 @@ export async function getEventByID(id) {
   }
 }
 
-export async function getEventSeriesByID(id) {
+export async function getEventSeriesWithEvents(id) {
   const eventSeries = await query(`/series/${id}`).then((response) => ({
     ...response,
     image: { filename: response.logo.original.url },
@@ -106,7 +106,17 @@ export async function getEventSeriesByID(id) {
       }))
   })
 
-  return { ...eventSeries, events, venue }
+  const structured_content = await query(`/events/${id}/structured_content/`).then((response) => response.modules)
+
+  return { ...eventSeries, events, structured_content, venue }
+}
+
+export async function getEventSeriesByID(id) {
+  const eventSeries = await query(`/series/${id}`)
+
+  const venue = await getVenueByID(eventSeries.venue_id, id)
+
+  return { ...eventSeries, venue }
 }
 
 // Venues
