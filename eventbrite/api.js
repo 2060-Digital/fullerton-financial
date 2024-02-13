@@ -9,7 +9,7 @@ export async function getOrganizationID() {
   return orgID
 }
 
-// Events
+// Event Page
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
@@ -68,6 +68,7 @@ export async function getEventByID(id) {
   }
 }
 
+// Venue Pages
 export async function getEventSeriesWithEvents(id) {
   const eventSeries = await query(`/series/${id}`).then((response) => ({
     ...response,
@@ -119,11 +120,9 @@ export async function getEventSeriesByID(id) {
   return { ...eventSeries, venue }
 }
 
-// Venues
 export async function getVenuePaths() {
-  const events = await getAllActiveEvents()
+  const eventsInSeries = await getAllActiveEvents().then((response) => response.filter(({ series_id }) => series_id))
 
-  const eventsInSeries = events.filter(({ series_id }) => series_id)
   const uniqueSeriesIDs = [...new Set(eventsInSeries)].map(({ series_id }) => series_id)
 
   const eventSeries = await Promise.all(
