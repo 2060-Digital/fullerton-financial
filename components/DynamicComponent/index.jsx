@@ -8,6 +8,8 @@ export const Components = {
   cta_banner: dynamic(() => import("./atoms/CTABanner")),
   dual_button: dynamic(() => import("./atoms/DualButton")),
   icon_card: dynamic(() => import("./atoms/IconCard")),
+  photo_card: dynamic(() => import("./atoms/PhotoCard")),
+  divider: dynamic(() => import("./atoms/Divider")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
@@ -15,6 +17,8 @@ export const Components = {
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
   page_header_section: dynamic(() => import("./molecules/PageHeader")),
   question_card_list: dynamic(() => import("./molecules/QuestionList")),
+  free_retirement_toolbox_section: dynamic(() => import("./molecules/FreeRetirementToolboxSection")),
+  logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
   two_column_section: dynamic(() => import("./molecules/TwoColumnSection")),
   sidebar_cta_section: dynamic(() => import("./molecules/SidebarCTA")),
   three_column_section: dynamic(() => import("./molecules/ThreeColumnSection")),

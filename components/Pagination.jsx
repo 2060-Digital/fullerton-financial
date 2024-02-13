@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import cn from "classnames"
-import Arrow from "public/assets/pagination-arrow.svg"
+import Arrow from "public/assets/arrow.svg"
 
 export default function Pagination({ pageCount, currentPage, setCurrentPage, scrollAnchor = "__next" }) {
   const isFirstMount = useRef(true)
