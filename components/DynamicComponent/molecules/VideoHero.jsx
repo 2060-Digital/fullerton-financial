@@ -5,23 +5,20 @@ import LazyVideo from "components/LazyVideo"
 export default function VideoHero({ blok }) {
   return (
     <section className="relative">
-      <div className="lg:h-full hidden lg:block">
+      <div className="lg:h-full max-h-[813px] hidden lg:block before:bg-primary-1 before:mix-blend-multiply before:z-10 before:bg-opacity-70 before:absolute before:inset-0 before:h-full before:w-full">
         {blok.video.filename ? (
-          <>
-            <div className="bg-primary-1 mix-blend-multiply z-10 bg-opacity-70 absolute inset-0 h-full w-full" />
-            <LazyVideo
-              className="w-full object-cover relative pointer-events-none z-0"
-              poster={blok.video_poster.filename}
-              sources={[
-                { src: blok.video.filename, type: "video/webm; codecs=av01.0.05M.08" },
-                { src: blok.video_fallback.filename, type: "video/mp4" },
-              ]}
-              autoPlay
-              playsInline
-              muted
-              loop
-            />
-          </>
+          <LazyVideo
+            className="w-full object-cover relative pointer-events-none h-[813px] z-0"
+            poster={blok.video_poster.filename}
+            sources={[
+              { src: blok.video.filename, type: "video/webm; codecs=av01.0.05M.08" },
+              { src: blok.video_fallback.filename, type: "video/mp4" },
+            ]}
+            autoPlay
+            playsInline
+            muted
+            loop
+          />
         ) : (
           <div className="inset-0 w-full">
             <Image
