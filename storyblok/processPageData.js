@@ -1,5 +1,5 @@
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
-import { getAllPublicEvents } from "eventbrite/api"
+import { getAllPublicEvents, getEventsForUpcomingEvents } from "eventbrite/api"
 
 export default async function processPageData(data) {
   const processedData = data?.content?.body?.length
@@ -10,6 +10,7 @@ export default async function processPageData(data) {
           body: await Promise.all(
             data.content.body.map(async (blok) => {
               if (blok.component === "upcoming_events_section") {
+                const events = await getEventsForUpcomingEvents()
                 return {
                   ...blok,
                   events: await getAllPublicEvents(),

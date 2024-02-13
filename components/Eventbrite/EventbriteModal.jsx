@@ -14,7 +14,7 @@ export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
         tabIndex={0}
         ref={focusRef}
         className={cn(
-          "modal fixed bg-white max-h-[100dvh] overflow-y-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] w-full max-w-screen-lg",
+          "modal fixed bg-white h-[100dvh] lg:h-auto overflow-y-auto top-0 left-0 sm:top-1/2 sm:left-1/2 transform sm:-translate-x-1/2 sm:-translate-y-1/2 z-[9999] w-full max-w-screen-lg",
           {
             hidden: !isOpen,
           },
@@ -28,8 +28,8 @@ export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
         >
           <Close className="w-4 aspect-square" />
         </button>
-        <div className="h-[100dvh] lg:h-auto w-full flex items-center lg:block my-12 lg:my-0">
-          <div id={eventHash} />
+        <div className="lg:h-auto w-full flex items-center lg:block">
+          <div id={eventHash} className="mx-auto" />
         </div>
       </div>
     </>

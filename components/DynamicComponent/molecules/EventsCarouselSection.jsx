@@ -1,5 +1,4 @@
 import cn from "classnames"
-import VenueLink from "components/Eventbrite/VenueLink"
 import useCarousel from "utilities/useCarousel"
 import Arrow from "public/assets/arrow.svg"
 import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
@@ -19,11 +18,9 @@ function Event({ event, venue, visible }) {
       >
         <div className="text-center flex flex-col items-center justify-center gap-4">
           <Link href={event?.slug}>
-            <h4 className="text-primary-1 pb-4">{event?.name?.html}</h4>
+            <h4 className="text-primary-1 pb-3">{event?.name?.html}</h4>
           </Link>
-          <div className="text-primary-1 pb-4">
-            <VenueLink event={event} venue={venue} />
-          </div>
+          <address className="text-primary-1 pb-3 not-italic">{venue.name}</address>
           <RegisterNowLink {...{ embedCreated, setEmbedCreated, eventHash, style: "secondary", label: "Sign Up" }} />
         </div>
       </div>

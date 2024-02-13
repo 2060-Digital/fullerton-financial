@@ -1,4 +1,5 @@
 import query from "eventbrite/query"
+import { groupBy } from "lodash"
 import slugify from "slugify"
 
 export async function getOrganizationID() {
@@ -125,4 +126,34 @@ export async function getEventsByVenue(venueID, venue) {
       lower: true,
     })}-${event.id}`,
   }))
+}
+
+// Components
+export async function getEventsForUpcomingEvents() {
+  const rawEvents = await getAllPublicEvents()
+
+  const eventsBySeries = Object.entries(groupBy(rawEvents, "series_id"))
+
+  const eventsByMonth = eventsBySeries
+    .map(([id, eventGroup]) => {
+      if (id === "undefined")
+        return eventGroup.map((event) => [
+          new Intl.DateTimeFormat("en-US", { month: "long" }).format(new Date(event.start)),
+          [event],
+          true,
+        ])
+
+      return Object.entries(
+        groupBy(eventGroup, ({ start }) => {
+          return new Intl.DateTimeFormat("en-US", { month: "long" }).format(new Date(start))
+        }),
+      )
+    })
+    .flat()
+
+  const eventsPreparedForEventCarousel = eventsByMonth.map(([month, events, notInSeries]) => {
+    return { month }
+  })
+
+  return eventsPreparedForEventCarousel
 }
