@@ -1,3 +1,4 @@
+import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventsByVenue, getVenueByID, getVenuePaths } from "eventbrite/api"
 import PageHeader from "components/DynamicComponent/molecules/PageHeader"
@@ -20,6 +21,7 @@ export default function Venue({ venue, events }) {
         <EventSection events={events} />
         <VenueMap venue={venue} />
       </main>
+      <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
   )
 }

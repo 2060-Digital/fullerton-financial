@@ -1,3 +1,4 @@
+import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventByID, getIndividualEventPaths } from "eventbrite/api"
 import Image from "components/Image"
@@ -54,6 +55,7 @@ export default function IndividualEventPage({ event }) {
         </section>
         <VenueMap venue={event?.venue} />
       </main>
+      <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
   )
 }
