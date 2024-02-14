@@ -9,6 +9,7 @@ export const Components = {
   dual_button: dynamic(() => import("./atoms/DualButton")),
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
   divider: dynamic(() => import("./atoms/Divider")),
+  inline_quote: dynamic(() => import("./atoms/PullQuote")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
