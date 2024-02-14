@@ -10,6 +10,7 @@ export const Components = {
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
   divider: dynamic(() => import("./atoms/Divider")),
   inline_quote: dynamic(() => import("./atoms/PullQuote")),
+  audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
