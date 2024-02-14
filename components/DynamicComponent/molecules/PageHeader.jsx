@@ -16,13 +16,14 @@ export default function PageHeader({ blok }) {
     >
       <div
         className={cn({
-          "flex flex-col-reverse lg:grid grid-cols-5 lg:gap-7": hasImage,
+          "flex flex-col-reverse lg:flex-row lg:gap-12 max-w-screen-2xl mx-auto": hasImage,
           "max-w-screen-xl mx-auto": !hasImage,
         })}
       >
         <div
           className={cn({
-            "col-span-2 lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-32 lg:pl-6": hasImage,
+            "lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-32 2xl:mr-0 lg:ml-6 xl:ml-[72px] 2xl:pl-12":
+              hasImage,
           })}
         >
           <Breadcrumbs breadcrumbs={blok?.breadcrumbs} />
@@ -32,7 +33,7 @@ export default function PageHeader({ blok }) {
           ) : null}
         </div>
         {hasImage ? (
-          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
+          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 w-full lg:w-auto justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
             <Image
               src={blok?.image?.filename}
               alt={blok?.image?.alt}
