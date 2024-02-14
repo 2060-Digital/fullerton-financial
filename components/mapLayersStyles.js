@@ -18,7 +18,7 @@ const styles = [
     source: "protomaps",
     "source-layer": "earth",
     paint: {
-      "fill-color": "#f1e8d7",
+      "fill-color": "#E5E4E0",
     },
   },
   {
