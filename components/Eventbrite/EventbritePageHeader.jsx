@@ -1,5 +1,5 @@
 import cn from "classnames"
-import Image from "components/Image"
+import Image from "next/image"
 import EventbriteModal from "components/Eventbrite/EventbriteModal"
 import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
 import VenueLink from "components/Eventbrite/VenueLink"
@@ -40,7 +40,7 @@ export default function PageHeader({ event }) {
           <EventbriteModal {...modalProps} eventHash={eventHash} />
         </div>
         {hasImage ? (
-          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto 2xl:w-max justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-[12px]">
+          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 col-span-3 w-full lg:w-auto justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-[12px]">
             <Image
               src={event?.logo?.original?.url}
               alt=""

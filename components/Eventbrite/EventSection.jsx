@@ -32,7 +32,7 @@ export function Event({ event, venue }) {
             </h4>
           </div>
         </div>
-        <div className="px-6 lg:px-0 w-full lg:w-max flex items-">
+        <div className="px-6 lg:px-0 w-full lg:w-max flex">
           <RegisterNowLink {...{ embedCreated, setEmbedCreated, eventHash }} />
         </div>
       </article>
