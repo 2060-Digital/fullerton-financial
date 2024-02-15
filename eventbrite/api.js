@@ -63,7 +63,7 @@ export async function getEventByID(id) {
     ...event,
     start: event?.start?.local,
     end: event?.end?.local,
-    venue: { ...venue, latitude: parseFloat(venue?.latitude), longitude: parseFloat(venue?.longitude) },
+    venue,
     content,
   }
 }
@@ -151,6 +151,7 @@ export async function getVenueByID(id, series_id) {
     ...venue,
     latitude: parseFloat(venue?.latitude),
     longitude: parseFloat(venue?.longitude),
+    directionsLink: `https://maps.google.com/?q=${parseFloat(venue?.latitude)},${parseFloat(venue?.longitude)}`,
     slug: `/events/venues/${slugify(venue.name, {
       lower: true,
     })}-${series_id}`,

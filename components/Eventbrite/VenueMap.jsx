@@ -22,11 +22,7 @@ export default function VenueMap({ venue }) {
                 </span>
               ))}
             </address>
-            <CallToAction
-              href={`https://maps.google.com/?q=${venue?.latitude},${venue?.longitude}`}
-              target="_blank"
-              style="secondary-white"
-            >
+            <CallToAction href={venue?.directionsLink} target="_blank" style="secondary-white">
               Get Directions
             </CallToAction>
           </div>
