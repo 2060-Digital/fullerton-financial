@@ -1,7 +1,7 @@
 import Image from "components/Image"
 
 export default function StructuredContentSection({ modules }) {
-  return (
+  return modules?.length > 0 ? (
     <section className="px-6">
       <div className="py-12 lg:py-24 grid lg:grid-cols-2 max-w-screen-xl mx-auto gap-12 border-b-2 border-b-secondary-1">
         {modules.map(({ data }) => {
@@ -29,5 +29,5 @@ export default function StructuredContentSection({ modules }) {
         })}
       </div>
     </section>
-  )
+  ) : null
 }
