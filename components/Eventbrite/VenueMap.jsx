@@ -17,7 +17,7 @@ export default function VenueMap({ venue }) {
             <h2 className="text-white pb-4">{venue?.name}</h2>
             <address className="pb-4">
               {venue?.address?.localized_multi_line_address_display?.map((segment, idx) => (
-                <span className="text-white block not-italic" key={`venue-map-address-segment-${idx}`}>
+                <span className="text-white block not-italic font-primary" key={`venue-map-address-segment-${idx}`}>
                   {segment}
                 </span>
               ))}

@@ -3,7 +3,7 @@ import Image from "next/image"
 export default function StructuredContentSection({ modules }) {
   return modules?.length > 0 ? (
     <section className="px-6">
-      <div className="py-12 lg:py-24 grid lg:grid-cols-2 max-w-screen-xl mx-auto gap-12 border-b-2 border-b-secondary-1">
+      <div className="py-12 lg:py-24 grid lg:grid-cols-2 max-w-screen-xl mx-auto gap-12 lg:border-b-2 lg:border-b-secondary-1">
         {modules.map(({ data, id }) => {
           if (data?.image) {
             return (

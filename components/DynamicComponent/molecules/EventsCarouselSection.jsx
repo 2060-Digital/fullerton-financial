@@ -15,7 +15,7 @@ function Event({ name, venue, dates, signUpHREF, visible }) {
           <span className="text-base font-normal font-primary pb-4 block text-primary-1">{dates}</span>
           <span className="text-primary-1 font-primary font-bold text-m1 lg:text-m2">{name}</span>
         </h3>
-        <address className="text-primary-1 not-italic">{venue}</address>
+        <address className="text-primary-1 not-italic font-primary">{venue}</address>
         <CallToAction href={signUpHREF} style="secondary">
           Sign Up
         </CallToAction>
