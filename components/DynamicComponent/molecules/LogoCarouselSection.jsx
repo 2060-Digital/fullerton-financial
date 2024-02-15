@@ -6,6 +6,7 @@ import Image from "components/Image"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
 import getTarget from "utilities/getTarget"
 import Arrow from "public/assets/arrow.svg"
+import useCarousel from "utilities/useCarousel"
 
 function Logo({ url, image, visible }) {
   const href = getStoryblokLink(url)
@@ -38,45 +39,30 @@ function Logo({ url, image, visible }) {
 }
 
 export default function LogoCarouselSection({ blok }) {
-  const ref = useRef(null)
-  const [visibleSlides, setVisibleSlides] = useState(blok?.logos?.length)
-  const [offset, setOffset] = useState(0)
-
-  const slideWidth = 156
-  const maxSliderWidth = slideWidth * blok?.logos?.length - 44
-
-  useEffect(() => {
-    function handleResize() {
-      const parentElement = ref.current.parentElement
-      if (parentElement) {
-        setVisibleSlides(Math.min(Math.floor((parentElement.offsetWidth + 44) / 156), blok?.logos?.length))
-      }
-    }
-
-    window.addEventListener("resize", handleResize)
-    handleResize()
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [blok])
+  const numLogos = blok?.logos?.length
+  const { ref, visibleSlides, slideWidth, slideGap, offset, moveLeft, moveRight } = useCarousel(
+    numLogos,
+    156,
+    44,
+    numLogos,
+  )
 
   return (
-    <section className="py-12 px-6">
+    <section className="py-12 lg:py-24 px-6 overflow-hidden">
       <div className="text-center mb-8">
         <h2>
           {blok?.eyebrow ? <span className="block eyebrow pb-2.5 text-primary-1">{blok?.eyebrow}</span> : null}
           <span className="pb-5 block text-primary-1">{blok?.heading}</span>
         </h2>
       </div>
-      {blok?.logos?.length ? (
+      {numLogos ? (
         <div className="mb-12 mx-auto">
           <div
             ref={ref}
             className="flex gap-11 mx-auto transition-all duration-500"
             style={{
-              width: `${visibleSlides * slideWidth - 44}px`,
-              transform: `translateX(-${visibleSlides < blok?.logos?.length ? offset : 0}px)`,
+              width: `${visibleSlides * slideWidth - slideGap}px`,
+              transform: `translateX(-${visibleSlides < numLogos ? offset : 0}px)`,
             }}
           >
             {blok?.logos?.map((logo, idx) => {
@@ -86,34 +72,18 @@ export default function LogoCarouselSection({ blok }) {
               return (
                 <Logo
                   {...logo}
-                  visible={(idx >= leftSlideIdx && idx < rightSlideIdx) || visibleSlides >= blok?.logos?.length}
+                  visible={(idx >= leftSlideIdx && idx < rightSlideIdx) || visibleSlides >= numLogos}
                   key={logo?._uid}
                 />
               )
             })}
           </div>
-          {visibleSlides < blok?.logos?.length ? (
+          {visibleSlides < numLogos ? (
             <div className="flex gap-8 mx-auto w-max mt-12">
-              <button
-                onClick={() => {
-                  if (offset === 0) {
-                    setOffset(maxSliderWidth - ref.current.offsetWidth)
-                  } else {
-                    setOffset(offset - slideWidth)
-                  }
-                }}
-              >
+              <button onClick={() => moveLeft()}>
                 <Arrow className="rotate-180 text-tertiary-1" />
               </button>
-              <button
-                onClick={() => {
-                  if (offset === maxSliderWidth - ref.current.offsetWidth) {
-                    setOffset(0)
-                  } else {
-                    setOffset(offset + slideWidth)
-                  }
-                }}
-              >
+              <button onClick={() => moveRight()}>
                 <Arrow className="text-tertiary-1" />
               </button>
             </div>

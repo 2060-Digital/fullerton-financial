@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
  *
  * @description For rendering a hash/fragment based modal in a view
  * @param String hash The hash/fragment, including the '#', that will render the modal when present in the address bar
- * @returns [isOpen, closeModal, focusRef]
+ * @returns { isOpen, closeModal, openModal, focusRef }
  * isOpen - Boolean value useful for determining whether or not to render a modal,
  * closeModal - a function that removes the provided hash from the current route and sets isOpen to false,
  * focusRef - a ref to attach to the element that should be focused when the modal is opened for usability/accessibility purposes

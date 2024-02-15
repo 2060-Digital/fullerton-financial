@@ -52,7 +52,9 @@ export default function Footer({ footerMenu, colophon, locations, socialMedia, p
             {locations?.map((location) => (
               <div key={`${location?.name}-footer-menu`}>
                 <h3 className="text-white text-center sm:text-left pb-2.5">{location?.name}</h3>
-                <div className="prose-p:text-white text-center sm:text-left">{richText(location?.address)}</div>
+                <div className="prose-p:text-white prose-p:pb-0 text-center sm:text-left">
+                  {richText(location?.address)}
+                </div>
               </div>
             ))}
           </div>
