@@ -48,26 +48,36 @@ p {
 }
 
 .rich-text-ul,
-.rich-text-ol {
+.rich-text-ol,
+.event-page-content ul,
+.event-page-content ol {
   font-family: theme("fontFamily.primary");
   padding-bottom: theme("spacing.4");
+
+  @apply last:pb-0;
 }
 
-.rich-text-ul {
+.rich-text-ul,
+.event-page-content ul {
   list-style-type: disc;
 }
 
-.rich-text-ol {
+.rich-text-ol,
+.event-page-content ol {
   list-style-type: decimal;
 }
 
 .rich-text-ul li,
-.rich-text-ol li {
+.rich-text-ol li,
+.event-page-content ul li,
+.event-page-content ol li {
   margin-left: theme("spacing.4");
 }
 
 .rich-text-ul li::marker,
-.rich-text-ol li::marker {
+.rich-text-ol li::marker,
+.event-page-content ul li::marker,
+.event-page-content ol li::marker {
   font-family: theme("fontFamily.primary");
 }
 
@@ -89,14 +99,19 @@ p {
 }
 .primary-link,
 .ghost-link {
-  @apply px-5 py-2.5 border-2 border-tertiary-1 rounded-sm;
+  @apply px-5 py-2.5 border-2 border-tertiary-1 rounded-sm w-full sm:w-max;
 }
 
 .primary-link {
   @apply bg-tertiary-1 hover:bg-secondary-1 hover:border-secondary-1 hover:text-white;
 }
 
-.secondary-link {
+.secondary-white-link {
+  @apply uppercase transition-all duration-200 text-white font-primary;
+}
+
+.secondary-link,
+.secondary-white-link {
   @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1;
 }
 
