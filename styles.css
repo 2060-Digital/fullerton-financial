@@ -116,10 +116,6 @@ p {
   @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1;
 }
 
-.secondary-white-link {
-  @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1 text-white;
-}
-
 .ghost-link {
   @apply hover:bg-tertiary-1;
 }
