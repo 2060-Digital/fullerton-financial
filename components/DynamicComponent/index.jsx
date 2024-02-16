@@ -10,11 +10,13 @@ export const Components = {
   icon_card: dynamic(() => import("./atoms/IconCard")),
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
   divider: dynamic(() => import("./atoms/Divider")),
+  inline_video: dynamic(() => import("./atoms/InlineVideo")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
   featured_image: dynamic(() => import("./molecules/FeaturedImage")),
   image_and_content: dynamic(() => import("./molecules/ImageAndContent")),
+  video_and_content: dynamic(() => import("./molecules/VideoAndContent")),
   page_header_section: dynamic(() => import("./molecules/PageHeader")),
   question_card_list: dynamic(() => import("./molecules/QuestionList")),
   video_hero: dynamic(() => import("./molecules/VideoHero")),

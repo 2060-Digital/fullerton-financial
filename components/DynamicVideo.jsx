@@ -42,7 +42,7 @@ function VideoEmbed({ video_asset, thumbnail }) {
         })}
         title="Play video"
       >
-        <PlayButton className="play-video" />
+        <PlayButton className="play-video w-20 aspect-square" />
       </button>
       <video
         ref={videoRef}
@@ -68,7 +68,7 @@ function YTEmbed({ id }) {
       <div className="youtube-thumbnail relative cursor-pointer z-50" onClick={() => setVideoPlay(true)}>
         <img src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`} alt="YouTube Video" className={YTVideoStyles} />
         <PlayButton
-          className="play-video absolute scale-50 xs:scale-100 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 cursor-pointer"
+          className="play-video absolute scale-100 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 cursor-pointer w-20 aspect-square"
           title="Play video"
         />
       </div>

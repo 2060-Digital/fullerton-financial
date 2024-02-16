@@ -421,3 +421,12 @@ input::placeholder {
   justify-content: flex-end;
 }
 /* End CTA Banner */
+
+/* Dynamic Video */
+.play-video:hover .circle {
+  fill: theme("colors.secondary.2");
+}
+.play-video:hover .triangle {
+  fill: theme("colors.secondary.1");
+}
+/* End Dynamic Video */
