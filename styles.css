@@ -44,7 +44,7 @@ h3 {
 }
 
 p {
-  @apply font-primary text-gray-charcoal pb-4 last:pb-0;
+  @apply font-primary text-gray-charcoal pb-4 last:pb-0 leading-[26px];
 }
 
 .rich-text-ul,
@@ -94,6 +94,7 @@ p {
 /* Call to Action */
 .primary-link,
 .secondary-link,
+.secondary-white-link,
 .ghost-link {
   @apply uppercase transition-all duration-200 text-primary-1 font-primary;
 }
