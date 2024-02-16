@@ -11,7 +11,9 @@ export default function useCarousel(numItems, slideWidth, slideGap, maxVisibleSl
     function handleResize() {
       const parentElement = ref.current.parentElement
       if (parentElement) {
-        setVisibleSlides(Math.min(Math.floor((parentElement.offsetWidth + slideGap) / slideWidth), maxVisibleSlides))
+        setVisibleSlides(
+          Math.min(Math.floor((parentElement.offsetWidth + slideGap) / slideWidth), maxVisibleSlides, numItems),
+        )
       }
     }
 
