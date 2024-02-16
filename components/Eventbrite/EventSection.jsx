@@ -22,7 +22,7 @@ export function Event({ event, venue }) {
           </div>
           <div className="px-6 lg:px-0">
             <Link href={event.slug}>
-              <h3 className="text-primary-1 hover:underline pb-2">{event?.name?.html}</h3>
+              <h3 className="text-primary-1 hover:underline pb-2">{event?.name?.text}</h3>
             </Link>
             <h4 className="pb-2 text-primary-1">
               {formatEventDate(event?.start)}, {formatEventStartEndTime(event?.start, event?.end)}

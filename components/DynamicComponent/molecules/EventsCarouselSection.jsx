@@ -6,7 +6,7 @@ import CallToAction from "components/CallToAction"
 function Event({ name, venue, dates, signUpHREF, visible }) {
   return (
     <article
-      className={cn("min-w-72 px-5 py-14 border border-secondary-1 transition-opacity duration-300", {
+      className={cn("min-w-72 max-w-72 px-5 py-14 border border-secondary-1 transition-opacity duration-300 flex", {
         "opacity-0": !visible,
       })}
     >

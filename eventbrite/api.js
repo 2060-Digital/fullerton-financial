@@ -207,7 +207,7 @@ export async function getEventsForUpcomingEvents() {
     return {
       dates: `${month} ${eventDates}`,
       id: combinedEvent?.id,
-      name: combinedEvent.name.html,
+      name: combinedEvent.name.text,
       venue: combinedEvent.venue.name,
       signUpHREF: notInSeries ? combinedEvent.slug : combinedEvent.venue.slug,
     }
