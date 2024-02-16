@@ -6,7 +6,7 @@ import withPlaiceholder from "@plaiceholder/next"
 const config = {
   productionBrowserSourceMaps: true,
   images: {
-    domains: ["a-us.storyblok.com"],
+    domains: ["a-us.storyblok.com", "img.evbuc.com"],
   },
   webpack(config) {
     config.module.rules.push({

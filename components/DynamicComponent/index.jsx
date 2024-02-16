@@ -7,6 +7,7 @@ export const Components = {
   button: dynamic(() => import("./atoms/StoryblokButton")),
   cta_banner: dynamic(() => import("./atoms/CTABanner")),
   dual_button: dynamic(() => import("./atoms/DualButton")),
+  icon_card: dynamic(() => import("./atoms/IconCard")),
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
   divider: dynamic(() => import("./atoms/Divider")),
 
@@ -20,6 +21,7 @@ export const Components = {
   logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
   two_column_section: dynamic(() => import("./molecules/TwoColumnSection")),
   sidebar_cta_section: dynamic(() => import("./molecules/SidebarCTA")),
+  upcoming_events_section: dynamic(() => import("./molecules/EventsCarouselSection")),
   three_column_section: dynamic(() => import("./molecules/ThreeColumnSection")),
   links_and_content: dynamic(() => import("./molecules/LinksAndContent")),
 

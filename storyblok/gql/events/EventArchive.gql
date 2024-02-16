@@ -1,0 +1,11 @@
+query EventArchive {
+  EventsarchiveItem(id: "events", resolve_links: "url") {
+    content {
+      _uid
+      _editable
+      component
+      body
+      seo
+    }
+  }
+}
