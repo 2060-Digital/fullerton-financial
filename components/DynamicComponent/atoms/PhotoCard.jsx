@@ -21,9 +21,7 @@ export default function PhotoCard({ blok }) {
           />
         </div>
         <div className="p-7 xl:px-7">
-          <div className="prose-headings:pb-4 prose-p:leading-[26px] prose-headings:text-primary-1">
-            {richText(blok.content)}
-          </div>
+          <div className="prose-headings:pb-4 prose-headings:text-primary-1">{richText(blok.content)}</div>
         </div>
       </div>
     </div>
