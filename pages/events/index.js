@@ -11,7 +11,7 @@ export default function EventsArchive({ events, story, meta }) {
     <>
       <Meta info={meta} />
 
-      <main className="page-content">
+      <main className="page-content" data-pagefind-body>
         {story?.content?.body.map((blok) => (
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}

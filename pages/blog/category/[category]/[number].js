@@ -17,14 +17,16 @@ export default function Category({ story, category, blogArticles, categories, nu
           twitter_image: story?.content?.image,
         }}
       />
-      <PageHeader
-        blok={{
-          heading: story?.content?.heading,
-          image: story?.content?.image,
-          breadcrumbs: [{ text: "Blog", href: "/blog/page/1" }, { text: category?.name }],
-        }}
-      />
-      <BlogArticlesSection {...{ blogArticles, categories, total, number, currentTab: category }} />
+      <main data-pagefind-body>
+        <PageHeader
+          blok={{
+            heading: story?.content?.heading,
+            image: story?.content?.image,
+            breadcrumbs: [{ text: "Blog", href: "/blog/page/1" }, { text: category?.name }],
+          }}
+        />
+        <BlogArticlesSection {...{ blogArticles, categories, total, number, currentTab: category }} />
+      </main>
     </>
   )
 }
