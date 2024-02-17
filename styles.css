@@ -430,3 +430,119 @@ input::placeholder {
   fill: theme("colors.secondary.1");
 }
 /* End Dynamic Video */
+
+/* Search Bar */
+.searchbar::before,
+.searchbar-dark::before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background-image: url("public/assets/magnifying-glass.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-54%);
+  z-index: 50;
+}
+
+.searchbar input[type="text"],
+.searchbar-dark input[type="text"] {
+  width: 100%;
+  font-family: theme(fontFamily.secondary);
+  /* border-radius: theme(borderRadius.3); */
+  font-size: theme("fontSize.base");
+  line-height: theme("fontSize.base");
+  padding: theme("spacing[2.5]") 0 theme("spacing[2.5]") 2.5rem;
+}
+
+.searchbar input {
+  font-family: theme(fontFamily.secondary);
+  font-size: theme("fontSize.base");
+  line-height: theme("fontSize.base");
+}
+
+#search-query,
+.fake-searchbar {
+  view-transition-name: search-field;
+}
+
+.search-results mark {
+  @apply bg-secondary-1 px-1 py-0;
+}
+
+/* Begin Search Page */
+.pagefind-ui__form {
+  @apply relative;
+}
+
+.pagefind-ui__search-input {
+  @apply w-full relative font-secondary block py-2 pr-2 pl-9 transition-all border-2 rounded-sm placeholder:italic;
+}
+
+.pagefind-ui__form::before {
+  content: "";
+  background: url("public/assets/magnifying-glass.svg") no-repeat;
+  display: block;
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  @apply z-20 left-2 top-[8px];
+}
+
+.pagefind-ui__message {
+  @apply font-primary my-10 pb-0 text-l2 text-primary-1;
+}
+
+.pagefind-ui__search-clear {
+  position: absolute;
+  right: 1rem;
+  top: 0.6rem;
+}
+
+.pagefind-ui__result-link {
+  @apply text-l2 font-primary font-medium hover:underline text-primary-1;
+}
+
+.pagefind-ui__result-excerpt {
+  @apply text-base text-gray-charcoal mt-0 mb-10;
+}
+
+.pagefind-ui mark {
+  @apply bg-white font-primary text-tertiary-1 rounded-md break-words;
+}
+
+.pagefind-ui__button {
+  @apply primary-link;
+}
+
+.loading-indicator {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  padding: 3px;
+  background:
+    conic-gradient(from 135deg at top, #cb9731 90deg, #0000 0) 0 calc(50% - 2px) / 8.5px 4.25px,
+    radial-gradient(farthest-side at bottom left, #0000 calc(100% - 3px), #cb9731 calc(100% - 2.5px) 99%, #0000) top
+      right/50% 50% content-box content-box,
+    radial-gradient(farthest-side at top, #0000 calc(100% - 3px), #cb9731 calc(100% - 2.5px) 99%, #0000) bottom / 100%
+      50% content-box content-box;
+  background-repeat: no-repeat;
+  animation: s1 1s infinite linear;
+}
+
+@keyframes s1 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+@screen lg {
+  .searchbar-dark input {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+  }
+}
+/* End Search Bar */

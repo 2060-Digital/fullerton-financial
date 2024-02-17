@@ -33,7 +33,9 @@ export default function Search({ meta }) {
       <Meta info={meta} />
       <main>
         <PageHeader blok={{ heading: query ? `Search Results for ‘${query}’` : `Search Our Site` }} />
-        <div ref={pagefindUIRef} id="search-page"></div>
+        <section className="px-6 py-12 lg:py-24">
+          <div ref={pagefindUIRef} id="search-page" className="max-w-screen-lg mx-auto"></div>
+        </section>
 
         <Script
           src="pagefind/pagefind-ui.js"
