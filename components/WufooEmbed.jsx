@@ -13,9 +13,7 @@ export default function WufooEmbed({ formID, initialHeight = 640 }) {
         sandbox="allow-popups-to-escape-sandbox allow-top-navigation allow-scripts allow-popups allow-forms allow-same-origin"
         allowFullScreen
         allow="geolocation; microphone; camera"
-      >
-        {/* <a href={`https://fullertonfinancial.wufoo.com/forms/${formID}/`}>Fill out my Wufoo form!</a> */}
-      </iframe>
+      />
     </div>
   )
 }
