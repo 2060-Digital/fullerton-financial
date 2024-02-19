@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import richText from "utilities/richText"
 
 function Table({ title, additional_info, column_1_label, column_2_label, rows }) {
@@ -11,10 +12,10 @@ function Table({ title, additional_info, column_1_label, column_2_label, rows })
         <h4 className={labelStyles}>{column_2_label}</h4>
         {rows?.length
           ? rows?.map((row) => (
-              <>
+              <Fragment key={row?._uid}>
                 <div className={cellStyles}>{row?.left}</div>
                 <div className={cellStyles}>{row?.right}</div>
-              </>
+              </Fragment>
             ))
           : null}
       </div>
