@@ -3,7 +3,8 @@ import richText from "utilities/richText"
 
 function Table({ title, additional_info, column_1_label, column_2_label, rows }) {
   const labelStyles = "bg-primary-1 text-white py-1 px-2.5"
-  const cellStyles = "bg-secondary-2 text-gray-charcoal py-1 px-2.5"
+  const cellStyles = "bg-secondary-2 text-gray-charcoal py-1 px-2.5 font-primary text-gray-charcoal"
+
   return (
     <div className="basis-1/2">
       <h3 className="text-primary-1 pb-4">{title}</h3>
