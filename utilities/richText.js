@@ -6,6 +6,7 @@ import {
   NODE_UL,
   NODE_OL,
   NODE_IMAGE,
+  MARK_UNDERLINE,
 } from "storyblok-rich-text-react-renderer"
 import CallToAction from "components/CallToAction"
 import cn from "classnames"
@@ -45,11 +46,13 @@ export default function richText(content) {
             const Tag = ["h1", "h2", "h3", "h4", "h5", "h6"]
             const Component = Tag[level - 1]
             if (children && typeof children[0] === "string") {
-              return <Component>{children}</Component>
+              return <Component className="rich-text-heading">{children}</Component>
             }
 
             return children ? (
-              <Component className={cn(children[0].props.className)}>{children[0].props.children}</Component>
+              <Component className={cn(children[0].props.className, "rich-text-heading")}>
+                {children[0].props.children}
+              </Component>
             ) : null
           },
           [NODE_UL]: (children) => {
@@ -84,6 +87,10 @@ export default function richText(content) {
           // Prevents content editors from setting a custom text color
           [MARK_TEXT_STYLE]: (children) => {
             return children
+          },
+
+          [MARK_UNDERLINE]: (children) => {
+            return <span className="rich-text-underline font-secondary">{children}</span>
           },
         },
       })
