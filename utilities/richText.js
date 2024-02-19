@@ -1,17 +1,20 @@
 import {
   render,
   MARK_LINK,
-  NODE_HEADING,
   MARK_TEXT_STYLE,
-  MARK_UNDERLINE,
+  NODE_HEADING,
   NODE_UL,
   NODE_OL,
+  NODE_IMAGE,
+  MARK_UNDERLINE,
 } from "storyblok-rich-text-react-renderer"
 import CallToAction from "components/CallToAction"
 import cn from "classnames"
 import { Components } from "components/DynamicComponent"
 import { getStoryblokLink } from "./getStoryblokLink"
 import React from "react"
+import getImageDimensions from "utilities/getImageDimensions"
+import dynamic from "next/dynamic"
 
 export default function richText(content) {
   const blokResolvers = Object.keys(Components).reduce((blokResolvers, name) => {
@@ -57,6 +60,20 @@ export default function richText(content) {
           },
           [NODE_OL]: (children) => {
             return <ol className="rich-text-ol">{children}</ol>
+          },
+          [NODE_IMAGE]: (_, { src, alt, title }) => {
+            const Image = dynamic(() => import("components/Image"))
+            return (
+              <Image
+                src={src}
+                alt={alt}
+                title={title}
+                sizes="(max-width: 1024px) 90vw, 50vw"
+                height={getImageDimensions("height", src)}
+                width={getImageDimensions("width", src)}
+                className="mb-4 w-full"
+              />
+            )
           },
         },
         markResolvers: {
