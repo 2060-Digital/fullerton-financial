@@ -29,6 +29,7 @@ export const Components = {
   upcoming_events_section: dynamic(() => import("./molecules/EventsCarouselSection")),
   three_column_section: dynamic(() => import("./molecules/ThreeColumnSection")),
   links_and_content: dynamic(() => import("./molecules/LinksAndContent")),
+  tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
