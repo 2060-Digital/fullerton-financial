@@ -484,11 +484,12 @@ input::placeholder {
 .pagefind-ui__form::before {
   content: "";
   background: url("public/assets/magnifying-glass.svg") no-repeat;
+  background-size: contain;
   display: block;
   position: absolute;
   width: 26px;
-  height: 26px;
-  @apply z-20 left-2 top-[8px];
+  height: 20px;
+  @apply z-20 left-2.5 top-[10px];
 }
 
 .pagefind-ui__message {
