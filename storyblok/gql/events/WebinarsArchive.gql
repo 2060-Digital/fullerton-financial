@@ -1,0 +1,11 @@
+query WebinarsArchive {
+  WebinararchiveItem(id: "webinars", resolve_links: "url") {
+    content {
+      _uid
+      _editable
+      component
+      body
+      seo
+    }
+  }
+}
