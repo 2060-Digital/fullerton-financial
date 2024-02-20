@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import Meta from "components/Meta"
 import { getGlobals } from "storyblok/api"
+import CallToAction from "components/CallToAction"
 
 export default function Page({ meta }) {
   const router = useRouter()
@@ -29,7 +30,7 @@ export default function Page({ meta }) {
             .filter((URL) => URL !== "")
 
           return URLs
-        })
+        }),
       )
 
       const fuse = new Fuse(URLs.flat(), {
@@ -37,7 +38,7 @@ export default function Page({ meta }) {
         threshold: 0.4,
       })
       const results = fuse.search(router.asPath)
-      setResults(results.slice(0, 10))
+      setResults(results.slice(0, 5))
     }
 
     getSitemapURLs()
@@ -46,30 +47,43 @@ export default function Page({ meta }) {
   return (
     <>
       <Meta info={meta} />
-      <h1>Page Not Found</h1>
-      <h2>Sorry, the page you{"'"}re trying to access could not be found. It may have been deleted or moved.</h2>
-      <div className="px-10 lg:px-0  py-10 max-w-4xl mx-auto ">
-        {results?.length ? (
-          <>
-            <h2 className="text-xl2 font-secondary font-medium pb-4">Did You Mean:</h2>
-            <ul className="pb-12">
-              {results.map((result) => (
-                <li className="pt-6 first:pt-0" key={result.item}>
-                  <Link className="underline font-secondary visited:text-blue hover:text-orange" href={result.item}>
-                    {result.item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : null}
-      </div>
+      <main className="bg-secondary-2 px-6 py-12 lg:py-28">
+        <h1 className="text-center text-primary-1">
+          <span className="block eyebrow pb-2.5">404</span>
+          <span className="pb-5 block">Page Not Found</span>
+        </h1>
+        <p className="text-center pb-6 lg:pb-12">
+          Sorry, the page you are trying to access could not be found. It may have been deleted or moved.
+        </p>
+        <div className="flex flex-col items-center justify-center">
+          {results?.length ? (
+            <div className="mx-auto pb-6 lg:pb-12">
+              <>
+                <h3 className="text-primary-1 text-center pb-4">Did You Mean...</h3>
+                <ul>
+                  {results.map((result) => (
+                    <li className="pt-6 first:pt-0 text-center" key={result.item}>
+                      <Link
+                        className="uppercase transition-all duration-200 text-primary-1 font-primary border-b-2 border-b-tertiary-1 hover:border-b-secondary-1 text-center"
+                        href={result.item}
+                      >
+                        {result.item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            </div>
+          ) : null}
+          <CallToAction href="/">Back To Home</CallToAction>
+        </div>
+      </main>
     </>
   )
 }
 
 export async function getStaticProps({ preview = null }) {
-  const globals = await getGlobals()
+  const globals = await getGlobals("exclude-global-sections")
 
   return {
     props: {

@@ -5,16 +5,18 @@ export default function Page({ meta }) {
   return (
     <>
       <Meta info={meta} />
-      <div className="container mx-auto text-center pt-8">
-        <h1 className="text-2xl font-bold">500 Error</h1>
-        <p>Sorry, an unknown error occurred. Please try again later.</p>
-      </div>
+      <main className="bg-secondary-2 px-6 py-12 lg:py-28">
+        <h1 className="text-center text-primary-1">
+          <span className="block eyebrow pb-2.5">500</span>
+          <span className="pb-5 block">Internal Server Error</span>
+        </h1>
+      </main>
     </>
   )
 }
 
 export async function getStaticProps({ preview = null }) {
-  const globals = await getGlobals()
+  const globals = await getGlobals("exclude-global-sections")
 
   return {
     props: {

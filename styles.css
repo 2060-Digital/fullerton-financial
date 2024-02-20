@@ -81,20 +81,19 @@ p {
   font-family: theme("fontFamily.primary");
 }
 
-.rich-text-ul li p {
-  @apply text-m1;
-}
-
 .rich-text-ul li p,
 .rich-text-ol li p {
-  @apply py-0 leading-7;
+  @apply py-0 leading-7 text-left;
+}
+
+.rich-text-ul li p {
+  @apply text-m1 font-bold;
 }
 /* End Text Styles */
 
 /* Call to Action */
 .primary-link,
 .secondary-link,
-.secondary-white-link,
 .ghost-link {
   @apply uppercase transition-all duration-200 text-primary-1 font-primary;
 }
