@@ -95,7 +95,8 @@ p {
 .primary-link,
 .secondary-link,
 .secondary-white-link,
-.ghost-link {
+.ghost-link,
+.download-link {
   @apply uppercase transition-all duration-200 text-primary-1 font-primary;
 }
 .primary-link,
@@ -129,8 +130,13 @@ p {
   @apply text-base font-primary font-medium text-white underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1 flex gap-2 items-center w-max;
 }
 
+.download-link {
+  @apply text-base font-primary font-medium text-primary-1 underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1 flex gap-2 items-center;
+}
+
 .phone-link::before,
-.chat-link::before {
+.chat-link::before,
+.download-link::before {
   content: "";
   display: block;
   background-repeat: no-repeat;
@@ -144,6 +150,12 @@ p {
 }
 .chat-link::before {
   background-image: url("public/assets/cta-icons/chat-bubble.svg");
+  width: 15px;
+  height: 15px;
+}
+
+.download-link::before {
+  background-image: url("public/assets/cta-icons/download.svg");
   width: 15px;
   height: 15px;
 }

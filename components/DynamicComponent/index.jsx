@@ -7,6 +7,7 @@ export const Components = {
   button: dynamic(() => import("./atoms/StoryblokButton")),
   cta_banner: dynamic(() => import("./atoms/CTABanner")),
   dual_button: dynamic(() => import("./atoms/DualButton")),
+  dual_vertical_button: dynamic(() => import("./atoms/DualVerticalButton")),
   icon_card: dynamic(() => import("./atoms/IconCard")),
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
   divider: dynamic(() => import("./atoms/Divider")),
