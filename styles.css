@@ -81,13 +81,13 @@ p {
   font-family: theme("fontFamily.primary");
 }
 
+.rich-text-ul li p {
+  @apply text-m1;
+}
+
 .rich-text-ul li p,
 .rich-text-ol li p {
   @apply py-0 leading-7;
-}
-
-.rich-text-ul li p {
-  @apply text-m1;
 }
 /* End Text Styles */
 
