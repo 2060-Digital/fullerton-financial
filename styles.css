@@ -94,7 +94,6 @@ p {
 /* Call to Action */
 .primary-link,
 .secondary-link,
-.secondary-white-link,
 .ghost-link {
   @apply uppercase transition-all duration-200 text-primary-1 font-primary;
 }
