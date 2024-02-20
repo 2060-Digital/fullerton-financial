@@ -13,7 +13,7 @@ export default function SidebarCTA({ blok }) {
           className="lg:basis-1/3 py-12 px-6 bg-cover bg-no-repeat bg-center lg:sticky lg:top-8"
           style={{ backgroundImage: `url(${blok?.sidebar_background?.filename})` }}
         >
-          <div className="max-w-screen-xl mx-auto flex flex-col gap-8 items-center">
+          <div className="max-w-screen-xl mx-auto flex flex-col gap-8 items-center" data-pagefind-ignore>
             <h2 className="text-center text-primary-2 text-xl1">{blok.sidebar_heading}</h2>
             <CallToAction href={getStoryblokLink(blok.sidebar_link)}>{blok.sidebar_link_label}</CallToAction>
           </div>

@@ -32,7 +32,7 @@ export default function Article({ story, meta }) {
   )
 
   return (
-    <main>
+    <main data-pagefind-body>
       <Meta info={meta} />
       <StoryblokVisualEditor story={story?.content}>
         <section className="bg-primary-1 mt-24 lg:mt-0 lg:pt-12 lg:mb-12 pl-6 lg:pr-6">
