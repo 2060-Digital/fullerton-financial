@@ -110,7 +110,7 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
         </div>
       </nav>
       {blogArticles?.length > 0 ? (
-        <section id="blog-section" className="px-6">
+        <section id="blog-section" className="px-6" data-pagefind-body>
           <div className="max-w-screen-xl mx-auto pt-12">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 last:pb-12">
               {blogArticles?.map((article) => (
@@ -135,7 +135,7 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
           </div>
         </section>
       ) : (
-        <div className="py-12 lg:py-28 px-6 bg-secondary-2">
+        <div className="py-12 lg:py-28 px-6 bg-secondary-2" data-pagefind-ignore>
           <div className="max-w-screen-md text-center mx-auto flex flex-col justify-center items-center">
             <h1 className="text-primary-1 mb-8">Sorry, we did not find any articles in this category</h1>
             <p className="text-primary-1 mb-4 font-secondary font-bold text-m2 lg:text-l1">

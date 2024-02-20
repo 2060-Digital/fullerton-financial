@@ -9,7 +9,7 @@ export default function BlogArchive({ story, blogArticles, categories, number, t
   return (
     <>
       <Meta info={meta} />
-      <main data-pagefind-body>
+      <main>
         <PageHeader
           blok={{ heading: story?.content?.heading, image: story?.content?.image, breadcrumbs: [{ text: "Blog" }] }}
         />

@@ -17,7 +17,7 @@ export default function Category({ story, category, blogArticles, categories, nu
           twitter_image: story?.content?.image,
         }}
       />
-      <main data-pagefind-body>
+      <main>
         <PageHeader
           blok={{
             heading: story?.content?.heading,
