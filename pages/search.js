@@ -46,9 +46,6 @@ export default function Search({ meta }) {
               highlightParam: "highlight",
               showImages: false,
               resetStyles: true,
-              sort: {
-                "weight[data-weight]": "desc",
-              },
               translations: {
                 placeholder: "Search our site",
                 clear_search: "Clear",
