@@ -15,7 +15,7 @@ export default function CTABanner({
   },
 }) {
   return (
-    <aside className="cta-banner-section">
+    <aside className="cta-banner-section" data-pagefind-ignore>
       <div
         className="py-12 lg:py-16 px-6 bg-cover bg-no-repeat"
         style={{ backgroundImage: `url(${blok?.background_image?.filename})` }}

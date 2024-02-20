@@ -13,6 +13,7 @@ export const Components = {
   inline_quote: dynamic(() => import("./atoms/PullQuote")),
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
   inline_video: dynamic(() => import("./atoms/InlineVideo")),
+  two_column_list: dynamic(() => import("./atoms/TwoColumnList")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
@@ -30,6 +31,7 @@ export const Components = {
   three_column_section: dynamic(() => import("./molecules/ThreeColumnSection")),
   links_and_content: dynamic(() => import("./molecules/LinksAndContent")),
   tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
+  icon_section: dynamic(() => import("./molecules/IconSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
