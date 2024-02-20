@@ -25,6 +25,7 @@ export const Components = {
   video_hero: dynamic(() => import("./molecules/VideoHero")),
   free_retirement_toolbox_section: dynamic(() => import("./molecules/FreeRetirementToolboxSection")),
   logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
+  logo_grid_section: dynamic(() => import("./molecules/LogoGridSection")),
   two_column_section: dynamic(() => import("./molecules/TwoColumnSection")),
   sidebar_cta_section: dynamic(() => import("./molecules/SidebarCTA")),
   upcoming_events_section: dynamic(() => import("./molecules/EventsCarouselSection")),
