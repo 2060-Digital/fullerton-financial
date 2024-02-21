@@ -51,3 +51,6 @@ public/sitemap*
 
 # plaiceholder Image Cache
 .blurDataURLsCache
+
+# pagefind (site search static index)
+public/pagefind

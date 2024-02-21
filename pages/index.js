@@ -1,3 +1,4 @@
+import Script from "next/script"
 import DynamicComponent from "components/DynamicComponent"
 import Meta from "components/Meta"
 import { getPage } from "storyblok/api"
@@ -7,6 +8,21 @@ export default function Home({ story, meta }) {
     <>
       <Meta info={meta} />
       <DynamicComponent blok={story?.content} />
+      <Script type="application/ld+json" id="home-page-schema">
+        {`{
+           "@context": "https://schema.org",
+           "@type": "WebSite",
+           "url": "${process.env.NEXT_PUBLIC_SITE_URL}",
+           "potentialAction": {
+             "@type": "SearchAction",
+             "target": {
+               "@type": "EntryPoint",
+               "urlTemplate": "${`${process.env.NEXT_PUBLIC_SITE_URL}/search/?q={search_term_string}`}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          }`}
+      </Script>
     </>
   )
 }

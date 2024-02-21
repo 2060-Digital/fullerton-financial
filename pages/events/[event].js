@@ -21,7 +21,7 @@ export default function IndividualEventPage({ event }) {
           twitter_description: event?.description?.html,
         }}
       />
-      <main>
+      <main data-pagefind-body>
         <EventbritePageHeader event={event} />
         <StructuredContentSection modules={event?.content?.modules} />
         <VenueMap venue={event?.venue} />

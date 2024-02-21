@@ -17,7 +17,7 @@ export default function Venue({ eventSeries }) {
           twitter_title: eventSeries?.venue?.name,
         }}
       />
-      <main>
+      <main data-pagefind-body>
         <PageHeader
           blok={{ heading: eventSeries?.venue?.name, image: eventSeries.image, content: eventSeries.content }}
         />
