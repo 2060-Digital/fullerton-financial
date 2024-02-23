@@ -559,3 +559,11 @@ input::placeholder {
   }
 }
 /* End Search Bar */
+
+/* Timeline */
+
+.timeline {
+  background: var(--Purple-Gradient, linear-gradient(101deg, #c5c5e0 2.9%, #e0e0eb 96.01%));
+}
+
+/* End Timeline */
