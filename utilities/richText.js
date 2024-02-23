@@ -13,7 +13,7 @@ import cn from "classnames"
 import { Components } from "components/DynamicComponent"
 import { getStoryblokLink } from "./getStoryblokLink"
 import React from "react"
-import getImageDimensions from "utilities/getImageDimensions"
+import getImageDimensions from "utilities/getSbImageDimensions.ts"
 import dynamic from "next/dynamic"
 
 export default function richText(content) {

@@ -2,8 +2,7 @@ import richText from "utilities/richText"
 import Link from "next/link"
 import Image from "next/image"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
-import getSbImageDimensions from "utilities/getImageDimensions.ts"
-getSbImageDimensions
+import getSbImageDimensions from "utilities/getSbImageDimensions.ts"
 
 export default function LogoGridSection({ blok }) {
   return (
