@@ -13,7 +13,7 @@ import cn from "classnames"
 import { Components } from "components/DynamicComponent"
 import { getStoryblokLink } from "./getStoryblokLink"
 import React from "react"
-import getImageDimensions from "utilities/getSbImageDimensions.ts"
+import getSbImageDimensions from "utilities/getSbImageDimensions.ts"
 import dynamic from "next/dynamic"
 
 export default function richText(content) {
@@ -69,8 +69,8 @@ export default function richText(content) {
                 alt={alt}
                 title={title}
                 sizes="(max-width: 1024px) 90vw, 50vw"
-                height={getImageDimensions("height", src)}
-                width={getImageDimensions("width", src)}
+                height={getSbImageDimensions("height", src)}
+                width={getSbImageDimensions("width", src)}
                 className="mb-4 w-full"
               />
             )
