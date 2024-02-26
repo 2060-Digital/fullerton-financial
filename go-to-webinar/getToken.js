@@ -18,8 +18,23 @@ export async function getToken() {
       }),
     }).then((response) => response.json())
 
+    // Update refresh token when old token expires after 30 days
     if (refresh_token) {
-      // TODO: handle new refresh token when old token expires after 30 days
+      await fetch("https://api-us.storyblok.com/v1/spaces/1017266/datasource_entries/95185", {
+        method: "PUT",
+        headers: {
+          Authorization: process.env.STORYBLOK_OAUTH_TOKEN,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          datasource_entry: {
+            name: "refresh_token",
+            value: refresh_token,
+            datasource_id: 4783,
+          },
+        }),
+      })
+      console.info("Updating GoToWebinar Refresh Token")
     }
 
     return access_token
