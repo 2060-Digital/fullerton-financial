@@ -4,6 +4,7 @@ import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
 import EventbriteModal from "components/Eventbrite/EventbriteModal"
 import { formatEventDate, formatEventStartEndTime } from "eventbrite/formatEventDate"
 import VenueLink from "components/Eventbrite/VenueLink"
+import DateBox from "components/DateBox"
 
 export function Event({ event, venue }) {
   const { embedCreated, setEmbedCreated, modalProps, eventHash } = useEventbriteModal(event)
@@ -12,14 +13,7 @@ export function Event({ event, venue }) {
     <>
       <article className="flex flex-col lg:flex-row justify-between lg:pt-7 pb-7 lg:pr-7 gap-4 items-center bg-secondary-2">
         <div className="flex flex-col lg:flex-row items-start lg:items-center lg:gap-12 w-full">
-          <div className="bg-secondary-1 mb-4 lg:mb-0 py-4 px-6 lg:py-8 lg:px-10 text-center aspect-square">
-            <div className="eyebrow text-white">
-              {new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(event?.start))}
-            </div>
-            <h3 className="text-white">
-              {new Intl.DateTimeFormat("en-US", { day: "2-digit" }).format(new Date(event?.start))}
-            </h3>
-          </div>
+          <DateBox date={event?.start} />
           <div className="px-6 lg:px-0">
             <Link href={event.slug}>
               <h3 className="text-primary-1 hover:underline pb-2">{event?.name?.text}</h3>
