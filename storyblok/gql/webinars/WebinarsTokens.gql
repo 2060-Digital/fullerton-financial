@@ -1,0 +1,10 @@
+query WebinarsTokens {
+  DatasourceEntries(datasource: "go-to-webinar") {
+    items {
+      value
+      name
+      id
+      dimensionValue
+    }
+  }
+}
