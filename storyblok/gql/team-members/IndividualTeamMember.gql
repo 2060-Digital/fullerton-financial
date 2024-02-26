@@ -5,12 +5,29 @@ query IndividualTeamMember($slug: ID!) {
       _uid
       component
       first_name
+      last_name
+      job_title
       image {
         filename
         alt
       }
-      job_title
-      last_name
+      intro_content
+      content
+      sidebar_content
+      team_category
+      vip
+      linked_in {
+        cachedUrl
+        url
+        linktype
+        id
+      }
+      email {
+        cachedUrl
+        fieldtype
+        linktype
+        url
+      }
     }
     full_slug
     uuid
