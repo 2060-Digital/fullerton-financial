@@ -18,17 +18,18 @@ export default function TeamMember({ story, meta }) {
           <section className="bg-primary-1 px-6 py-11 lg:py-20">
             <div className="max-w-screen-xl mx-auto">
               <div className="flex flex-col lg:flex-row gap-8">
-                <div className="lg:basis-1/3">
+                <div className="lg:basis-1/3 relative">
+                  <div className="w-full h-full absolute border-2 border-secondary-1 top-5 right-5 z-10"></div>
                   <Image
                     src={story.content.image.filename}
                     alt={story.content.image.alt}
                     height={getSbImageDimensions("height", story.content.image.filename)}
                     width={getSbImageDimensions("width", story.content.image.filename)}
-                    className="aspect-square"
+                    className="aspect-square z-20 relative"
                     style={{ width: "100%", height: "auto" }}
                   />
                 </div>
-                <div className="lg:basis-2/3">
+                <div className="lg:basis-2/3 lg:flex lg:flex-col justify-center">
                   <h1 className="text-white pb-6">
                     {story.content.first_name} {story.content.last_name}
                   </h1>
@@ -47,9 +48,11 @@ export default function TeamMember({ story, meta }) {
             </div>
           </section>
           <section className="px-6 py-11 lg:py-20">
-            <div className="mx-auto max-w-screen-xl">
-              <div className="prose-headings:text-primary-1">{richText(story.content.sidebar_content)}</div>
-              <div>{richText(story.content.content)}</div>
+            <div className="mx-auto max-w-screen-xl flex flex-col lg:flex-row lg:gap-20">
+              <div className="prose-headings:text-primary-1 prose-headings:pb-4 lg:basis-1/3">
+                {richText(story.content.sidebar_content)}
+              </div>
+              <div className="lg:basis-2/3">{richText(story.content.content)}</div>
             </div>
           </section>
 
