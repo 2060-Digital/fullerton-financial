@@ -1,0 +1,21 @@
+query IndividualTeamMember($slug: ID!) {
+  TeammemberItem(id: $slug, resolve_links: "url") {
+    content {
+      _editable
+      _uid
+      bio
+      body
+      component
+      first_name
+      image {
+        filename
+        alt
+      }
+      job_group
+      job_title
+      last_name
+    }
+    full_slug
+    uuid
+  }
+}

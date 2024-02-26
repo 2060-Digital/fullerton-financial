@@ -77,6 +77,7 @@ export default async function fetchQuery(query, { variables, preview } = {}, deb
     const response = await maybeRetryQuery(queryRequest)
 
     const { data, errors } = await response.json()
+
     if (errors && debug) {
       console.error(
         outdent`
