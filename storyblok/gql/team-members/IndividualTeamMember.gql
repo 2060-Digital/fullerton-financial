@@ -31,5 +31,6 @@ query IndividualTeamMember($slug: ID!) {
     }
     full_slug
     uuid
+    name
   }
 }
