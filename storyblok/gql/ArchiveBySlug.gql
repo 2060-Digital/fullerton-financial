@@ -1,0 +1,12 @@
+query ArchiveBySlug($slug: ID!) {
+  ArchiveItem(id: $slug, resolve_links: "url") {
+    content {
+      seo
+      heading
+      page_header
+      body
+      _uid
+      _editable
+    }
+  }
+}

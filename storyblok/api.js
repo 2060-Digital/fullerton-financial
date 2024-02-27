@@ -88,3 +88,9 @@ export async function getAllLocations() {
 
   return locations
 }
+
+export async function getArchive(slug, preview) {
+  const data = await query(ArchiveBySlug, { variables: { slug }, preivew })
+
+  return await processPageData(data?.ArchiveItem, slug)
+}
