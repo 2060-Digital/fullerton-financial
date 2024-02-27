@@ -12,7 +12,7 @@ export function Webinar({ webinar }) {
             <h3 className="text-primary-1 hover:underline pb-2">{webinar?.subject}</h3>
           </Link>
           {webinar?.times?.map((time) => (
-            <h4 className="pb-2 text-primary-1" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
+            <h4 className="pb-2 last:pb-0 text-primary-1" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
               {time?.formatted}
             </h4>
           ))}
