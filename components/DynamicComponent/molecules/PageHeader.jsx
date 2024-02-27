@@ -39,7 +39,7 @@ export default function PageHeader({ blok }) {
               alt={blok?.image?.alt}
               width={896}
               height={585}
-              className="relative -right-3.5 -top-3.5 w-full"
+              className="relative -right-3.5 -top-3.5 w-full aspect-[896/505] object-cover"
             />
           </div>
         ) : null}
