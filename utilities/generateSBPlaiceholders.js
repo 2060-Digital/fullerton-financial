@@ -3,7 +3,6 @@ import { isPlainObject } from "lodash"
 import fs from "fs"
 import path from "path"
 import filenamify from "filenamify"
-import { serialize, deserialize } from "v8"
 
 /**
  * Generate base64 Images for Storyblok image Assets (and cache them to the filesystem)
@@ -41,7 +40,7 @@ export default async function generateSBPlaiceholders(page) {
             const cacheLocation = placeholderCachePath(cachefileName)
             let cachedPlaceholder = false
             if (fs.existsSync(cacheLocation)) {
-              cachedPlaceholder = deserialize(fs.readFileSync(cacheLocation))
+              cachedPlaceholder = JSON.parse(fs.readFileSync(cacheLocation))
             }
 
             if (cachedPlaceholder) {
@@ -65,7 +64,7 @@ export default async function generateSBPlaiceholders(page) {
               blurDataURL = base64
 
               // Write it to the cache
-              fs.writeFileSync(cacheLocation, serialize(blurDataURL))
+              fs.writeFileSync(cacheLocation, JSON.stringify(blurDataURL))
             } catch (error) {
               console.error(error)
             }
