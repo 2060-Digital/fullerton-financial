@@ -60,7 +60,7 @@ export async function getWebinarByIDs(organizerKey, webinarKey) {
 export async function getAllPastWebinars() {
   // Beginning from date of first webinar.
   const webinars = await query(
-    `/accounts/${process.env.WEBINAR_ACCOUNT_KEY}/webinars?fromTime=2023-03-30T04:00:00Z&toTime=${new Date().toISOString().split(".")[0] + "Z"}&size=200`,
+    `/accounts/${process.env.WEBINAR_ACCOUNT_KEY}/webinars?fromTime=2023-04-01T04:00:00Z&toTime=${new Date().toISOString().split(".")[0] + "Z"}&size=200`,
   )
 
   const webinarsWithRecordingAsset = Promise.all(
