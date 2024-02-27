@@ -13,6 +13,7 @@ export const Components = {
   inline_quote: dynamic(() => import("./atoms/PullQuote")),
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
   inline_video: dynamic(() => import("./atoms/InlineVideo")),
+  two_column_list: dynamic(() => import("./atoms/TwoColumnList")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
@@ -24,11 +25,16 @@ export const Components = {
   video_hero: dynamic(() => import("./molecules/VideoHero")),
   free_retirement_toolbox_section: dynamic(() => import("./molecules/FreeRetirementToolboxSection")),
   logo_carousel_section: dynamic(() => import("./molecules/LogoCarouselSection")),
+  logo_grid_section: dynamic(() => import("./molecules/LogoGridSection")),
   two_column_section: dynamic(() => import("./molecules/TwoColumnSection")),
   sidebar_cta_section: dynamic(() => import("./molecules/SidebarCTA")),
   upcoming_events_section: dynamic(() => import("./molecules/EventsCarouselSection")),
   three_column_section: dynamic(() => import("./molecules/ThreeColumnSection")),
+  form_embed_section: dynamic(() => import("./molecules/FormEmbedSection")),
   links_and_content: dynamic(() => import("./molecules/LinksAndContent")),
+  two_column_text_section: dynamic(() => import("./molecules/TwoColumnTextSection")),
+  tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
+  icon_section: dynamic(() => import("./molecules/IconSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
