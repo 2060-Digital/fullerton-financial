@@ -1,8 +1,8 @@
 import { getGlobals } from "storyblok/api"
-import { getIndividualWebinarPaths, getWebinarByIDs } from "go-to-webinar/api"
+import { getOnDemandWebinarPaths, getOnDemandWebinarByIDs } from "go-to-webinar/api"
 import WebinarPage from "components/Webinars/WebinarPage"
 
-export default function Webinar({ webinar }) {
+export default function OnDemandWebinar({ webinar }) {
   return <WebinarPage webinar={webinar} />
 }
 
@@ -11,7 +11,10 @@ export async function getStaticProps({ params: { webinar } }) {
 
   const webinarIDs = webinar.split("-")
 
-  const individualWebinar = await getWebinarByIDs(webinarIDs[webinarIDs.length - 2], webinarIDs[webinarIDs.length - 1])
+  const individualWebinar = await getOnDemandWebinarByIDs(
+    webinarIDs[webinarIDs.length - 2],
+    webinarIDs[webinarIDs.length - 1],
+  )
 
   return {
     props: {
@@ -23,7 +26,7 @@ export async function getStaticProps({ params: { webinar } }) {
 
 export async function getStaticPaths() {
   return {
-    paths: await getIndividualWebinarPaths(),
+    paths: await getOnDemandWebinarPaths(),
     fallback: false,
   }
 }
