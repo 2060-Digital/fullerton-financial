@@ -4,6 +4,7 @@ query IndividualTeamMember($slug: ID!) {
       _editable
       _uid
       component
+      seo
       first_name
       last_name
       job_title
@@ -11,6 +12,7 @@ query IndividualTeamMember($slug: ID!) {
         filename
         alt
       }
+      vip
       intro_content
       content
       sidebar_content
