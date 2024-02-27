@@ -7,7 +7,7 @@ import richText from "utilities/richText"
 
 export default function PageHeader({ blok }) {
   const hasImage = Boolean(blok?.image?.filename?.length)
-  const hasVideo = Boolean(blok?.video[0])
+  const hasVideo = Boolean(blok?.video?.length)
 
   return (
     <section
