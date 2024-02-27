@@ -47,7 +47,7 @@ export default function PageHeader({ blok }) {
         ) : null}
 
         {hasVideo ? (
-          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-32 xl:-top-12 right-0 w-full lg:w-auto justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
+          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-28 2xl:-top-12 right-0 w-full lg:w-auto justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
             <div className="relative -right-3.5 -top-3.5 w-full">
               <DynamicVideo {...blok?.video[0]} />
             </div>
