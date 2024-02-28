@@ -7,7 +7,7 @@ import Menus from "storyblok/gql/global/Menus.gql"
 import Datasources from "storyblok/gql/global/Datasources.gql"
 import GlobalSections from "storyblok/gql/global/GlobalSections.gql"
 import AllLocations from "storyblok/gql/location/AllLocations.gql"
-import ArchiveBySlug from "storyblok/gql/team-members/ArchiveBySlug"
+import ArchiveBySlug from "storyblok/gql/team-members/ArchiveBySlug.gql"
 import processPageData from "storyblok/processPageData"
 
 export async function getAllPageSlugs() {
@@ -91,7 +91,7 @@ export async function getAllLocations() {
 }
 
 export async function getArchive(slug, preview) {
-  const data = await query(ArchiveBySlug, { variables: { slug }, preivew })
+  const data = await query(ArchiveBySlug, { variables: { slug }, preview })
 
   return await processPageData(data?.ArchiveItem, slug)
 }

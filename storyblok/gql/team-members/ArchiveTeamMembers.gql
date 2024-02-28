@@ -1,0 +1,20 @@
+query ArchiveTeamMembers($page: Int!, $per_page: Int!) {
+  TeammemberItems(page: $page, per_page: $per_page, resolve_links: "url") {
+    items {
+      content {
+        first_name
+        last_name
+        job_title
+        vip
+        image {
+          filename
+          alt
+        }
+        _uid
+        team_category
+      }
+      full_slug
+    }
+    total
+  }
+}
