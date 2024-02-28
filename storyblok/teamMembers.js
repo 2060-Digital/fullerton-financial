@@ -4,6 +4,7 @@ import TeamMemberPaths from "storyblok/gql/team-members/TeamMemberPaths.gql"
 import IndividualTeamMember from "storyblok/gql/team-members/IndividualTeamMember.gql"
 import ArchiveTeamMembers from "storyblok/gql/team-members/ArchiveTeamMembers.gql"
 import TeamCategories from "storyblok/gql/team-members/TeamCategories.gql"
+import ArchiveBySlug from "storyblok/gql/team-members/ArchiveBySlug.gql"
 import processPageData from "storyblok/processPageData"
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
@@ -66,4 +67,10 @@ export async function getAllTeamMemberCategoriesPaths() {
   const categories = await getTeamMemberCategories()
 
   return categories?.map(({ value }) => ({ params: { category: value } }))
+}
+
+export async function getTeamArchive(slug, preview) {
+  const data = await query(ArchiveBySlug, { variables: { slug }, preview })
+
+  return await processPageData(data?.TeamarchiveItem, slug)
 }
