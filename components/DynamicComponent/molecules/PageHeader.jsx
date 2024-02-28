@@ -12,7 +12,7 @@ export default function PageHeader({ blok }) {
   return (
     <section
       className={cn("bg-primary-1", {
-        "mt-24 lg:mt-16 pl-6 lg:pl-0 pb-16 lg:pb-0": hasImage || hasVideo,
+        "mt-24 lg:mt-16 pl-6 lg:pl-0 pb-12 sm:pb-16 lg:pb-0": hasImage || hasVideo,
         "px-6 py-8 lg:py-12": !hasImage && !hasVideo,
       })}
     >
@@ -24,7 +24,7 @@ export default function PageHeader({ blok }) {
       >
         <div
           className={cn({
-            "lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-32 2xl:mr-0 lg:ml-6 xl:ml-[72px] 2xl:pl-12 py-8":
+            "lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-14 2xl:mr-0 lg:ml-6 xl:ml-[72px] 2xl:pl-12 lg:py-8 w-full":
               hasImage || hasVideo,
           })}
         >
