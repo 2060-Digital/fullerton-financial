@@ -37,12 +37,12 @@ function VideoEmbed({ video_asset, thumbnail }) {
           setVideoPlaying(!videoPlaying)
           videoPlaying === true ? videoRef.current.pause() : videoRef.current.play()
         }}
-        className={cn("absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10", {
+        className={cn("absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-0", {
           hidden: videoPlaying,
         })}
         title="Play video"
       >
-        <PlayButton className="play-video w-20 aspect-square" />
+        <PlayButton className="play-video w-10 aspect-square" />
       </button>
       <video
         ref={videoRef}
@@ -65,7 +65,7 @@ function YTEmbed({ id }) {
 
   return !videoPlay ? (
     <>
-      <div className="youtube-thumbnail relative cursor-pointer z-50" onClick={() => setVideoPlay(true)}>
+      <div className="youtube-thumbnail relative cursor-pointer z-10" onClick={() => setVideoPlay(true)}>
         <img src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`} alt="YouTube Video" className={YTVideoStyles} />
         <PlayButton
           className="play-video absolute scale-100 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 cursor-pointer w-20 aspect-square"
