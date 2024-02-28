@@ -3,11 +3,13 @@ import slugify from "slugify"
 import query from "go-to-webinar/query"
 
 function processWebinar(webinar, onDemand = false) {
+  const slugifiedSubject = slugify(webinar.subject, {
+    lower: true,
+  })
+
   return {
     ...webinar,
-    slug: `/webinars/${onDemand ? "on-demand/" : ""}${slugify(webinar.subject, {
-      lower: true,
-    })}-${webinar?.organizerKey}-${webinar?.webinarKey}`,
+    slug: `/webinars/${onDemand ? "on-demand/" : ""}${slugifiedSubject}-${webinar?.organizerKey}-${webinar?.webinarKey}`,
     ctaLabel: onDemand ? "Watch Now" : "Register Now",
     image: onDemand ? "/assets/navigating-medicare-hero-img.jpg" : "/assets/roth-conversions-hero-img.jpg",
     times: onDemand
