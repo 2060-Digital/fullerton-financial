@@ -9,6 +9,7 @@ export const Components = {
   dual_button: dynamic(() => import("./atoms/DualButton")),
   icon_card: dynamic(() => import("./atoms/IconCard")),
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
+  resource_card: dynamic(() => import("./atoms/ResourceCard")),
   divider: dynamic(() => import("./atoms/Divider")),
   inline_quote: dynamic(() => import("./atoms/PullQuote")),
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
