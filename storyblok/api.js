@@ -7,6 +7,7 @@ import Menus from "storyblok/gql/global/Menus.gql"
 import Datasources from "storyblok/gql/global/Datasources.gql"
 import GlobalSections from "storyblok/gql/global/GlobalSections.gql"
 import AllLocations from "storyblok/gql/location/AllLocations.gql"
+import ArchiveBySlug from "storyblok/gql/team-members/ArchiveBySlug"
 import processPageData from "storyblok/processPageData"
 
 export async function getAllPageSlugs() {
