@@ -20,6 +20,8 @@ function Card({ webinar }) {
 export default function OnDemandWebinarSection({ webinars }) {
   return (
     <section className="py-12 lg:py-24 px-6">
+      <h2 className="text-center text-primary-1 pb-8 lg:pb-16">On-Demand Webinars</h2>
+
       <div className="max-w-screen-lg mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-16">
         {webinars.map((webinar) => (
           <Card webinar={webinar} key={webinar.webinarKey} />
