@@ -6,8 +6,8 @@ export default function ThreeColumnSection({ blok }) {
     <section className="px-5 py-12 lg:py-20">
       <div className="max-w-screen-lg mx-auto">
         <div className="max-w-screen-md mx-auto mb-12 lg:mb-14">
-          <div className="text-center text-primary-1 eyebrow pb-3">{blok.eyebrow}</div>
-          <h2 className="text-center text-primary-1 pb-3">{blok.heading}</h2>
+          {blok?.eyebrow ? <div className="text-center text-primary-1 eyebrow pb-3">{blok.eyebrow}</div> : null}
+          {blok?.heading ? <h2 className="text-center text-primary-1 pb-3">{blok.heading}</h2> : null}
           <div className="text-center">{richText(blok.content)}</div>
         </div>
         <div className="grid lg:grid-cols-3 gap-8 lg:gap-16">
