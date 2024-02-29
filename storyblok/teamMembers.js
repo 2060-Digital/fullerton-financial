@@ -5,6 +5,7 @@ import IndividualTeamMember from "storyblok/gql/team-members/IndividualTeamMembe
 import ArchiveTeamMembers from "storyblok/gql/team-members/ArchiveTeamMembers.gql"
 import TeamCategories from "storyblok/gql/team-members/TeamCategories.gql"
 import ArchiveBySlug from "storyblok/gql/team-members/ArchiveBySlug.gql"
+import CategoryArchiveTeamMembers from "storyblok/gql/team-members/CategoryArchiveTeamMembers.gql"
 import processPageData from "storyblok/processPageData"
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 
@@ -56,16 +57,29 @@ export async function getTeamMember(slug, preview) {
   )
 }
 
-export async function getArchiveTeamMembers() {
-  const data = await retrieveAll({ query: ArchiveTeamMembers, type: "TeammemberItems", preview: false })
-
-  return await processTeamMembersForArchive(data)
-}
-
 // Categories
 export async function getTeamMemberCategories() {
   const data = await query(TeamCategories)
   return data?.DatasourceEntries.items
+}
+
+export async function getCategoryArchiveTeamMembers(category) {
+  const data = await retrieveAll({
+    query: CategoryArchiveTeamMembers,
+    type: "TeammemberItems",
+    preview: false,
+    variables: { category },
+  })
+
+  return await processTeamMembersForArchive(data)
+}
+
+// Archive
+
+export async function getArchiveTeamMembers() {
+  const data = await retrieveAll({ query: ArchiveTeamMembers, type: "TeammemberItems", preview: false })
+
+  return await processTeamMembersForArchive(data)
 }
 
 export async function getAllTeamMemberCategoriesPaths() {
