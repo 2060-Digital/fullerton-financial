@@ -9,7 +9,7 @@ export default function Meta({ info }) {
 
   return info ? (
     <Head>
-      {info?.title ? <title>{info?.title} | Fullerton Financial Services</title> : null}
+      {info?.title ? <title>{info?.title}</title> : null}
       {info?.description ? <meta name="description" content={info?.description} /> : null}
       {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
       {info?.og_title ? <meta property="og:title" content={info?.og_title} /> : null}

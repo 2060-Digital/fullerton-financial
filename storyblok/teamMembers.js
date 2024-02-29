@@ -12,6 +12,11 @@ async function processTeamMembersForArchive(rawTeamMembers) {
   const categories = await getTeamMemberCategories()
 
   return {
+    vip: await generateSBPlaiceholders(
+      rawTeamMembers
+        .map((member) => ({ ...member.content, slug: `/${member.full_slug}` }))
+        .filter((member) => member.vip),
+    ),
     teamMembers: await generateSBPlaiceholders(
       rawTeamMembers
         .map((member) => ({ ...member.content, slug: `/${member.full_slug}` }))
