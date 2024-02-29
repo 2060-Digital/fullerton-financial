@@ -23,7 +23,7 @@ export default function TeamMemberArchive({ archive, meta, teamMembers, vip, cat
             items: teamMembers.filter((member) => !member.vip),
             vip: vip,
             archiveLink: "/team",
-            categoryLinkPrefix: "/team/category",
+            categoryLinkPrefix: "/team/category/",
             currentTab: { name: "All", value: "all" },
           }}
         />

@@ -576,3 +576,7 @@ input::placeholder {
   }
 }
 /* End Search Bar */
+
+.archive-tab-bar::-webkit-scrollbar {
+  display: none;
+}

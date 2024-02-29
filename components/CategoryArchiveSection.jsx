@@ -1,6 +1,8 @@
 import cn from "classnames"
 import Image from "next/image"
 import Link from "next/link"
+import Arrow from "public/assets/chevron-down.svg"
+import { useState } from "react"
 import getSbImageDimensions from "utilities/getSbImageDimensions"
 import storyblokImageLoader from "utilities/storyblokImageLoader"
 
@@ -33,10 +35,6 @@ const Card = ({ image, first_name, last_name, job_title, vip, slug }) => {
   )
 }
 
-const Tab = () => {
-  return <div className=""></div>
-}
-
 export default function CategoryArchiveSection({
   items,
   vip,
@@ -45,17 +43,69 @@ export default function CategoryArchiveSection({
   archiveLink,
   categoryLinkPrefix,
 }) {
+  const [open, setOpen] = useState(false)
+
+  const Tab = ({ name, value, link }) => (
+    <Link
+      className={cn(
+        "font-primary text-white transition-all duration-300 text-left mr-8 lg:mr-0 whitespace-nowrap py-2 lg:py-4 lg:decoration-tertiary lg:underline-offset-4 lg:hover:underline lg:decoration-tertiary-1 capitalize",
+        {
+          "h-0 opacity-0 lg:py-4 lg:h-auto lg:opacity-100": currentTab.value !== value && !open,
+          "lg:decoration-tertiary-1 lg:underline": currentTab.value === value,
+          "h-auto opacity-100": open,
+        },
+      )}
+      href={link}
+      onClick={() => setOpen(false)}
+    >
+      {name}
+    </Link>
+  )
+
   return (
     <div>
-      <nav>
-        <Tab name="All" value="all" link={archiveLink} />
-        {categories?.map((category) => (
-          <Tab {...category} key={category.value} link={`${categoryLinkPrefix}${category.value}`} />
-        ))}
+      <nav className="bg-primary-2 w-full lg:px-6 sticky lg:relative top-0 z-30">
+        <div className="lg:max-w-2xl mx-auto flex flex-col lg:flex-row justify-between">
+          <button
+            className={cn("self-start py-2 px-5 lg:hidden w-full text-left capitalize italic text-white", {
+              "scale-y-0": open,
+              "scale-y-100": !open,
+            })}
+            onClick={() => setOpen(!open)}
+          >
+            {currentTab.name}
+          </button>
+          <div
+            className={cn(
+              "archive-tab-bar flex flex-col lg:flex-row lg:gap-8 xl:gap-12 mx-auto bg-primary-2 absolute lg:relative w-full transition-all duration-300 origin-top px-5 lg:px-0 z-100 lg:w-max lg:overflow-x-auto",
+              {
+                "scale-y-0 lg:scale-y-100": !open,
+                "scale-y-100": open,
+              },
+            )}
+          >
+            <Tab name="All" value="all" link={archiveLink} />
+            {categories?.map((category) => (
+              <Tab {...category} key={category.value} link={`${categoryLinkPrefix}${category.value}`} />
+            ))}
+          </div>
+          <button
+            className="absolute right-4 top-0 z-20 lg:hidden"
+            onClick={() => setOpen(!open)}
+            title="Filter Archive items by Title"
+          >
+            <Arrow
+              className={cn("h-10", {
+                "rotate-180 lg:-rotate-90": open,
+                "lg:-rotate-90": !open,
+              })}
+            />
+          </button>
+        </div>
       </nav>
-      <section className={`px-6`}>
+      <section className="px-6 relative">
         <div className="max-w-screen-xl mx-auto pb-8 ">
-          <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-20 py-8")}>
+          <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-20 py-8 lg:py-16")}>
             {vip.map((item) => (
               <Card {...item} key={item.name} />
             ))}
