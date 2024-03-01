@@ -103,17 +103,17 @@ export default function CategoryArchiveSection({
           </button>
         </div>
       </nav>
-      <section className="px-6 relative py-10 lg:py-24">
+      <section className="px-6 py-10 lg:py-24">
         <div className="max-w-screen-xl mx-auto">
           {vip?.length ? (
-            <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-20 pb-10 lg:pb-24")}>
+            <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-20 pb-10 lg:pb-24 pl-5")}>
               {vip.map((item) => (
                 <Card {...item} key={item.name} />
               ))}
             </div>
           ) : null}
 
-          <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16")}>
+          <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 pl-5")}>
             {items.map((item) => (
               <Card {...item} key={item.name} />
             ))}

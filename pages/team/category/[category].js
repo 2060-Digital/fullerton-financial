@@ -21,10 +21,10 @@ export default function Category({ archive, meta, category, teamMembers, vip, ca
           {...{
             categories,
             items: teamMembers.filter((member) => !member.vip),
-            // vip: vip,
+            vip: vip,
             archiveLink: "/team",
             categoryLinkPrefix: "/team/category/",
-            currentTab: { name: "All", value: "all" },
+            currentTab: category,
           }}
         />
         <div></div>
@@ -37,14 +37,15 @@ export async function getStaticProps({ params: { category }, preview = null }) {
   const globals = await getGlobals()
 
   const story = await getTeamArchive("team", preview)
-  const { teamMembers, categories } = await getCategoryArchiveTeamMembers(category)
+  const { teamMembers, categories, vip } = await getCategoryArchiveTeamMembers(category)
 
   return {
     props: {
       archive: story ?? null,
       meta: story?.content?.seo ?? null,
       teamMembers: teamMembers ?? null,
-      // vip: vip ?? null,
+      vip: vip ?? null,
+      category: { name: category.replaceAll("-", " "), value: category },
       categories: categories ?? null,
       globals: globals ?? null,
       preview,

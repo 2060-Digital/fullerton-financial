@@ -10,6 +10,7 @@ query CategoryArchiveTeamMembers($category: [String]!, $page: Int!, $per_page: I
         first_name
         last_name
         job_title
+        vip
         team_category
         image {
           filename
