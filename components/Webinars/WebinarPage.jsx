@@ -58,7 +58,7 @@ export default function WebinarPage({ webinar, onDemand = false }) {
                   className="text-white block font-primary font-bold text-m1 lg:text-m2 pb-4"
                   key={`webinar-time-${webinar?.webinarKey}-${idx}`}
                 >
-                  {time?.formatted}
+                  {time}
                 </time>
               ))
             )}
