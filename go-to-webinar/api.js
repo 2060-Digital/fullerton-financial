@@ -1,6 +1,6 @@
-import { formatEventStartEndTime, formatEventDate } from "eventbrite/formatEventDate"
 import slugify from "slugify"
 import query from "go-to-webinar/query"
+import { add, formatISO } from "date-fns"
 
 function processWebinar(webinar, onDemand = false) {
   const slugifiedSubject = slugify(webinar.subject, {
@@ -12,25 +12,20 @@ function processWebinar(webinar, onDemand = false) {
     slug: `/webinars/${onDemand ? "on-demand/" : ""}${slugifiedSubject}-${webinar?.organizerKey}-${webinar?.webinarKey}`,
     ctaLabel: onDemand ? "Watch Now" : "Register Now",
     image: onDemand ? "/assets/navigating-medicare-hero-img.jpg" : "/assets/roth-conversions-hero-img.jpg",
-    times: onDemand
-      ? [{ formatted: "Recorded" }]
-      : webinar.times.map((time) => ({
-          raw: time,
-          formatted: `${formatEventDate(time?.startTime)} ${formatEventStartEndTime(time.startTime, time.endTime)}`,
-        })),
   }
 }
 
-// Upcoming Webinars
+const today = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Phoenix" }))
+
+// Future Webinars
 export async function getAllFutureWebinars() {
-  const today = new Date()
-  let oneYearFromToday = new Date()
-  oneYearFromToday.setFullYear(today.getFullYear() + 1)
-  const todayWithoutMilliseconds = today.toISOString().split(".")[0] + "Z"
-  const oneYearFromTodayWithoutMilliseconds = oneYearFromToday.toISOString().split(".")[0] + "Z"
+  // GoToWebinar requires a date range (fromTime,toTime) in order to
+  // retrieve webinars. In order to ensure that we fetch all future webinars,
+  // we use a range with an end date that is far in the future.
+  const tenYearsFromToday = add(today, { years: 10 })
 
   const webinars = await query(
-    `/accounts/${process.env.WEBINAR_ACCOUNT_KEY}/webinars?fromTime=${todayWithoutMilliseconds}&toTime=${oneYearFromTodayWithoutMilliseconds}&size=200`,
+    `/accounts/${process.env.WEBINAR_ACCOUNT_KEY}/webinars?fromTime=${formatISO(today)}&toTime=${formatISO(tenYearsFromToday)}&size=200`,
   )
 
   return webinars._embedded.webinars.map((webinar) => processWebinar(webinar))
@@ -62,7 +57,7 @@ export async function getWebinarByIDs(organizerKey, webinarKey) {
 export async function getAllPastWebinars() {
   // Beginning from date of first webinar.
   const webinars = await query(
-    `/accounts/${process.env.WEBINAR_ACCOUNT_KEY}/webinars?fromTime=2023-04-01T04:00:00Z&toTime=${new Date().toISOString().split(".")[0] + "Z"}&size=200`,
+    `/accounts/${process.env.WEBINAR_ACCOUNT_KEY}/webinars?fromTime=2023-04-04T00:00:00Z&toTime=${formatISO(today)}&size=200`,
   )
 
   const webinarsWithRecordingAsset = Promise.all(
