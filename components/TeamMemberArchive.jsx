@@ -1,12 +1,14 @@
+import { useState } from "react"
 import cn from "classnames"
 import Image from "next/image"
 import Link from "next/link"
-import Arrow from "public/assets/chevron-down.svg"
-import { useState } from "react"
 import getSbImageDimensions from "utilities/getSbImageDimensions"
 import storyblokImageLoader from "utilities/storyblokImageLoader"
+import { getStoryblokLink } from "utilities/getStoryblokLink"
+import CallToAction from "components/CallToAction"
+import Arrow from "public/assets/chevron-down.svg"
 
-const Card = ({ image, first_name, last_name, job_title, vip, slug }) => {
+const Card = ({ image, first_name, last_name, job_title, email, vip, slug }) => {
   return (
     <Link href={slug}>
       <div className={cn("bg-gray-light h-full", { "bg-secondary-2": vip })}>
@@ -29,6 +31,9 @@ const Card = ({ image, first_name, last_name, job_title, vip, slug }) => {
             {first_name} {last_name}
           </h3>
           <div className={cn(" leading-7", { "text-primary-1": vip })}>{job_title}</div>
+          <CallToAction href={getStoryblokLink(email)} style="email-blue" target="_blank">
+            {email.url}
+          </CallToAction>
         </div>
       </div>
     </Link>

@@ -10,6 +10,12 @@ query ArchiveTeamMembers($page: Int!, $per_page: Int!) {
           filename
           alt
         }
+        email {
+          cachedUrl
+          fieldtype
+          linktype
+          url
+        }
         _uid
         team_category
       }
