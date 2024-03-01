@@ -46,12 +46,9 @@ export default function TeamMember({ teamMember, meta }) {
                     {teamMember?.content?.first_name} {teamMember?.content?.last_name}
                   </h1>
                   <div className="eyebrow text-white">{teamMember?.content?.job_title}</div>
-                  <div className="py-4 flex flex-col lg:flex-row gap-4 lg:gap-7">
+                  <div className="py-4">
                     <CallToAction href={getStoryblokLink(teamMember?.content?.email)} style="email" target="_blank">
                       {teamMember?.content?.email?.url}
-                    </CallToAction>
-                    <CallToAction href={getStoryblokLink(teamMember?.content?.linked_in)} style="linkedin">
-                      LINKEDIN PROFILE
                     </CallToAction>
                   </div>
                   <div className="prose-p:text-white">{richText(teamMember?.content?.intro_content)}</div>

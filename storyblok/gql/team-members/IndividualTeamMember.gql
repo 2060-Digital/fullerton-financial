@@ -18,12 +18,6 @@ query IndividualTeamMember($slug: ID!) {
       sidebar_content
       team_category
       vip
-      linked_in {
-        cachedUrl
-        url
-        linktype
-        id
-      }
       email {
         cachedUrl
         fieldtype
