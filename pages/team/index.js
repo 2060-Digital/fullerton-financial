@@ -27,7 +27,6 @@ export default function TeamMemberArchive({ archive, meta, teamMembers, vip, cat
             currentTab: { name: "All", value: "all" },
           }}
         />
-        <div></div>
       </main>
     </>
   )
