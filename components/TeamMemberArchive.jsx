@@ -32,7 +32,7 @@ const Card = ({ image, first_name, last_name, job_title, email, vip, slug }) => 
           </h3>
           <div className={cn(" leading-7", { "text-primary-1": vip })}>{job_title}</div>
           <CallToAction href={getStoryblokLink(email)} style="email-blue" target="_blank">
-            {email.url}
+            {email?.url}
           </CallToAction>
         </div>
       </div>

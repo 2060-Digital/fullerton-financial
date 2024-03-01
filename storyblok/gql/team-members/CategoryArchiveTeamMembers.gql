@@ -16,6 +16,12 @@ query CategoryArchiveTeamMembers($category: [String]!, $page: Int!, $per_page: I
           filename
           alt
         }
+        email {
+          cachedUrl
+          fieldtype
+          linktype
+          url
+        }
         _uid
         team_category
       }
