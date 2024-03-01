@@ -35,14 +35,7 @@ const Card = ({ image, first_name, last_name, job_title, vip, slug }) => {
   )
 }
 
-export default function CategoryArchiveSection({
-  items,
-  vip,
-  categories,
-  currentTab,
-  archiveLink,
-  categoryLinkPrefix,
-}) {
+export default function TeamMemberArchive({ items, vip, categories, currentTab, archiveLink, categoryLinkPrefix }) {
   const [open, setOpen] = useState(false)
 
   const Tab = ({ name, value, link }) => (

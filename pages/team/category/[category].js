@@ -2,7 +2,7 @@ import PageHeader from "components/DynamicComponent/molecules/PageHeader"
 import Meta from "components/Meta"
 import { getGlobals } from "storyblok/api"
 import { getCategoryArchiveTeamMembers, getTeamArchive, getAllTeamMemberCategoriesPaths } from "storyblok/teamMembers"
-import CategoryArchiveSection from "components/CategoryArchiveSection"
+import CategoryArchiveSection from "components/TeamMemberArchive"
 
 export default function Category({ archive, meta, category, teamMembers, vip, categories }) {
   return (
