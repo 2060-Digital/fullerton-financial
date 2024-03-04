@@ -118,6 +118,7 @@ export default async function fetchQuery(query, { variables, preview } = {}, deb
     return data ?? null
   } catch (error) {
     console.error(`fetch error: ${error}`)
+    throw new Error(`Invalid query: ${error}`)
   }
 }
 

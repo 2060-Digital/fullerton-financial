@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getTeamMember, getTeamMemberPaths } from "storyblok/teamMembers"
 import CallToAction from "components/CallToAction"
@@ -73,6 +74,18 @@ export default function TeamMember({ teamMember, meta }) {
           </div>
         </main>
       </StoryblokVisualEditor>
+      <Script type="application/ld+json" id="profile-schema">
+        {`{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "mainEntity": {
+            "@type": "Person",
+            "name": ${teamMember?.content?.name},
+            "description": "Defender of Truth",
+            "image": ${teamMember?.content?.image.filename}
+          }
+        }`}
+      </Script>
     </>
   )
 }
