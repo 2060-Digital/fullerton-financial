@@ -59,7 +59,6 @@ export default function TeamMember({ teamMember, meta }) {
           </section>
 
           <div>
-            {" "}
             {teamMember?.content?.body?.map((blok) => (
               <DynamicComponent blok={blok} key={blok._uid} />
             ))}
