@@ -12,6 +12,11 @@ function processWebinar(webinar, onDemand = false) {
     slug: `/webinars/${onDemand ? "on-demand/" : ""}${slugifiedSubject}-${webinar?.organizerKey}-${webinar?.webinarKey}`,
     ctaLabel: onDemand ? "Watch Now" : "Register Now",
     image: onDemand ? "/assets/navigating-medicare-hero-img.jpg" : "/assets/roth-conversions-hero-img.jpg",
+    times:
+      webinar?.times?.map((time) => ({
+        startTime: new Date(time?.startTime).toLocaleString("en-US", { timeZone: "America/Phoenix" }),
+        endTime: new Date(time?.endTime).toLocaleString("en-US", { timeZone: "America/Phoenix" }),
+      })) ?? [],
   }
 }
 
