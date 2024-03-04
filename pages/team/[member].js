@@ -7,6 +7,7 @@ import StoryblokVisualEditor from "components/StoryblokVisualEditor"
 import getSbImageDimensions from "utilities/getSbImageDimensions"
 import richText from "utilities/richText"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
+import DynamicComponent from "components/DynamicComponent"
 import Breadcrumbs from "components/Breadcrumbs"
 
 export default function TeamMember({ teamMember, meta }) {
@@ -56,14 +57,13 @@ export default function TeamMember({ teamMember, meta }) {
               </div>
             </div>
           </section>
-          <section className="px-6 py-11 lg:py-20">
-            <div className="mx-auto max-w-screen-xl flex flex-col lg:flex-row lg:gap-20">
-              <div className="prose-headings:text-primary-1 pb-4 prose-headings:pb-4 lg:basis-1/3">
-                {richText(teamMember?.content?.sidebar_content)}
-              </div>
-              <div className="lg:basis-2/3">{richText(teamMember?.content?.content)}</div>
-            </div>
-          </section>
+
+          <div>
+            {" "}
+            {teamMember?.content?.body?.map((blok) => (
+              <DynamicComponent blok={blok} key={blok._uid} />
+            ))}
+          </div>
         </main>
       </StoryblokVisualEditor>
     </>
@@ -71,7 +71,7 @@ export default function TeamMember({ teamMember, meta }) {
 }
 
 export async function getStaticProps({ params: { member }, preview = null }) {
-  const globals = await getGlobals()
+  const globals = await getGlobals("exclude-global-sections")
   const story = await getTeamMember(`team/${member}`, preview)
 
   return {

@@ -8,6 +8,7 @@ query IndividualTeamMember($slug: ID!) {
       first_name
       last_name
       job_title
+      body
       image {
         filename
         alt
