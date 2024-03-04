@@ -7,6 +7,7 @@ import StoryblokVisualEditor from "components/StoryblokVisualEditor"
 import getSbImageDimensions from "utilities/getSbImageDimensions"
 import richText from "utilities/richText"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
+import storyblokImageLoader from "utilities/storyblokImageLoader"
 import DynamicComponent from "components/DynamicComponent"
 import Breadcrumbs from "components/Breadcrumbs"
 
@@ -34,8 +35,15 @@ export default function TeamMember({ teamMember, meta }) {
                       <Image
                         src={teamMember?.content?.image?.filename}
                         alt={teamMember?.content?.image?.alt}
+                        loader={
+                          teamMember?.content?.image.filename && teamMember.content.image.filename !== ""
+                            ? storyblokImageLoader
+                            : undefined
+                        }
                         height={getSbImageDimensions("height", teamMember?.content?.image?.filename)}
                         width={getSbImageDimensions("width", teamMember?.content?.image?.filename)}
+                        placeholder={teamMember?.content?.image.blurDataURL ? "blur" : "empty"}
+                        blurDataURL={teamMember?.content?.image.blurDataURL}
                         className="aspect-square z-20 relative"
                         style={{ width: "100%", height: "auto" }}
                       />

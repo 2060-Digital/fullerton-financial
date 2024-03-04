@@ -45,11 +45,13 @@ export async function getTeamMemberPaths() {
 export async function getTeamMember(slug, preview) {
   const data = await query(IndividualTeamMember, { variables: { slug }, preview })
 
+  const withPlaceholders = await generateSBPlaiceholders(data.TeammemberItem)
+
   return {
     content: {
-      ...data?.TeammemberItem.content,
-      slug: `/${data?.TeammemberItem?.full_slug}`,
-      name: data?.TeammemberItem?.name,
+      ...withPlaceholders?.content,
+      slug: `/${withPlaceholders?.full_slug}`,
+      name: withPlaceholders?.name,
     },
   }
 }
