@@ -50,7 +50,7 @@ export async function getTeamMember(slug, preview) {
       content: {
         ...data?.TeammemberItem.content,
         slug: `/${data?.TeammemberItem?.full_slug}`,
-        name: data?.TeammemberItem.name,
+        name: data?.TeammemberItem?.name,
       },
     },
     data?.TeammemberItem?.full_slug,
