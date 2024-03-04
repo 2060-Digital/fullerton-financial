@@ -414,8 +414,13 @@ input::placeholder {
 
 /* Divider */
 .page-content > .content-divider {
-  @apply px-5;
+  @apply px-6;
 }
+
+.video-hero + .content-divider:has(+ .logo-carousel-section) {
+  @apply lg:hidden -mb-2;
+}
+
 /* End Divider */
 
 /* CTA Banner */
