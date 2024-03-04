@@ -1,0 +1,31 @@
+query IndividualTeamMember($slug: ID!) {
+  TeammemberItem(id: $slug, resolve_links: "url") {
+    content {
+      _editable
+      _uid
+      component
+      seo
+      first_name
+      last_name
+      job_title
+      body
+      image {
+        filename
+        alt
+      }
+      vip
+      intro_content
+      team_category
+      vip
+      email {
+        cachedUrl
+        fieldtype
+        linktype
+        url
+      }
+    }
+    full_slug
+    uuid
+    name
+  }
+}
