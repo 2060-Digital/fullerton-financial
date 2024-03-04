@@ -11,12 +11,16 @@ html {
 
 html * {
   box-sizing: border-box;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+  letter-spacing: normal;
+  font-size: 1rem;
 }
 
 body {
   margin: 0;
   max-width: 100%;
   overflow-x: hidden;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
 }
 
 #logo {
@@ -25,68 +29,43 @@ body {
 
 #container {
   background: transparent;
+  box-shadow: none;
+  border: none;
 }
 
-.wufoo ul {
-  list-style: none;
-  padding: 0;
+.wufoo .info {
+  border: none;
 }
 
-.wufoo li,
-.wufoo .complex div {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 8px;
-  padding: 15px 0;
-}
-
-.wufoo li div,
-.wufoo li fieldset {
+.wufoo ul li {
   width: 100%;
 }
 
-.wufoo li span:not(.req) {
-  display: inline-block;
+.wufoo li.focused {
+  background: none !important;
 }
 
-.wufoo .full {
-  width: 100%;
-}
-
-.wufoo .left,
-.wufoo .right {
-  flex-basis: calc(50% - 4px);
-}
-
-.wufoo .col {
-  display: flex;
-  gap: 20px;
-}
-
-.wufoo .focused {
-  background-color: rgba(240, 167, 195, 0.5);
-}
-
-.wufoo .instruct {
-  margin: 0;
-}
-
-.wufoo h2 {
+.wufoo .info h2 {
   font-family: "Playfair Display", serif;
-  color: #003366;
+  color: #003366 !important;
   font-size: 30px;
   margin: 0 0 15px 0;
   font-weight: 700;
   line-height: 1.25;
 }
 
-.wufoo h3 {
+.wufoo li.section h3 {
   font-family: "Playfair Display", serif;
-  color: #003366;
-  font-size: 20px;
+  color: #003366 !important;
+  font-size: 20px !important;
   margin: 0 0 10px 0;
   font-weight: 700;
   line-height: 1.25;
+  border: none;
+}
+
+.wufoo li.section div {
+  font-size: 1rem !important;
 }
 
 .wufoo input.text,
@@ -95,7 +74,6 @@ body {
 .wufoo input[type="file" i] {
   background: #ffffff;
   border: 2px solid #282c32;
-  width: 100%;
   line-height: 1;
   font-family: Lato, Arial, sans-serif;
   font-size: 16px;
@@ -103,7 +81,33 @@ body {
 }
 
 .wufoo select {
-  padding: 7px 20px 7px 12px;
+  padding: 7px 10px 7px 10px;
+  width: fit-content !important;
+}
+.wufoo fieldset div {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+.wufoo fieldset div span {
+  width: auto;
+}
+
+.wufoo input.checkbox,
+.wufoo input.radio {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  display: inline;
+  vertical-align: middle;
+}
+
+.wufoo label.choice {
+  margin: 0 0.75rem;
+  display: inline;
+  width: auto;
+  padding: 0;
 }
 
 .wufoo label,
@@ -163,7 +167,7 @@ body {
 }
 
 .wufoo input[type="file" i] {
-  border-color: #e7e7e7;
+  padding: 0;
 }
 
 .wufoo input[type="submit"]:hover,
@@ -179,9 +183,9 @@ body {
 
 @media (min-width: 769px) {
   .wufoo h2 {
-    font-size: 40px;
+    font-size: 40px !important;
   }
   .wufoo h3 {
-    font-size: 25px;
+    font-size: 25px !important;
   }
 }
