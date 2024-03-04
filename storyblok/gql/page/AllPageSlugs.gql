@@ -2,6 +2,7 @@ query AllPageSlugs($page: Int!, $per_page: Int!) {
   PageItems(excluding_slugs: "home", page: $page, per_page: $per_page, resolve_links: "url") {
     items {
       full_slug
+      name
     }
     total
   }
