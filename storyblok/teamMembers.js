@@ -45,16 +45,13 @@ export async function getTeamMemberPaths() {
 export async function getTeamMember(slug, preview) {
   const data = await query(IndividualTeamMember, { variables: { slug }, preview })
 
-  return await processPageData(
-    {
-      content: {
-        ...data?.TeammemberItem.content,
-        slug: `/${data?.TeammemberItem?.full_slug}`,
-        name: data?.TeammemberItem?.name,
-      },
+  return {
+    content: {
+      ...data?.TeammemberItem.content,
+      slug: `/${data?.TeammemberItem?.full_slug}`,
+      name: data?.TeammemberItem?.name,
     },
-    data?.TeammemberItem?.full_slug,
-  )
+  }
 }
 
 // Categories

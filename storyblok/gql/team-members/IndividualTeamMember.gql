@@ -15,8 +15,6 @@ query IndividualTeamMember($slug: ID!) {
       }
       vip
       intro_content
-      content
-      sidebar_content
       team_category
       vip
       email {

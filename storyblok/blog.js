@@ -24,9 +24,9 @@ export async function getAllBlogArticles() {
   })
 
   const sortedData = data.sort((a, b) => new Date(b.content.date) - new Date(a.content.date))
-  // const withPlaceholders = await Promise.all(sortedData.map(async (article) => await generateSBPlaiceholders(article)))
+  const withPlaceholders = await Promise.all(sortedData.map(async (article) => await generateSBPlaiceholders(article)))
 
-  return sortedData
+  return withPlaceholders
 }
 
 export async function getBlogArchivePaths() {
