@@ -1,0 +1,8 @@
+query TeamCategories {
+  DatasourceEntries(datasource: "team-categories") {
+    items {
+      name
+      value
+    }
+  }
+}

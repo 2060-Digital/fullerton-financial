@@ -9,6 +9,7 @@ export const Components = {
   dual_button: dynamic(() => import("./atoms/DualButton")),
   icon_card: dynamic(() => import("./atoms/IconCard")),
   photo_card: dynamic(() => import("./atoms/PhotoCard")),
+  resource_card: dynamic(() => import("./atoms/ResourceCard")),
   divider: dynamic(() => import("./atoms/Divider")),
   inline_quote: dynamic(() => import("./atoms/PullQuote")),
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
@@ -35,6 +36,7 @@ export const Components = {
   two_column_text_section: dynamic(() => import("./molecules/TwoColumnTextSection")),
   tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
   icon_section: dynamic(() => import("./molecules/IconSection")),
+  newsletter_sidebar: dynamic(() => import("./molecules/NewsletterSidebar")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
