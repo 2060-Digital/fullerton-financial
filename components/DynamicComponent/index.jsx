@@ -35,6 +35,7 @@ export const Components = {
   two_column_text_section: dynamic(() => import("./molecules/TwoColumnTextSection")),
   tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
   icon_section: dynamic(() => import("./molecules/IconSection")),
+  newsletter_sidebar: dynamic(() => import("./molecules/NewsletterSidebar")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
