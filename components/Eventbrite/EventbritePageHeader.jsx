@@ -1,9 +1,9 @@
 import cn from "classnames"
+import { format } from "date-fns"
 import Image from "next/image"
 import EventbriteModal from "components/Eventbrite/EventbriteModal"
 import RegisterNowLink from "components/Eventbrite/RegisterNowLink"
 import VenueLink from "components/Eventbrite/VenueLink"
-import { formatEventStartEndTime, formatEventDate } from "eventbrite/formatEventDate"
 import useEventbriteModal from "eventbrite/useEventbriteModal"
 
 export default function PageHeader({ event }) {
@@ -32,8 +32,10 @@ export default function PageHeader({ event }) {
           })}
         >
           <h1 className="text-white pb-3">{event.name.text}</h1>
-          <time className={`${timeVenueStyles} pb-1`}>{formatEventDate(event?.start)}</time>
-          <time className={`${timeVenueStyles} pb-4`}>{formatEventStartEndTime(event?.start, event?.end)}</time>
+          <time className={`${timeVenueStyles} pb-1`}>{format(event?.start, "EEEE, LLLL do")}</time>
+          <time className={`${timeVenueStyles} pb-4`}>
+            {format(event?.start, "p")} - {format(event?.end, "p")}
+          </time>
           <h4 className={`${timeVenueStyles} pb-4`}>
             <VenueLink event={event} venue={event?.venue} />
           </h4>
