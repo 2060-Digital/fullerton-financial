@@ -578,6 +578,29 @@ input::placeholder {
 }
 /* End Search Bar */
 
+/* FAQ Section */
+.page-content > .faq-section {
+  @apply px-6;
+}
+
+.accordion-button .plus,
+.accordion-button circle {
+  @apply transition-all duration-300;
+}
+
+.accordion-button circle {
+  fill: theme("colors.secondary.2");
+}
+
+.accordion-button:hover circle {
+  fill: theme("colors.tertiary.1");
+}
+
+.accordion-button .expanded .plus {
+  opacity: 0;
+}
+/* End FAQ Section */
+
 /* Three Column Section */
 .three-column-section {
   @apply max-w-screen-lg;
