@@ -16,7 +16,7 @@ export default function ResourceCard({ blok }) {
         className="w-full pb-4"
         sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
       />
-      <div className="flex flex-col gap-4 items-center justify-between h-full">
+      <div className="flex flex-col gap-4 sm:items-center justify-between h-full">
         <h3 className="text-center text-primary-1">{blok?.heading}</h3>
         <div className="prose-p:text-primary-1 text-center">{richText(blok?.content)}</div>
         <div className="flex items-end grow">
