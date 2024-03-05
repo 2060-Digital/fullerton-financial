@@ -46,7 +46,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
         "bg-primary-1 xl:bg-white": mobileMenuVisibility,
       })}
     >
-      <UtilityBar menu={utilityBar} />
+      <UtilityBar menu={utilityBar ?? []} />
       <section className="px-6 pt-5 pb-9 xl:py-11">
         <div className="flex flex-col xl:flex-row justify-between max-w-screen-xl items-center gap-4 mx-auto">
           <div className="flex items-center justify-between gap-4 w-full">
@@ -85,7 +85,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
             >
               <Submenu
                 {...{
-                  menuItems: header,
+                  menuItems: header ?? [],
                   currentPath: router.asPath,
                   openSubMenu,
                   setOpenSubMenu,

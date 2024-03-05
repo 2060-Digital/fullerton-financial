@@ -4,11 +4,11 @@ import LazyVideo from "components/LazyVideo"
 
 export default function VideoHero({ blok }) {
   return (
-    <section className="relative">
-      <div className="lg:h-full max-h-[813px] hidden lg:block before:bg-primary-1 before:mix-blend-multiply before:z-10 before:bg-opacity-70 before:absolute before:inset-0 before:h-full before:w-full">
+    <section className="relative video-hero">
+      <div className="lg:h-full max-h-[580px] hidden lg:block before:bg-primary-1 before:mix-blend-multiply before:z-10 before:bg-opacity-70 before:absolute before:inset-0 before:h-full before:w-full">
         {blok.video.filename ? (
           <LazyVideo
-            className="w-full object-cover relative pointer-events-none h-[813px] z-0"
+            className="w-full object-cover relative pointer-events-none h-[580px] z-0"
             poster={blok.video_poster.filename}
             sources={[
               { src: blok.video.filename, type: "video/webm; codecs=av01.0.05M.08" },
@@ -43,7 +43,7 @@ export default function VideoHero({ blok }) {
           sizes="(max-width: 1024px) 100vw, 0vw"
         />
       ) : null}
-      <div className="px-6 text-center gap-8 py-8 lg:py-12 bg-primary-1 lg:bg-[transparent] prose-headings:text-white prose-headings:pb-8 prose-p:text-white lg:absolute lg:top-1/2 lg:-translate-y-1/2 w-full relative z-20">
+      <div className="px-6 text-center gap-8 py-8 lg:py-12 bg-secondary-2 lg:bg-[transparent] prose-headings:text-primary-1 lg:prose-headings:text-white prose-headings:pb-8 prose-p:text-primary-1 lg:prose-p:text-white lg:absolute lg:top-1/2 lg:-translate-y-1/2 w-full relative z-20">
         {richText(blok?.content)}
       </div>
     </section>
