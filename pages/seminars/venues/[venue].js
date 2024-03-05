@@ -1,6 +1,6 @@
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
-import { getEventSeriesWithEvents, getVenuePaths } from "eventbrite/api"
+import { getVenuePaths, getEventSeriesWithEvents } from "eventbrite/seminars"
 import PageHeader from "components/DynamicComponent/molecules/PageHeader"
 import EventSection from "components/Eventbrite/EventSection"
 import VenueMap from "components/Eventbrite/VenueMap"
@@ -32,9 +32,8 @@ export default function Venue({ eventSeries }) {
 
 export async function getStaticProps({ params: { venue } }) {
   const globals = await getGlobals()
-  const id = venue.split("-")[venue.split("-").length - 1]
 
-  const eventSeries = await getEventSeriesWithEvents(id)
+  const eventSeries = await getEventSeriesWithEvents(venue.split("-").pop())
 
   return {
     props: {
