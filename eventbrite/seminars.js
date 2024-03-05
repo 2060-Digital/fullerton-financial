@@ -2,6 +2,7 @@ import query from "eventbrite/query"
 import slugify from "slugify"
 
 import { getCachedEvents } from "eventbrite/api"
+import { groupBy } from "lodash"
 
 export async function getSeminarsForArchive() {
   const allEvents = await getCachedEvents().then(({ eventsInSeries }) =>
@@ -50,18 +51,21 @@ export async function getEventSeriesWithEvents(id) {
 
   const venue = await getVenueByID(eventSeries.venue_id, id)
 
-  const events = await query(`/series/${id}/events`).then((response) => {
-    return response.events
-      .filter(({ status, listed }) => status === "live" && listed)
-      .map((event) => ({
-        ...event,
-        venue,
-        start: event?.start?.local,
-        end: event?.end?.local,
-        slug: `/seminars/${slugify(event.name.text, {
-          lower: true,
-        })}-${event.id}`,
-      }))
+  const events = await getCachedEvents().then(({ eventsInSeries }) => {
+    return (
+      eventsInSeries
+        .filter((event) => event?.series_id === id)
+        // .filter(({ status, listed }) => status === "live" && listed)
+        .map((event) => ({
+          ...event,
+          venue,
+          start: event?.start?.local,
+          end: event?.end?.local,
+          slug: `/seminars/${slugify(event.name.text, {
+            lower: true,
+          })}-${event.id}`,
+        }))
+    )
   })
 
   const structured_content = await query(`/events/${id}/structured_content/`).then((response) => response.modules)
@@ -79,8 +83,8 @@ export async function getEventSeriesByID(id) {
 
 export async function getVenuePaths() {
   const { eventsInSeries } = await getCachedEvents()
-
-  const uniqueSeriesIDs = [...new Set(eventsInSeries)].map(({ series_id }) => series_id)
+  // console.log(groupBy(eventsInSeries, "series_id"))
+  const uniqueSeriesIDs = eventsInSeries.map(({ series_id }) => series_id)
 
   const eventSeries = await Promise.all(
     uniqueSeriesIDs.map(async (id) => {
@@ -109,7 +113,7 @@ export async function getVenueByID(id, series_id) {
     latitude: parseFloat(venue?.latitude),
     longitude: parseFloat(venue?.longitude),
     directionsLink: `https://maps.google.com/?q=${parseFloat(venue?.latitude)},${parseFloat(venue?.longitude)}`,
-    slug: `/seminars/venues/${slugify(venue.name, {
+    slug: `/events/venues/${slugify(venue.name, {
       lower: true,
     })}-${series_id}`,
   }

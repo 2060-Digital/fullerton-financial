@@ -32,12 +32,12 @@ export async function getAllActiveEvents() {
   // const eventsInSeries = await query(`/organizations/${orgID}/events?series_filter=allseries&status=live`).then(
   //   ({ events }) => events,
   // )
-  const eventsNotInSeries = await query(`/organizations/${orgID}/events?series_filter=nonseries&status=draft`).then(
-    ({ events }) => events,
-  )
-  const eventsInSeries = await query(`/organizations/${orgID}/events?series_filter=allseries&status=draft`).then(
-    ({ events }) => events,
-  )
+  const eventsNotInSeries = await query(
+    `/organizations/${orgID}/events?series_filter=nonseries&status=draft&time_filter=current_future`,
+  ).then(({ events }) => [...new Set(events)])
+  const eventsInSeries = await query(
+    `/organizations/${orgID}/events?series_filter=allseries&status=draft&time_filter=current_future`,
+  ).then(({ events }) => [...new Set(events)])
 
   const eventsWithVenues = {
     eventsNotInSeries: await Promise.all(
