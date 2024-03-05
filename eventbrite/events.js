@@ -6,7 +6,7 @@ export async function getEventsForArchive() {
     eventsNotInSeries.filter(({ listed }) => listed === true),
   )
 
-  return allEvents.map((event) => ({ ...event, start: event?.start?.local, end: event?.end?.local }))
+  return allEvents
 }
 
 export async function getSingleEventPaths() {

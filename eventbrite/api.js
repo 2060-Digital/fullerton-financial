@@ -3,7 +3,6 @@ import cache from "storyblok/cache"
 import { groupBy } from "lodash"
 import slugify from "slugify"
 import { format } from "date-fns"
-import { getVenueByID } from "eventbrite/seminars"
 
 export async function getOrganizationID() {
   const orgID = await query("/users/me/organizations").then((response) => response.organizations[0].id)
@@ -25,80 +24,85 @@ export async function getCachedEvents() {
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
+  const { events: eventsNotInSeries } = await query(
+    `/organizations/${orgID}/events?series_filter=nonseries&status=live`,
+  )
+
   // Uncomment once ready to merge
-  // const eventsNotInSeries = await query(`/organizations/${orgID}/events?series_filter=nonseries&status=live`).then(
-  //   ({ events }) => events,
+  // const { events: eventsInSeries } = await query(
+  //   `/organizations/${orgID}/events?series_filter=children&status=live`,
   // )
-  // const eventsInSeries = await query(`/organizations/${orgID}/events?series_filter=allseries&status=live`).then(
-  //   ({ events }) => events,
+  // const { events: seriesParents } = await query(
+  //   `/organizations/${orgID}/events?series_filter=parents&status=live`,
   // )
-  const eventsNotInSeries = await query(
-    `/organizations/${orgID}/events?series_filter=nonseries&status=draft&time_filter=current_future`,
-  ).then(({ events }) => [...new Set(events)])
-  const eventsInSeries = await query(
-    `/organizations/${orgID}/events?series_filter=allseries&status=draft&time_filter=current_future`,
-  ).then(({ events }) => [...new Set(events)])
+
+  // Delete once ready to merge
+  const { events: eventsInSeries } = await query(
+    `/organizations/${orgID}/events?series_filter=children&status=draft&time_filter=current_future`,
+  )
+  const { events: seriesParents } = await query(
+    `/organizations/${orgID}/events?series_filter=parents&status=draft&time_filter=current_future`,
+  )
+
+  async function formatEvents(events, slugPrefix = "seminars") {
+    const formattedEvents = await Promise.all(
+      events.map(async (event) => {
+        const venue = await getVenueByID(event.venue_id, event.series_id)
+
+        const content = await query(`/events/${event.id}/structured_content/`).then((response) => response.modules)
+
+        return {
+          ...event,
+          venue,
+          content,
+          start: event?.start?.local,
+          end: event?.end?.local,
+          slug: `/${slugPrefix}/${slugify(event.name.text, {
+            lower: true,
+          })}-${event.id}`,
+        }
+      }),
+    )
+    return formattedEvents
+  }
 
   const eventsWithVenues = {
-    eventsNotInSeries: await Promise.all(
-      eventsNotInSeries.map(async (event) => {
-        const venue = await getVenueByID(event.venue_id, event.series_id)
-
-        return {
-          ...event,
-          venue,
-          slug: `/events/${slugify(event.name.text, {
-            lower: true,
-          })}-${event.id}`,
-        }
-      }),
-    ),
-    eventsInSeries: await Promise.all(
-      eventsInSeries.map(async (event) => {
-        const venue = await getVenueByID(event.venue_id, event.series_id)
-
-        return {
-          ...event,
-          venue,
-          slug: `/seminars/${slugify(event.name.text, {
-            lower: true,
-          })}-${event.id}`,
-        }
-      }),
-    ),
+    eventsNotInSeries: await formatEvents(eventsNotInSeries, "events"),
+    eventsInSeries: await formatEvents(eventsInSeries),
+    seriesParents: await formatEvents(seriesParents),
   }
 
   return eventsWithVenues
 }
 
 export async function getEventByID(id) {
-  const event = await query(`/events/${id}`)
+  const event = await getCachedEvents().then(({ eventsNotInSeries, eventsInSeries }) =>
+    [...eventsInSeries, ...eventsNotInSeries].find((event) => event.id === id),
+  )
 
-  const content = await query(`/events/${id}/structured_content`)
-
-  const venue = await getVenueByID(event.venue_id, event.series_id)
-
-  return {
-    ...event,
-    start: event?.start?.local,
-    end: event?.end?.local,
-    venue,
-    content,
-  }
+  return event
 }
 
-export async function getAllPublicEvents() {
-  const allEvents = await getCachedEvents().then(({ eventsInSeries, eventsNotInSeries }) => [
-    ...eventsInSeries.filter(({ listed }) => listed === true),
-    ...eventsNotInSeries.filter(({ listed }) => listed === true),
-  ])
+export async function getVenueByID(id, series_id) {
+  const venue = await query(`/venues/${id}`)
 
-  return allEvents.map((event) => ({ ...event, start: event?.start?.local, end: event?.end?.local }))
+  return {
+    ...venue,
+    latitude: parseFloat(venue?.latitude),
+    longitude: parseFloat(venue?.longitude),
+    directionsLink: `https://maps.google.com/?q=${parseFloat(venue?.latitude)},${parseFloat(venue?.longitude)}`,
+    slug: `/seminars/venues/${slugify(venue.name, {
+      lower: true,
+    })}-${series_id}`,
+  }
 }
 
 // Components
 export async function getEventsForUpcomingEvents() {
-  const rawEvents = await getAllPublicEvents()
+  const rawEvents = await getCachedEvents().then(({ eventsInSeries, eventsNotInSeries }) => [
+    ...eventsInSeries.filter(({ listed }) => listed === true),
+    ...eventsNotInSeries.filter(({ listed }) => listed === true),
+  ])
 
   const eventsBySeries = Object.entries(groupBy(rawEvents, "series_id"))
 

@@ -19,9 +19,9 @@ export default function Venue({ eventSeries }) {
       />
       <main data-pagefind-body>
         <PageHeader
-          blok={{ heading: eventSeries?.venue?.name, image: eventSeries.image, content: eventSeries.content }}
+          blok={{ heading: eventSeries?.venue?.name, image: eventSeries.image, content: eventSeries.headerContent }}
         />
-        <StructuredContentSection modules={eventSeries?.structured_content} />
+        <StructuredContentSection modules={eventSeries?.content} />
         <EventSection events={eventSeries.events} />
         <VenueMap venue={eventSeries.venue} />
       </main>
