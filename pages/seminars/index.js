@@ -26,7 +26,7 @@ export async function getStaticProps({ preview = null }) {
   const globals = await getGlobals()
   const events = await getAllPublicEvents()
 
-  const story = await getEventArchive("events", preview)
+  const story = await getEventArchive("seminars", preview)
 
   return {
     props: {

@@ -1,5 +1,5 @@
-query EventArchive {
-  EventsarchiveItem(id: "events", resolve_links: "url") {
+query EventArchive($slug: ID!) {
+  EventsarchiveItem(id: $slug, resolve_links: "url") {
     content {
       _uid
       _editable
