@@ -15,7 +15,7 @@ export default function PageHeader({ event }) {
   return (
     <section
       className={cn("bg-primary-1", {
-        "mt-24 lg:mt-16 pl-6 lg:pl-0 pb-16 lg:pb-0": hasImage,
+        "mt-24 lg:mt-16 pl-6 lg:pl-0 pb-12 sm:pb-16 lg:pb-0": hasImage,
         "px-6 py-8 lg:py-12": !hasImage,
       })}
     >
@@ -27,7 +27,7 @@ export default function PageHeader({ event }) {
       >
         <div
           className={cn({
-            "lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-32 2xl:mr-0 lg:ml-6 xl:ml-[72px] 2xl:pl-12 py-6":
+            "lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-14 2xl:mr-12 lg:ml-6 xl:ml-[72px] 2xl:ml-[94px] 2xl:pl-8 lg:py-8 w-full":
               hasImage,
           })}
         >
@@ -49,7 +49,7 @@ export default function PageHeader({ event }) {
               alt=""
               width={896}
               height={585}
-              className="relative -right-3.5 -top-3.5 w-full"
+              className="relative -right-3.5 -top-3.5 w-full aspect-[896/505] object-cover"
             />
           </div>
         ) : null}
