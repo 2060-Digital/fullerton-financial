@@ -1,10 +1,11 @@
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
-import { getEventByID, getIndividualEventPaths } from "eventbrite/api"
+import { getEventByID } from "eventbrite/api"
 import EventbritePageHeader from "components/Eventbrite/EventbritePageHeader"
 import VenueMap from "components/Eventbrite/VenueMap"
 import StructuredContentSection from "components/Eventbrite/StructuredContentSection"
 import Meta from "components/Meta"
+import { getSingleEventPaths } from "eventbrite/events"
 
 export default function IndividualEventPage({ event }) {
   return (
@@ -57,13 +58,11 @@ export default function IndividualEventPage({ event }) {
 export async function getStaticProps({ params: { event } }) {
   const globals = await getGlobals()
 
-  const id = event.split("-")[event.split("-").length - 1]
-  const individualEvent = await getEventByID(id)
+  const individualEvent = await getEventByID(event.split("-").pop())
 
   return {
     props: {
       globals,
-      eventID: id,
       event: individualEvent ?? null,
     },
   }
@@ -71,7 +70,7 @@ export async function getStaticProps({ params: { event } }) {
 
 export async function getStaticPaths() {
   return {
-    paths: await getIndividualEventPaths(),
+    paths: await getSingleEventPaths(),
     fallback: false,
   }
 }
