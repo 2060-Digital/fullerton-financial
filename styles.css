@@ -578,6 +578,16 @@ input::placeholder {
 }
 /* End Search Bar */
 
+/* Three Column Section */
+.three-column-section {
+  @apply max-w-screen-lg;
+}
+
+.three-column-section:has(.resource-card) {
+  @apply max-w-screen-xl;
+}
+/* End Three Column Section */
+
 .archive-tab-bar::-webkit-scrollbar {
   display: none;
 }
