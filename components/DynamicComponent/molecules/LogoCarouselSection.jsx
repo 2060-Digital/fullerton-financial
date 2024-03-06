@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import cn from "classnames"
 import CallToAction from "components/CallToAction"
@@ -48,7 +47,7 @@ export default function LogoCarouselSection({ blok }) {
   )
 
   return (
-    <section className="py-12 lg:py-24 px-6 overflow-hidden">
+    <section className="logo-carousel-section py-12 lg:py-24 px-6 overflow-hidden bg-secondary-2">
       <div className="text-center mb-8">
         <h2>
           {blok?.eyebrow ? <span className="block eyebrow pb-2.5 text-primary-1">{blok?.eyebrow}</span> : null}
@@ -59,7 +58,7 @@ export default function LogoCarouselSection({ blok }) {
         <div className="mb-12 mx-auto">
           <div
             ref={ref}
-            className="flex gap-11 mx-auto transition-all duration-500"
+            className="flex gap-11 mx-auto transition-all duration-500 items-center"
             style={{
               width: `${visibleSlides * slideWidth - slideGap}px`,
               transform: `translateX(-${visibleSlides < numLogos ? offset : 0}px)`,

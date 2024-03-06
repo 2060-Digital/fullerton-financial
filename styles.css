@@ -96,7 +96,9 @@ p {
 .secondary-link,
 .secondary-white-link,
 .ghost-link,
-.download-link {
+.download-link,
+.email-link,
+.linkedin-link {
   @apply uppercase transition-all duration-200 text-primary-1 font-primary;
 }
 .primary-link,
@@ -126,17 +128,22 @@ p {
 }
 
 .phone-link,
-.chat-link {
+.chat-link,
+.email-link,
+.linkedin-link {
   @apply text-base font-primary font-medium text-white underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1 flex gap-2 items-center w-max;
 }
 
-.download-link {
+.download-link,
+.email-blue-link {
   @apply text-base font-primary font-medium text-primary-1 underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1 flex gap-2 items-center;
 }
 
 .phone-link::before,
 .chat-link::before,
-.download-link::before {
+.download-link::before,
+.email-link::before,
+.linkedin-link::before {
   content: "";
   display: block;
   background-repeat: no-repeat;
@@ -158,6 +165,17 @@ p {
   background-image: url("public/assets/cta-icons/download.svg");
   width: 15px;
   height: 15px;
+}
+
+.email-link::before {
+  background-image: url("public/assets/cta-icons/email.svg");
+  height: 12px;
+  width: 18px;
+}
+.linkedin-link::before {
+  background-image: url("public/assets/cta-icons/linkedin.svg");
+  height: 18px;
+  width: 18px;
 }
 
 /* End Call to Action */
@@ -414,8 +432,13 @@ input::placeholder {
 
 /* Divider */
 .page-content > .content-divider {
-  @apply px-5;
+  @apply px-6;
 }
+
+.video-hero + .content-divider:has(+ .logo-carousel-section) {
+  @apply lg:hidden -mb-2;
+}
+
 /* End Divider */
 
 /* CTA Banner */
@@ -567,3 +590,39 @@ input::placeholder {
 }
 
 /* End Timeline */
+/* FAQ Section */
+.page-content > .faq-section {
+  @apply px-6;
+}
+
+.accordion-button .plus,
+.accordion-button circle {
+  @apply transition-all duration-300;
+}
+
+.accordion-button circle {
+  fill: theme("colors.secondary.2");
+}
+
+.accordion-button:hover circle {
+  fill: theme("colors.tertiary.1");
+}
+
+.accordion-button .expanded .plus {
+  opacity: 0;
+}
+/* End FAQ Section */
+
+/* Three Column Section */
+.three-column-section {
+  @apply max-w-screen-lg;
+}
+
+.three-column-section:has(.resource-card) {
+  @apply max-w-screen-xl;
+}
+/* End Three Column Section */
+
+.archive-tab-bar::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,10 @@
+query ArchiveBySlug($slug: ID!) {
+  TeamarchiveItem(id: $slug, resolve_links: "url") {
+    content {
+      seo
+      page_header
+      _uid
+      _editable
+    }
+  }
+}
