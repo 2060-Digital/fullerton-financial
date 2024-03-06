@@ -1,7 +1,8 @@
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
 import { getEventsForUpcomingEvents } from "eventbrite/api"
+import { getBreadcrumbs } from "storyblok/api"
 
-export default async function processPageData(data) {
+export default async function processPageData(data, slug) {
   const processedData = data?.content?.body?.length
     ? await generateSBPlaiceholders({
         ...data,
@@ -13,6 +14,18 @@ export default async function processPageData(data) {
                 return {
                   ...blok,
                   events: await getEventsForUpcomingEvents(),
+                }
+              }
+
+              if (blok.component === "page_header_section" && slug) {
+                return {
+                  ...blok,
+                  breadcrumbs: getBreadcrumbs(
+                    slug
+                      .split("/")
+                      .filter((segment) => segment !== "")
+                      .join("/"),
+                  ),
                 }
               }
 
