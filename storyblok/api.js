@@ -1,5 +1,6 @@
 import retrieveAll from "storyblok/retrieveAll"
 import query from "storyblok/fetch"
+import cache from "storyblok/cache"
 
 import AllPageSlugs from "storyblok/gql/page/AllPageSlugs.gql"
 import PageBySlug from "storyblok/gql/page/PageBySlug.gql"
@@ -16,6 +17,17 @@ export async function getAllPageSlugs() {
     preview: false,
   })
 
+  // Used to build breadcrumbs
+  const slugs = data.reduce((acc, curr) => {
+    const slugWithNoTrailingSlash = curr.full_slug
+      .split("/")
+      .filter((segment) => segment !== "")
+      .join("/")
+
+    return { [slugWithNoTrailingSlash]: curr.name, ...acc }
+  }, {})
+  cache.set(slugs, "page-slugs")
+
   // processed for use by getStaticPaths
   return data?.map(({ full_slug }) => ({ params: { slug: full_slug.split("/") } }))
 }
@@ -26,7 +38,7 @@ export async function getPage(slug, preview) {
   const globalData = await getGlobals(data?.PageItem?.uuid)
 
   return {
-    page: await processPageData(data?.PageItem),
+    page: await processPageData(data?.PageItem, slug),
     globals: globalData,
   }
 }
@@ -87,4 +99,30 @@ export async function getAllLocations() {
   )
 
   return locations
+}
+
+// Breadcrumbs
+export function getBreadcrumbs(slug) {
+  const pageSlugs = cache.get("page-slugs")
+
+  let slugSegments = slug.split("/").reduce((prev, curr, idx) => {
+    return idx > 0 ? [...prev, `${prev[prev.length - 1]}/${curr}`] : [curr]
+  }, [])
+  slugSegments.pop()
+
+  const breadcrumbs = slugSegments?.reduce((prev, curr) => {
+    const segmentName = pageSlugs[`${curr}`]
+
+    return segmentName
+      ? [
+          ...prev,
+          {
+            text: segmentName,
+            href: `/${curr}`,
+          },
+        ]
+      : prev
+  }, [])
+
+  return breadcrumbs?.length > 0 ? [...breadcrumbs, { text: pageSlugs[slug], href: `/${slug}` }] : []
 }

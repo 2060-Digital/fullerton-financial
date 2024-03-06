@@ -21,7 +21,7 @@ export function Crumb({ text, href, last }) {
 }
 
 export default function Breadcrumbs({ breadcrumbs }) {
-  return breadcrumbs ? (
+  return breadcrumbs?.length ? (
     <>
       <nav aria-label="Breadcrumb" className="pb-2">
         <ol className="max-w-screen-xl w-full leading-7">
