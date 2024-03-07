@@ -15,7 +15,7 @@ export default function EventsArchive({ events, story, meta }) {
         {story?.content?.body?.map((blok) => (
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}
-        <EventSection events={events} />
+        <EventSection events={events} eventType="seminars" />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>

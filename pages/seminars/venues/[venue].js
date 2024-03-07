@@ -22,7 +22,7 @@ export default function Venue({ eventSeries }) {
           blok={{ heading: eventSeries?.venue?.name, image: eventSeries.image, content: eventSeries.headerContent }}
         />
         <StructuredContentSection modules={eventSeries?.content} />
-        <EventSection events={eventSeries.events} />
+        <EventSection events={eventSeries.events} eventType="seminars" />
         <VenueMap venue={eventSeries.venue} />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
