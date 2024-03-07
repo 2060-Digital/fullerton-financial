@@ -16,6 +16,7 @@ export const Components = {
   inline_video: dynamic(() => import("./atoms/InlineVideo")),
   two_column_list: dynamic(() => import("./atoms/TwoColumnList")),
   callout: dynamic(() => import("./atoms/Callout")),
+  dual_badge: dynamic(() => import("./atoms/DualBadge")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
