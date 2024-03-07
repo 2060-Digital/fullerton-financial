@@ -49,9 +49,17 @@ export default function richText(content) {
               return <Component className="rich-text-heading">{children}</Component>
             }
 
+            // Prevents content editors from changing the font weight of headings
+            let formattedChildren = children.map((node) => {
+              if (node?.type === "b") {
+                return node?.props?.children
+              }
+              return node
+            })
+
             return children ? (
               <Component className={cn(children[0].props.className, "rich-text-heading")}>
-                {children[0].props.children}
+                {formattedChildren}
               </Component>
             ) : null
           },
