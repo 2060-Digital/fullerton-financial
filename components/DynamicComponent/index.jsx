@@ -15,6 +15,7 @@ export const Components = {
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
   inline_video: dynamic(() => import("./atoms/InlineVideo")),
   two_column_list: dynamic(() => import("./atoms/TwoColumnList")),
+  bamboo_hr_embed: dynamic(() => import("./atoms/BambooHREmbed")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
