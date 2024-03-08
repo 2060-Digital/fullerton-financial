@@ -26,6 +26,8 @@ export const getStoryblokLink = ({ href, anchor, linktype, cached_url, cachedUrl
     return cached_url ?? cachedUrl ?? relativizeToBase(href)
   }
 
+  console.error("getStoryblokLink: No valid link was found. Returning empty string instead.")
+
   return ""
 }
 
