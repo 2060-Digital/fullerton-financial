@@ -1,7 +1,7 @@
 import Map from "components/Map"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
 import DateTime from "public/assets/date-time-icon.svg"
-import Location from "public/assets/Location-icon.svg"
+import Location from "public/assets/location-icon.svg"
 import richText from "utilities/richText"
 
 export default function MapSection({ blok }) {
