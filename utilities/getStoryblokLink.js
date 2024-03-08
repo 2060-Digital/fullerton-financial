@@ -26,6 +26,8 @@ export const getStoryblokLink = ({ href, anchor, linktype, cached_url, cachedUrl
     return cached_url ?? cachedUrl ?? relativizeToBase(href)
   }
 
+  if (cached_url === "" && url === "") return ""
+
   return null
 }
 
