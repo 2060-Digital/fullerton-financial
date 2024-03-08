@@ -107,11 +107,13 @@ export async function getVenueByID(id, series_id) {
 }
 
 // Components
-export async function getEventsForUpcomingEvents() {
-  const rawEvents = await getCachedEvents().then(({ eventsInSeries, eventsNotInSeries }) => [
+export async function getEventCarouselData() {
+  const { eventsInSeries, eventsNotInSeries } = await getCachedEvents()
+
+  const rawEvents = [
     ...eventsInSeries.filter(({ listed }) => listed === true),
     ...eventsNotInSeries.filter(({ listed }) => listed === true),
-  ])
+  ]
 
   const eventsBySeries = Object.entries(groupBy(rawEvents, "series_id"))
 
