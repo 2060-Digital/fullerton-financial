@@ -66,9 +66,22 @@ export default function Map({
           <h5 class="location-title text-m1 lg:text-m2 pb-2 lg:pb-4 text-primary-1">${name}</h5>
           <address class="text-s2 not-italic pb-2 lg:pb-4">${address.localized_address_display}</address>
           <a href="${directionsLink}" target="_blank" class="uppercase transition-all duration-200 text-primary-1 font-primary border-b-2 border-b-tertiary-1 hover:border-b-secondary-1">Get Directions</a>
-        <button class="bg-primary-1 absolute bottom-0 right-0 p-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" fill="none"><path fill="white" d="M15.27 4.35a.5.5 0 0 0 0-.7L12.09.46a.5.5 0 1 0-.71.71L14.2 4l-2.83 2.83a.5.5 0 1 0 .7.7l3.19-3.18ZM.42 4.5h14.5v-1H.41v1Z"/></svg></button>`
+        ${
+          slug
+            ? `<button class="bg-primary-1 absolute bottom-0 right-0 p-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" fill="none">
+                <path
+                  fill="white"
+                  d="M15.27 4.35a.5.5 0 0 0 0-.7L12.09.46a.5.5 0 1 0-.71.71L14.2 4l-2.83 2.83a.5.5 0 1 0 .7.7l3.19-3.18ZM.42 4.5h14.5v-1H.41v1Z"
+                />
+              </svg>
+            </button>`
+            : ""
+        }`
 
-        popupBody.querySelector("button").addEventListener("click", () => router.push(slug))
+        if (slug) {
+          popupBody.querySelector("button").addEventListener("click", () => router.push(slug))
+        }
 
         const popup = new maplibregl.Popup({
           offset: {
