@@ -63,7 +63,7 @@ export async function getGlobals(pageUID) {
   const datasources = await query(Datasources)
 
   const menus = await retrieveAll({ query: Menus, preview: false, type: "MenuItems" }).then((items) =>
-    items.reduce((prev, curr) => ({ [curr.slug]: curr.content.menu_items, ...prev }), {}),
+    items.reduce((prev, curr) => ({ [curr.slug.replaceAll("-", "")]: curr.content.menu_items, ...prev }), {}),
   )
 
   const locations = await getAllLocations()
@@ -103,7 +103,11 @@ export async function getAllLocations() {
 
 // Breadcrumbs
 export function getBreadcrumbs(slug) {
-  const pageSlugs = cache.get("page-slugs")
+  const pageSlugs = cache?.get("page-slugs")
+
+  if (!pageSlugs) {
+    return []
+  }
 
   let slugSegments = slug.split("/").reduce((prev, curr, idx) => {
     return idx > 0 ? [...prev, `${prev[prev.length - 1]}/${curr}`] : [curr]

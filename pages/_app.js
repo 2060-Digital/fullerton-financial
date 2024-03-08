@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps: { preview, story, globals, ...remainingPr
         <meta name="theme-color" content="#ffffff" />
       </Head>
       {preview && <PreviewAlert />}
-      <Header header={globals?.header} utilityBar={globals["utility-bar"] ?? []} phoneNumbers={globals?.phoneNumbers} />
+      <Header header={globals?.header} utilityBar={globals?.utilitybar} phoneNumbers={globals?.phoneNumbers} />
       <Component story={story} {...remainingProps} />
       {globals?.ctaBanner ? <CTABanner blok={globals?.ctaBanner} /> : null}
       <Footer
