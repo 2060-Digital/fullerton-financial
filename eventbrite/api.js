@@ -31,27 +31,11 @@ export async function getCachedEvents() {
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
-  // Uncomment once ready to merge
-  // const { events: eventsNotInSeries } = await query(
-  //   `/organizations/${orgID}/events?series_filter=nonseries&status=live`,
-  // )
-  // const { events: eventsInSeries } = await query(
-  //   `/organizations/${orgID}/events?series_filter=children&status=live`,
-  // )
-  // const { events: seriesParents } = await query(
-  //   `/organizations/${orgID}/events?series_filter=parents&status=live`,
-  // )
-
-  // Delete once ready to merge
   const { events: eventsNotInSeries } = await query(
-    `/organizations/${orgID}/events?series_filter=nonseries&status=ended`,
+    `/organizations/${orgID}/events?series_filter=nonseries&status=live`,
   )
-  const { events: eventsInSeries } = await query(
-    `/organizations/${orgID}/events?series_filter=children&status=draft&time_filter=current_future`,
-  )
-  const { events: seriesParents } = await query(
-    `/organizations/${orgID}/events?series_filter=parents&status=draft&time_filter=current_future`,
-  )
+  const { events: eventsInSeries } = await query(`/organizations/${orgID}/events?series_filter=children&status=live`)
+  const { events: seriesParents } = await query(`/organizations/${orgID}/events?series_filter=parents&status=live`)
 
   async function formatEvents(events, slugPrefix = "seminars") {
     const formattedEvents = await Promise.all(
