@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export default function BambooHREmbed({ blok: { subdomain = "fullertonfinancial" } }) {
+export default function BambooHREmbed({ blok: { subdomain = "fullertonfinancial", heading } }) {
   const bambooHRRef = useRef(null)
 
   useEffect(() => {
@@ -17,7 +17,8 @@ export default function BambooHREmbed({ blok: { subdomain = "fullertonfinancial"
   }, [subdomain])
 
   return (
-    <section>
+    <section className="py-12 lg:py-24 px-6">
+      <h2 className="text-primary-1 text-center mb-12">{heading}</h2>
       <style>
         {`
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600&display=swap');
@@ -71,7 +72,7 @@ export default function BambooHREmbed({ blok: { subdomain = "fullertonfinancial"
   #BambooHR-Footer img { display: inline; }`}
       </style>
 
-      <div ref={bambooHRRef}></div>
+      <div ref={bambooHRRef} className="max-w-screen-xl mx-auto"></div>
       <footer
         id="BambooHR-Footer"
         style={{
