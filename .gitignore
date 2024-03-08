@@ -54,3 +54,6 @@ public/sitemap*
 
 # pagefind (site search static index)
 public/pagefind
+
+# cached events
+public/events.json

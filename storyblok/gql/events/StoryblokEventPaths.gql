@@ -1,0 +1,9 @@
+query StoryblokEventPaths($page: Int!, $per_page: Int!) {
+  PageItems(page: $page, per_page: $per_page, starts_with: "events", resolve_links: "url") {
+    items {
+      slug
+      name
+    }
+    total
+  }
+}
