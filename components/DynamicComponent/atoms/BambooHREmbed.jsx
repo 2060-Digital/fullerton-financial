@@ -18,9 +18,10 @@ export default function BambooHREmbed({ blok: { subdomain = "fullertonfinancial"
 
   return (
     <section className="py-12 lg:py-24 px-6">
-      <h2 className="text-primary-1 text-center mb-12">{heading}</h2>
-      <style>
-        {`
+      <div className="max-w-screen-xl mx-auto">
+        <h2 className="text-primary-1 text-center mb-12">{heading}</h2>
+        <style>
+          {`
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600&display=swap');
 
   .BambooHR-ATS-board {
@@ -70,28 +71,29 @@ export default function BambooHREmbed({ blok: { subdomain = "fullertonfinancial"
   }
 
   #BambooHR-Footer img { display: inline; }`}
-      </style>
+        </style>
 
-      <div ref={bambooHRRef} className="max-w-screen-xl mx-auto"></div>
-      <footer
-        id="BambooHR-Footer"
-        style={{
-          fontFamily: "Lato, sans-serif",
-          fontSize: "12px",
-          color: "rgb(153,153,153",
-          textAlign: "right",
-          margin: "9px 9px 0px 0px;",
-        }}
-      >
-        Powered by
-        <a href="http://www.bamboohr.com" target="_blank" rel="external">
-          <img
-            className="my-0 inline-block"
-            src="https://resources.bamboohr.com/images/footer-logo.png"
-            alt="BambooHR - HR software"
-          />
-        </a>
-      </footer>
+        <div ref={bambooHRRef}></div>
+        <footer
+          id="BambooHR-Footer"
+          style={{
+            fontFamily: "Lato, sans-serif",
+            fontSize: "12px",
+            color: "rgb(153,153,153",
+            textAlign: "right",
+            margin: "9px 9px 0px 0px;",
+          }}
+        >
+          Powered by
+          <a href="http://www.bamboohr.com" target="_blank" rel="external">
+            <img
+              className="my-0 inline-block"
+              src="https://resources.bamboohr.com/images/footer-logo.png"
+              alt="BambooHR - HR software"
+            />
+          </a>
+        </footer>
+      </div>
     </section>
   )
 }
