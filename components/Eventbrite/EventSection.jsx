@@ -46,15 +46,24 @@ export function Event({ event, venue }) {
   )
 }
 
-export default function EventSection({ events }) {
+export default function EventSection({ events, eventType = "events" }) {
   return (
     <section className="sm:px-6 py-12 lg:py-24">
       <h2 className="text-center text-primary-1 pb-8 lg:pb-16">Upcoming Events</h2>
 
       <div className="flex flex-col gap-8 max-w-screen-xl mx-auto">
-        {events?.map((event) => (
-          <Event event={event} venue={event?.venue} key={event?.id} />
-        ))}
+        {events?.length ? (
+          <>
+            {events?.map((event) => (
+              <Event event={event} venue={event?.venue} key={event?.id} />
+            ))}
+          </>
+        ) : (
+          <div className="w-full bg-secondary-2 text-center px-6 py-7 sm:py-12">
+            <h3 className="pb-4 text-primary-1">Sorry, there are no upcoming {eventType}.</h3>
+            <h4 className="text-primary-1">Check back for updates soon.</h4>
+          </div>
+        )}
       </div>
     </section>
   )
