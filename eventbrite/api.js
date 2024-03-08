@@ -1,8 +1,8 @@
-import query from "eventbrite/query"
-import cache from "storyblok/cache"
-import { groupBy } from "lodash"
+import fs from "fs"
 import slugify from "slugify"
+import { groupBy } from "lodash"
 import { format } from "date-fns"
+import query from "eventbrite/query"
 
 export async function getOrganizationID() {
   const orgID = await query("/users/me/organizations").then((response) => response.organizations[0].id)
@@ -11,11 +11,18 @@ export async function getOrganizationID() {
 }
 
 export async function getCachedEvents() {
-  let events = cache.get("active-events")
-
-  if (!events) {
+  let events = []
+  const path = `${process.cwd()}/public/events.json`
+  try {
+    const data = fs.readFileSync(path)
+    events = JSON.parse(data)
+  } catch (error) {
+    console.error(error)
     events = await getAllActiveEvents()
-    cache.set(events, "active-events")
+
+    if (!fs.existsSync(path)) {
+      fs.writeFileSync(path, JSON.stringify(events))
+    }
   }
 
   return events
@@ -24,11 +31,10 @@ export async function getCachedEvents() {
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
-  const { events: eventsNotInSeries } = await query(
-    `/organizations/${orgID}/events?series_filter=nonseries&status=live`,
-  )
-
   // Uncomment once ready to merge
+  // const { events: eventsNotInSeries } = await query(
+  //   `/organizations/${orgID}/events?series_filter=nonseries&status=live`,
+  // )
   // const { events: eventsInSeries } = await query(
   //   `/organizations/${orgID}/events?series_filter=children&status=live`,
   // )
@@ -37,6 +43,9 @@ export async function getAllActiveEvents() {
   // )
 
   // Delete once ready to merge
+  const { events: eventsNotInSeries } = await query(
+    `/organizations/${orgID}/events?series_filter=nonseries&status=ended`,
+  )
   const { events: eventsInSeries } = await query(
     `/organizations/${orgID}/events?series_filter=children&status=draft&time_filter=current_future`,
   )
