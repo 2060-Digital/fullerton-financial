@@ -47,37 +47,37 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
       })}
     >
       <UtilityBar menu={utilityBar ?? []} />
-      <section className="px-6 pt-5 pb-9 xl:py-11">
-        <div className="flex flex-col xl:flex-row justify-between max-w-screen-xl items-center gap-4 mx-auto">
-          <div className="flex items-center justify-between gap-4 w-full">
+      <section className="px-6 pb-9 pt-5 xl:py-11">
+        <div className="mx-auto flex max-w-screen-xl flex-col items-center justify-between gap-4 xl:flex-row">
+          <div className="flex w-full items-center justify-between gap-4">
             <button
               className="hamburger-btn xl:hidden"
               aria-label={mobileMenuVisibility ? `close menu` : `open menu`}
               onClick={() => setMobileMenuVisibility((prev) => !prev)}
             >
-              <MenuButton className={cn("cursor-pointer mx-auto", { open: mobileMenuVisibility })} />
-              <span className={`text-center mx-auto ${mobileMenuColor}`}>
+              <MenuButton className={cn("mx-auto cursor-pointer", { open: mobileMenuVisibility })} />
+              <span className={`mx-auto text-center ${mobileMenuColor}`}>
                 {mobileMenuVisibility ? "Close" : "Menu"}
               </span>
             </button>
             <Link href="/">
               <Logo
-                className={`w-[193px] sm:w-[233px] transition-all duration-200 xl:text-primary-1 ${mobileMenuColor}`}
+                className={`w-[193px] transition-all duration-200 sm:w-[233px] xl:text-primary-1 ${mobileMenuColor}`}
               />
             </Link>
-            <Link href={getTelLink(phoneNumbers?.primary)} className="xl:hidden sm:w-11 justify-self-end">
+            <Link href={getTelLink(phoneNumbers?.primary)} className="justify-self-end sm:w-11 xl:hidden">
               <div
-                className={`flex flex-col justify-center items-center font-primary text-primary-1 ${mobileMenuColor}`}
+                className={`flex flex-col items-center justify-center font-primary text-primary-1 ${mobileMenuColor}`}
               >
                 <Phone className={mobileMenuColor} />
                 Call
               </div>
             </Link>
           </div>
-          <nav aria-label="Main" className="flex flex-col-reverse xl:flex-row items-center gap-9 w-full">
+          <nav aria-label="Main" className="flex w-full flex-col-reverse items-center gap-9 xl:flex-row">
             <div
               className={cn(
-                "menu pb-8 px-6 xl:p-0 m-0 xl:flex items-center absolute xl:static overflow-y-auto xl:overflow-visible w-full h-[calc(100vh-105px)] xl:h-full xl:w-auto top-60 left-0 z-50 bg-primary-1 xl:bg-white",
+                "menu absolute left-0 top-60 z-50 m-0 h-[calc(100vh-105px)] w-full items-center overflow-y-auto bg-primary-1 px-6 pb-8 xl:static xl:flex xl:h-full xl:w-auto xl:overflow-visible xl:bg-white xl:p-0",
                 {
                   "hidden xl:block": !mobileMenuVisibility,
                 },
@@ -94,7 +94,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
               />
             </div>
             <div
-              className={cn("w-full flex justify-center", {
+              className={cn("flex w-full justify-center", {
                 hidden: !mobileMenuVisibility,
                 "block xl:hidden": mobileMenuVisibility,
               })}
@@ -102,7 +102,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
               <SearchBar style="light" />
             </div>
 
-            <CallToAction href="/contact" className="w-full sm:w-auto text-center whitespace-nowrap">
+            <CallToAction href="/contact" className="w-full whitespace-nowrap text-center sm:w-auto">
               Schedule a Meeting
             </CallToAction>
           </nav>

@@ -18,7 +18,7 @@ export default function PreviewAlert() {
   }, [])
 
   return visible ? (
-    <div className="py-2 text-center text-xs font-primary bg-blue-light">
+    <div className="text-xs bg-blue-light py-2 text-center font-primary">
       <span className="mr-2">This page is a preview. Remember to save & publish your changes.</span>
 
       <CallToAction

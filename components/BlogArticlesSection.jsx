@@ -11,10 +11,10 @@ import Arrow from "public/assets/chevron-down.svg"
 
 const ArticleItem = ({ article }) => {
   return (
-    <article className="bg-gray-light border-l-[20px] border-l-white">
+    <article className="border-l-[20px] border-l-white bg-gray-light">
       <Link
         href={`/blog/${article?.slug}`}
-        className="w-full block relative h-[238px] border-2 border-secondary-1 -left-4 hover:border-tertiary-1 transition-all duration-300"
+        className="relative -left-4 block h-[238px] w-full border-2 border-secondary-1 transition-all duration-300 hover:border-tertiary-1"
       >
         <Image
           src={
@@ -27,15 +27,15 @@ const ArticleItem = ({ article }) => {
           blurDataURL={article?.content?.blurDataURL}
           width={345}
           height={238}
-          className="w-full object-cover h-full relative -top-4 -right-4"
+          className="relative -right-4 -top-4 h-full w-full object-cover"
         />
       </Link>
       <div className="p-8">
-        <Link href={`/blog/${article?.slug}`} className="block mb-4">
+        <Link href={`/blog/${article?.slug}`} className="mb-4 block">
           <h3 className="text-primary-1 hover:underline">{article?.content?.title}</h3>
         </Link>
         {article?.content?.date?.length > 0 ? (
-          <time className="block mb-4 font-primary text-primary-1">{formatBlogDate(article?.content?.date)}</time>
+          <time className="mb-4 block font-primary text-primary-1">{formatBlogDate(article?.content?.date)}</time>
         ) : null}
         <p>{getExcerpt(article?.content?.content, 160)}</p>
       </div>
@@ -50,10 +50,10 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
   const Tab = ({ name, value, link }) => (
     <Link
       className={cn(
-        "font-primary text-white transition-all duration-300 text-left mr-8 lg:mr-0 whitespace-nowrap py-2 lg:py-4 lg:decoration-secondary-1 lg:underline-offset-4 lg:hover:underline lg:decoration-2 capitalize",
+        "mr-8 whitespace-nowrap py-2 text-left font-primary capitalize text-white transition-all duration-300 lg:mr-0 lg:py-4 lg:decoration-secondary-1 lg:decoration-2 lg:underline-offset-4 lg:hover:underline",
         {
-          "h-0 opacity-0 lg:py-4 lg:h-auto lg:opacity-100": currentTab.value !== value && !open,
-          "lg:decoration-secondary-1 lg:underline": currentTab.value === value,
+          "h-0 opacity-0 lg:h-auto lg:py-4 lg:opacity-100": currentTab.value !== value && !open,
+          "lg:underline lg:decoration-secondary-1": currentTab.value === value,
           "h-auto opacity-100": open,
           "hidden lg:block": open && currentTab === value,
         },
@@ -67,10 +67,10 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
 
   return (
     <>
-      <nav className="bg-primary-2 lg:bg-primary w-full lg:px-5 sticky lg:relative top-0 z-50">
-        <div className="lg:max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-between">
+      <nav className="lg:bg-primary sticky top-0 z-50 w-full bg-primary-2 lg:relative lg:px-5">
+        <div className="mx-auto flex flex-col justify-between lg:max-w-screen-xl lg:flex-row">
           <button
-            className={cn("text-white self-start py-2 px-5 lg:hidden w-full text-left capitalize", {
+            className={cn("w-full self-start px-5 py-2 text-left capitalize text-white lg:hidden", {
               "scale-y-0": open,
               "scale-y-100": !open,
             })}
@@ -80,7 +80,7 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
           </button>
           <div
             className={cn(
-              "archive-tab-bar flex flex-col lg:flex-row lg:gap-8 xl:gap-12 mx-auto bg-primary-2 absolute lg:relative w-full transition-all duration-300 origin-top px-5 lg:px-0 z-10 lg:w-max lg:overflow-x-auto",
+              "archive-tab-bar absolute z-10 mx-auto flex w-full origin-top flex-col bg-primary-2 px-5 transition-all duration-300 lg:relative lg:w-max lg:flex-row lg:gap-8 lg:overflow-x-auto lg:px-0 xl:gap-12",
               {
                 "scale-y-0 lg:scale-y-100": !open,
                 "scale-y-100": open,
@@ -111,8 +111,8 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
       </nav>
       {blogArticles?.length > 0 ? (
         <section id="blog-section" className="px-6" data-pagefind-body>
-          <div className="max-w-screen-xl mx-auto pt-12">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 last:pb-12">
+          <div className="mx-auto max-w-screen-xl pt-12">
+            <div className="grid gap-x-8 gap-y-12 last:pb-12 sm:grid-cols-2 lg:grid-cols-3">
               {blogArticles?.map((article) => (
                 <ArticleItem article={article} key={article?.content?._uid} />
               ))}
@@ -135,10 +135,10 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
           </div>
         </section>
       ) : (
-        <div className="py-12 lg:py-28 px-6 bg-secondary-2" data-pagefind-ignore>
-          <div className="max-w-screen-md text-center mx-auto flex flex-col justify-center items-center">
-            <h1 className="text-primary-1 mb-8">Sorry, we did not find any articles in this category</h1>
-            <p className="text-primary-1 mb-4 font-secondary font-bold text-m2 lg:text-l1">
+        <div className="bg-secondary-2 px-6 py-12 lg:py-28" data-pagefind-ignore>
+          <div className="mx-auto flex max-w-screen-md flex-col items-center justify-center text-center">
+            <h1 className="mb-8 text-primary-1">Sorry, we did not find any articles in this category</h1>
+            <p className="mb-4 font-secondary text-m2 font-bold text-primary-1 lg:text-l1">
               Please try another category or visit the:
             </p>
             <CallToAction href="/blog/page/1">Main Blog Page</CallToAction>

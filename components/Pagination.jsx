@@ -55,7 +55,7 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
           disabled={pageNumber === +currentPage}
           onClick={() => setCurrentPage(pageNumber)}
           className={cn(
-            "px-2 flex justify-center disabled:cursor-not-allowed hover:underline decoration-tertiary-1 underline-offset-4 decoration-2 font-primary text-primary-1",
+            "flex justify-center px-2 font-primary text-primary-1 decoration-tertiary-1 decoration-2 underline-offset-4 hover:underline disabled:cursor-not-allowed",
             {
               underline: pageNumber === +currentPage,
             },
@@ -68,11 +68,11 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
     })
 
   return (
-    <div className="mx-auto flex justify-center items-center my-8 px-10">
+    <div className="mx-auto my-8 flex items-center justify-center px-10">
       <button
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}
-        className="prev-page flex mr-6 disabled:cursor-not-allowed"
+        className="prev-page mr-6 flex disabled:cursor-not-allowed"
         aria-label="Previous Page"
       >
         <Arrow
@@ -88,7 +88,7 @@ export default function Pagination({ pageCount, currentPage, setCurrentPage, scr
       <button
         disabled={currentPage === pageCount}
         onClick={() => setCurrentPage(currentPage + 1)}
-        className="next-page flex hover:text-green ml-6 disabled:cursor-not-allowed "
+        className="next-page hover:text-green ml-6 flex disabled:cursor-not-allowed "
         aria-label="Next Page"
       >
         <Arrow

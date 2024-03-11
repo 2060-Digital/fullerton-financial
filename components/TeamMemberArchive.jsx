@@ -10,11 +10,11 @@ import Arrow from "public/assets/chevron-down.svg"
 
 const Card = ({ image, first_name, last_name, job_title, team_category, email, vip, slug }) => {
   return (
-    <div className={cn("bg-gray-light h-full group", { "bg-secondary-2": vip })}>
-      <div className="w-full relative">
+    <div className={cn("group h-full bg-gray-light", { "bg-secondary-2": vip })}>
+      <div className="relative w-full">
         {vip || team_category.includes("advisors") ? (
           <div className="group-hover">
-            <div className="w-full h-full absolute border-2 border-secondary-1 group-hover:border-tertiary-1 top-5 right-5 z-10"></div>
+            <div className="absolute right-5 top-5 z-10 h-full w-full border-2 border-secondary-1 group-hover:border-tertiary-1"></div>
             <Link href={slug}>
               <Image
                 loader={image.filename && image.filename !== "" ? storyblokImageLoader : undefined}
@@ -24,14 +24,14 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
                 blurDataURL={image.blurDataURL}
                 width={getSbImageDimensions("width", image.filename)}
                 height={getSbImageDimensions("height", image.filename)}
-                className="w-full aspect-square object-cover min-h-[170px] relative z-20"
+                className="relative z-20 aspect-square min-h-[170px] w-full object-cover"
                 sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
               />
             </Link>
           </div>
         ) : (
           <div className="relative">
-            <div className="w-full h-full absolute border-2 border-secondary-1 top-5 right-5 z-10"></div>
+            <div className="absolute right-5 top-5 z-10 h-full w-full border-2 border-secondary-1"></div>
             <Image
               loader={image.filename && image.filename !== "" ? storyblokImageLoader : undefined}
               src={image.filename && image.filename !== "" ? image.filename : "/assets/placeholder.png"}
@@ -40,7 +40,7 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
               blurDataURL={image.blurDataURL}
               width={getSbImageDimensions("width", image.filename)}
               height={getSbImageDimensions("height", image.filename)}
-              className="w-full aspect-square object-cover min-h-[170px] relative z-20"
+              className="relative z-20 aspect-square min-h-[170px] w-full object-cover"
               sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
             />
           </div>
@@ -49,12 +49,12 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
       <div className="px-7 py-10">
         {vip || team_category.includes("advisors") ? (
           <Link href={slug}>
-            <h3 className="text-primary-1 pb-2 decoration-tertiary-1 hover:underline">
+            <h3 className="pb-2 text-primary-1 decoration-tertiary-1 hover:underline">
               {first_name} {last_name}
             </h3>
           </Link>
         ) : (
-          <h3 className="text-primary-1 pb-2">
+          <h3 className="pb-2 text-primary-1">
             {first_name} {last_name}
           </h3>
         )}
@@ -73,10 +73,10 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
   const Tab = ({ name, value, link }) => (
     <Link
       className={cn(
-        "font-primary text-white transition-all duration-300 text-left mr-8 lg:mr-0 whitespace-nowrap py-2 lg:py-4 lg:decoration-tertiary lg:underline-offset-4 lg:hover:underline lg:decoration-tertiary-1 capitalize",
+        "lg:decoration-tertiary mr-8 whitespace-nowrap py-2 text-left font-primary capitalize text-white transition-all duration-300 lg:mr-0 lg:py-4 lg:decoration-tertiary-1 lg:underline-offset-4 lg:hover:underline",
         {
-          "h-0 opacity-0 lg:py-4 lg:h-auto lg:opacity-100": currentTab.value !== value && !open,
-          "lg:decoration-tertiary-1 lg:underline": currentTab.value === value,
+          "h-0 opacity-0 lg:h-auto lg:py-4 lg:opacity-100": currentTab.value !== value && !open,
+          "lg:underline lg:decoration-tertiary-1": currentTab.value === value,
           "h-auto opacity-100": open,
         },
       )}
@@ -89,10 +89,10 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
 
   return (
     <div>
-      <nav className="bg-primary-2 w-full lg:px-6 sticky lg:relative top-0 z-30">
-        <div className="lg:max-w-2xl mx-auto flex flex-col lg:flex-row justify-between">
+      <nav className="sticky top-0 z-30 w-full bg-primary-2 lg:relative lg:px-6">
+        <div className="mx-auto flex flex-col justify-between lg:max-w-2xl lg:flex-row">
           <button
-            className={cn("self-start py-2 px-5 lg:hidden w-full text-left capitalize italic text-white", {
+            className={cn("w-full self-start px-5 py-2 text-left capitalize italic text-white lg:hidden", {
               "scale-y-0": open,
               "scale-y-100": !open,
             })}
@@ -102,7 +102,7 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
           </button>
           <div
             className={cn(
-              "archive-tab-bar flex flex-col lg:flex-row lg:gap-8 xl:gap-12 mx-auto bg-primary-2 absolute lg:relative w-full transition-all duration-300 origin-top px-5 lg:px-0 z-100 lg:w-max lg:overflow-x-auto",
+              "archive-tab-bar z-100 absolute mx-auto flex w-full origin-top flex-col bg-primary-2 px-5 transition-all duration-300 lg:relative lg:w-max lg:flex-row lg:gap-8 lg:overflow-x-auto lg:px-0 xl:gap-12",
               {
                 "scale-y-0 lg:scale-y-100": !open,
                 "scale-y-100": open,
@@ -129,16 +129,16 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
         </div>
       </nav>
       <section className="px-6 py-10 lg:py-24">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="mx-auto max-w-screen-xl">
           {vip?.length ? (
-            <div className={cn("grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-20 pb-10 lg:pb-24 pl-5")}>
+            <div className={cn("grid gap-8 pb-10 pl-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-20 lg:pb-24")}>
               {vip.map((item) => (
                 <Card {...item} key={item.name} />
               ))}
             </div>
           ) : null}
 
-          <div className={cn("grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 pl-5")}>
+          <div className={cn("grid grid-cols-2 gap-8 pl-5 lg:grid-cols-4 lg:gap-16")}>
             {items.map((item) => (
               <Card {...item} key={item.name} />
             ))}

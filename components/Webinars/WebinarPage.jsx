@@ -33,29 +33,29 @@ export default function WebinarPage({ webinar, onDemand = false }) {
       />
       <section
         className={cn("bg-primary-1", {
-          "mt-24 lg:mt-16 pl-6 lg:pl-0 pb-12 sm:pb-16 lg:pb-0": hasImage,
+          "mt-24 pb-12 pl-6 sm:pb-16 lg:mt-16 lg:pb-0 lg:pl-0": hasImage,
           "px-6 py-8 lg:py-12": !hasImage,
         })}
       >
         <div
           className={cn({
-            "flex flex-col-reverse lg:flex-row lg:gap-12 max-w-screen-2xl mx-auto": hasImage,
-            "max-w-screen-xl mx-auto": !hasImage,
+            "mx-auto flex max-w-screen-2xl flex-col-reverse lg:flex-row lg:gap-12": hasImage,
+            "mx-auto max-w-screen-xl": !hasImage,
           })}
         >
           <div
             className={cn({
-              "lg:self-center justify-self-end max-w-md pr-6 lg:pr-0 xl:mr-14 2xl:mr-12 lg:ml-6 xl:ml-[72px] 2xl:ml-[94px] 2xl:pl-8 lg:py-8 w-full":
+              "w-full max-w-md justify-self-end pr-6 lg:ml-6 lg:self-center lg:py-8 lg:pr-0 xl:ml-[72px] xl:mr-14 2xl:ml-[94px] 2xl:mr-12 2xl:pl-8":
                 hasImage,
             })}
           >
-            <h1 className="text-white pb-4">{webinar?.subject}</h1>
+            <h1 className="pb-4 text-white">{webinar?.subject}</h1>
             {onDemand ? (
-              <div className="text-white block font-primary font-bold text-m1 lg:text-m2 pb-4">Recorded</div>
+              <div className="block pb-4 font-primary text-m1 font-bold text-white lg:text-m2">Recorded</div>
             ) : (
               times?.map((time, idx) => (
                 <time
-                  className="text-white block font-primary font-bold text-m1 lg:text-m2 pb-4"
+                  className="block pb-4 font-primary text-m1 font-bold text-white lg:text-m2"
                   key={`webinar-time-${webinar?.webinarKey}-${idx}`}
                 >
                   {time}
@@ -65,14 +65,14 @@ export default function WebinarPage({ webinar, onDemand = false }) {
             <CallToAction href={webinar?.registrationUrl}>{webinar?.ctaLabel}</CallToAction>
           </div>
           {hasImage ? (
-            <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 w-full justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
+            <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0">
               <Image
                 loader={null}
                 src={webinar?.image}
                 alt=""
                 width={896}
                 height={585}
-                className="relative -right-3.5 -top-3.5 w-full aspect-[896/505] object-cover"
+                className="relative -right-3.5 -top-3.5 aspect-[896/505] w-full object-cover"
               />
             </div>
           ) : null}
@@ -81,8 +81,8 @@ export default function WebinarPage({ webinar, onDemand = false }) {
 
       {webinar?.description?.length > 0 ? (
         <section className="px-6 py-12 lg:py-24">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="lg:text-center pb-8 text-primary-1">Webinar Description</h2>
+          <div className="mx-auto max-w-4xl">
+            <h2 className="pb-8 text-primary-1 lg:text-center">Webinar Description</h2>
             <p>{webinar?.description}</p>
           </div>
         </section>

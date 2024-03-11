@@ -19,10 +19,10 @@ export default function TeamMember({ teamMember, meta }) {
       <StoryblokVisualEditor story={teamMember?.content}>
         <main>
           <section className="bg-primary-1 px-6 py-11 lg:py-20">
-            <div className="max-w-screen-xl mx-auto">
-              <div className="flex flex-col lg:flex-row gap-2 lg:gap-8">
-                <div className="lg:basis-1/3 flex flex-col">
-                  <div className="order-2 lg:order-1 mt-10 lg:mb-5 lg:mt-0">
+            <div className="mx-auto max-w-screen-xl">
+              <div className="flex flex-col gap-2 lg:flex-row lg:gap-8">
+                <div className="flex flex-col lg:basis-1/3">
+                  <div className="order-2 mt-10 lg:order-1 lg:mb-5 lg:mt-0">
                     <Breadcrumbs
                       breadcrumbs={[
                         { text: "Meet the Team", href: "/team/" },
@@ -30,9 +30,9 @@ export default function TeamMember({ teamMember, meta }) {
                       ]}
                     />
                   </div>
-                  <div className="pl-5 order-1 lg:order-2">
+                  <div className="order-1 pl-5 lg:order-2">
                     <div className="relative">
-                      <div className="w-full h-full absolute border-2 border-secondary-1 top-5 right-5 z-10"></div>
+                      <div className="absolute right-5 top-5 z-10 h-full w-full border-2 border-secondary-1"></div>
                       <Image
                         src={teamMember?.content?.image?.filename}
                         alt={teamMember?.content?.image?.alt}
@@ -45,14 +45,14 @@ export default function TeamMember({ teamMember, meta }) {
                         width={getSbImageDimensions("width", teamMember?.content?.image?.filename)}
                         placeholder={teamMember?.content?.image.blurDataURL ? "blur" : "empty"}
                         blurDataURL={teamMember?.content?.image.blurDataURL}
-                        className="aspect-square z-20 relative"
+                        className="relative z-20 aspect-square"
                         style={{ width: "100%", height: "auto" }}
                       />
                     </div>
                   </div>
                 </div>
-                <div className="lg:basis-2/3 lg:flex lg:flex-col justify-center">
-                  <h1 className="text-white pb-6">
+                <div className="justify-center lg:flex lg:basis-2/3 lg:flex-col">
+                  <h1 className="pb-6 text-white">
                     {teamMember?.content?.first_name} {teamMember?.content?.last_name}
                   </h1>
                   <div className="eyebrow text-white">{teamMember?.content?.job_title}</div>
