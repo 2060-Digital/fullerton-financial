@@ -24,7 +24,7 @@ h3 {
 
 h4,
 .eyebrow {
-  @apply font-primary font-bold text-m1 lg:text-m2;
+  @apply font-primary text-m1 font-bold lg:text-m2;
 }
 
 h1 {
@@ -44,7 +44,7 @@ h3 {
 }
 
 p {
-  @apply font-primary text-gray-charcoal pb-4 last:pb-0 leading-[26px];
+  @apply pb-4 font-primary leading-[26px] text-gray-charcoal last:pb-0;
 }
 
 .rich-text-ul,
@@ -83,7 +83,7 @@ p {
 
 .rich-text-ul li p,
 .rich-text-ol li p {
-  @apply py-0 leading-7 text-left;
+  @apply py-0 text-left leading-7;
 }
 
 .rich-text-ul li p {
@@ -99,19 +99,19 @@ p {
 .download-link,
 .email-link,
 .linkedin-link {
-  @apply uppercase transition-all duration-200 text-primary-1 font-primary;
+  @apply font-primary uppercase text-primary-1 transition-all duration-200;
 }
 .primary-link,
 .ghost-link {
-  @apply px-5 py-2.5 border-2 border-tertiary-1 rounded-sm w-full sm:w-max;
+  @apply w-full rounded-sm border-2 border-tertiary-1 px-5 py-2.5 sm:w-max;
 }
 
 .primary-link {
-  @apply bg-tertiary-1 hover:bg-secondary-1 hover:border-secondary-1 hover:text-white;
+  @apply bg-tertiary-1 hover:border-secondary-1 hover:bg-secondary-1 hover:text-white;
 }
 
 .secondary-white-link {
-  @apply uppercase transition-all duration-200 text-white font-primary;
+  @apply font-primary uppercase text-white transition-all duration-200;
 }
 
 .secondary-link,
@@ -131,12 +131,12 @@ p {
 .chat-link,
 .email-link,
 .linkedin-link {
-  @apply text-base font-primary font-medium text-white underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1 flex gap-2 items-center w-max;
+  @apply flex w-max items-center gap-2 font-primary text-base font-medium text-white underline decoration-tertiary-1 decoration-2 underline-offset-4 hover:decoration-secondary-1;
 }
 
 .download-link,
 .email-blue-link {
-  @apply text-base font-primary font-medium text-primary-1 underline underline-offset-4 decoration-tertiary-1 decoration-2 hover:decoration-secondary-1 flex gap-2 items-center;
+  @apply flex items-center gap-2 font-primary text-base font-medium text-primary-1 underline decoration-tertiary-1 decoration-2 underline-offset-4 hover:decoration-secondary-1;
 }
 
 .phone-link::before,
@@ -208,7 +208,7 @@ header nav ~ a {
   position: relative;
   width: 100%;
 
-  @apply last:pb-0 xl:text-primary-1 xl:text-base xl:font-primary xl:uppercase xl:p-4 xl:hover:bg-secondary-2;
+  @apply last:pb-0 xl:p-4 xl:font-primary xl:text-base xl:uppercase xl:text-primary-1 xl:hover:bg-secondary-2;
 }
 
 .menu > ul > li.top-level > .nonlinked,
@@ -273,7 +273,7 @@ header nav ~ a {
   height: 12px;
   background-color: white;
 
-  @apply xl:w-3 xl:h-2.5 xl:-translate-y-1 xl:bg-secondary-1 xl:rotate-90;
+  @apply xl:h-2.5 xl:w-3 xl:-translate-y-1 xl:rotate-90 xl:bg-secondary-1;
 }
 
 .menu .top-level.open-second-level > a::after,
@@ -308,7 +308,7 @@ header nav ~ a {
     display: block;
   }
   .menu > ul > .top-level > ul > li.second-level > a {
-    @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1 transition-all duration-200;
+    @apply border-b-2 border-b-tertiary-1 transition-all duration-200 hover:border-b-secondary-1;
   }
 }
 
@@ -324,7 +324,7 @@ header nav ~ a {
   text-decoration-line: none;
   margin-left: 32px;
 
-  @apply xl:text-primary-1 xl:ml-0 border-b-primary-1 xl:hidden hover:border-b-tertiary-1 xl:border-b-tertiary-1 xl:hover:border-b-secondary-1 xl:mt-0;
+  @apply border-b-primary-1 hover:border-b-tertiary-1 xl:ml-0 xl:mt-0 xl:hidden xl:border-b-tertiary-1 xl:text-primary-1 xl:hover:border-b-secondary-1;
 }
 
 .menu ul > .top-level:hover > ul > li.second-level > a {
@@ -437,7 +437,7 @@ input::placeholder {
 }
 
 .video-hero + .content-divider:has(+ .logo-carousel-section) {
-  @apply lg:hidden -mb-2;
+  @apply -mb-2 lg:hidden;
 }
 
 /* End Divider */
@@ -514,7 +514,7 @@ input::placeholder {
 }
 
 .pagefind-ui__search-input {
-  @apply w-full relative font-secondary block py-2 pr-2 pl-9 transition-all border-2 rounded-sm placeholder:italic;
+  @apply relative block w-full rounded-sm border-2 py-2 pl-9 pr-2 font-secondary transition-all placeholder:italic;
 }
 
 .pagefind-ui__form::before {
@@ -525,11 +525,11 @@ input::placeholder {
   position: absolute;
   width: 26px;
   height: 20px;
-  @apply z-20 left-2.5 top-[10px];
+  @apply left-2.5 top-[10px] z-20;
 }
 
 .pagefind-ui__message {
-  @apply font-primary my-10 pb-0 text-l2 text-primary-1;
+  @apply my-10 pb-0 font-primary text-l2 text-primary-1;
 }
 
 .pagefind-ui__search-clear {
@@ -539,15 +539,15 @@ input::placeholder {
 }
 
 .pagefind-ui__result-link {
-  @apply text-l2 font-primary font-medium hover:underline text-primary-1;
+  @apply font-primary text-l2 font-medium text-primary-1 hover:underline;
 }
 
 .pagefind-ui__result-excerpt {
-  @apply text-base text-gray-charcoal mt-0 mb-10;
+  @apply mb-10 mt-0 text-base text-gray-charcoal;
 }
 
 .pagefind-ui mark {
-  @apply bg-white font-primary text-tertiary-1 rounded-md break-words;
+  @apply break-words rounded-md bg-white font-primary text-tertiary-1;
 }
 
 .pagefind-ui__button {
@@ -641,12 +641,12 @@ input::placeholder {
 }
 
 .timeline-content::before {
-  @apply text-secondary-1 font-secondary static lg:absolute lg:-top-9 group-even:right-0 group-odd:left-0;
+  @apply static font-secondary text-secondary-1 group-odd:left-0 group-even:right-0 lg:absolute lg:-top-9;
   content: counter(timeline-counter);
   font-size: 2rem;
   font-weight: bold;
   --size: 44px;
-  line-height: 36px;
+  line-height: var(--size);
   width: var(--size);
   height: var(--size);
   z-index: 20;
@@ -657,6 +657,7 @@ input::placeholder {
   justify-content: center;
   align-content: center;
   margin: 1rem 0;
+  font-variant-numeric: lining-nums;
 }
 
 /* End Timeline Section */
