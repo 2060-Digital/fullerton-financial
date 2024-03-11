@@ -4,9 +4,9 @@ import richText from "utilities/richText"
 
 function TimelineEntry({ image, heading, content }) {
   return (
-    <li className="group odd:flex-row-reverse lg:flex border-l-2 border-white last:border-none lg:border-none lg:relative">
+    <li className="group border-l-2 border-white last:border-none odd:flex-row-reverse lg:relative lg:flex lg:border-none">
       <div className="image-decor relative z-10 basis-1/2 lg:max-h-[500px] lg:min-h-[336px] lg:pb-24">
-        <div className="relative z-10 border-2 border-l-0 lg:border-l-2 border-white lg:group-even:border-r-0 lg:group-odd:border-l-0 lg:group-last-of-type:border-r-2 group-last:border-l-2 lg:group-last:left-[2px]">
+        <div className="relative z-10 border-2 border-l-0 border-white group-last:border-l-2 lg:border-l-2 lg:group-last:left-[2px] lg:group-odd:border-l-0 lg:group-even:border-r-0 lg:group-last-of-type:border-r-2">
           <Image
             src={image.filename}
             alt={image.alt}
@@ -14,15 +14,15 @@ function TimelineEntry({ image, heading, content }) {
             blurDataURL={image.blurDataURL}
             width={610}
             height={300}
-            className={cn("relative z-10  w-full -top-4 -right-4 lg:group-even:-left-4")}
+            className={cn("relative -right-4  -top-4 z-10 w-full lg:group-even:-left-4")}
           />
         </div>
       </div>
-      <div className="basis-1/2 pb-16 pt-4 lg:py-8 border-white lg:group-odd:border-r-2 lg:group-even:border-l-2 lg:border-t-2 lg:-mr-[2px] lg:group-last-of-type:border-l-0 lg:group-even:text-right">
-        <div className="timeline-content border-white pl-4 lg:group-even:pl-8 lg:group-odd:pl-0 lg:group-odd:pr-8 relative lg:static">
+      <div className="basis-1/2 border-white pb-16 pt-4 lg:-mr-[2px] lg:border-t-2 lg:py-8 lg:group-odd:border-r-2 lg:group-even:border-l-2 lg:group-even:text-right lg:group-last-of-type:border-l-0">
+        <div className="timeline-content relative border-white pl-4 lg:static lg:group-odd:pl-0 lg:group-odd:pr-8 lg:group-even:pl-8">
           <h3 className="block text-primary-1">{heading}</h3>
         </div>
-        <div className="pt-4 pl-4 lg:group-even:pl-8 lg:group-odd:pl-0 lg:group-odd:pr-8">{richText(content)}</div>
+        <div className="pl-4 pt-4 lg:group-odd:pl-0 lg:group-odd:pr-8 lg:group-even:pl-8">{richText(content)}</div>
       </div>
     </li>
   )
@@ -30,9 +30,9 @@ function TimelineEntry({ image, heading, content }) {
 
 export default function TimelineSection({ blok }) {
   return (
-    <section className="px-6 py-12 lg:py-24 timeline">
-      <div className="text-center pb-16 relative">
-        <div className="text-primary-1 eyebrow">{blok.eyebrow}</div>
+    <section className="timeline px-6 py-12 lg:py-24">
+      <div className="relative pb-16 text-center">
+        <div className="eyebrow text-primary-1">{blok.eyebrow}</div>
         <h2 className="text-primary-1">{blok.heading}</h2>
       </div>
       <ol className="timeline-list mx-auto max-w-[1070px]">

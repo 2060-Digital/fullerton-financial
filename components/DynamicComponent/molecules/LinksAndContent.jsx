@@ -6,7 +6,7 @@ import { getStoryblokLink } from "utilities/getStoryblokLink"
 export default function LinksAndContent({ blok }) {
   return (
     <section className="px-5 py-12 lg:py-20">
-      <div className="max-w-screen-xl mx-auto">
+      <div className="mx-auto max-w-screen-xl">
         <div
           className={cn("flex flex-col gap-7 lg:gap-28", {
             "lg:flex-row-reverse": blok?.orientation === "links_first",
@@ -14,14 +14,14 @@ export default function LinksAndContent({ blok }) {
           })}
         >
           <div className="lg:basis-1/3">
-            <div className="text-primary-1 eyebrow pb-3">{blok.eyebrow}</div>
-            <h2 className="text-primary-1 pb-7">{blok.heading}</h2>
+            <div className="eyebrow pb-3 text-primary-1">{blok.eyebrow}</div>
+            <h2 className="pb-7 text-primary-1">{blok.heading}</h2>
             <div>{richText(blok.content)}</div>
           </div>
-          <div className="lg:basis-2/3 relative ml-5">
-            <div className="w-full h-full absolute border-2 border-secondary-1 top-5 right-5 z-10"></div>
-            <div className={`bg-${blok.background_color} h-full z-20 relative p-7 lg:px-14`}>
-              <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 h-full content-center">
+          <div className="relative ml-5 lg:basis-2/3">
+            <div className="absolute right-5 top-5 z-10 h-full w-full border-2 border-secondary-1"></div>
+            <div className={`bg-${blok.background_color} relative z-20 h-full p-7 lg:px-14`}>
+              <div className="grid h-full content-center gap-6 lg:grid-cols-2 lg:gap-10">
                 {blok.links.map((link) => (
                   <CallToAction
                     key={link._uid}

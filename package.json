@@ -9,7 +9,8 @@
     "setup-search": "npx --yes pagefind@1.0.5-rc2 --site \".next\" && rm -rf public/pagefind && mv .next/pagefind public/pagefind",
     "start": "NEXT_PUBLIC_SITE_URL=$URL next start",
     "lint": "NEXT_PUBLIC_SITE_URL=$URL next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "npx prettier \"**/**.{ts,js,tsx,jsx}\" --write"
   },
   "dependencies": {
     "@fontsource/lato": "^5.0.18",

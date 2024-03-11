@@ -3,7 +3,7 @@ import Script from "next/script"
 
 export function Crumb({ text, href, last }) {
   return (
-    <li className="inline-block text-white font-primary capitalize">
+    <li className="inline-block font-primary capitalize text-white">
       {last ? (
         <div className="" aria-current="page">
           {text}
@@ -11,7 +11,7 @@ export function Crumb({ text, href, last }) {
       ) : (
         <Link
           href={href}
-          className="crumb text-white underline hover:no-underline decoration-secondary-1 underline-offset-4 pr-6 relative"
+          className="crumb relative pr-6 text-white underline decoration-secondary-1 underline-offset-4 hover:no-underline"
         >
           {text}
         </Link>
@@ -24,7 +24,7 @@ export default function Breadcrumbs({ breadcrumbs }) {
   return breadcrumbs?.length ? (
     <>
       <nav aria-label="Breadcrumb" className="pb-2">
-        <ol className="max-w-screen-xl w-full leading-7">
+        <ol className="w-full max-w-screen-xl leading-7">
           <Crumb {...{ href: "/", text: "Home" }} />
           {breadcrumbs.map((crumb, idx) => (
             <Crumb {...crumb} key={idx} last={idx === breadcrumbs.length - 1} />

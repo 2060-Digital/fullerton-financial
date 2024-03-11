@@ -17,11 +17,11 @@ export default function CTABanner({
   return (
     <aside className="cta-banner-section" data-pagefind-ignore>
       <div
-        className="py-12 lg:py-16 px-6 bg-cover bg-no-repeat"
+        className="bg-cover bg-no-repeat px-6 py-12 lg:py-16"
         style={{ backgroundImage: `url(${blok?.background_image?.filename})` }}
       >
-        <div className="max-w-screen-xl mx-auto flex flex-col gap-8 items-center">
-          <h2 className="text-center text-primary-2 text-xl1 lg:text-xl2">{blok.heading}</h2>
+        <div className="mx-auto flex max-w-screen-xl flex-col items-center gap-8">
+          <h2 className="text-center text-xl1 text-primary-2 lg:text-xl2">{blok.heading}</h2>
           <CallToAction href={getStoryblokLink(blok.link)}>{blok.label}</CallToAction>
         </div>
       </div>

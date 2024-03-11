@@ -4,11 +4,11 @@ import LazyVideo from "components/LazyVideo"
 
 export default function VideoHero({ blok }) {
   return (
-    <section className="relative video-hero">
-      <div className="lg:h-full max-h-[580px] hidden lg:block before:bg-primary-1 before:mix-blend-multiply before:z-10 before:bg-opacity-70 before:absolute before:inset-0 before:h-full before:w-full">
+    <section className="video-hero relative">
+      <div className="hidden max-h-[580px] before:absolute before:inset-0 before:z-10 before:h-full before:w-full before:bg-primary-1 before:bg-opacity-70 before:mix-blend-multiply lg:block lg:h-full">
         {blok.video.filename ? (
           <LazyVideo
-            className="w-full object-cover relative pointer-events-none h-[580px] z-0"
+            className="pointer-events-none relative z-0 h-[580px] w-full object-cover"
             poster={blok.video_poster.filename}
             sources={[
               { src: blok.video.filename, type: "video/webm; codecs=av01.0.05M.08" },
@@ -26,7 +26,7 @@ export default function VideoHero({ blok }) {
               alt={blok.video_poster.alt}
               width={1440}
               height={696}
-              className="relative w-full h-[250px] md:h-[530px] object-cover object-[62%_50%]"
+              className="relative h-[250px] w-full object-cover object-[62%_50%] md:h-[530px]"
             />
           </div>
         )}
@@ -43,7 +43,7 @@ export default function VideoHero({ blok }) {
           sizes="(max-width: 1024px) 100vw, 0vw"
         />
       ) : null}
-      <div className="px-6 text-center gap-8 py-8 lg:py-12 bg-secondary-2 lg:bg-[transparent] prose-headings:text-primary-1 lg:prose-headings:text-white prose-headings:pb-8 prose-p:text-primary-1 lg:prose-p:text-white lg:absolute lg:top-1/2 lg:-translate-y-1/2 w-full relative z-20">
+      <div className="relative z-20 w-full gap-8 bg-secondary-2 px-6 py-8 text-center prose-headings:pb-8 prose-headings:text-primary-1 prose-p:text-primary-1 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:bg-[transparent] lg:py-12 lg:prose-headings:text-white lg:prose-p:text-white">
         {richText(blok?.content)}
       </div>
     </section>

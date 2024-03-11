@@ -133,5 +133,5 @@ export default function Map({
     }
   }, [currentLocation, markers, flyTo])
 
-  return <div ref={mapContainer} className="absolute w-full h-full inset-0 object-cover" />
+  return <div ref={mapContainer} className="absolute inset-0 h-full w-full object-cover" />
 }

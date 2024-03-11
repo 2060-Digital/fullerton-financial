@@ -18,21 +18,21 @@ export function Webinar({ webinar }) {
   }, [webinar])
 
   return (
-    <article className="flex flex-col lg:flex-row justify-between lg:pt-7 pb-7 lg:pr-7 gap-4 items-center bg-secondary-2">
-      <div className="flex flex-col lg:flex-row items-start lg:items-center lg:gap-12 w-full">
+    <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
+      <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
         <DateBox month={times[0]?.formattedMonth} day={times[0]?.formattedDay} />
         <div className="px-6 lg:px-0">
           <Link href={webinar.slug}>
-            <h3 className="text-primary-1 hover:underline pb-2">{webinar?.subject}</h3>
+            <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.subject}</h3>
           </Link>
           {times?.map((time) => (
-            <h4 className="pb-2 last:pb-0 text-primary-1" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
+            <h4 className="pb-2 text-primary-1 last:pb-0" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
               {time?.formatted}
             </h4>
           ))}
         </div>
       </div>
-      <div className="px-6 lg:px-0 w-full lg:w-max flex">
+      <div className="flex w-full px-6 lg:w-max lg:px-0">
         <CallToAction href={webinar?.registrationUrl}>Register Now</CallToAction>
       </div>
     </article>
@@ -41,10 +41,10 @@ export function Webinar({ webinar }) {
 
 export default function WebinarListSection({ webinars }) {
   return (
-    <section className="sm:px-6 py-12 lg:py-24">
-      <h2 className="text-center text-primary-1 pb-8 lg:pb-16">Upcoming Events</h2>
+    <section className="py-12 sm:px-6 lg:py-24">
+      <h2 className="pb-8 text-center text-primary-1 lg:pb-16">Upcoming Events</h2>
 
-      <div className="flex flex-col gap-8 max-w-screen-xl mx-auto">
+      <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
         {webinars?.map((webinar) => (
           <Webinar webinar={webinar} key={webinar?.webinarKey} />
         ))}

@@ -6,7 +6,7 @@ export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
     <>
       <div
         onClick={() => closeModal()}
-        className={cn("overlay fixed w-full h-full top-0 left-0 right-0 bottom-0 z-[9998] bg-black bg-opacity-50", {
+        className={cn("overlay fixed bottom-0 left-0 right-0 top-0 z-[9998] h-full w-full bg-black bg-opacity-50", {
           hidden: !isOpen,
         })}
       />
@@ -14,7 +14,7 @@ export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
         tabIndex={0}
         ref={focusRef}
         className={cn(
-          "modal fixed bg-white h-[100dvh] lg:h-auto overflow-y-auto top-0 left-0 sm:top-1/2 sm:left-1/2 transform sm:-translate-x-1/2 sm:-translate-y-1/2 z-[9999] w-full max-w-screen-lg",
+          "modal fixed left-0 top-0 z-[9999] h-[100dvh] w-full max-w-screen-lg transform overflow-y-auto bg-white sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 lg:h-auto",
           {
             hidden: !isOpen,
           },
@@ -24,11 +24,11 @@ export default function Modal({ eventHash, isOpen, closeModal, focusRef }) {
           onClick={() => closeModal()}
           aria-label="Close Modal"
           title="Close Modal"
-          className="close-modal-btn absolute overflow-hidden top-4 right-4 z-10 scale-[66%] sm:scale-100 hover:rotate-90 transition-all duration-300"
+          className="close-modal-btn absolute right-4 top-4 z-10 scale-[66%] overflow-hidden transition-all duration-300 hover:rotate-90 sm:scale-100"
         >
-          <Close className="w-4 aspect-square" />
+          <Close className="aspect-square w-4" />
         </button>
-        <div className="lg:h-auto w-full flex items-center lg:block">
+        <div className="flex w-full items-center lg:block lg:h-auto">
           <div id={eventHash} className="mx-auto" />
         </div>
       </div>

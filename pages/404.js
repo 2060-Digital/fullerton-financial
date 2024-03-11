@@ -49,22 +49,22 @@ export default function Page({ meta }) {
       <Meta info={meta} />
       <main className="bg-secondary-2 px-6 py-12 lg:py-28">
         <h1 className="text-center text-primary-1">
-          <span className="block eyebrow pb-2.5">404</span>
-          <span className="pb-5 block">Page Not Found</span>
+          <span className="eyebrow block pb-2.5">404</span>
+          <span className="block pb-5">Page Not Found</span>
         </h1>
-        <p className="text-center pb-6 lg:pb-12">
+        <p className="pb-6 text-center lg:pb-12">
           Sorry, the page you are trying to access could not be found. It may have been deleted or moved.
         </p>
         <div className="flex flex-col items-center justify-center">
           {results?.length ? (
             <div className="mx-auto pb-6 lg:pb-12">
               <>
-                <h3 className="text-primary-1 text-center pb-4">Did You Mean...</h3>
+                <h3 className="pb-4 text-center text-primary-1">Did You Mean...</h3>
                 <ul>
                   {results.map((result) => (
-                    <li className="pt-6 first:pt-0 text-center" key={result.item}>
+                    <li className="pt-6 text-center first:pt-0" key={result.item}>
                       <Link
-                        className="uppercase transition-all duration-200 text-primary-1 font-primary border-b-2 border-b-tertiary-1 hover:border-b-secondary-1 text-center"
+                        className="border-b-2 border-b-tertiary-1 text-center font-primary uppercase text-primary-1 transition-all duration-200 hover:border-b-secondary-1"
                         href={result.item}
                       >
                         {result.item}

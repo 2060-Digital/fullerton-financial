@@ -5,7 +5,7 @@ export default function SearchBar({ style = "dark" }) {
 
   return (
     <form
-      className="searchbar w-full relative sm:max-w-80"
+      className="searchbar relative w-full sm:max-w-80"
       onSubmit={(e) => {
         e.preventDefault()
 

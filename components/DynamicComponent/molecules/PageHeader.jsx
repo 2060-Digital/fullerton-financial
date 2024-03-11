@@ -12,19 +12,19 @@ export default function PageHeader({ blok }) {
   return (
     <section
       className={cn("bg-primary-1", {
-        "mt-24 lg:mt-16 pl-6 lg:pl-0 pb-12 sm:pb-16 lg:pb-0": hasImage || hasVideo,
+        "mt-24 pb-12 pl-6 sm:pb-16 lg:mt-16 lg:pb-0 lg:pl-0": hasImage || hasVideo,
         "px-6 py-8 lg:py-12": !hasImage && !hasVideo,
       })}
     >
       <div
         className={cn({
-          "flex flex-col-reverse lg:flex-row lg:gap-12 max-w-screen-2xl mx-auto": hasImage || hasVideo,
-          "max-w-screen-xl mx-auto": !hasImage && !hasVideo,
+          "mx-auto flex max-w-screen-2xl flex-col-reverse lg:flex-row lg:gap-12": hasImage || hasVideo,
+          "mx-auto max-w-screen-xl": !hasImage && !hasVideo,
         })}
       >
         <div
           className={cn({
-            "lg:self-center justify-self-end max-w-96 pr-6 lg:pr-0 xl:mr-14 2xl:mr-12 lg:ml-6 xl:ml-[72px] 2xl:ml-[94px] 2xl:pl-8 lg:py-8 w-full":
+            "w-full max-w-96 justify-self-end pr-6 lg:ml-6 lg:self-center lg:py-8 lg:pr-0 xl:ml-[72px] xl:mr-14 2xl:ml-[94px] 2xl:mr-12 2xl:pl-8":
               hasImage || hasVideo,
           })}
         >
@@ -35,19 +35,19 @@ export default function PageHeader({ blok }) {
           ) : null}
         </div>
         {hasImage && !hasVideo ? (
-          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-10 right-0 w-full lg:w-auto justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
+          <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0 lg:w-auto">
             <Image
               src={blok?.image?.filename}
               alt={blok?.image?.alt}
               width={896}
               height={585}
-              className="relative -right-3.5 -top-3.5 w-full aspect-[896/505] object-cover"
+              className="relative -right-3.5 -top-3.5 aspect-[896/505] w-full object-cover"
             />
           </div>
         ) : null}
 
         {hasVideo ? (
-          <div className="border-2 border-secondary-1 relative -top-16 lg:-top-28 2xl:-top-12 right-0 w-full justify-self-end self-end -mb-8 lg:-mb-0 h-full mr-3">
+          <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-28 lg:-mb-0 2xl:-top-12">
             <div className="relative -right-3.5 -top-3.5 w-full">
               <DynamicVideo {...blok?.video[0]} />
             </div>
