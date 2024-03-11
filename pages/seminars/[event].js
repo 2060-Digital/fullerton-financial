@@ -1,23 +1,13 @@
 import Script from "next/script"
-import { getPage } from "storyblok/api"
-import { getSingleEventPaths } from "eventbrite/events"
+import { getGlobals } from "storyblok/api"
 import { getEventByID } from "eventbrite/api"
 import EventbritePageHeader from "components/Eventbrite/EventbritePageHeader"
 import VenueMap from "components/Eventbrite/VenueMap"
-import DynamicComponent from "components/DynamicComponent"
 import StructuredContentSection from "components/Eventbrite/StructuredContentSection"
 import Meta from "components/Meta"
+import { getSeminarPaths } from "eventbrite/seminars"
 
-export default function IndividualEventPage({ event, story }) {
-  if (story?.content?.component === "page") {
-    return (
-      <>
-        <Meta info={story?.content?.seo} />
-        <DynamicComponent blok={story?.content} />
-      </>
-    )
-  }
-
+export default function IndividualEventPage({ event }) {
   return (
     <>
       <Meta
@@ -66,14 +56,13 @@ export default function IndividualEventPage({ event, story }) {
 }
 
 export async function getStaticProps({ params: { event } }) {
-  const { page, globals } = await getPage(`events/${event}`)
+  const globals = await getGlobals()
 
   const individualEvent = await getEventByID(event.split("-").pop())
 
   return {
     props: {
       globals,
-      story: page ?? null,
       event: individualEvent ?? null,
     },
   }
@@ -81,7 +70,7 @@ export async function getStaticProps({ params: { event } }) {
 
 export async function getStaticPaths() {
   return {
-    paths: await getSingleEventPaths(),
+    paths: await getSeminarPaths(),
     fallback: false,
   }
 }

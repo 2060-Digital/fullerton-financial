@@ -1,5 +1,5 @@
 import generateSBPlaiceholders from "utilities/generateSBPlaiceholders"
-import { getEventsForUpcomingEvents } from "eventbrite/api"
+import { getEventCarouselData } from "eventbrite/api"
 import { getBreadcrumbs } from "storyblok/api"
 
 export default async function processPageData(data, slug) {
@@ -13,7 +13,7 @@ export default async function processPageData(data, slug) {
               if (blok.component === "upcoming_events_section") {
                 return {
                   ...blok,
-                  events: await getEventsForUpcomingEvents(),
+                  events: await getEventCarouselData(),
                 }
               }
 

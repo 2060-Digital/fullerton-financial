@@ -35,7 +35,7 @@ export default function PageHeader({ blok }) {
           ) : null}
         </div>
         {hasImage && !hasVideo ? (
-          <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0 lg:w-auto">
+          <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0">
             <Image
               src={blok?.image?.filename}
               alt={blok?.image?.alt}

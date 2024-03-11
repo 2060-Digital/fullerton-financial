@@ -1,7 +1,7 @@
 import Script from "next/script"
 import { getGlobals } from "storyblok/api"
 import { getEventArchive } from "storyblok/events"
-import { getEventsForArchive } from "eventbrite/events"
+import { getSeminarsForArchive } from "eventbrite/seminars"
 import EventSection from "components/Eventbrite/EventSection"
 import DynamicComponent from "components/DynamicComponent"
 import Meta from "components/Meta"
@@ -15,7 +15,7 @@ export default function EventsArchive({ events, story, meta }) {
         {story?.content?.body?.map((blok) => (
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}
-        <EventSection events={events} />
+        <EventSection events={events} eventType="seminars" />
       </main>
       <Script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" />
     </>
@@ -24,9 +24,9 @@ export default function EventsArchive({ events, story, meta }) {
 
 export async function getStaticProps({ preview = null }) {
   const globals = await getGlobals()
-  const story = await getEventArchive("events", preview)
+  const events = await getSeminarsForArchive()
 
-  const events = await getEventsForArchive()
+  const story = await getEventArchive("seminars", preview)
 
   return {
     props: {

@@ -1,7 +1,8 @@
-import query from "eventbrite/query"
-import { groupBy } from "lodash"
+import fs from "fs"
 import slugify from "slugify"
+import { groupBy } from "lodash"
 import { format } from "date-fns"
+import query from "eventbrite/query"
 
 export async function getOrganizationID() {
   const orgID = await query("/users/me/organizations").then((response) => response.organizations[0].id)
@@ -9,139 +10,70 @@ export async function getOrganizationID() {
   return orgID
 }
 
-// Event Page
+export async function getCachedEvents() {
+  let events = []
+  const path = `${process.cwd()}/public/events.json`
+  try {
+    const data = fs.readFileSync(path)
+    events = JSON.parse(data)
+  } catch (error) {
+    console.error(error)
+    events = await getAllActiveEvents()
+
+    if (!fs.existsSync(path)) {
+      fs.writeFileSync(path, JSON.stringify(events))
+    }
+  }
+
+  return events
+}
+
 export async function getAllActiveEvents() {
   const orgID = await getOrganizationID()
 
-  const events = await query(`/organizations/${orgID}/events?status=live`).then(({ events }) => events)
-
-  const eventsWithVenues = await Promise.all(
-    events.map(async (event) => {
-      const venue = await getVenueByID(event.venue_id, event.series_id)
-
-      return {
-        ...event,
-        venue,
-        slug: `/events/${slugify(event.name.text, {
-          lower: true,
-        })}-${event.id}`,
-      }
-    }),
+  const { events: eventsNotInSeries } = await query(
+    `/organizations/${orgID}/events?series_filter=nonseries&status=live`,
   )
+  const { events: eventsInSeries } = await query(`/organizations/${orgID}/events?series_filter=children&status=live`)
+  const { events: seriesParents } = await query(`/organizations/${orgID}/events?series_filter=parents&status=live`)
+
+  async function formatEvents(events, slugPrefix = "seminars") {
+    const formattedEvents = await Promise.all(
+      events.map(async (event) => {
+        const venue = await getVenueByID(event.venue_id, event.series_id)
+
+        const content = await query(`/events/${event.id}/structured_content/`).then((response) => response.modules)
+
+        return {
+          ...event,
+          venue,
+          content,
+          start: event?.start?.local,
+          end: event?.end?.local,
+          slug: `/${slugPrefix}/${slugify(event.name.text, {
+            lower: true,
+          })}-${event.id}`,
+        }
+      }),
+    )
+    return formattedEvents
+  }
+
+  const eventsWithVenues = {
+    eventsNotInSeries: await formatEvents(eventsNotInSeries, "events"),
+    eventsInSeries: await formatEvents(eventsInSeries),
+    seriesParents: await formatEvents(seriesParents),
+  }
 
   return eventsWithVenues
 }
 
-export async function getAllPublicEvents() {
-  const allEvents = await getAllActiveEvents().then((response) => response.filter(({ listed }) => listed === true))
-
-  return allEvents.map((event) => ({ ...event, start: event?.start?.local, end: event?.end?.local }))
-}
-
-export async function getIndividualEventPaths() {
-  const events = await getAllActiveEvents()
-
-  return events?.map(({ name, id }) => {
-    return {
-      params: {
-        event: `${slugify(name.text, {
-          lower: true,
-        })}-${id}`,
-      },
-    }
-  })
-}
-
 export async function getEventByID(id) {
-  const event = await query(`/events/${id}`)
-
-  const content = await query(`/events/${id}/structured_content`)
-
-  const venue = await getVenueByID(event.venue_id, event.series_id)
-
-  return {
-    ...event,
-    start: event?.start?.local,
-    end: event?.end?.local,
-    venue,
-    content,
-  }
-}
-
-// Venue Pages
-export async function getEventSeriesWithEvents(id) {
-  const eventSeries = await query(`/series/${id}`).then((response) => ({
-    ...response,
-    image: { filename: response.logo.original.url },
-    content: response?.summary?.length
-      ? {
-          type: "doc",
-          content: [
-            {
-              type: "paragraph",
-              content: [
-                {
-                  text: response.summary,
-                  type: "text",
-                },
-              ],
-            },
-          ],
-        }
-      : null,
-  }))
-
-  const venue = await getVenueByID(eventSeries.venue_id, id)
-
-  const events = await query(`/series/${id}/events`).then((response) => {
-    return response.events
-      .filter(({ status, listed }) => status === "live" && listed)
-      .map((event) => ({
-        ...event,
-        venue,
-        start: event?.start?.local,
-        end: event?.end?.local,
-        slug: `/events/${slugify(event.name.text, {
-          lower: true,
-        })}-${event.id}`,
-      }))
-  })
-
-  const structured_content = await query(`/events/${id}/structured_content/`).then((response) => response.modules)
-
-  return { ...eventSeries, events, structured_content, venue }
-}
-
-export async function getEventSeriesByID(id) {
-  const eventSeries = await query(`/series/${id}`)
-
-  const venue = await getVenueByID(eventSeries.venue_id, id)
-
-  return { ...eventSeries, venue }
-}
-
-export async function getVenuePaths() {
-  const eventsInSeries = await getAllActiveEvents().then((response) => response.filter(({ series_id }) => series_id))
-
-  const uniqueSeriesIDs = [...new Set(eventsInSeries)].map(({ series_id }) => series_id)
-
-  const eventSeries = await Promise.all(
-    uniqueSeriesIDs.map(async (id) => {
-      const series = await getEventSeriesByID(id)
-
-      return { ...series, series_id: id }
-    }),
+  const event = await getCachedEvents().then(({ eventsNotInSeries, eventsInSeries }) =>
+    [...eventsInSeries, ...eventsNotInSeries].find((event) => event.id === id),
   )
 
-  return eventSeries?.map(({ venue, series_id }) => {
-    return {
-      params: {
-        venue: `${slugify(venue.name, {
-          lower: true,
-        })}-${series_id}`,
-      },
-    }
-  })
+  return event
 }
 
 export async function getVenueByID(id, series_id) {
@@ -152,29 +84,20 @@ export async function getVenueByID(id, series_id) {
     latitude: parseFloat(venue?.latitude),
     longitude: parseFloat(venue?.longitude),
     directionsLink: `https://maps.google.com/?q=${parseFloat(venue?.latitude)},${parseFloat(venue?.longitude)}`,
-    slug: `/events/venues/${slugify(venue.name, {
+    slug: `/seminars/venues/${slugify(venue.name, {
       lower: true,
     })}-${series_id}`,
   }
 }
 
-export async function getEventsByVenue(venueID, venue) {
-  const events = await query(`/venues/${venueID}/events?status=live`).then(({ events }) => events)
-
-  return events.map((event) => ({
-    ...event,
-    venue,
-    start: event?.start?.local,
-    end: event?.end?.local,
-    slug: `/events/${slugify(event.name.text, {
-      lower: true,
-    })}-${event.id}`,
-  }))
-}
-
 // Components
-export async function getEventsForUpcomingEvents() {
-  const rawEvents = await getAllPublicEvents()
+export async function getEventCarouselData() {
+  const { eventsInSeries, eventsNotInSeries } = await getCachedEvents()
+
+  const rawEvents = [
+    ...eventsInSeries.filter(({ listed }) => listed === true),
+    ...eventsNotInSeries.filter(({ listed }) => listed === true),
+  ]
 
   const eventsBySeries = Object.entries(groupBy(rawEvents, "series_id"))
 
