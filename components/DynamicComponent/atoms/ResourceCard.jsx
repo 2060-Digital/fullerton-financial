@@ -5,7 +5,7 @@ import richText from "utilities/richText"
 
 export default function ResourceCard({ blok }) {
   return (
-    <div className="resource-card bg-secondary-2 px-7 py-10 flex flex-col">
+    <div className="resource-card flex flex-col bg-secondary-2 px-7 py-10">
       <Image
         src={blok?.thumbnail?.filename}
         alt={blok?.thumbnail?.alt ?? ""}
@@ -16,10 +16,10 @@ export default function ResourceCard({ blok }) {
         className="w-full pb-4"
         sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
       />
-      <div className="flex flex-col gap-4 sm:items-center justify-between h-full">
+      <div className="flex h-full flex-col justify-between gap-4 sm:items-center">
         <h3 className="text-center text-primary-1">{blok?.heading}</h3>
-        <div className="prose-p:text-primary-1 text-center">{richText(blok?.content)}</div>
-        <div className="flex items-end grow">
+        <div className="text-center prose-p:text-primary-1">{richText(blok?.content)}</div>
+        <div className="flex grow items-end">
           <CallToAction href={getStoryblokLink(blok?.cta_link)} style="ghost">
             {blok?.cta_label}
           </CallToAction>

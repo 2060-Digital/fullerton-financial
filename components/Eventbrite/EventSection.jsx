@@ -24,12 +24,12 @@ export function Event({ event, venue }) {
 
   return (
     <>
-      <article className="flex flex-col lg:flex-row justify-between lg:pt-7 pb-7 lg:pr-7 gap-4 items-center bg-secondary-2">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center lg:gap-12 w-full">
+      <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
+        <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
           <DateBox month={time?.month} day={time?.day} />
           <div className="px-6 lg:px-0">
             <Link href={event.slug}>
-              <h3 className="text-primary-1 hover:underline pb-2">{event?.name?.text}</h3>
+              <h3 className="pb-2 text-primary-1 hover:underline">{event?.name?.text}</h3>
             </Link>
             <h4 className="pb-2 text-primary-1">{time?.fullDate}</h4>
             <h4 className="text-primary-1">
@@ -37,7 +37,7 @@ export function Event({ event, venue }) {
             </h4>
           </div>
         </div>
-        <div className="px-6 lg:px-0 w-full lg:w-max flex">
+        <div className="flex w-full px-6 lg:w-max lg:px-0">
           <RegisterNowLink {...{ embedCreated, setEmbedCreated, eventHash }} />
         </div>
       </article>
@@ -48,10 +48,10 @@ export function Event({ event, venue }) {
 
 export default function EventSection({ events, eventType = "events" }) {
   return (
-    <section className="sm:px-6 py-12 lg:py-24">
-      <h2 className="text-center text-primary-1 pb-8 lg:pb-16">Upcoming Events</h2>
+    <section className="py-12 sm:px-6 lg:py-24">
+      <h2 className="pb-8 text-center text-primary-1 lg:pb-16">Upcoming Events</h2>
 
-      <div className="flex flex-col gap-8 max-w-screen-xl mx-auto">
+      <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
         {events?.length ? (
           <>
             {events?.map((event) => (
@@ -59,7 +59,7 @@ export default function EventSection({ events, eventType = "events" }) {
             ))}
           </>
         ) : (
-          <div className="w-full bg-secondary-2 text-center px-6 py-7 sm:py-12">
+          <div className="w-full bg-secondary-2 px-6 py-7 text-center sm:py-12">
             <h3 className="pb-4 text-primary-1">Sorry, there are no upcoming {eventType}.</h3>
             <h4 className="text-primary-1">Check back for updates soon.</h4>
           </div>

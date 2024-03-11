@@ -15,17 +15,17 @@ export default function Article({ story, meta }) {
   const url = `${process.env.URL}${story?.content?.slug}`
 
   const ShareLinks = () => (
-    <div className="relative -right-3.5 -top-3.5 py-12 w-full bg-secondary-2 h-full">
-      <h3 className="text-primary-1 pb-8">Share This Article</h3>
-      <div className="flex justify-center items-center gap-10">
+    <div className="relative -right-3.5 -top-3.5 h-full w-full bg-secondary-2 py-12">
+      <h3 className="pb-8 text-primary-1">Share This Article</h3>
+      <div className="flex items-center justify-center gap-10">
         <Link href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank">
-          <Facebook className="text-primary-1 hover:text-secondary-1 transition-all" />
+          <Facebook className="text-primary-1 transition-all hover:text-secondary-1" />
         </Link>
         <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target="_blank">
-          <LinkedIn className="text-primary-1 hover:text-secondary-1 transition-all" />
+          <LinkedIn className="text-primary-1 transition-all hover:text-secondary-1" />
         </Link>
         <Link href={`mailto:?subject=Fullerton Financial Planning&body=Check out this site ${url}`} target="_blank">
-          <Mail className="text-primary-1 hover:text-secondary-1 transition-all" />
+          <Mail className="text-primary-1 transition-all hover:text-secondary-1" />
         </Link>
       </div>
     </div>
@@ -35,9 +35,9 @@ export default function Article({ story, meta }) {
     <main data-pagefind-body>
       <Meta info={meta} />
       <StoryblokVisualEditor story={story?.content}>
-        <section className="bg-primary-1 mt-24 lg:mt-0 lg:pt-12 lg:mb-12 pl-6 lg:pr-6">
-          <div className="flex flex-col-reverse lg:flex-col max-w-screen-xl mx-auto">
-            <div className="pr-6 lg:pr-0 pb-12 lg:pb-20">
+        <section className="mt-24 bg-primary-1 pl-6 lg:mb-12 lg:mt-0 lg:pr-6 lg:pt-12">
+          <div className="mx-auto flex max-w-screen-xl flex-col-reverse lg:flex-col">
+            <div className="pb-12 pr-6 lg:pb-20 lg:pr-0">
               <Breadcrumbs
                 breadcrumbs={[
                   { text: "Blog", href: "/blog/page/1" },
@@ -46,8 +46,8 @@ export default function Article({ story, meta }) {
               />
               <h1 className="text-white">{story?.content?.title}</h1>
             </div>
-            <div className="flex lg:-mb-12 gap-12">
-              <div className="w-full border-2 border-secondary-1 relative lg:basis-2/3 -top-20 lg:-top-0 mr-[12px] lg:mr-0 -mb-12 lg:-mb-0">
+            <div className="flex gap-12 lg:-mb-12">
+              <div className="relative -top-20 -mb-12 mr-[12px] w-full border-2 border-secondary-1 lg:-top-0 lg:-mb-0 lg:mr-0 lg:basis-2/3">
                 <Image
                   src={
                     story?.content?.featured_image?.filename && story?.content?.featured_image?.filename !== ""
@@ -60,22 +60,22 @@ export default function Article({ story, meta }) {
                   className="relative -right-3.5 -top-3.5 w-full"
                 />
               </div>
-              <div className="basis-1/3 hidden lg:block h-full text-center relative border-2 border-secondary-1">
+              <div className="relative hidden h-full basis-1/3 border-2 border-secondary-1 text-center lg:block">
                 <ShareLinks />
               </div>
             </div>
           </div>
         </section>
         <section className="px-6 py-12">
-          <div className="max-w-screen-xl mx-auto">
-            <div className="max-w-4xl prose-headings:text-primary-1 prose-headings:pb-4 prose-h2:pt-6">
+          <div className="mx-auto max-w-screen-xl">
+            <div className="max-w-4xl prose-headings:pb-4 prose-headings:text-primary-1 prose-h2:pt-6">
               {story?.content?.date?.length > 0 ? (
-                <time className="block mb-4 font-primary text-primary-1">
+                <time className="mb-4 block font-primary text-primary-1">
                   {formatBlogDate(story?.content?.date, "en-US", "long")}
                 </time>
               ) : null}
               {richText(story?.content?.content)}
-              <div className="lg:hidden h-max text-center relative border-2 border-secondary-1 mt-8">
+              <div className="relative mt-8 h-max border-2 border-secondary-1 text-center lg:hidden">
                 <ShareLinks />
               </div>
             </div>

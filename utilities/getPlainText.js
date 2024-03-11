@@ -15,7 +15,7 @@ const renderNode = (node, addNewlines) => {
     return node.text
   } else if (
     [NODE_PARAGRAPH, NODE_HEADING, NODE_CODEBLOCK, NODE_QUOTE, NODE_OL, NODE_UL, NODE_LI, NODE_HR, NODE_BR].includes(
-      node.type
+      node.type,
     )
   ) {
     return node.content?.length ? `${renderNodes(node.content, addNewlines)}${addNewlines ? "\n\n" : " "}` : ""

@@ -16,7 +16,7 @@ function Logo({ url, image, visible }) {
         href={href}
         target={getTarget(href)}
         className={cn("min-w-28 transition-opacity duration-300", {
-          "opacity-0 lg": !visible,
+          "lg opacity-0": !visible,
         })}
       >
         <Image src={image?.filename} alt={image?.alt} width={110} height={95} className="w-full object-contain" />
@@ -30,8 +30,8 @@ function Logo({ url, image, visible }) {
       alt={image?.alt}
       width={110}
       height={95}
-      className={cn("w-28 transition-opacity duration-300 object-contain", {
-        "opacity-0 lg": !visible,
+      className={cn("w-28 object-contain transition-opacity duration-300", {
+        "lg opacity-0": !visible,
       })}
     />
   )
@@ -47,18 +47,18 @@ export default function LogoCarouselSection({ blok }) {
   )
 
   return (
-    <section className="logo-carousel-section py-12 lg:py-24 px-6 overflow-hidden bg-secondary-2">
-      <div className="text-center mb-8">
+    <section className="logo-carousel-section overflow-hidden bg-secondary-2 px-6 py-12 lg:py-24">
+      <div className="mb-8 text-center">
         <h2>
-          {blok?.eyebrow ? <span className="block eyebrow pb-2.5 text-primary-1">{blok?.eyebrow}</span> : null}
-          <span className="pb-5 block text-primary-1">{blok?.heading}</span>
+          {blok?.eyebrow ? <span className="eyebrow block pb-2.5 text-primary-1">{blok?.eyebrow}</span> : null}
+          <span className="block pb-5 text-primary-1">{blok?.heading}</span>
         </h2>
       </div>
       {numLogos ? (
-        <div className="mb-12 mx-auto">
+        <div className="mx-auto mb-12">
           <div
             ref={ref}
-            className="flex gap-11 mx-auto transition-all duration-500 items-center"
+            className="mx-auto flex items-center gap-11 transition-all duration-500"
             style={{
               width: `${visibleSlides * slideWidth - slideGap}px`,
               transform: `translateX(-${visibleSlides < numLogos ? offset : 0}px)`,
@@ -78,7 +78,7 @@ export default function LogoCarouselSection({ blok }) {
             })}
           </div>
           {visibleSlides < numLogos ? (
-            <div className="flex gap-8 mx-auto w-max mt-12">
+            <div className="mx-auto mt-12 flex w-max gap-8">
               <button onClick={() => moveLeft()}>
                 <Arrow className="rotate-180 text-tertiary-1" />
               </button>
@@ -89,7 +89,7 @@ export default function LogoCarouselSection({ blok }) {
           ) : null}
         </div>
       ) : null}
-      <CallToAction href={getStoryblokLink(blok?.link_url)} className="table mx-auto" style="secondary">
+      <CallToAction href={getStoryblokLink(blok?.link_url)} className="mx-auto table" style="secondary">
         {blok?.link_text}
       </CallToAction>
     </section>

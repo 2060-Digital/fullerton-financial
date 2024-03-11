@@ -12,7 +12,7 @@ export default function Image(props) {
       className={cn(
         props.className,
         "duration-700 ease-in-out",
-        isLoading ? "grayscale blur-md scale-100" : "grayscale-0 blur-0 scale-100",
+        isLoading ? "scale-100 blur-md grayscale" : "scale-100 blur-0 grayscale-0",
       )}
       onLoadingComplete={() => setLoading(false)}
       {...props}

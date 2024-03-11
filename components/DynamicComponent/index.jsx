@@ -15,6 +15,7 @@ export const Components = {
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
   inline_video: dynamic(() => import("./atoms/InlineVideo")),
   two_column_list: dynamic(() => import("./atoms/TwoColumnList")),
+  bamboo_hr_embed: dynamic(() => import("./atoms/BambooHREmbed")),
   callout: dynamic(() => import("./atoms/Callout")),
   dual_badge: dynamic(() => import("./atoms/DualBadge")),
   about_section: dynamic(() => import("./atoms/AboutSection")),
@@ -39,6 +40,7 @@ export const Components = {
   two_column_text_section: dynamic(() => import("./molecules/TwoColumnTextSection")),
   tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
   icon_section: dynamic(() => import("./molecules/IconSection")),
+  timeline_section: dynamic(() => import("./molecules/TimelineSection")),
   newsletter_sidebar: dynamic(() => import("./molecules/NewsletterSidebar")),
   map_section: dynamic(() => import("./molecules/MapSection")),
 
