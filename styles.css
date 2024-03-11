@@ -627,3 +627,34 @@ input::placeholder {
 .archive-tab-bar::-webkit-scrollbar {
   display: none;
 }
+
+/* Timeline Section */
+
+.timeline-list {
+  counter-reset: timeline-counter;
+  list-style: none;
+}
+
+.timeline-list li {
+  counter-increment: timeline-counter;
+  position: relative;
+}
+
+.timeline-content::before {
+  @apply text-secondary-1 font-secondary static lg:absolute lg:-top-9 group-even:right-0 group-odd:left-0;
+  content: counter(timeline-counter);
+  font-size: 2rem;
+  font-weight: bold;
+  --size: 44px;
+  line-height: 36px;
+  width: var(--size);
+  height: var(--size);
+  z-index: 20;
+  background: white;
+  text-align: center;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 1rem 0;
+}
