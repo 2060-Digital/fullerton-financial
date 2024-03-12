@@ -18,6 +18,7 @@ export const Components = {
   bamboo_hr_embed: dynamic(() => import("./atoms/BambooHREmbed")),
   callout: dynamic(() => import("./atoms/Callout")),
   dual_badge: dynamic(() => import("./atoms/DualBadge")),
+  inline_iframe: dynamic(() => import("./atoms/InlineIframe")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
