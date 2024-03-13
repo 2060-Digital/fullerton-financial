@@ -19,6 +19,7 @@ export const Components = {
   callout: dynamic(() => import("./atoms/Callout")),
   dual_badge: dynamic(() => import("./atoms/DualBadge")),
   about_section: dynamic(() => import("./atoms/AboutSection")),
+  inline_iframe: dynamic(() => import("./atoms/InlineIframe")),
 
   // Molecules
   faq: dynamic(() => import("./molecules/FAQSection")),
