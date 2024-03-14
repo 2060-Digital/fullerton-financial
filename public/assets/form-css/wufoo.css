@@ -21,6 +21,7 @@ body {
   overflow-x: hidden;
   font-family: "Lato", Arial, Helvetica, sans-serif;
   background-color: #e0e0eb;
+  padding: 30px;
 }
 
 #logo {
