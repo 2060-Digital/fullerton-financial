@@ -2,7 +2,6 @@
 
 html {
   background-image: none;
-  background-color: #e0e0eb;
   color: #282c32;
   font-family: "Lato", Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -21,6 +20,7 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   font-family: "Lato", Arial, Helvetica, sans-serif;
+  background-color: #e0e0eb;
 }
 
 #logo {
