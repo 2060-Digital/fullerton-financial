@@ -140,7 +140,7 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
             </div>
           ) : null}
 
-          <div className={cn("grid grid-cols-2 gap-8 pl-5 lg:grid-cols-4 lg:gap-16")}>
+          <div className={cn("grid gap-8 pl-5 min-[350px]:grid-cols-2 lg:grid-cols-4 lg:gap-16")}>
             {items.map((item) => (
               <Card {...item} key={item.name} />
             ))}
