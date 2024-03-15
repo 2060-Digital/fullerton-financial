@@ -9,21 +9,23 @@ import CallToAction from "components/CallToAction"
 import Arrow from "public/assets/chevron-down.svg"
 
 const Card = ({ image, first_name, last_name, job_title, team_category, email, vip, slug }) => {
+  const isImage = image?.filename
+
   return (
-    <div className={cn("group h-full bg-gray-light", { "bg-secondary-2": vip })}>
+    <div className={cn("group h-full lg:bg-gray-light", { "bg-secondary-2": vip })}>
       <div className="relative w-full">
         {vip || team_category.includes("advisors") ? (
           <div className="group-hover">
             <div className="absolute right-5 top-5 z-10 h-full w-full border-2 border-secondary-1 group-hover:border-tertiary-1"></div>
             <Link href={slug}>
               <Image
-                loader={image.filename && image.filename !== "" ? storyblokImageLoader : undefined}
-                src={image.filename && image.filename !== "" ? image.filename : "/assets/placeholder.png"}
+                loader={isImage ? storyblokImageLoader : undefined}
+                src={isImage ? image.filename : "/assets/team-placeholder.png"}
                 alt={image.alt ?? ""}
                 placeholder={image.blurDataURL ? "blur" : "empty"}
                 blurDataURL={image.blurDataURL}
-                width={getSbImageDimensions("width", image.filename)}
-                height={getSbImageDimensions("height", image.filename)}
+                width={isImage ? getSbImageDimensions("width", image?.filename) : 300}
+                height={isImage ? getSbImageDimensions("height", image?.filename) : 300}
                 className="relative z-20 aspect-square min-h-[170px] w-full object-cover"
                 sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
               />
@@ -33,20 +35,20 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
           <div className="relative">
             <div className="absolute right-5 top-5 z-10 h-full w-full border-2 border-secondary-1"></div>
             <Image
-              loader={image.filename && image.filename !== "" ? storyblokImageLoader : undefined}
-              src={image.filename && image.filename !== "" ? image.filename : "/assets/placeholder.png"}
+              loader={isImage ? storyblokImageLoader : undefined}
+              src={isImage ? image.filename : "/assets/team-placeholder.png"}
               alt={image.alt ?? ""}
               placeholder={image.blurDataURL ? "blur" : "empty"}
               blurDataURL={image.blurDataURL}
-              width={getSbImageDimensions("width", image.filename)}
-              height={getSbImageDimensions("height", image.filename)}
+              width={isImage ? getSbImageDimensions("width", image?.filename) : 300}
+              height={isImage ? getSbImageDimensions("height", image?.filename) : 300}
               className="relative z-20 aspect-square min-h-[170px] w-full object-cover"
               sizes="(max-width: 1024px) 45vw, (max-width: 640px) 95vw, 20vw"
             />
           </div>
         )}
       </div>
-      <div className="px-7 py-10">
+      <div className={cn("py-10 lg:px-7", { "px-7": vip })}>
         {vip || team_category.includes("advisors") ? (
           <Link href={slug}>
             <h3 className="pb-2 text-primary-1 decoration-tertiary-1 hover:underline">
@@ -59,8 +61,8 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
           </h3>
         )}
         <div className={cn("font-primary leading-7", { "text-primary-1": vip })}>{job_title}</div>
-        <CallToAction href={getStoryblokLink(email)} style="email-blue" target="_blank" className="z-20">
-          {email?.url}
+        <CallToAction href={getStoryblokLink(email)} style="email-blue" target="_blank" className="z-20 uppercase">
+          email
         </CallToAction>
       </div>
     </div>
@@ -138,7 +140,7 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
             </div>
           ) : null}
 
-          <div className={cn("grid grid-cols-2 gap-8 pl-5 lg:grid-cols-4 lg:gap-16")}>
+          <div className={cn("grid gap-8 pl-5 min-[350px]:grid-cols-2 lg:grid-cols-4 lg:gap-16")}>
             {items.map((item) => (
               <Card {...item} key={item.name} />
             ))}
