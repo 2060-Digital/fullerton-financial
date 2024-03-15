@@ -61,8 +61,8 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
           </h3>
         )}
         <div className={cn("font-primary leading-7", { "text-primary-1": vip })}>{job_title}</div>
-        <CallToAction href={getStoryblokLink(email)} style="email-blue" target="_blank" className="z-20">
-          EMAIL
+        <CallToAction href={getStoryblokLink(email)} style="email-blue" target="_blank" className="z-20 uppercase">
+          email
         </CallToAction>
       </div>
     </div>
