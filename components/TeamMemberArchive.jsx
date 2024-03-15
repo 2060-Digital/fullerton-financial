@@ -9,7 +9,7 @@ import CallToAction from "components/CallToAction"
 import Arrow from "public/assets/chevron-down.svg"
 
 const Card = ({ image, first_name, last_name, job_title, team_category, email, vip, slug }) => {
-  const isImage = image?.filename && image?.filename !== ""
+  const isImage = image?.filename
 
   return (
     <div className={cn("group h-full lg:bg-gray-light", { "bg-secondary-2": vip })}>
