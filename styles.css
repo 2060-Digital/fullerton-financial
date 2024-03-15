@@ -143,7 +143,8 @@ p {
 .chat-link::before,
 .download-link::before,
 .email-link::before,
-.linkedin-link::before {
+.linkedin-link::before,
+.email-blue-link::before {
   content: "";
   display: block;
   background-repeat: no-repeat;
@@ -167,7 +168,8 @@ p {
   height: 15px;
 }
 
-.email-link::before {
+.email-link::before,
+.email-blue-link::before {
   background-image: url("public/assets/cta-icons/email.svg");
   height: 12px;
   width: 18px;
