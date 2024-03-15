@@ -442,6 +442,10 @@ input::placeholder {
   @apply -mb-2 lg:hidden;
 }
 
+.content-divider + * {
+  @apply mt-12;
+}
+
 /* End Divider */
 
 /* CTA Banner */

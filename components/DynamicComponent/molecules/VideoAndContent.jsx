@@ -5,7 +5,7 @@ import richText from "utilities/richText"
 export default function VideoAndContent({ blok }) {
   return (
     <section
-      className={cn("image-and-content-section mt-12 lg:my-20 lg:px-6", {
+      className={cn("image-and-content-section lg:my-20 lg:px-6", {
         "prose-headings:text-white prose-p:text-white": blok?.background_color === "primary-1",
         "prose-headings:text-primary-1":
           blok?.background_color === "secondary-1" || blok?.background_color === "gray-light",
