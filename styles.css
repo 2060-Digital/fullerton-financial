@@ -116,7 +116,7 @@ p {
 
 .secondary-link,
 .secondary-white-link {
-  @apply underline decoration-tertiary-1 underline-offset-4 hover:decoration-secondary-1;
+  @apply underline decoration-tertiary-1 decoration-2 underline-offset-4 hover:decoration-secondary-1;
 }
 
 .ghost-link {
