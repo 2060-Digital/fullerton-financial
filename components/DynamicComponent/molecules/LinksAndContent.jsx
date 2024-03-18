@@ -27,7 +27,7 @@ export default function LinksAndContent({ blok }) {
                     key={link._uid}
                     style={blok.background_color === "primary-1" ? "secondary-white" : "secondary"}
                     href={getStoryblokLink(link.link)}
-                    className="max-w-max lg:whitespace-nowrap"
+                    className="max-w-max xl:whitespace-nowrap"
                   >
                     {link.label}
                   </CallToAction>
