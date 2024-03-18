@@ -17,6 +17,9 @@ module.exports = {
       xl1: ["2.5rem", "2.8125rem"], // 40px, 45px
       xl2: ["3.125rem", "3.75rem"], // 50px, 60px
     },
+    backgroundImage: {
+      harvest: "url(/assets/harvest-background.svg)",
+    },
     colors: {
       primary: {
         1: "#003366",

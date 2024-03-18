@@ -18,6 +18,7 @@ export const Components = {
   bamboo_hr_embed: dynamic(() => import("./atoms/BambooHREmbed")),
   callout: dynamic(() => import("./atoms/Callout")),
   dual_badge: dynamic(() => import("./atoms/DualBadge")),
+  about_section: dynamic(() => import("./atoms/AboutSection")),
   inline_iframe: dynamic(() => import("./atoms/InlineIframe")),
 
   // Molecules
@@ -42,6 +43,7 @@ export const Components = {
   icon_section: dynamic(() => import("./molecules/IconSection")),
   timeline_section: dynamic(() => import("./molecules/TimelineSection")),
   newsletter_sidebar: dynamic(() => import("./molecules/NewsletterSidebar")),
+  map_section: dynamic(() => import("./molecules/MapSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),
