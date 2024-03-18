@@ -103,7 +103,7 @@ p {
 }
 .primary-link,
 .ghost-link {
-  @apply w-full rounded-sm border-2 border-tertiary-1 px-5 py-2.5 sm:w-max;
+  @apply w-full rounded-sm border-2 border-tertiary-1 px-5 py-2.5 text-center sm:w-max;
 }
 
 .primary-link {
