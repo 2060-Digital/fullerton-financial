@@ -5,7 +5,7 @@ import { getStoryblokLink } from "utilities/getStoryblokLink"
 
 export default function LinksAndContent({ blok }) {
   return (
-    <section className="px-5 py-12 lg:py-20">
+    <section className="px-5 py-12 pb-16 lg:py-24">
       <div className="mx-auto max-w-screen-xl">
         <div
           className={cn("flex flex-col gap-7 lg:gap-28", {

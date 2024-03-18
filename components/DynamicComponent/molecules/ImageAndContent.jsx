@@ -6,7 +6,7 @@ import DynamicComponent from "components/DynamicComponent"
 export default function ImageAndContent({ blok }) {
   return (
     <section
-      className={cn("image-and-content-section lg:my-20 lg:px-6", {
+      className={cn("image-and-content-section py-12 lg:px-6 lg:py-14", {
         "prose-headings:text-white prose-p:text-white": blok?.background_color === "primary-1",
         "prose-headings:text-primary-1":
           blok?.background_color === "secondary-1" ||
@@ -17,7 +17,7 @@ export default function ImageAndContent({ blok }) {
       <div
         className={cn(
           blok?.background_color && `bg-${blok?.background_color}`,
-          "image-and-content mx-auto max-w-screen-xl border-b-[140px] border-b-white px-6 py-8 lg:border-b-0 lg:py-20",
+          "image-and-content mx-auto max-w-screen-xl border-b-[80px] border-b-white px-6 py-8 lg:border-b-0 lg:py-20",
           {
             "lg:px-24": blok?.background_color,
             "lg:pl-24 lg:pr-0": !blok?.background_color,

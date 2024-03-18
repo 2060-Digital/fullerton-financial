@@ -29,7 +29,7 @@ export default function EventsCarouselSection({ blok }) {
   const { ref, visibleSlides, slideWidth, slideGap, offset, moveLeft, moveRight } = useCarousel(numEvents, 368, 80, 3)
 
   return (
-    <section className="my-8 overflow-x-clip px-6 lg:my-24">
+    <section className="my-4 overflow-x-clip px-6 lg:my-16">
       <h2 className="pb-8 text-center text-primary-1 lg:pb-12">{blok?.heading}</h2>
       {numEvents ? (
         <div className="relative mx-auto max-w-screen-xl">
