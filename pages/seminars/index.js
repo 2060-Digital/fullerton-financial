@@ -10,8 +10,8 @@ export default function EventsArchive({ events, story, meta }) {
   return (
     <>
       <Meta info={meta} />
-
-      <main className="page-content" data-pagefind-body>
+      {/* added .events-page class as a selector to style children components */}
+      <main className="page-content events-page" data-pagefind-body>
         {story?.content?.body?.map((blok) => (
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}

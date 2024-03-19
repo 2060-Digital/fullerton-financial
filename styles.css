@@ -81,6 +81,10 @@ p {
   font-family: theme("fontFamily.primary");
 }
 
+.events-page .image-and-content-flexbox {
+  @apply flex-col-reverse lg:flex-row-reverse;
+}
+
 .rich-text-ul li p,
 .rich-text-ol li p {
   @apply py-0 text-left leading-7;
