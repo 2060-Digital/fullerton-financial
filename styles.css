@@ -87,7 +87,7 @@ p {
 }
 
 .rich-text-ul li p {
-  @apply text-m1 font-bold;
+  @apply text-m1;
 }
 /* End Text Styles */
 
