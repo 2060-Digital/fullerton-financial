@@ -65,7 +65,12 @@ export default function EventsCarouselSection({ blok }) {
             </div>
           ) : null}
         </div>
-      ) : null}
+      ) : (
+        <div className="w-full bg-secondary-2 px-6 py-7 text-center sm:py-12 max-w-screen-xl mx-auto">
+          <h3 className="pb-4 text-primary-1">Sorry, there are no upcoming events.</h3>
+          <h4 className="text-primary-1">Check back for updates soon.</h4>
+        </div>
+      )}
     </section>
   )
 }

@@ -14,7 +14,7 @@ export default function CallToAction({
   onClick,
 }) {
   const styles = cn(
-    "inline-block cursor-pointer max-w-full text-center", // default styles
+    "inline-block cursor-pointer max-w-full", // default styles
     `${style}-link`,
     className,
   )

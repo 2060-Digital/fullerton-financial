@@ -103,7 +103,7 @@ p {
 }
 .primary-link,
 .ghost-link {
-  @apply w-full rounded-sm border-2 border-tertiary-1 px-5 py-2.5 sm:w-max;
+  @apply w-full rounded-sm border-2 border-tertiary-1 px-5 py-2.5 text-center sm:w-max;
 }
 
 .primary-link {
@@ -116,7 +116,7 @@ p {
 
 .secondary-link,
 .secondary-white-link {
-  @apply border-b-2 border-b-tertiary-1 hover:border-b-secondary-1;
+  @apply underline decoration-tertiary-1 decoration-2 underline-offset-4 hover:decoration-secondary-1;
 }
 
 .ghost-link {
@@ -143,7 +143,8 @@ p {
 .chat-link::before,
 .download-link::before,
 .email-link::before,
-.linkedin-link::before {
+.linkedin-link::before,
+.email-blue-link::before {
   content: "";
   display: block;
   background-repeat: no-repeat;
@@ -167,7 +168,8 @@ p {
   height: 15px;
 }
 
-.email-link::before {
+.email-link::before,
+.email-blue-link::before {
   background-image: url("public/assets/cta-icons/email.svg");
   height: 12px;
   width: 18px;
