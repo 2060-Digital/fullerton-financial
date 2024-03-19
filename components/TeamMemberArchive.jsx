@@ -12,7 +12,7 @@ const Card = ({ image, first_name, last_name, job_title, team_category, email, v
   const isImage = image?.filename
 
   return (
-    <div className={cn("group h-full lg:bg-gray-light", { "bg-secondary-2": vip })}>
+    <div className={cn("group h-full lg:bg-gray-light", { "bg-secondary-2 lg:bg-secondary-2": vip })}>
       <div className="relative w-full">
         {vip || team_category.includes("advisors") ? (
           <div className="group-hover">
