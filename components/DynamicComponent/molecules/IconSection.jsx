@@ -8,7 +8,7 @@ export default function IconSection({ blok }) {
         <Icon icon={blok?.icon} className="absolute -top-6 left-1/2 w-28 -translate-x-1/2 bg-white" />
         <div className="mx-auto max-w-screen-md pt-12 lg:pb-12">
           <h2 className="pb-7 text-center text-primary-1">{blok?.heading}</h2>
-          <div className="lg:prose-p:text-center">{richText(blok?.content)}</div>
+          <div className="prose-li:font-bold lg:prose-p:text-center">{richText(blok?.content)}</div>
         </div>
       </div>
     </section>
