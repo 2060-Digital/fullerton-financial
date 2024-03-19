@@ -4,7 +4,7 @@ import isRichTextValid from "utilities/isRichTextValid"
 
 export default function ThreeColumnSection({ blok }) {
   return (
-    <section className="px-5 pb-12 lg:pb-20">
+    <section className="px-5 py-12 lg:my-14 lg:py-6">
       <div className="three-column-section mx-auto">
         {blok?.eyebrow || blok?.heading || isRichTextValid(blok?.content) ? (
           <div className="mx-auto mb-6 max-w-screen-md lg:mb-12">

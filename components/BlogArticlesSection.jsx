@@ -111,7 +111,7 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
       </nav>
       {blogArticles?.length > 0 ? (
         <section id="blog-section" className="px-6" data-pagefind-body>
-          <div className="mx-auto max-w-screen-xl pt-12">
+          <div className="mx-auto max-w-screen-xl pt-12 lg:pt-20">
             <div className="grid gap-x-8 gap-y-12 last:pb-12 sm:grid-cols-2 lg:grid-cols-3">
               {blogArticles?.map((article) => (
                 <ArticleItem article={article} key={article?.content?._uid} />

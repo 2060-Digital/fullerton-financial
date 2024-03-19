@@ -87,7 +87,7 @@ p {
 }
 
 .rich-text-ul li p {
-  @apply text-m1 font-bold;
+  @apply text-m1;
 }
 /* End Text Styles */
 
@@ -440,10 +440,6 @@ input::placeholder {
 
 .video-hero + .content-divider:has(+ .logo-carousel-section) {
   @apply -mb-2 lg:hidden;
-}
-
-.content-divider + * {
-  @apply mt-12;
 }
 
 /* End Divider */
