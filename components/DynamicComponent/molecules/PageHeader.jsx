@@ -11,7 +11,7 @@ export default function PageHeader({ blok }) {
 
   return (
     <section
-      className={cn("bg-primary-1 lg:mb-6", {
+      className={cn("bg-primary-1", {
         "mt-24 pb-12 pl-6 sm:pb-16 lg:mt-16 lg:pb-0 lg:pl-0": hasImage || hasVideo,
         "px-6 py-8 lg:py-12": !hasImage && !hasVideo,
       })}
