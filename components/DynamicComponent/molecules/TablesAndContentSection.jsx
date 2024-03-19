@@ -1,7 +1,8 @@
 import { Fragment } from "react"
+import cn from "classnames"
 import richText from "utilities/richText"
 
-function Table({ title, additional_info, column_1_label, column_2_label, rows }) {
+function Table({ title, additional_info, column_1_label, column_2_label, rows, idx }) {
   const labelStyles = "bg-primary-1 text-white py-1 px-2.5"
   const cellStyles = "bg-secondary-2 text-gray-charcoal py-1 px-2.5 font-primary text-gray-charcoal"
 
@@ -20,7 +21,7 @@ function Table({ title, additional_info, column_1_label, column_2_label, rows })
             ))
           : null}
       </div>
-      <div>{richText(additional_info)}</div>
+      <div className={cn({ "hidden md:block": idx === 0, "md:hidden": idx === 1 })}>{richText(additional_info)}</div>
     </div>
   )
 }
@@ -37,7 +38,11 @@ export default function TablesAndContentSection({ blok }) {
           <div>{richText(blok?.content)}</div>
         </div>
         <div className="flex flex-col gap-7 md:flex-row lg:basis-2/3">
-          {blok?.tables?.length ? blok?.tables?.map((table) => <Table {...table} key={table?._uid} />) : null}
+          {blok?.tables?.length
+            ? blok?.tables?.map((table, idx) => (
+                <Table {...table} key={table?._uid} additional_info={blok?.additional_info} idx={idx} />
+              ))
+            : null}
         </div>
       </div>
     </section>
