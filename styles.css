@@ -444,7 +444,7 @@ input::placeholder {
 }
 
 .content-divider + .image-and-content-section {
-  @apply mt-12;
+  @apply mt-14 lg:mt-20;
 }
 
 /* End Divider */
