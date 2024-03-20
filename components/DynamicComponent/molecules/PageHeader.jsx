@@ -24,7 +24,7 @@ export default function PageHeader({ blok }) {
       >
         <div
           className={cn({
-            "w-full max-w-96 justify-self-end pr-6 lg:ml-6 lg:self-center lg:py-8 lg:pr-0 xl:ml-[72px] xl:mr-14 2xl:ml-[94px] 2xl:mr-12 2xl:pl-8":
+            "w-full max-w-[26rem] justify-self-end pr-6 lg:ml-6 lg:self-center lg:py-8 lg:pr-0 xl:ml-[72px] xl:mr-14 2xl:ml-[94px] 2xl:mr-12 2xl:pl-8":
               hasImage || hasVideo,
           })}
         >
