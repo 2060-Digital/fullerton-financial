@@ -98,7 +98,7 @@ export default function richText(content) {
           },
 
           [MARK_UNDERLINE]: (children) => {
-            return <span className="rich-text-underline font-secondary">{children}</span>
+            return <span className="rich-text-underline">{children}</span>
           },
         },
       })
