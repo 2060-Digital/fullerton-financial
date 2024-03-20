@@ -443,7 +443,7 @@ input::placeholder {
   @apply -mb-2 lg:hidden;
 }
 
-.content-divider + .image-and-content {
+.content-divider + .image-and-content-section {
   @apply mt-12;
 }
 
