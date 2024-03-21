@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { getGlobals } from "storyblok/api"
 import { getAllBlogArticlePaths, getBlogArticle } from "storyblok/blog"
@@ -12,19 +13,27 @@ import richText from "utilities/richText"
 import { formatBlogDate } from "utilities/blogHelpers"
 
 export default function Article({ story, meta }) {
-  const url = `${process.env.URL}${story?.content?.slug}`
+  const [currentUrl, setCurrentUrl] = useState("")
+  // const url = `${"https://mysite.com"}${story?.content?.slug}`
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href)
+  }, [])
 
   const ShareLinks = () => (
     <div className="relative -right-3.5 -top-3.5 h-full w-full bg-secondary-2 py-12">
       <h3 className="pb-8 text-primary-1">Share This Article</h3>
       <div className="flex items-center justify-center gap-10">
-        <Link href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank">
+        <Link href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`} target="_blank">
           <Facebook className="text-primary-1 transition-all hover:text-secondary-1" />
         </Link>
-        <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target="_blank">
+        <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`} target="_blank">
           <LinkedIn className="text-primary-1 transition-all hover:text-secondary-1" />
         </Link>
-        <Link href={`mailto:?subject=Fullerton Financial Planning&body=Check out this site ${url}`} target="_blank">
+        <Link
+          href={`mailto:?subject=Fullerton Financial Planning&body=Check out this site ${currentUrl}`}
+          target="_blank"
+        >
           <Mail className="text-primary-1 transition-all hover:text-secondary-1" />
         </Link>
       </div>
