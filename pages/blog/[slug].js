@@ -14,7 +14,6 @@ import { formatBlogDate } from "utilities/blogHelpers"
 
 export default function Article({ story, meta }) {
   const [currentUrl, setCurrentUrl] = useState("")
-  // const url = `${"https://mysite.com"}${story?.content?.slug}`
 
   useEffect(() => {
     setCurrentUrl(window.location.href)
