@@ -5,6 +5,8 @@ export const getStoryblokLink = ({ href, anchor, linktype, cached_url, cachedUrl
   // Email Link
   if (linktype === "email") return `mailto:${email || url || href}`
 
+  if (linktype === "story" && story?.slug === "home") return story.url
+
   // Internal Link
   if (linktype === "story" && story?.full_slug) return relativizeToBase(story.full_slug)
 
