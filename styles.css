@@ -431,6 +431,7 @@ input::placeholder {
 .image-and-content-section:has(.nested-image-and-content-components) .image-and-content {
   border-bottom: 0px;
 }
+
 /* End Image and Content */
 
 /* Divider */
@@ -440,6 +441,10 @@ input::placeholder {
 
 .video-hero + .content-divider:has(+ .logo-carousel-section) {
   @apply -mb-2 lg:hidden;
+}
+
+.content-divider + .image-and-content-section {
+  @apply mt-14 lg:mt-20;
 }
 
 /* End Divider */
