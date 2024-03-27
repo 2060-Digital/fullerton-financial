@@ -10,7 +10,7 @@ function Event({ name, venue, dates, signUpHREF, visible }) {
         "opacity-0": !visible,
       })}
     >
-      <div className="flex flex-col items-center justify-center gap-4 text-center">
+      <div className="flex w-full flex-col items-center justify-center gap-4 text-center">
         <h3>
           <span className="block pb-4 font-primary text-base font-normal text-primary-1">{dates}</span>
           <span className="font-primary text-m1 font-bold text-primary-1 lg:text-m2">{name}</span>
@@ -66,7 +66,7 @@ export default function EventsCarouselSection({ blok }) {
           ) : null}
         </div>
       ) : (
-        <div className="w-full bg-secondary-2 px-6 py-7 text-center sm:py-12 max-w-screen-xl mx-auto">
+        <div className="mx-auto w-full max-w-screen-xl bg-secondary-2 px-6 py-7 text-center sm:py-12">
           <h3 className="pb-4 text-primary-1">Sorry, there are no upcoming events.</h3>
           <h4 className="text-primary-1">Check back for updates soon.</h4>
         </div>
