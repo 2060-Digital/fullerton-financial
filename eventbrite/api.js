@@ -45,7 +45,7 @@ export async function getAllActiveEvents() {
         const content = await query(`/events/${event.id}/structured_content/`).then((response) => {
           return {
             modules: response.modules,
-            widgets: response.widgets,
+            faqs: response.widgets.filter((widget) => widget.type === "faqs")[0],
           }
         })
 
