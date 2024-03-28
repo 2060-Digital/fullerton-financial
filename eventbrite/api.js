@@ -42,7 +42,12 @@ export async function getAllActiveEvents() {
       events.map(async (event) => {
         const venue = await getVenueByID(event.venue_id, event.series_id)
 
-        const content = await query(`/events/${event.id}/structured_content/`).then((response) => response.modules)
+        const content = await query(`/events/${event.id}/structured_content/`).then((response) => {
+          return {
+            modules: response.modules,
+            widgets: response.widgets,
+          }
+        })
 
         return {
           ...event,

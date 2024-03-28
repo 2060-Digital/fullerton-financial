@@ -7,7 +7,7 @@ export default function StructuredContentSection({ modules }) {
         {modules.map(({ data, id }) => {
           if (data?.image) {
             return (
-              <div className="relative z-10 mr-4 mt-4 h-full w-full border-2 border-secondary-1" key={id}>
+              <div className="relative z-10 order-first mr-4 mt-4 h-full w-full border-2 border-secondary-1" key={id}>
                 <Image
                   src={data?.image?.url}
                   alt=""
@@ -19,7 +19,6 @@ export default function StructuredContentSection({ modules }) {
               </div>
             )
           }
-
           return (
             <div
               dangerouslySetInnerHTML={{ __html: data?.body?.text ?? null }}
