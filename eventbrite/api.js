@@ -46,7 +46,8 @@ export async function getAllActiveEvents() {
           const faqs = response.widgets.filter((widget) => widget.type === "faqs")[0]
 
           return {
-            modules: response.modules,
+            images: response.modules.filter((mod) => mod.type === "image"),
+            textBlocks: response.modules.filter((mod) => mod.type === "text"),
             faqs: faqs?.data?.faqs.map((faq) => ({ title: faq.question, content: faq.answer })),
           }
         })
