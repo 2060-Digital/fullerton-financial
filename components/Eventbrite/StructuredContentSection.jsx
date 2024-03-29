@@ -2,8 +2,8 @@ import FAQSection from "components/DynamicComponent/molecules/FAQSection"
 import Image from "next/image"
 
 export default function StructuredContentSection({ modules, faqs }) {
-  const images = modules.filter((mod) => mod.type === "image")
-  const textBlocks = modules.filter((mod) => mod.type === "text")
+  const images = modules?.filter((mod) => mod.type === "image")
+  const textBlocks = modules?.filter((mod) => mod.type === "text")
 
   return modules?.length > 0 ? (
     <section className="px-6">
@@ -11,7 +11,7 @@ export default function StructuredContentSection({ modules, faqs }) {
         <div className="grid gap-12 lg:grid-cols-2">
           {images.length > 0 ? (
             <div className="relative z-10 order-first mr-4 mt-4 h-full w-full border-2 border-secondary-1">
-              {images.map(({ data, id }) => (
+              {images?.map(({ data, id }) => (
                 <Image
                   key={id}
                   src={data?.image?.url}
@@ -25,7 +25,7 @@ export default function StructuredContentSection({ modules, faqs }) {
             </div>
           ) : null}
           <div>
-            {textBlocks.map(({ data, id }) => (
+            {textBlocks?.map(({ data, id }) => (
               <div
                 dangerouslySetInnerHTML={{ __html: data?.body?.text ?? null }}
                 key={id}
