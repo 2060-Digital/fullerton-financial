@@ -43,9 +43,11 @@ export async function getAllActiveEvents() {
         const venue = await getVenueByID(event.venue_id, event.series_id)
 
         const content = await query(`/events/${event.id}/structured_content/`).then((response) => {
+          const faqs = response.widgets.filter((widget) => widget.type === "faqs")[0]
+
           return {
             modules: response.modules,
-            faqs: response.widgets.filter((widget) => widget.type === "faqs")[0],
+            faqs: faqs?.data?.faqs.map((faq) => ({ title: faq.question, content: faq.answer })),
           }
         })
 

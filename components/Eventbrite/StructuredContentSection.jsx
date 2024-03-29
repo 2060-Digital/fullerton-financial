@@ -1,9 +1,11 @@
+import AccordionItem from "components/AccordionItem"
+import FAQSection from "components/DynamicComponent/molecules/FAQSection"
 import Image from "next/image"
 
 export default function StructuredContentSection({ modules, faqs }) {
   return modules?.length > 0 ? (
     <section className="px-6">
-      <div className="mx-auto max-w-screen-xl py-12 lg:border-b-2 lg:border-b-secondary-1 lg:py-24">
+      <div className="mx-auto max-w-screen-xl py-12 lg:border-b-2 lg:border-b-secondary-1 lg:py-20 lg:pb-12">
         <div className="grid gap-12 lg:grid-cols-2">
           {modules.map(({ data, id }) => {
             if (data?.image) {
@@ -29,7 +31,7 @@ export default function StructuredContentSection({ modules, faqs }) {
             )
           })}
         </div>
-        {faqs?.data?.faqs?.length > 0 ? <div className="py-12 lg:py-24"> FAQs</div> : null}
+        {faqs.length > 0 ? <FAQSection blok={{ heading: "Frequently Asked Questions", items: faqs }} /> : null}
       </div>
     </section>
   ) : null
