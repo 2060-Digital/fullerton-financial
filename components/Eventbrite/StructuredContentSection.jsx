@@ -2,10 +2,8 @@ import FAQSection from "components/DynamicComponent/molecules/FAQSection"
 import Image from "next/image"
 
 export default function StructuredContentSection({ modules, faqs }) {
-  if (!modules) return
-
-  const images = modules?.filter((mod) => mod.type === "image")
-  const textBlocks = modules?.filter((mod) => mod.type === "text")
+  const images = modules ? modules?.filter((mod) => mod.type === "image") : null
+  const textBlocks = modules ? modules?.filter((mod) => mod.type === "text") : null
 
   return modules?.length > 0 ? (
     <section className="px-6">
