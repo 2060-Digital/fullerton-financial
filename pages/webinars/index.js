@@ -12,7 +12,7 @@ export default function WebinarsArchive({ meta, story, webinars, onDemandWebinar
     <>
       <Meta info={meta} />
 
-      <main className="page-content" data-pagefind-body>
+      <main className="page-content event-archive" data-pagefind-body>
         {story?.content?.body?.map((blok) => (
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}

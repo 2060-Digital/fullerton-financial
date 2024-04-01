@@ -432,6 +432,18 @@ input::placeholder {
   border-bottom: 0px;
 }
 
+.event-archive .image-and-content-flex {
+  @apply flex-col-reverse lg:flex-row-reverse;
+}
+
+.event-archive .image-and-content-image {
+  @apply mb-0;
+}
+
+.event-archive .image-and-content {
+  @apply border-b-0;
+}
+
 /* End Image and Content */
 
 /* Divider */
