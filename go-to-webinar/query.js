@@ -13,7 +13,6 @@ export default async function fetchQuery(query) {
         "Content-Type": "application/json",
       },
     }).then((response) => response.json())
-
     return response
   } catch (error) {
     console.error(`go to webinar fetch error: ${error}\nquery: ${query}`)
