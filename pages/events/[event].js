@@ -34,7 +34,7 @@ export default function IndividualEventPage({ event, story }) {
       />
       <main data-pagefind-body>
         <EventbritePageHeader event={event} />
-        <StructuredContentSection modules={event?.content} />
+        <StructuredContentSection images={event?.content?.images} textBlocks={event?.content?.textBlocks} />
         <VenueMap venue={event?.venue} />
       </main>
       <Script type="application/ld+json" id="event-schema">

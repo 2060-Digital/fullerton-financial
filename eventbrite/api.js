@@ -42,7 +42,15 @@ export async function getAllActiveEvents() {
       events.map(async (event) => {
         const venue = await getVenueByID(event.venue_id, event.series_id)
 
-        const content = await query(`/events/${event.id}/structured_content/`).then((response) => response.modules)
+        const content = await query(`/events/${event.id}/structured_content/`).then((response) => {
+          const faqs = response.widgets.filter((widget) => widget.type === "faqs")[0]
+
+          return {
+            images: response.modules.filter((mod) => mod.type === "image"),
+            textBlocks: response.modules.filter((mod) => mod.type === "text"),
+            faqs: faqs?.data?.faqs.map((faq) => ({ title: faq.question, content: faq.answer })),
+          }
+        })
 
         return {
           ...event,

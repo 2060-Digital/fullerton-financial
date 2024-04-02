@@ -28,7 +28,7 @@ export default function ImageAndContent({ blok }) {
         )}
       >
         <div
-          className={cn("mx-auto flex max-w-screen-xl flex-col gap-8 lg:gap-0", {
+          className={cn("image-and-content-flex mx-auto flex max-w-screen-xl flex-col gap-8 lg:gap-0", {
             "justify-end lg:flex-row-reverse": blok?.orientation === "image_first",
             "lg:flex-row": blok?.orientation === "content_first",
           })}

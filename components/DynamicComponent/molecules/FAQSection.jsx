@@ -33,8 +33,8 @@ const Item = ({ title, content }) => {
 export default function FAQSection({ blok }) {
   return (
     <section className="faq-section relative py-8">
-      <h2 className="mb-6">{blok.heading}</h2>
-      <div className="mx-auto flex max-w-screen-lg flex-col gap-8">
+      <h2 className="mb-6 text-primary-1">{blok.heading}</h2>
+      <div className="flex max-w-screen-lg flex-col gap-8">
         {blok?.items?.map((item) => (
           <Item {...item} key={item?._uid} />
         ))}
