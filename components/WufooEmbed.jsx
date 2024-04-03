@@ -8,6 +8,22 @@ export default function WufooEmbed({ formID, initialHeight = 640 }) {
     setMounted(true)
   }, [])
 
+  useEffect(() => {
+    const handleMessages = (e) => {
+      if (e.data === "formSubmitted") {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({ event: "form_submission" })
+      }
+      return
+    }
+
+    window.addEventListener("message", handleMessages, true)
+
+    return () => {
+      window.removeEventListener("message", handleMessages, true)
+    }
+  }, [])
+
   return mounted ? (
     <>
       <div id={`wufoo-${formID}`}></div>
@@ -29,6 +45,7 @@ export default function WufooEmbed({ formID, initialHeight = 640 }) {
             }
 
             const form = new WufooForm()
+
             form.initialize(options)
             form.display()
           } catch (e) {
