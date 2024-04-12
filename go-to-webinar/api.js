@@ -73,7 +73,9 @@ export async function getAllPastWebinars() {
     }),
   )
   // Sort webinars by most recent first
-  return (await webinarsWithRecordingAsset)?.sort((a, b) => new Date(b.asset.createTime) - new Date(a.asset.createTime))
+  return (await webinarsWithRecordingAsset)
+    ?.filter((webinar) => webinar.asset !== undefined)
+    .sort((a, b) => new Date(b.asset.createTime) - new Date(a.asset.createTime))
 }
 
 export async function getOnDemandWebinarPaths() {
