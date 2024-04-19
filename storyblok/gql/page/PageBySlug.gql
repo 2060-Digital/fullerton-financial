@@ -5,7 +5,7 @@ query PageBySlug($slug: ID!) {
       _uid
       body
       component
-      seo
+      twentysixty_seo
     }
     created_at
     published_at

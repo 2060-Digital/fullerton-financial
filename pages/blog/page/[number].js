@@ -33,7 +33,7 @@ export async function getStaticProps({ params: { number = 1 } }) {
       blogArticles,
       categories,
       total,
-      meta: story?.content?.seo ?? null,
+      meta: story?.content?.twentysixty_seo ?? null,
       globals: globals ?? null,
       story: story ?? null,
     },

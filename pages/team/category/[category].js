@@ -42,7 +42,7 @@ export async function getStaticProps({ params: { category }, preview = null }) {
   return {
     props: {
       archive: story ?? null,
-      meta: story?.content?.seo ?? null,
+      meta: story?.content?.twentysixty_seo ?? null,
       teamMembers: teamMembers ?? null,
       vip: vip ?? null,
       category: { name: category.replaceAll("-", " "), value: category },

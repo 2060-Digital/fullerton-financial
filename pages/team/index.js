@@ -41,7 +41,7 @@ export async function getStaticProps({ preview = null }) {
   return {
     props: {
       archive: story ?? null,
-      meta: story?.content?.seo ?? null,
+      meta: story?.content?.twentysixty_seo ?? null,
       teamMembers: teamMembers ?? null,
       vip: vip ?? null,
       categories: categories ?? null,

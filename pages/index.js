@@ -36,7 +36,7 @@ export async function getStaticProps({ preview = null }) {
     props: {
       globals,
       story: page ?? null,
-      meta: page?.content?.seo ?? null,
+      meta: page?.content?.twentysixty_seo ?? null,
       preview,
     },
   }
