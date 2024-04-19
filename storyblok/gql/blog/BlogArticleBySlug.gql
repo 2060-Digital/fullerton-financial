@@ -7,7 +7,7 @@ query BlogArticleBySlug($slug: ID!) {
       category
       content
       date
-      seo
+      twentysixty_seo
       featured_image {
         alt
         filename
