@@ -4,7 +4,7 @@ query IndividualTeamMember($slug: ID!) {
       _editable
       _uid
       component
-      seo
+      twentysixty_seo
       first_name
       last_name
       job_title

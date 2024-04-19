@@ -5,7 +5,7 @@ query EventArchive($slug: ID!) {
       _editable
       component
       body
-      seo
+      twentysixty_seo
     }
   }
 }

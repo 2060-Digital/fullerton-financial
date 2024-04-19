@@ -101,7 +101,7 @@ export async function getStaticProps({ params: { slug }, preview = null }) {
   return {
     props: {
       story: story ?? null,
-      meta: story?.content?.seo ?? null,
+      meta: story?.content?.twentysixty_seo ?? null,
       globals: globals ?? null,
       preview,
     },

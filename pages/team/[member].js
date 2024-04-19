@@ -97,7 +97,7 @@ export async function getStaticProps({ params: { member }, preview = null }) {
   return {
     props: {
       teamMember: story ?? null,
-      meta: story?.content?.seo ?? null,
+      meta: story?.content?.twentysixty_seo ?? null,
       globals: globals ?? null,
       preview,
     },

@@ -39,7 +39,7 @@ export async function getStaticProps({ preview = null }) {
       story: story ?? null,
       webinars: webinars ?? null,
       onDemandWebinars: onDemandWebinars ?? null,
-      meta: story?.content?.seo,
+      meta: story?.content?.twentysixty_seo,
     },
   }
 }

@@ -12,7 +12,7 @@ export default function IndividualEventPage({ event, story }) {
   if (story?.content?.component === "page") {
     return (
       <>
-        <Meta info={story?.content?.seo} />
+        <Meta info={story?.content?.twentysixty_seo} />
         <DynamicComponent blok={story?.content} />
       </>
     )

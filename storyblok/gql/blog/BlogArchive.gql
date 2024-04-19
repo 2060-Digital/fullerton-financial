@@ -6,7 +6,7 @@ query BlogArchive {
         alt
       }
       heading
-      seo
+      twentysixty_seo
     }
     created_at
     published_at

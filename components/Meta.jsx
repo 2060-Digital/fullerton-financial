@@ -12,12 +12,12 @@ export default function Meta({ info }) {
       {info?.title ? <title>{info?.title}</title> : null}
       {info?.description ? <meta name="description" content={info?.description} /> : null}
       {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
-      {info?.og_title ? <meta property="og:title" content={info?.og_title} /> : null}
+      {info?.title ? <meta property="og:title" content={info?.title} /> : null}
       {info?.og_image ? <meta property="og:image" content={info?.og_image} /> : null}
-      {info?.og_description ? <meta property="og:description" content={info?.og_description} /> : null}
-      {info?.twitter_title ? <meta property="twitter:title" content={info?.twitter_title} /> : null}
+      {info?.description ? <meta property="og:description" content={info?.description} /> : null}
+      {info?.title ? <meta property="twitter:title" content={info?.title} /> : null}
       {info?.twitter_image ? <meta property="twitter:image" content={info?.twitter_image} /> : null}
-      {info?.twitter_description ? <meta property="twitter:description" content={info?.twitter_description} /> : null}
+      {info?.description ? <meta property="twitter:description" content={info?.description} /> : null}
     </Head>
   ) : null
 }
