@@ -33,7 +33,7 @@ export async function getStaticProps({ preview = null }) {
       events,
       globals,
       story: story ?? null,
-      meta: story?.content?.seo,
+      meta: story?.content?.twentysixty_seo,
       preview,
     },
   }
