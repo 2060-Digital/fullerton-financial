@@ -20,7 +20,7 @@ export default function ImageAndContent({ blok }) {
           "image-and-content mx-auto max-w-screen-xl border-b-[80px] border-b-white px-6 py-8 lg:border-b-0 lg:py-10",
           {
             "lg:px-24": blok?.background_color,
-            "lg:pl-24 lg:pr-0": !blok?.background_color,
+            "lg:pl-24 lg:pr-0": !blok?.background_color && blok?.orientation !== "content_first",
             "bg-opacity-20": blok?.background_color === "secondary-1",
             "lg:border-l-[80px] lg:border-l-white": blok?.orientation === "image_first",
             "lg:border-r-[80px] lg:border-r-white": blok?.orientation === "content_first",
@@ -38,7 +38,7 @@ export default function ImageAndContent({ blok }) {
               {blok?.eyebrow ? <span className="eyebrow block pb-2.5">{blok?.eyebrow}</span> : null}
               <span className="block pb-5">{blok?.heading}</span>
             </h2>
-            <div className="prose-h2:pb-5">{richText(blok?.content)}</div>
+            <div className="prose-headings:pb-4 prose-li:pb-2">{richText(blok?.content)}</div>
           </div>
           <div
             className={cn("relative h-full w-full pr-4 pt-4 lg:basis-7/12 lg:scale-110", {
