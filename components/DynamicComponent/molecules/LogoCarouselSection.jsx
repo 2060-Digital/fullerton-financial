@@ -16,7 +16,7 @@ function Logo({ url, image, visible }) {
         href={href}
         target={getTarget(href)}
         className={cn("min-w-28 transition-opacity duration-300", {
-          "lg opacity-0": !visible,
+          "lg pointer-events-none opacity-0": !visible,
         })}
       >
         <Image src={image?.filename} alt={image?.alt} width={110} height={95} className="w-full object-contain" />
@@ -39,12 +39,7 @@ function Logo({ url, image, visible }) {
 
 export default function LogoCarouselSection({ blok }) {
   const numLogos = blok?.logos?.length
-  const { ref, visibleSlides, slideWidth, slideGap, offset, moveLeft, moveRight } = useCarousel(
-    numLogos,
-    156,
-    44,
-    numLogos,
-  )
+  const { ref, visibleSlides, slideWidth, slideGap, offset, moveLeft, moveRight } = useCarousel(numLogos, 156, 44, 7)
 
   return (
     <section className="logo-carousel-section overflow-hidden bg-secondary-2 px-6 py-12 lg:py-24">
@@ -55,7 +50,10 @@ export default function LogoCarouselSection({ blok }) {
         </h2>
       </div>
       {numLogos ? (
-        <div className="mx-auto mb-12">
+        <div className="mx-auto mb-12 max-w-[1400px] overflow-hidden xl:flex xl:items-center">
+          <button onClick={() => moveLeft()} className="z-10 hidden p-4 xl:block">
+            <Arrow className="rotate-180 text-tertiary-1" />
+          </button>
           <div
             ref={ref}
             className="mx-auto flex items-center gap-11 transition-all duration-500"
@@ -77,12 +75,16 @@ export default function LogoCarouselSection({ blok }) {
               )
             })}
           </div>
+          <button onClick={() => moveRight()} className="z-10 hidden p-4 xl:block">
+            <Arrow className="text-tertiary-1" />
+          </button>
+
           {visibleSlides < numLogos ? (
-            <div className="mx-auto mt-12 flex w-max gap-8">
-              <button onClick={() => moveLeft()}>
+            <div className="mx-auto mt-12 flex w-max gap-8 xl:hidden">
+              <button onClick={() => moveLeft()} className="p-4">
                 <Arrow className="rotate-180 text-tertiary-1" />
               </button>
-              <button onClick={() => moveRight()}>
+              <button onClick={() => moveRight()} className="p-4">
                 <Arrow className="text-tertiary-1" />
               </button>
             </div>
