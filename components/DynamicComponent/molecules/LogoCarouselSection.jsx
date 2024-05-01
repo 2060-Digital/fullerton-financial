@@ -52,7 +52,7 @@ export default function LogoCarouselSection({ blok }) {
       {numLogos ? (
         <div className="mx-auto mb-12 max-w-[1400px] overflow-hidden xl:flex xl:items-center">
           <button onClick={() => moveLeft()} className="z-10 hidden p-4 xl:block">
-            <Arrow className="rotate-180 text-tertiary-1" />
+            <Arrow className="rotate-180 text-tertiary-1 hover:text-secondary-1" />
           </button>
           <div
             ref={ref}
@@ -76,16 +76,16 @@ export default function LogoCarouselSection({ blok }) {
             })}
           </div>
           <button onClick={() => moveRight()} className="z-10 hidden p-4 xl:block">
-            <Arrow className="text-tertiary-1" />
+            <Arrow className="text-tertiary-1 hover:text-secondary-1" />
           </button>
 
           {visibleSlides < numLogos ? (
             <div className="mx-auto mt-12 flex w-max gap-8 xl:hidden">
               <button onClick={() => moveLeft()} className="p-4">
-                <Arrow className="rotate-180 text-tertiary-1" />
+                <Arrow className="rotate-180 text-tertiary-1 hover:text-secondary-1" />
               </button>
               <button onClick={() => moveRight()} className="p-4">
-                <Arrow className="text-tertiary-1" />
+                <Arrow className="text-tertiary-1 hover:text-secondary-1" />
               </button>
             </div>
           ) : null}
