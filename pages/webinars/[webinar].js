@@ -48,3 +48,7 @@
 //     fallback: false,
 //   }
 // }
+
+export default function Webinar() {
+  return <></>
+}

@@ -30,3 +30,7 @@
 //     fallback: false,
 //   }
 // }
+
+export default function onDemandWebinars() {
+  return <></>
+}
