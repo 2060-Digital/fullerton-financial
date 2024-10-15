@@ -25,7 +25,7 @@ const app = express()
 
 app.get("/", async function (req, res) {
   res.sendStatus(200)
-  const authorizationCode = req.query.code
+  const authorizationCode = req.query.codef
   const tokenParams = {
     code: authorizationCode,
     redirect_uri: process.env.OAUTH_REDIRECT_URI,
