@@ -1,6 +1,3 @@
-import cn from "classnames"
-import richText from "utilities/richText"
-
 export default function IframeEmbedSection({ blok }) {
   return (
     <section className={`px-5 py-8 lg:py-16`}>
