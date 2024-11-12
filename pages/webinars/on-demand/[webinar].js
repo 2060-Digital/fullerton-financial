@@ -6,27 +6,27 @@ export default function OnDemandWebinar({ webinar }) {
   return <WebinarPage webinar={webinar} onDemand />
 }
 
-export async function getStaticProps({ params: { webinar } }) {
-  const globals = await getGlobals()
+// export async function getStaticProps({ params: { webinar } }) {
+//   const globals = await getGlobals()
 
-  const webinarIDs = webinar.split("-")
+//   const webinarIDs = webinar.split("-")
 
-  const individualWebinar = await getOnDemandWebinarByIDs(
-    webinarIDs[webinarIDs.length - 2],
-    webinarIDs[webinarIDs.length - 1],
-  )
+//   const individualWebinar = await getOnDemandWebinarByIDs(
+//     webinarIDs[webinarIDs.length - 2],
+//     webinarIDs[webinarIDs.length - 1],
+//   )
 
-  return {
-    props: {
-      globals,
-      webinar: individualWebinar ?? null,
-    },
-  }
-}
+//   return {
+//     props: {
+//       globals,
+//       webinar: individualWebinar ?? null,
+//     },
+//   }
+// }
 
-export async function getStaticPaths() {
-  return {
-    paths: await getOnDemandWebinarPaths(),
-    fallback: false,
-  }
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: await getOnDemandWebinarPaths(),
+//     fallback: false,
+//   }
+// }

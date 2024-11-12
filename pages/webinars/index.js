@@ -13,12 +13,12 @@ export default function WebinarsArchive({ meta, story, webinars, onDemandWebinar
       <Meta info={meta} />
 
       <main className="page-content event-archive" data-pagefind-body>
-        {story?.content?.body?.map((blok) => (
+        {/* {story?.content?.body?.map((blok) => (
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}
         <WebinarListSection webinars={webinars} />
         <Divider />
-        <OnDemandWebinarSection webinars={onDemandWebinars} />
+        <OnDemandWebinarSection webinars={onDemandWebinars} /> */}
       </main>
     </>
   )
@@ -27,10 +27,10 @@ export default function WebinarsArchive({ meta, story, webinars, onDemandWebinar
 export async function getStaticProps({ preview = null }) {
   const globals = await getGlobals()
 
-  const story = await getWebinarsArchive(preview)
+  // const story = await getWebinarsArchive(preview)
 
-  const webinars = await getAllFutureWebinars()
-  const onDemandWebinars = await getAllPastWebinars()
+  // const webinars = await getAllFutureWebinars()
+  // const onDemandWebinars = await getAllPastWebinars()
 
   return {
     props: {
