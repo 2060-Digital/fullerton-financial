@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-// import { serialize, deserialize } from "v8"
+import { serialize, deserialize } from "v8"
 
 const api = {
   /**
