@@ -8,7 +8,7 @@ const config = {
   images: {
     domains: ["a-us.storyblok.com", "img.evbuc.com"],
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
@@ -23,6 +23,12 @@ const config = {
         },
       ],
     })
+
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      }
+    }
 
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
