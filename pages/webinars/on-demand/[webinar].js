@@ -3,7 +3,8 @@ import { getOnDemandWebinarPaths, getOnDemandWebinarByIDs } from "go-to-webinar/
 import WebinarPage from "components/Webinars/WebinarPage"
 
 export default function OnDemandWebinar({ webinar }) {
-  return <WebinarPage webinar={webinar} onDemand />
+  // return <WebinarPage webinar={webinar} onDemand />
+  return <div></div>
 }
 
 // export async function getStaticProps({ params: { webinar } }) {

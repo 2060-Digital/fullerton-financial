@@ -1,6 +1,6 @@
 import fs from "fs"
 import path from "path"
-import { serialize, deserialize } from "v8"
+// import { serialize, deserialize } from "v8"
 
 const api = {
   /**
@@ -9,13 +9,9 @@ const api = {
    * @returns The page data
    */
   get: (file) => {
-    const fsFriendlyPath = path.join(process.cwd(), `storyblok/cache/_db/${file?.replaceAll("/", "_")}.db`)
+    const fsFriendlyPath = file?.replaceAll("/", "_")
 
-    if (!fs.existsSync(fsFriendlyPath)) {
-      return null
-    }
-
-    const data = fs.readFileSync(fsFriendlyPath)
+    const data = fs.readFileSync(path.join(process.cwd(), `storyblok/cache/_db/${fsFriendlyPath}.db`))
     return deserialize(data) ?? null
   },
   /**

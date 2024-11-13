@@ -1,8 +1,12 @@
-[functions]
-    included_files = ["node_modules/sharp/**/*", ".blurDataURLsCache/**/*"]
+[build]
+  command = "npm run build"
+  publish = ".next"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+
+[functions]
+    directory = "netlify/functions"
+    included_files = ["node_modules/sharp/**/*", ".blurDataURLsCache/**/*"]
+    node_bundler = "esbuild"
 
 [[plugins]]
   package = "/plugins/img-placeholder-cache"
