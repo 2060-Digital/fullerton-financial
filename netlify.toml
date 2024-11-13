@@ -2,4 +2,7 @@
     included_files = ["node_modules/sharp/**/*", ".blurDataURLsCache/**/*"]
 
 [[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[plugins]]
   package = "/plugins/img-placeholder-cache"
