@@ -37,6 +37,7 @@ export const Components = {
   upcoming_events_section: dynamic(() => import("./molecules/EventsCarouselSection")),
   three_column_section: dynamic(() => import("./molecules/ThreeColumnSection")),
   form_embed_section: dynamic(() => import("./molecules/FormEmbedSection")),
+  iframe_embed_section: dynamic(() => import("./molecules/IframeEmbedSection")),
   links_and_content: dynamic(() => import("./molecules/LinksAndContent")),
   two_column_text_section: dynamic(() => import("./molecules/TwoColumnTextSection")),
   tables_and_content_section: dynamic(() => import("./molecules/TablesAndContentSection")),
