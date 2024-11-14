@@ -6,7 +6,7 @@ export default function FormEmbedSection({ blok }) {
   const layout = blok.content_placement
 
   return (
-    <section className={`relative px-5 py-8`}>
+    <section className={`relative px-5 py-8 lg:py-16`}>
       <div
         className={cn("relative mx-auto max-w-screen-xl", {
           "w-full max-w-5xl": layout === "top",
