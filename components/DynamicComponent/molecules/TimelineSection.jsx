@@ -2,7 +2,7 @@ import cn from "classnames"
 import Image from "components/Image"
 import richText from "utilities/richText"
 
-function TimelineEntry({ image, heading, content }) {
+function TimelineEntry({ image, heading, content, year }) {
   return (
     <li className="group border-l-2 border-white last:border-none odd:flex-row-reverse lg:relative lg:flex lg:border-none">
       <div className="image-decor relative z-10 basis-1/2 lg:max-h-[500px] lg:min-h-[336px] lg:pb-24">
@@ -19,7 +19,10 @@ function TimelineEntry({ image, heading, content }) {
         </div>
       </div>
       <div className="basis-1/2 border-white pb-16 pt-4 lg:-mr-[2px] lg:border-t-2 lg:py-8 lg:group-odd:border-r-2 lg:group-even:border-l-2 lg:group-even:text-right lg:group-last-of-type:border-l-0">
-        <div className="timeline-content relative border-white pl-4 lg:static lg:group-odd:pl-0 lg:group-odd:pr-8 lg:group-even:pl-8">
+        <div
+          className="timeline-content relative  border-white pl-4 lg:static lg:group-odd:pl-0 lg:group-odd:pr-8 lg:group-even:pl-8"
+          year={year}
+        >
           <h3 className="block text-primary-1">{heading}</h3>
         </div>
         <div className="pl-4 pt-4 lg:group-odd:pl-0 lg:group-odd:pr-8 lg:group-even:pl-8">{richText(content)}</div>

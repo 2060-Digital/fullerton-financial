@@ -661,17 +661,18 @@ input::placeholder {
 
 .timeline-content::before {
   @apply static font-secondary text-secondary-1 group-odd:left-0 group-even:right-0 lg:absolute lg:-top-9;
-  content: counter(timeline-counter);
+  content: attr(year);
   font-size: 2rem;
   font-weight: bold;
   --size: 44px;
   line-height: var(--size);
-  width: var(--size);
+  padding: 0 20px;
+  max-width: max-content;
   height: var(--size);
   z-index: 20;
   background: white;
   text-align: center;
-  border-radius: 100%;
+  border-radius: 30px;
   display: flex;
   justify-content: center;
   align-content: center;
