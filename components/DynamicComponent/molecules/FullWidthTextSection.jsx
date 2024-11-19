@@ -8,7 +8,7 @@ export default function FullWidthTextSection({ blok }) {
           className="text-primary mx-auto
          prose-headings:pb-7 prose-headings:text-primary-1 prose-a:mb-4"
         >
-          {richText(blok.content)}
+          {richText(blok?.content)}
         </div>
       </div>
     </section>

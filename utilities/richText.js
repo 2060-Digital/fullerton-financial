@@ -50,7 +50,7 @@ export default function richText(content) {
             }
 
             // Prevents content editors from changing the font weight of headings
-            let formattedChildren = children.map((node) => {
+            let formattedChildren = children?.map((node) => {
               if (node?.type === "b") {
                 return node?.props?.children
               }
