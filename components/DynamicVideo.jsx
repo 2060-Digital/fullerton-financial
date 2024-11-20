@@ -49,8 +49,8 @@ function VideoEmbed({ video_asset, thumbnail }) {
       </button>
       <video
         ref={videoRef}
-        poster={thumbnail.filename}
-        src={video_asset.filename}
+        poster={thumbnail?.filename}
+        src={video_asset?.filename}
         className="video-embed aspect-video w-full"
         type={type}
         controls
@@ -71,7 +71,7 @@ function YTEmbed({ id, thumbnail }) {
     <>
       <div className="youtube-thumbnail relative z-10 cursor-pointer" onClick={() => setVideoPlay(true)}>
         <img
-          src={thumbnail.filename ? thumbnail.filename : `https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+          src={thumbnail?.filename ? thumbnail?.filename : `https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
           alt="YouTube Video"
           className={YTVideoStyles}
         />
@@ -102,7 +102,7 @@ function VimeoEmbed({ src, thumbnail }) {
       <div className="vimeo-thumbnail relative z-10 cursor-pointer" onClick={() => setVideoPlay(true)}>
         <img
           alt="Vimeo Video"
-          src={thumbnail.filename ? thumbnail.filename : "/assets/blog-placeholder.svg"}
+          src={thumbnail?.filename ? thumbnail?.filename : "/assets/blog-placeholder.svg"}
           className={YTVideoStyles}
         />
         <PlayButton
