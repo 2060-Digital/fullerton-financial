@@ -46,6 +46,7 @@ export const Components = {
   timeline_section: dynamic(() => import("./molecules/TimelineSection")),
   newsletter_sidebar: dynamic(() => import("./molecules/NewsletterSidebar")),
   map_section: dynamic(() => import("./molecules/MapSection")),
+  video_section: dynamic(() => import("./molecules/VideoSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react"
 import PlayButton from "public/assets/play.svg"
 import cn from "classnames"
+import { getStoryblokLink } from "utilities/getStoryblokLink"
 
 export default function DynamicVideo({ component, ...videoFields }) {
   switch (component) {
@@ -8,6 +9,8 @@ export default function DynamicVideo({ component, ...videoFields }) {
       return <VideoEmbed {...videoFields} />
     case "yt_embed":
       return <YTEmbed {...videoFields} />
+    case "vimeo_embed":
+      return <VimeoEmbed {...videoFields} />
     default:
       return "Invalid video type"
   }
@@ -46,8 +49,8 @@ function VideoEmbed({ video_asset, thumbnail }) {
       </button>
       <video
         ref={videoRef}
-        poster={thumbnail.filename}
-        src={video_asset.filename}
+        poster={thumbnail?.filename}
+        src={video_asset?.filename}
         className="video-embed aspect-video w-full"
         type={type}
         controls
@@ -58,15 +61,20 @@ function VideoEmbed({ video_asset, thumbnail }) {
   )
 }
 
-function YTEmbed({ id }) {
-  const [videoPlay, setVideoPlay] = useState(false)
+const IframeVideoStyles = "aspect-video cursor-pointer w-full object-cover pb-4"
+const YTVideoStyles = "aspect-video cursor-pointer w-full"
 
-  const YTVideoStyles = "aspect-video cursor-pointer w-full"
+function YTEmbed({ id, thumbnail }) {
+  const [videoPlay, setVideoPlay] = useState(false)
 
   return !videoPlay ? (
     <>
       <div className="youtube-thumbnail relative z-10 cursor-pointer" onClick={() => setVideoPlay(true)}>
-        <img src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`} alt="YouTube Video" className={YTVideoStyles} />
+        <img
+          src={thumbnail?.filename ? thumbnail?.filename : `https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+          alt="YouTube Video"
+          className={YTVideoStyles}
+        />
         <PlayButton
           className="play-video absolute left-1/2 top-1/2 aspect-square w-20 -translate-x-1/2 -translate-y-1/2 scale-100 cursor-pointer"
           title="Play video"
@@ -82,6 +90,36 @@ function YTEmbed({ id }) {
       src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1`}
       allowFullScreen
       autoPlay
+    />
+  )
+}
+
+function VimeoEmbed({ src, thumbnail }) {
+  const [videoPlay, setVideoPlay] = useState(false)
+
+  return !videoPlay ? (
+    <>
+      <div className="vimeo-thumbnail relative z-10 cursor-pointer" onClick={() => setVideoPlay(true)}>
+        <img
+          alt="Vimeo Video"
+          src={thumbnail?.filename ? thumbnail?.filename : "/assets/blog-placeholder.svg"}
+          className={YTVideoStyles}
+        />
+        <PlayButton
+          className="play-video absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 cursor-pointer sm:scale-100"
+          title="Play video"
+        />
+      </div>
+      <button className="sr-only" onClick={() => setVideoPlay(true)}>
+        Load Vimeo Video
+      </button>
+    </>
+  ) : (
+    <iframe
+      className={cn(IframeVideoStyles, "vimeo-iframe")}
+      src={`${getStoryblokLink(src)}&autoplay=1`}
+      allowFullScreen
+      allow="autoplay"
     />
   )
 }
