@@ -1,0 +1,20 @@
+query AllWebinars($page: Int!, $per_page: Int!) {
+  WebinarondemandItems(page: $page, per_page: $per_page, resolve_links: "url") {
+    items {
+      content {
+        component
+        content
+        image {
+          alt
+          filename
+          id
+          title
+        }
+        title
+        video
+      }
+      full_slug
+    }
+    total
+  }
+}

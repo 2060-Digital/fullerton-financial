@@ -5,13 +5,13 @@ function Card({ webinar }) {
   return (
     <article className="bg-gray-light">
       <div className="h-full p-7">
-        <Link href={webinar.slug}>
+        <Link href={"#"}>
           <h3 className="pb-4 text-primary-1 hover:underline">{webinar.subject}</h3>
         </Link>
         <p className="">{webinar.description}</p>
-        <CallToAction href={webinar.asset.registrationUrl} style="secondary">
+        {/* <CallToAction href={webinar.asset.registrationUrl} style="secondary">
           Watch Now
-        </CallToAction>
+        </CallToAction> */}
       </div>
     </article>
   )
