@@ -1,0 +1,20 @@
+query IndividualWebinar($slug: ID!) {
+  WebinarondemandItem(id: $slug, resolve_links: "url") {
+    content {
+      content
+      component
+      image {
+        alt
+        filename
+        id
+        name
+        title
+      }
+      twentysixty_seo
+      title
+      video
+    }
+    slug
+    name
+  }
+}
