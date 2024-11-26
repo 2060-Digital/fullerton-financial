@@ -1,0 +1,9 @@
+query WebinarPaths($page: Int!, $per_page: Int!) {
+  WebinarondemandItems(page: $page, per_page: $per_page, resolve_links: "url") {
+    items {
+      full_slug
+      slug
+    }
+    total
+  }
+}

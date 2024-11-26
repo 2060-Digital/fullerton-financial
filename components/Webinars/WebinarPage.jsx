@@ -1,34 +1,24 @@
-import { useEffect, useState } from "react"
 import cn from "classnames"
-import CallToAction from "components/CallToAction"
+import richText from "utilities/richText"
 import Image from "components/Image"
 import Meta from "components/Meta"
-import { formatEventDate } from "utilities/formatEventDate"
+import VideoSection from "components/DynamicComponent/molecules/VideoSection"
 
-export default function WebinarPage({ webinar, onDemand = false }) {
-  const hasImage = Boolean(webinar?.image?.length)
-
-  const [times, setTimes] = useState([])
-
-  useEffect(() => {
-    if (webinar?.times && !onDemand) {
-      const formattedTimes = webinar?.times?.map((time) => formatEventDate(time.startTime, time.endTime))
-      setTimes(formattedTimes)
-    }
-  }, [webinar, onDemand])
+export default function WebinarPage({ webinar }) {
+  const hasImage = Boolean(webinar?.image?.filename)
 
   return (
     <>
       <Meta
         info={{
-          title: webinar?.subject,
-          og_title: webinar?.subject,
-          twitter_title: webinar?.subject,
-          description: webinar?.description,
-          og_description: webinar?.description,
-          twitter_description: webinar?.description,
-          og_image: webinar?.image,
-          twitter_image: webinar?.image,
+          title: webinar?.twentysixty_seo?.title,
+          og_title: webinar?.twentysixty_seo?.title,
+          twitter_title: webinar?.twentysixty_seo?.title,
+          description: webinar?.twentysixty_seo?.description,
+          og_description: webinar?.twentysixty_seo?.description,
+          twitter_description: webinar?.twentysixty_seo?.description,
+          og_image: webinar?.image?.filename,
+          twitter_image: webinar?.image?.filename,
         }}
       />
       <section
@@ -49,44 +39,31 @@ export default function WebinarPage({ webinar, onDemand = false }) {
                 hasImage,
             })}
           >
-            <h1 className="pb-4 text-white">{webinar?.subject}</h1>
-            {onDemand ? (
-              <div className="block pb-4 font-primary text-m1 font-bold text-white lg:text-m2">Recorded</div>
-            ) : (
-              times?.map((time, idx) => (
-                <time
-                  className="block pb-4 font-primary text-m1 font-bold text-white lg:text-m2"
-                  key={`webinar-time-${webinar?.webinarKey}-${idx}`}
-                >
-                  {time}
-                </time>
-              ))
-            )}
-            <CallToAction href={webinar?.registrationUrl}>{webinar?.ctaLabel}</CallToAction>
+            <h1 className="pb-4 text-white">{webinar?.title}</h1>
           </div>
-          {hasImage ? (
-            <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0">
-              <Image
-                loader={null}
-                src={webinar?.image}
-                alt=""
-                width={896}
-                height={585}
-                className="relative -right-3.5 -top-3.5 aspect-[896/505] w-full object-cover"
-              />
-            </div>
-          ) : null}
+
+          <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0">
+            <Image
+              loader={null}
+              src={webinar?.image?.filename ? webinar?.image?.filename : "/assets/blog-placeholder.svg"}
+              alt=""
+              width={896}
+              height={585}
+              className="relative -right-3.5 -top-3.5 aspect-[896/505] w-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
-      {webinar?.description?.length > 0 ? (
+      {webinar?.content?.content?.length > 0 ? (
         <section className="px-6 py-12 lg:py-24">
           <div className="mx-auto max-w-4xl">
             <h2 className="pb-8 text-primary-1 lg:text-center">Webinar Description</h2>
-            <p>{webinar?.description}</p>
+            <div>{richText(webinar?.content)}</div>
           </div>
         </section>
       ) : null}
+      <VideoSection blok={{ video: [webinar.video[0]] }} />
     </>
   )
 }
