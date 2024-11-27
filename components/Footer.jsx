@@ -20,7 +20,7 @@ export default function Footer({ footerMenu, colophon, locations, socialMedia, p
     }
     const Icon = () => Icons?.[label] ?? null
 
-    return (!!socialMedia[label] && 
+    return (!!socialMedia?.[label] && 
       <Link href={socialMedia[label]} target="_blank">
         <Icon />
       </Link>
