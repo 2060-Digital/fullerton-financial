@@ -11,8 +11,13 @@ const api = {
   get: (file) => {
     const fsFriendlyPath = file?.replaceAll("/", "_")
 
-    const data = fs.readFileSync(path.join(process.cwd(), `storyblok/cache/_db/${fsFriendlyPath}.db`))
-    return deserialize(data) ?? null
+    try {
+      const data = fs.readFileSync(path.join(process.cwd(), `storyblok/cache/_db/${fsFriendlyPath}.db`))
+      return deserialize(data) ?? null
+    } catch (err) {
+      console.error("Error reading cache file:", err)
+      return null
+    }
   },
   /**
    * Cache page data to the disk
@@ -21,14 +26,18 @@ const api = {
    * @returns void
    */
   set: (entry, file) => {
-    const result = fs.writeFileSync(
-      path.join(process.cwd(), `storyblok/cache/_db/${file.replaceAll("/", "_")}.db`),
-      serialize(entry),
-      (err) => {
-        if (err) console.error(err)
-      },
-    )
-    return result
+    const dirPath = path.join(process.cwd(), 'storyblok/cache/_db')
+    const filePath = path.join(dirPath, `${file.replaceAll("/", "_")}.db`)
+
+    // Ensure that the directory exists
+    if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
+
+    // Write data to the file
+    try {
+      fs.writeFileSync(filePath, serialize(entry))
+    } catch (err) {
+      console.error("Error writing cache file:", err)
+    }
   },
 }
 
