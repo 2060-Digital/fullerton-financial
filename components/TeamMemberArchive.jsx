@@ -73,7 +73,7 @@ export default function TeamMemberArchive({ items, vip, categories, currentTab, 
   const [open, setOpen] = useState(false)
 
   const Tab = ({ name, value, link }) => (
-    <Link
+    !!link && <Link
       className={cn(
         "lg:decoration-tertiary mr-8 whitespace-nowrap py-2 text-left font-primary capitalize text-white transition-all duration-300 lg:mr-0 lg:py-4 lg:decoration-tertiary-1 lg:underline-offset-4 lg:hover:underline",
         {

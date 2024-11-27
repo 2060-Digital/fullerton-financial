@@ -28,9 +28,9 @@ export function Event({ event, venue }) {
         <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
           <DateBox month={time?.month} day={time?.day} />
           <div className="px-6 lg:px-0">
-            <Link href={event.slug}>
+            {event?.slug ? <Link href={event.slug}>
               <h3 className="pb-2 text-primary-1 hover:underline">{event?.name?.text}</h3>
-            </Link>
+            </Link> : <h3 className="pb-2 text-primary-1 hover:underline">{event?.name?.text}</h3>}
             <h4 className="pb-2 text-primary-1">{time?.fullDate}</h4>
             <h4 className="text-primary-1">
               <VenueLink event={event} venue={venue} />

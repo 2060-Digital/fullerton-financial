@@ -39,6 +39,7 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
   }, [mobileMenuVisibility])
 
   const mobileMenuColor = mobileMenuVisibility ? "text-white" : "text-primary-1"
+  const primaryPhoneNumber = getTelLink(phoneNumbers?.primary);
 
   return (
     <header
@@ -65,14 +66,14 @@ export default function Header({ header, utilityBar, phoneNumbers }) {
                 className={`w-[193px] transition-all duration-200 sm:w-[233px] xl:text-primary-1 ${mobileMenuColor}`}
               />
             </Link>
-            <Link href={getTelLink(phoneNumbers?.primary)} className="justify-self-end sm:w-11 xl:hidden">
+            {!!primaryPhoneNumber && <Link href={primaryPhoneNumber} className="justify-self-end sm:w-11 xl:hidden">
               <div
                 className={`flex flex-col items-center justify-center font-primary text-primary-1 ${mobileMenuColor}`}
               >
                 <Phone className={mobileMenuColor} />
                 Call
               </div>
-            </Link>
+            </Link>}
           </div>
           <nav aria-label="Main" className="flex w-full flex-col-reverse items-center gap-9 xl:flex-row">
             <div
