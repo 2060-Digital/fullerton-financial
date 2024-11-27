@@ -9,6 +9,9 @@ export default function PageHeader({ blok }) {
   const hasImage = Boolean(blok?.image?.filename?.length)
   const hasVideo = Boolean(blok?.video?.length)
 
+  // eslint-disable-next-line no-console
+  console.log(blok);
+
   return (
     <section
       className={cn("bg-primary-1", {
