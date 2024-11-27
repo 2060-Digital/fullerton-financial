@@ -36,14 +36,9 @@ export async function getPage(slug, preview) {
   const data = await query(PageBySlug, { preview, variables: { slug } })
 
   const globalData = await getGlobals(data?.PageItem?.uuid)
- 
-  const page = await processPageData(data?.PageItem, slug)
-  if (slug === '/mid-year-retirement-checkup')
-     // eslint-disable-next-line no-console
-    console.log(JSON.stringify(page));
 
   return {
-    page,
+    page: await processPageData(data?.PageItem, slug),
     globals: globalData,
   }
 }
