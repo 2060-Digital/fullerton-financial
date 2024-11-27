@@ -10,7 +10,7 @@ export default function PageHeader({ blok }) {
   const hasVideo = Boolean(blok?.video?.length)
 
   // eslint-disable-next-line no-console
-  console.log(blok);
+  console.log(JSON.stringify(blok));
 
   return (
     <section
