@@ -20,9 +20,9 @@ export function Webinar({ webinar }) {
   return (
     <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
       <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
-        <DateBox month={times[0]?.formattedMonth} day={times[0]?.formattedDay} />
+        {/* <DateBox month={times[0]?.formattedMonth} day={times[0]?.formattedDay} /> */}
         <div className="px-6 lg:px-0">
-          <Link href={webinar.slug}>
+          <Link href={"#"}>
             <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.subject}</h3>
           </Link>
           {times?.map((time) => (
