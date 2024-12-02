@@ -1,39 +1,44 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { format } from "date-fns"
+import { format, add } from "date-fns"
 import CallToAction from "components/CallToAction"
 import DateBox from "components/DateBox"
 import { formatEventDate } from "utilities/formatEventDate"
 
 export function Webinar({ webinar }) {
-  const [times, setTimes] = useState([])
+  const [time, setTime] = useState({})
+
+  const date = new Date(webinar.start_time)
+
+  const end_time = add(date, {
+    minutes: webinar.duration,
+  })
 
   useEffect(() => {
-    const formattedTimes = webinar?.times?.map((time) => ({
-      formattedMonth: format(time.startTime, "MMM"),
-      formattedDay: format(time.startTime, "dd"),
-      formatted: formatEventDate(time.startTime, time.endTime),
-    }))
-    setTimes(formattedTimes)
+    const formattedTimes = {
+      formattedMonth: format(webinar.start_time, "MMM"),
+      formattedDay: format(webinar.start_time, "dd"),
+      formatted: formatEventDate(webinar.start_time, end_time),
+    }
+    setTime(formattedTimes)
   }, [webinar])
 
   return (
     <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
       <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
-        {/* <DateBox month={times[0]?.formattedMonth} day={times[0]?.formattedDay} /> */}
+        <DateBox month={time?.formattedMonth} day={time?.formattedDay} />
         <div className="px-6 lg:px-0">
           <Link href={"#"}>
-            <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.subject}</h3>
+            <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.topic}</h3>
           </Link>
-          {times?.map((time) => (
-            <h4 className="pb-2 text-primary-1 last:pb-0" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
-              {time?.formatted}
-            </h4>
-          ))}
+
+          <h4 className="pb-2 text-primary-1 last:pb-0" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
+            {time?.formatted}
+          </h4>
         </div>
       </div>
       <div className="flex w-full px-6 lg:w-max lg:px-0">
-        <CallToAction href={webinar?.registrationUrl}>Register Now</CallToAction>
+        <CallToAction href={webinar?.registrationUrl}>View Details</CallToAction>
       </div>
     </article>
   )

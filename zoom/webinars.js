@@ -25,11 +25,11 @@ async function getToken() {
   return access_token
 }
 
-export async function getMeetings() {
+export async function getWebinars() {
   try {
     const token = await getToken()
 
-    const response = await fetch("https://api.zoom.us/v2/users/me/webinars/", {
+    const response = await fetch("https://api.zoom.us/v2/users/me/webinars/?type=upcoming", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

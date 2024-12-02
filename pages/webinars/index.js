@@ -1,6 +1,6 @@
 import { getGlobals } from "storyblok/api"
 import { getAllWebinars, getWebinarsArchive } from "storyblok/webinars"
-import { getMeetings } from "zoom/getToken"
+import { getWebinars } from "zoom/webinars"
 import Meta from "components/Meta"
 import Divider from "components/DynamicComponent/atoms/Divider"
 import DynamicComponent from "components/DynamicComponent"
@@ -18,7 +18,7 @@ export default function WebinarsArchive({ meta, story, webinars, futureWebinars 
           <DynamicComponent blok={blok} key={blok?._uid} />
         ))}
         <Divider />
-        <WebinarListSection webinars={webinars} />
+        <WebinarListSection webinars={futureWebinars.webinars} />
         <Divider />
         <OnDemandWebinarSection webinars={webinars} />
       </main>
@@ -32,7 +32,7 @@ export async function getStaticProps({ preview = null }) {
   const story = await getWebinarsArchive(preview)
   const webinars = await getAllWebinars()
 
-  const futureWebinars = await getMeetings()
+  const futureWebinars = await getWebinars()
 
   return {
     props: {
