@@ -1,3 +1,5 @@
+import slugify from "slugify"
+
 const SECRET_TOKEN = "TT8X20t2TOatQvOgx7ufmA"
 const CLIENT_ID = "qH2OlWCURDOc_BuAO0NAtw"
 const CLIENT_SECRET = "TLijdxoNH4d26Wis1y7yKF1fQzal5Ze7"
@@ -40,4 +42,35 @@ export async function getWebinars() {
   } catch (error) {
     console.error(error)
   }
+}
+
+export async function getIndividualWebinar(id) {
+  try {
+    const token = await getToken()
+
+    const response = await fetch(`https://api.zoom.us/v2/webinars/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getIndividualWebinarPaths() {
+  const webinars = await getWebinars()
+
+  return webinars.webinars.map(({ topic, id }) => {
+    return {
+      params: {
+        webinar: `${slugify(topic, {
+          lower: true,
+        })}-${id}`,
+      },
+    }
+  })
 }

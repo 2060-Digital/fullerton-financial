@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import slugify from "slugify"
 import Link from "next/link"
 import { format, add } from "date-fns"
 import CallToAction from "components/CallToAction"
@@ -21,24 +22,32 @@ export function Webinar({ webinar }) {
       formatted: formatEventDate(webinar.start_time, end_time),
     }
     setTime(formattedTimes)
-  }, [webinar])
+  }, [webinar, end_time])
 
   return (
     <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
       <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
         <DateBox month={time?.formattedMonth} day={time?.formattedDay} />
         <div className="px-6 lg:px-0">
-          <Link href={"#"}>
+          <Link
+            href={`webinars/${slugify(webinar.topic, {
+              lower: true,
+            })}-${webinar.id}`}
+          >
             <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.topic}</h3>
           </Link>
 
-          <h4 className="pb-2 text-primary-1 last:pb-0" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
-            {time?.formatted}
-          </h4>
+          <h4 className="pb-2 text-primary-1 last:pb-0">{time?.formatted}</h4>
         </div>
       </div>
       <div className="flex w-full px-6 lg:w-max lg:px-0">
-        <CallToAction href={webinar?.registrationUrl}>View Details</CallToAction>
+        <CallToAction
+          href={`webinars/${slugify(webinar.topic, {
+            lower: true,
+          })}-${webinar.id}`}
+        >
+          View Details
+        </CallToAction>
       </div>
     </article>
   )
