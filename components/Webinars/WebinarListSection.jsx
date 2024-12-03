@@ -1,39 +1,50 @@
-import { useEffect, useState } from "react"
+import slugify from "slugify"
+import { tz, TZDate } from "@date-fns/tz"
 import Link from "next/link"
-import { format } from "date-fns"
+import { format, add, subHours } from "date-fns"
 import CallToAction from "components/CallToAction"
 import DateBox from "components/DateBox"
 import { formatEventDate } from "utilities/formatEventDate"
 
 export function Webinar({ webinar }) {
-  const [times, setTimes] = useState([])
+  const date = new TZDate(webinar.start_time)
 
-  useEffect(() => {
-    const formattedTimes = webinar?.times?.map((time) => ({
-      formattedMonth: format(time.startTime, "MMM"),
-      formattedDay: format(time.startTime, "dd"),
-      formatted: formatEventDate(time.startTime, time.endTime),
-    }))
-    setTimes(formattedTimes)
-  }, [webinar])
+  const azTime = subHours(date, 2)
+
+  const end_time = add(azTime, {
+    minutes: webinar.duration,
+  })
+
+  const formattedTimes = {
+    formattedMonth: format(azTime, "MMM"),
+    formattedDay: format(azTime, "dd"),
+    formatted: formatEventDate(azTime, end_time),
+  }
 
   return (
     <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
       <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
-        <DateBox month={times[0]?.formattedMonth} day={times[0]?.formattedDay} />
+        <DateBox month={formattedTimes?.formattedMonth} day={formattedTimes?.formattedDay} />
         <div className="px-6 lg:px-0">
-          <Link href={webinar.slug}>
-            <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.subject}</h3>
+          <Link
+            href={`webinars/${slugify(webinar.topic, {
+              lower: true,
+            })}-${webinar.id}`}
+          >
+            <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.topic}</h3>
           </Link>
-          {times?.map((time) => (
-            <h4 className="pb-2 text-primary-1 last:pb-0" key={`${time?.formatted}-webinar-${webinar?.webinarKey}`}>
-              {time?.formatted}
-            </h4>
-          ))}
+
+          <h4 className="pb-2 text-primary-1 last:pb-0">{formattedTimes?.formatted}</h4>
         </div>
       </div>
       <div className="flex w-full px-6 lg:w-max lg:px-0">
-        <CallToAction href={webinar?.registrationUrl}>Register Now</CallToAction>
+        <CallToAction
+          href={`webinars/${slugify(webinar.topic, {
+            lower: true,
+          })}-${webinar.id}`}
+        >
+          View Details
+        </CallToAction>
       </div>
     </article>
   )
@@ -48,7 +59,7 @@ export default function WebinarListSection({ webinars }) {
         {webinars?.length ? (
           <>
             {webinars?.map((webinar) => (
-              <Webinar webinar={webinar} key={webinar?.webinarKey} />
+              <Webinar webinar={webinar} key={webinar?.id} />
             ))}
           </>
         ) : (
