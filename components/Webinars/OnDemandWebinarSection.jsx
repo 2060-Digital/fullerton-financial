@@ -1,15 +1,16 @@
 import Link from "next/link"
 import CallToAction from "components/CallToAction"
+import richText from "utilities/richText"
 
 function Card({ webinar }) {
   return (
     <article className="bg-gray-light">
       <div className="h-full p-7">
-        <Link href={webinar.slug}>
-          <h3 className="pb-4 text-primary-1 hover:underline">{webinar.subject}</h3>
+        <Link href={webinar?.full_slug}>
+          <h3 className="pb-4 text-primary-1 hover:underline">{webinar?.content.title}</h3>
         </Link>
-        <p className="">{webinar.description}</p>
-        <CallToAction href={webinar.asset.registrationUrl} style="secondary">
+        <div className="">{richText(webinar.content.content)}</div>
+        <CallToAction href={webinar.full_slug} style="secondary" className="pt-4">
           Watch Now
         </CallToAction>
       </div>
@@ -24,7 +25,7 @@ export default function OnDemandWebinarSection({ webinars }) {
 
       <div className="mx-auto grid max-w-screen-lg gap-16 sm:grid-cols-2 lg:grid-cols-3">
         {webinars.map((webinar) => (
-          <Card webinar={webinar} key={webinar.webinarKey} />
+          <Card webinar={webinar} key={webinar.id} />
         ))}
       </div>
     </section>

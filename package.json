@@ -13,12 +13,13 @@
     "format": "npx prettier \"**/**.{ts,js,tsx,jsx}\" --write"
   },
   "dependencies": {
+    "@date-fns/tz": "^1.2.0",
     "@fontsource/lato": "^5.0.18",
     "@fontsource/playfair-display": "^5.0.18",
+    "@netlify/plugin-nextjs": "^4.41.3",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.10",
-    "@netlify/plugin-nextjs": "^4.41.3",
     "axios": "^1.6.4",
     "classnames": "^2.5.1",
     "date-fns": "^3.3.1",
