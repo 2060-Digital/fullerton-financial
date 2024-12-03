@@ -4,7 +4,7 @@ async function getToken() {
   const { access_token } = await fetch("https://zoom.us/oauth/token", {
     method: "POST",
     headers: {
-      Authorization: `Basic ${btoa(`${proccess.env.ZOOM_CLIENT_ID}:${proccess.env.ZOOM_CLIENT_SECRET}`)}`,
+      Authorization: `Basic ${btoa(`${process.env.ZOOM_CLIENT_ID}:${process.env.ZOOM_CLIENT_SECRET}`)}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
