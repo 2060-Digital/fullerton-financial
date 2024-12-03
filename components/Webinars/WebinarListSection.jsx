@@ -1,33 +1,30 @@
-import { useEffect, useState } from "react"
 import slugify from "slugify"
+import { tz, TZDate } from "@date-fns/tz"
 import Link from "next/link"
-import { format, add } from "date-fns"
+import { format, add, subHours } from "date-fns"
 import CallToAction from "components/CallToAction"
 import DateBox from "components/DateBox"
 import { formatEventDate } from "utilities/formatEventDate"
 
 export function Webinar({ webinar }) {
-  const [time, setTime] = useState({})
+  const date = new TZDate(webinar.start_time)
 
-  const date = new Date(webinar.start_time)
+  const azTime = subHours(date, 2)
 
-  const end_time = add(date, {
+  const end_time = add(azTime, {
     minutes: webinar.duration,
   })
 
-  useEffect(() => {
-    const formattedTimes = {
-      formattedMonth: format(webinar.start_time, "MMM"),
-      formattedDay: format(webinar.start_time, "dd"),
-      formatted: formatEventDate(webinar.start_time, end_time),
-    }
-    setTime(formattedTimes)
-  }, [webinar, end_time])
+  const formattedTimes = {
+    formattedMonth: format(azTime, "MMM"),
+    formattedDay: format(azTime, "dd"),
+    formatted: formatEventDate(azTime, end_time),
+  }
 
   return (
     <article className="flex flex-col items-center justify-between gap-4 bg-secondary-2 pb-7 lg:flex-row lg:pr-7 lg:pt-7">
       <div className="flex w-full flex-col items-start lg:flex-row lg:items-center lg:gap-12">
-        <DateBox month={time?.formattedMonth} day={time?.formattedDay} />
+        <DateBox month={formattedTimes?.formattedMonth} day={formattedTimes?.formattedDay} />
         <div className="px-6 lg:px-0">
           <Link
             href={`webinars/${slugify(webinar.topic, {
@@ -37,7 +34,7 @@ export function Webinar({ webinar }) {
             <h3 className="pb-2 text-primary-1 hover:underline">{webinar?.topic}</h3>
           </Link>
 
-          <h4 className="pb-2 text-primary-1 last:pb-0">{time?.formatted}</h4>
+          <h4 className="pb-2 text-primary-1 last:pb-0">{formattedTimes?.formatted}</h4>
         </div>
       </div>
       <div className="flex w-full px-6 lg:w-max lg:px-0">
@@ -62,7 +59,7 @@ export default function WebinarListSection({ webinars }) {
         {webinars?.length ? (
           <>
             {webinars?.map((webinar) => (
-              <Webinar webinar={webinar} key={webinar?.webinarKey} />
+              <Webinar webinar={webinar} key={webinar?.id} />
             ))}
           </>
         ) : (

@@ -25,7 +25,7 @@ export default function OnDemandWebinarSection({ webinars }) {
 
       <div className="mx-auto grid max-w-screen-lg gap-16 sm:grid-cols-2 lg:grid-cols-3">
         {webinars.map((webinar) => (
-          <Card webinar={webinar} key={webinar.webinarKey} />
+          <Card webinar={webinar} key={webinar.id} />
         ))}
       </div>
     </section>

@@ -1,21 +1,37 @@
+import { TZDate } from "@date-fns/tz"
+import { subHours, add, format } from "date-fns"
 import cn from "classnames"
 import CallToAction from "components/CallToAction"
 import Image from "components/Image"
 import Meta from "components/Meta"
+import { formatEventDate } from "utilities/formatEventDate"
 
 export default function ZoomWebinarPage({ webinar }) {
+  const date = new TZDate(webinar.start_time)
+
+  const azTime = subHours(date, 2)
+
+  const end_time = add(azTime, {
+    minutes: webinar.duration,
+  })
+
+  const formattedTimes = {
+    formattedMonth: format(azTime, "MMM"),
+    formattedDay: format(azTime, "dd"),
+    formatted: formatEventDate(azTime, end_time),
+  }
   return (
     <>
       <Meta
         info={{
-          title: webinar?.twentysixty_seo?.title,
-          og_title: webinar?.twentysixty_seo?.title,
-          twitter_title: webinar?.twentysixty_seo?.title,
-          description: webinar?.twentysixty_seo?.description,
-          og_description: webinar?.twentysixty_seo?.description,
-          twitter_description: webinar?.twentysixty_seo?.description,
-          og_image: webinar?.image?.filename,
-          twitter_image: webinar?.image?.filename,
+          title: webinar?.topic,
+          og_title: webinar?.topic,
+          twitter_title: webinar?.topic,
+          description: webinar?.agenda,
+          og_description: webinar?.agenda,
+          twitter_description: webinar?.agenda,
+          og_image: "/assets/fullerton-team.jpg",
+          twitter_image: "/assets/fullerton-team.jpg",
         }}
       />
 
@@ -27,6 +43,7 @@ export default function ZoomWebinarPage({ webinar }) {
             )}
           >
             <h1 className="pb-4 text-white">{webinar?.topic}</h1>
+            <h4 className="pb-4 text-white">{formattedTimes?.formatted}</h4>
             <div className="flex flex-col gap-4 md:flex-row">
               <CallToAction href={webinar.registration_url}>REGISTER NOW</CallToAction>
               <CallToAction href={webinar.join_url}>JOIN WEBINAR</CallToAction>
@@ -36,7 +53,7 @@ export default function ZoomWebinarPage({ webinar }) {
           <div className="relative -top-16 right-0 -mb-8 mr-3 h-full w-full self-end justify-self-end border-2 border-secondary-1 lg:-top-10 lg:-mb-0">
             <Image
               loader={null}
-              src={webinar?.image?.filename ? webinar?.image?.filename : "/assets/blog-placeholder.svg"}
+              src={webinar?.image?.filename ? webinar?.image?.filename : "/assets/fullerton-team.jpg"}
               alt=""
               width={896}
               height={585}
