@@ -1,20 +1,15 @@
 import slugify from "slugify"
 
-const SECRET_TOKEN = "TT8X20t2TOatQvOgx7ufmA"
-const CLIENT_ID = "qH2OlWCURDOc_BuAO0NAtw"
-const CLIENT_SECRET = "TLijdxoNH4d26Wis1y7yKF1fQzal5Ze7"
-const ACCOUNT_ID = "M--Ud4CIT2-Rn7yDIRzIyw"
-
 async function getToken() {
   const { access_token } = await fetch("https://zoom.us/oauth/token", {
     method: "POST",
     headers: {
-      Authorization: `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+      Authorization: `Basic ${btoa(`${proccess.env.ZOOM_CLIENT_ID}:${proccess.env.ZOOM_CLIENT_SECRET}`)}`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
       grant_type: "account_credentials",
-      account_id: ACCOUNT_ID,
+      account_id: process.env.ZOOM_ACCOUNT_ID,
     }),
   })
     .then((response) => {
