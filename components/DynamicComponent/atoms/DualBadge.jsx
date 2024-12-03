@@ -3,8 +3,10 @@ import Link from "next/link"
 import { getStoryblokLink } from "utilities/getStoryblokLink"
 
 function Badge({ image, link }) {
+  const href = getStoryblokLink(link)
+  if (!href) return null
   return (
-    <Link href={getStoryblokLink(link)} target="_blank">
+    <Link href={href} target="_blank">
       <Image
         src={image?.filename}
         alt={image?.alt ?? ""}

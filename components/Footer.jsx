@@ -20,7 +20,7 @@ export default function Footer({ footerMenu, colophon, locations, socialMedia, p
     }
     const Icon = () => Icons?.[label] ?? null
 
-    return (
+    return (!!socialMedia?.[label] && 
       <Link href={socialMedia[label]} target="_blank">
         <Icon />
       </Link>
@@ -66,7 +66,7 @@ export default function Footer({ footerMenu, colophon, locations, socialMedia, p
                   {item?.nested_menu_items?.map((subitem) => {
                     const href = getStoryblokLink(subitem?.link)
                     return (
-                      <li className="pb-2.5 last:pb-0" key={subitem?._uid}>
+                      !!href && <li className="pb-2.5 last:pb-0" key={subitem?._uid}>
                         <Link href={href} className="font-primary text-white hover:underline" target={getTarget(href)}>
                           {subitem?.label}
                         </Link>

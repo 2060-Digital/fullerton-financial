@@ -15,23 +15,33 @@ export default function LogoGridSection({ blok }) {
         <div className="mx-auto max-w-4xl pb-8">{richText(blok.content)}</div>
         <div className="grid grid-cols-2 justify-between gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-16">
           {blok?.logos?.map((logo) => {
+            const href = getStoryblokLink(logo.url);
+            if (!href) return <Logo key={logo._uid} logo={logo} />
+
             return (
-              <Link key={logo._uid} href={getStoryblokLink(logo.url)}>
-                <div className="flex h-full min-h-[108px] items-center justify-center border border-secondary-2 p-4 lg:min-h-[181px]">
-                  {" "}
-                  <Image
-                    className=""
-                    src={logo.image.filename}
-                    alt="partner logo"
-                    width={getSbImageDimensions("width", logo.image.filename)}
-                    height={getSbImageDimensions("height", logo.image.filename)}
-                  />
-                </div>
+              <Link key={logo._uid} href={href}>
+                <Logo logo={logo} />
               </Link>
             )
           })}
         </div>
       </div>
     </section>
+  )
+}
+
+function Logo({ logo }) {
+
+  return (
+    <div className="flex h-full min-h-[108px] items-center justify-center border border-secondary-2 p-4 lg:min-h-[181px]">
+      {" "}
+      <Image
+        className=""
+        src={logo.image.filename}
+        alt="partner logo"
+        width={getSbImageDimensions("width", logo.image.filename)}
+        height={getSbImageDimensions("height", logo.image.filename)}
+      />
+    </div>
   )
 }

@@ -9,7 +9,7 @@ export default function UtilityBar({ menu }) {
         <SearchBar />
         <ul className="flex flex-row items-center gap-8">
           {menu?.map((item) => (
-            <li key={item?._uid}>
+            !!item?.link && <li key={item?._uid}>
               <Link
                 href={getStoryblokLink(item?.link)}
                 className="w-max font-primary text-primary-1 underline decoration-secondary-1 underline-offset-4 hover:decoration-primary-1"

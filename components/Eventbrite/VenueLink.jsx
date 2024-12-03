@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function VenueLink({ event, venue }) {
   const addressStyles = "not-italic"
 
-  if (event?.series_id) {
+  if (event?.series_id && venue?.slug) {
     return (
       <Link href={venue?.slug}>
         <address className={`${addressStyles} hover:underline`}>{venue?.name}</address>
