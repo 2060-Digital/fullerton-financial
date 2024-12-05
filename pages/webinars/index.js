@@ -19,6 +19,9 @@ export default function WebinarsArchive({ meta, story, webinars, futureWebinars 
         ))}
         <Divider />
         <WebinarListSection webinars={futureWebinars.webinars} />
+        {story?.content?.secondary_body?.map((blok) => (
+          <DynamicComponent blok={blok} key={blok?._uid} />
+        ))}
         <Divider />
         <OnDemandWebinarSection webinars={webinars} />
       </main>

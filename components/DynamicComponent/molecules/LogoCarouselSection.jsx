@@ -94,6 +94,7 @@ export default function LogoCarouselSection({ blok }) {
       <CallToAction href={getStoryblokLink(blok?.link_url)} className="mx-auto table" style="secondary">
         {blok?.link_text}
       </CallToAction>
+      <p className="mx-auto max-w-2xl py-4 text-center text-sm">{blok.disclaimer}</p>
     </section>
   )
 }

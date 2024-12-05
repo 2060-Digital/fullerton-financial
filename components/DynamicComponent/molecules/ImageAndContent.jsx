@@ -40,23 +40,25 @@ export default function ImageAndContent({ blok }) {
             </h2>
             <div className="prose-headings:pb-4 prose-li:pb-2">{richText(blok?.content)}</div>
           </div>
-          <div
-            className={cn("relative h-full w-full pr-4 pt-4 lg:basis-7/12 lg:scale-110", {
-              "lg:-left-32": blok?.orientation === "image_first",
-              "lg:-right-32": blok?.orientation === "content_first",
-              "lg:-mr-12": blok?.background_color === "",
-            })}
-          >
-            <div className="image-and-content-image relative z-10 -mb-[120px] h-full w-full border-2 border-secondary-1 lg:-mb-0">
-              <Image
-                src={blok?.image?.filename}
-                alt={blok?.image?.alt}
-                placeholder={blok?.image?.blurDataURL ? "blur" : "empty"}
-                blurDataURL={blok?.image?.blurDataURL}
-                width={435}
-                height={511}
-                className="relative -right-4 -top-4 w-full"
-              />
+          <div className="flex flex-col items-center justify-center">
+            <div
+              className={cn("relative h-full w-full pr-4 pt-4 lg:basis-7/12 lg:scale-110", {
+                "lg:-left-32": blok?.orientation === "image_first",
+                "lg:-right-32": blok?.orientation === "content_first",
+                "lg:-mr-12": blok?.background_color === "",
+              })}
+            >
+              <div className="image-and-content-image relative z-10 -mb-[120px] w-full border-2 border-secondary-1 lg:-mb-0">
+                <Image
+                  src={blok?.image?.filename}
+                  alt={blok?.image?.alt}
+                  placeholder={blok?.image?.blurDataURL ? "blur" : "empty"}
+                  blurDataURL={blok?.image?.blurDataURL}
+                  width={435}
+                  height={511}
+                  className="relative -right-4 -top-4 w-full"
+                />
+              </div>
             </div>
           </div>
         </div>
