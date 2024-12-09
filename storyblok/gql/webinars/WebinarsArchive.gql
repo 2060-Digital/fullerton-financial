@@ -5,6 +5,7 @@ query WebinarsArchive {
       _editable
       component
       body
+      secondary_body
       twentysixty_seo
     }
   }

@@ -5,6 +5,7 @@ query BlogArchive {
         filename
         alt
       }
+      content
       heading
       twentysixty_seo
     }
