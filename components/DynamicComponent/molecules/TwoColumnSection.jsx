@@ -19,17 +19,20 @@ export default function TwoColumnSection({ blok }) {
             "md:flex-row": blok?.orientation === "image_first",
           })}
         >
-          <div className="relative z-10 mt-4 h-full w-full basis-1/2 border-2 border-secondary-1">
-            <Image
-              src={blok?.image?.filename}
-              alt={blok?.image?.alt}
-              placeholder={blok?.image?.blurDataURL ? "blur" : "empty"}
-              blurDataURL={blok?.image?.blurDataURL}
-              width={633}
-              height={486}
-              className="relative -right-4 -top-4 w-full"
-            />
+          <div className="flex basis-1/2 items-center">
+            <div className="relative z-10 mt-4 w-full border-2 border-secondary-1">
+              <Image
+                src={blok?.image?.filename}
+                alt={blok?.image?.alt}
+                placeholder={blok?.image?.blurDataURL ? "blur" : "empty"}
+                blurDataURL={blok?.image?.blurDataURL}
+                width={633}
+                height={486}
+                className="relative -right-4 -top-4 w-full"
+              />
+            </div>
           </div>
+
           <div className="basis-1/2 prose-headings:mb-4 prose-headings:text-primary-1 prose-a:mb-10 last:prose-a:mb-0">
             {richText(blok?.content)}
           </div>
