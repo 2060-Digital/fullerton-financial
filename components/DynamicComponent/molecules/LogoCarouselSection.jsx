@@ -42,7 +42,7 @@ export default function LogoCarouselSection({ blok }) {
   const { ref, visibleSlides, slideWidth, slideGap, offset, moveLeft, moveRight } = useCarousel(numLogos, 156, 44, 7)
 
   return (
-    <section className="logo-carousel-section overflow-hidden bg-secondary-2 px-6 py-12 lg:py-24">
+    <section className="logo-carousel-section overflow-hidden bg-secondary-2 px-6 py-12 lg:py-20">
       <div className="mb-8 text-center">
         <h2>
           {blok?.eyebrow ? <span className="eyebrow block pb-2.5 text-primary-1">{blok?.eyebrow}</span> : null}
@@ -94,7 +94,7 @@ export default function LogoCarouselSection({ blok }) {
       <CallToAction href={getStoryblokLink(blok?.link_url)} className="mx-auto table" style="secondary">
         {blok?.link_text}
       </CallToAction>
-      <p className="mx-auto max-w-2xl py-4 text-center text-sm">{blok.disclaimer}</p>
+      <p className="mx-auto max-w-2xl pt-12 text-center text-sm">{blok.disclaimer}</p>
     </section>
   )
 }
