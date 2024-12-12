@@ -83,12 +83,9 @@ p {
 
 .rich-text-ul li p,
 .rich-text-ol li p {
-  @apply py-0 text-left leading-7;
+  @apply py-0 text-left leading-[26px];
 }
 
-.rich-text-ul li p {
-  @apply text-m1;
-}
 /* End Text Styles */
 
 /* Call to Action */
