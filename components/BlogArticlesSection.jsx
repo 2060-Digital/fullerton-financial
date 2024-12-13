@@ -47,23 +47,25 @@ export default function BlogArticlesSection({ blogArticles, categories, total, n
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
-  const Tab = ({ name, value, link }) => (!!link &&
-    <Link
-      className={cn(
-        "mr-8 whitespace-nowrap py-2 text-left font-primary capitalize text-white transition-all duration-300 lg:mr-0 lg:py-4 lg:decoration-secondary-1 lg:decoration-2 lg:underline-offset-4 lg:hover:underline",
-        {
-          "h-0 opacity-0 lg:h-auto lg:py-4 lg:opacity-100": currentTab.value !== value && !open,
-          "lg:underline lg:decoration-secondary-1": currentTab.value === value,
-          "h-auto opacity-100": open,
-          "hidden lg:block": open && currentTab === value,
-        },
-      )}
-      href={link}
-      onClick={() => setOpen(false)}
-    >
-      {name}
-    </Link>
-  )
+  const Tab = ({ name, value, link }) =>
+    !!link && (
+      <Link
+        className={cn(
+          "mr-8 whitespace-nowrap py-2 text-left font-primary capitalize text-white transition-all duration-300 lg:mr-0 lg:py-4 lg:decoration-secondary-1 lg:decoration-2 lg:underline-offset-4 lg:hover:underline",
+          {
+            "h-0 opacity-0 lg:h-auto lg:py-4 lg:opacity-100": currentTab.value !== value && !open,
+            "lg:underline lg:decoration-secondary-1": currentTab.value === value,
+            "h-auto opacity-100": open,
+            "hidden lg:block": open && currentTab === value,
+          },
+        )}
+        href={link}
+        onClick={() => setOpen(false)}
+        scroll={false}
+      >
+        {name}
+      </Link>
+    )
 
   return (
     <>
