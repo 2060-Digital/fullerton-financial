@@ -14,6 +14,7 @@ export const Components = {
   inline_quote: dynamic(() => import("./atoms/PullQuote")),
   audio_embed: dynamic(() => import("./atoms/AudioEmbed")),
   inline_video: dynamic(() => import("./atoms/InlineVideo")),
+  inline_table: dynamic(() => import("./atoms/InlineTable")),
   two_column_list: dynamic(() => import("./atoms/TwoColumnList")),
   bamboo_hr_embed: dynamic(() => import("./atoms/BambooHREmbed")),
   callout: dynamic(() => import("./atoms/Callout")),
