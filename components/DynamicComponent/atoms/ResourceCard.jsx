@@ -6,7 +6,7 @@ import richText from "utilities/richText"
 export default function ResourceCard({ blok }) {
   return (
     <div className="resource-card flex flex-col bg-secondary-2 px-7 py-10">
-      <div className="mx-auto lg:max-h-96 lg:max-w-96">
+      <div className="mx-auto lg:max-h-[30rem] lg:max-w-96">
         <Image
           src={blok?.thumbnail?.filename}
           alt={blok?.thumbnail?.alt ?? ""}
