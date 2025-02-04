@@ -681,10 +681,6 @@ input::placeholder {
 
 /* Salesforce Emebd Section */
 
-.salesforce-form {
-  background-color: #e0e0eb;
-}
-
 .salesforce-form input {
   height: 40px;
 }
