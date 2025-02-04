@@ -6,12 +6,12 @@ export default function SalesforceFormEmbedSection({ blok }) {
           <h3 className="text-primary-1">We Can&apos;git t Wait to Meet You!</h3>
           <p className="py-4">Please fill out this form and we will reach out to schedule your meeting.</p>
           <form
-            action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00D5Y000002GBUg"
+            action={`https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=${blok.form_id}`}
             method="POST"
             className="salesforce-form bg-secondary-2 py-2 font-primary font-bold text-gray-charcoal"
           >
-            <input type="hidden" name="oid" value="00D5Y000002GBUg" />
-            <input type="hidden" name="retURL" value="https://www.fullertonfp.com/free-retirement-toolkit" />
+            <input type="hidden" name="oid" value={blok.form_id} />
+            <input type="hidden" name="retURL" value={blok.redirect_url} />
             {/* <input type="hidden" name="debug" value="1" /> */}
             {/* <input type="hidden" name="debugEmail" value="blanec@fullertonfp.com" /> */}
 
