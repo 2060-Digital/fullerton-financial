@@ -23,6 +23,25 @@ export default function Home({ story, meta }) {
             }
           }`}
       </Script>
+      <Script id="location-schema">
+        {{
+          "@context": "https://schema.org",
+          "@type": "AccountingService",
+          name: "Fullerton Financial Planning",
+          image: "https://lirp.cdn-website.com/23a2e86a/dms3rep/multi/opt/logo-header-1920w.png",
+          "@id": "",
+          url: "https://www.fullertonfp.com/",
+          telephone: "(623) 974-0300",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "14155 N. 83rd Ave., Suite 144",
+            addressLocality: "Peoria",
+            addressRegion: "AZ",
+            postalCode: "85381",
+            addressCountry: "US",
+          },
+        }}
+      </Script>
     </>
   )
 }

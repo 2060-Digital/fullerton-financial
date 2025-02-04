@@ -679,8 +679,12 @@ input::placeholder {
 
 /* End Timeline Section */
 
+/* Salesforce Emebd Section */
+
 .salesforce-form {
   background-color: #e0e0eb;
-  max-width: 900px;
-  margin: 0 auto;
+}
+
+.salesforce-form input {
+  height: 40px;
 }
