@@ -8,7 +8,7 @@ export default function SalesforceFormEmbedSection({ blok }) {
           <form
             action={`https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=${blok.form_id}`}
             method="POST"
-            className="salesforce-form bg-secondary-2 py-2 font-primary font-bold text-gray-charcoal"
+            className="salesforce-form bg-secondary-2 py-2 font-primary text-gray-charcoal"
           >
             <input type="hidden" name="oid" value={blok.form_id} />
             <input type="hidden" name="retURL" value={blok.redirect_url} />
@@ -18,22 +18,30 @@ export default function SalesforceFormEmbedSection({ blok }) {
             <div className="flex flex-col gap-4 lg:gap-8">
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <div className="flex flex-col">
-                  <label for="first_name">First Name</label>
+                  <label for="first_name" className="font-bold">
+                    First Name
+                  </label>
                   <input id="first_name" maxLength="40" name="first_name" size="40" type="text" className="px-4" />
                 </div>
 
                 <div className="flex flex-col">
-                  <label for="last_name">Last Name</label>
+                  <label for="last_name" className="font-bold">
+                    Last Name
+                  </label>
                   <input id="last_name" maxLength="80" name="last_name" size="20" type="text" className="px-4" />
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <div className="flex flex-col">
-                  <label for="phone">Phone Number</label>
+                  <label for="phone" className="font-bold">
+                    Phone Number
+                  </label>
                   <input id="phone" maxLength="40" name="phone" size="20" type="text" className="px-4" />
                 </div>
                 <div className="flex flex-col">
-                  <label for="email">Email</label>
+                  <label for="email" className="font-bold">
+                    Email
+                  </label>
                   <input id="email" maxLength="80" name="email" size="20" type="text" className="px-4" />
                 </div>
               </div>
