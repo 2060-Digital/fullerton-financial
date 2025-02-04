@@ -3,7 +3,7 @@ export default function SalesforceFormEmbedSection({ blok }) {
     <section className="px-5 py-8 lg:py-16">
       <div className="mx-auto max-w-screen-xl">
         <div className="mx-auto max-w-[900px] bg-secondary-2 p-8">
-          <h3 className="text-primary-1">We Can&apos;git t Wait to Meet You!</h3>
+          <h3 className="text-primary-1">We Can&apos;t Wait to Meet You!</h3>
           <p className="py-4">Please fill out this form and we will reach out to schedule your meeting.</p>
           <form
             action={`https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=${blok.form_id}`}
