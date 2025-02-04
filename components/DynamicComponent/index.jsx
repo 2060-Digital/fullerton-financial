@@ -47,6 +47,7 @@ export const Components = {
   newsletter_sidebar: dynamic(() => import("./molecules/NewsletterSidebar")),
   map_section: dynamic(() => import("./molecules/MapSection")),
   video_section: dynamic(() => import("./molecules/VideoSection")),
+  salesforce_form_embed_section: dynamic(() => import("./molecules/SalesforceEmbedSection")),
 
   // Organisms
   page: dynamic(() => import("./organisms/Page")),

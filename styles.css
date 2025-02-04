@@ -678,3 +678,9 @@ input::placeholder {
 }
 
 /* End Timeline Section */
+
+.salesforce-form {
+  background-color: #e0e0eb;
+  max-width: 900px;
+  margin: 0 auto;
+}
