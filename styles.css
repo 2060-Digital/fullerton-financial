@@ -678,3 +678,9 @@ input::placeholder {
 }
 
 /* End Timeline Section */
+
+/* Salesforce Emebd Section */
+
+.salesforce-form input {
+  height: 40px;
+}
