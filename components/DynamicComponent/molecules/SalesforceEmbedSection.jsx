@@ -1,10 +1,11 @@
+import richText from "utilities/richText"
+
 export default function SalesforceFormEmbedSection({ blok }) {
   return (
     <section className="px-5 py-8 lg:py-16">
       <div className="mx-auto max-w-screen-xl">
         <div className="mx-auto max-w-[900px] bg-secondary-2 p-8">
-          <h3 className="text-primary-1">We Can&apos;t Wait to Meet You!</h3>
-          <p className="py-4">Please fill out this form and we will reach out to schedule your meeting.</p>
+          <div className="prose-headings:text-primary-1 prose-p:py-2">{richText(blok.content)}</div>
           <form
             action={`https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=${blok.form_id}`}
             method="POST"
@@ -18,14 +19,14 @@ export default function SalesforceFormEmbedSection({ blok }) {
             <div className="flex flex-col gap-4 lg:gap-8">
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <div className="flex flex-col">
-                  <label for="first_name" className="font-bold">
+                  <label htmlFor="first_name" className="font-bold">
                     First Name
                   </label>
                   <input id="first_name" maxLength="40" name="first_name" size="40" type="text" className="px-4" />
                 </div>
 
                 <div className="flex flex-col">
-                  <label for="last_name" className="font-bold">
+                  <label htmlFor="last_name" className="font-bold">
                     Last Name
                   </label>
                   <input id="last_name" maxLength="80" name="last_name" size="20" type="text" className="px-4" />
@@ -33,13 +34,13 @@ export default function SalesforceFormEmbedSection({ blok }) {
               </div>
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <div className="flex flex-col">
-                  <label for="phone" className="font-bold">
+                  <label htmlFor="phone" className="font-bold">
                     Phone Number
                   </label>
                   <input id="phone" maxLength="40" name="phone" size="20" type="text" className="px-4" />
                 </div>
                 <div className="flex flex-col">
-                  <label for="email" className="font-bold">
+                  <label htmlFor="email" className="font-bold">
                     Email
                   </label>
                   <input id="email" maxLength="80" name="email" size="20" type="text" className="px-4" />
