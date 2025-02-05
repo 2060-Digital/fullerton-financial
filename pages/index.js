@@ -23,7 +23,7 @@ export default function Home({ story, meta }) {
             }
           }`}
       </Script>
-      <Script id="location-schema">
+      <Script type="application/ld+json" id="location-schema">
         {{
           "@context": "https://schema.org",
           "@type": "AccountingService",
