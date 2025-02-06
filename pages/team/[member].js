@@ -46,7 +46,7 @@ export default function TeamMember({ teamMember, meta }) {
                         placeholder={teamMember?.content?.image.blurDataURL ? "blur" : "empty"}
                         blurDataURL={teamMember?.content?.image.blurDataURL}
                         className="relative z-20 aspect-square"
-                        style={{ width: "100%", height: "auto" }}
+                        style={{ width: "100%", height: "auto", objectFit: "cover" }}
                       />
                     </div>
                   </div>
