@@ -1,6 +1,6 @@
 const { schedule } = require("@netlify/functions")
 
-const BUILD_HOOK = "https://api.netlify.com/build_hooks/65de26bbfa8df41963da3bf2"
+const BUILD_HOOK = "https://api.netlify.com/build_hooks/65de26bbfa8df41963da3bf2?clear_cache=true"
 
 const handler = async function () {
   try {
